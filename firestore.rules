@@ -1,0 +1,71 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsExistingDocument() {
+      return signedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    function ownsNewDocument() {
+      return signedIn() && request.resource.data.userId == request.auth.uid;
+    }
+
+    function ownsUserPath(uid) {
+      return signedIn() && uid == request.auth.uid;
+    }
+
+    match /messages/{messageId} {
+      allow read: if ownsExistingDocument();
+      allow create: if ownsNewDocument();
+      allow update, delete: if false;
+    }
+
+    match /notifications/{notificationId} {
+      allow read: if ownsExistingDocument();
+      allow create: if ownsNewDocument();
+      allow update: if ownsExistingDocument()
+        && request.resource.data.userId == resource.data.userId;
+      allow delete: if false;
+    }
+
+    match /events/{eventId} {
+      allow read: if ownsExistingDocument();
+      allow create: if ownsNewDocument();
+      allow update: if ownsExistingDocument()
+        && request.resource.data.userId == resource.data.userId;
+      allow delete: if ownsExistingDocument();
+    }
+
+    match /googleConnections/{uid} {
+      allow read, write: if false;
+    }
+
+    match /pendingEmailSends/{uid} {
+      allow read, write: if false;
+    }
+
+    match /sentEmails/{sentEmailId} {
+      allow read, write: if false;
+    }
+
+    match /users/{uid}/devices/{deviceId} {
+      allow read, write: if false;
+    }
+
+    match /users/{uid}/calendarEvents/{eventId} {
+      allow read, write: if ownsUserPath(uid);
+    }
+
+    match /users/{uid} {
+      allow read, write: if ownsUserPath(uid);
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

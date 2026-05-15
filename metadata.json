@@ -1,0 +1,8 @@
+{
+  "name": "TrinaOS Voice",
+  "description": "A streamlined AI Executive Assistant for daycare owners to track tasks, finances, and organize thoughts.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
