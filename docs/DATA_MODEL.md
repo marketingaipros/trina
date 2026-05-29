@@ -205,3 +205,18 @@ These planned collections support the FlutterFlow client mobile direction. They 
 - `setting_key`
 - `setting_value`
 - `updated_at`
+
+## Mobile App Entities
+
+These entities describe the Sprint 006 FlutterFlow mobile blueprint. They are not implemented as runtime schema changes in this sprint.
+
+| Entity | Purpose | Owner |
+|---|---|---|
+| UserProfile | Stores user display/profile settings. | Firebase or Hermes/API, TBD |
+| AssistantSession | Tracks active chat/session state. | Hermes/API |
+| ChatMessage | Represents user/assistant chat messages. | Hermes/API with optional Firebase mirror |
+| AssistantAction | Represents backend action metadata returned by assistant. | Hermes/API |
+| Task | Represents tasks/reminders visible in mobile app. | Firebase or Hermes/API, TBD |
+| MemorySummary | Safe display summary of user memory/profile context. | Hermes/API |
+| ClientTheme | Stores selected visual/persona theme. | Firebase or app config |
+| UploadedFileReference | Stores file metadata/reference, not raw reasoning context. | Firebase Storage or Hermes-controlled storage, TBD |

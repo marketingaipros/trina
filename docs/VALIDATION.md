@@ -265,3 +265,28 @@ cat package.json
 - Client does not see Hermes, Claude, Gemini, Google AI Studio, Codex, or internal agent names.
 - Visual polish is acceptable for client review.
 - Accessibility basics are checked: contrast, touch target size, readable labels.
+
+## FlutterFlow Mobile Blueprint Validation
+
+Sprint 006 is a docs/planning-only blueprint sprint. It should not run app, deploy, Firebase, package installation, build, or FlutterFlow commands.
+
+### Commands
+
+```bash
+git status --branch --short
+find planning/sprints/006-flutterflow-mobile-app-blueprint -maxdepth 1 -type f | sort
+rg -n "FlutterFlow|Hermes|AI Hub Orchestrator|Firebase|Chat|Home Dashboard|clientTheme|assistant" planning docs
+git diff --name-only
+git diff --stat
+```
+
+### Checklist
+
+| Area | Validation Method | Status | Notes |
+|---|---|---|---|
+| Screens | Confirm required screen list is documented before build. | Pending | Sprint 006 |
+| Navigation | Confirm bottom nav and secondary routes are defined. | Pending | Sprint 006 |
+| API boundary | Confirm FlutterFlow calls Hermes/API or Orchestrator for AI behavior. | Pending | Sprint 006 |
+| Data ownership | Confirm Firebase vs Hermes/API responsibilities are documented. | Pending | Sprint 006 |
+| Theme | Confirm first theme is configurable and not hard-coded as permanent identity. | Pending | Sprint 006 |
+| Safety | Confirm no runtime code/config was changed during blueprint sprint. | Pending | Sprint 006 |

@@ -23,6 +23,15 @@ The client-facing mobile frontend should be built first in FlutterFlow. The exis
 ## D007 - Hermes Is the Backend AI Brain
 FlutterFlow should send structured requests to Hermes or a backend API placeholder. Hermes classifies, routes, processes, and updates task status without exposing internal AI tooling to clients.
 
+## D008 - Sprint 006 Is Blueprint Only
+Sprint 006 defines the FlutterFlow mobile app blueprint. It does not build the FlutterFlow project, change runtime code, modify Firebase config, or create generated exports.
+
+## D009 - Hermes/API Owns Assistant Reasoning
+FlutterFlow should call Hermes/API or AI Hub Orchestrator for assistant behavior. Firebase direct access should be limited to approved support concerns such as auth, profile, app state, task metadata, memory metadata, and storage references.
+
+## D010 - Mobile Theme Must Be Configurable
+The first mobile theme may be Barbie-inspired Trina, but the product foundation must support future theme changes and must not hard-code one client look as the permanent identity.
+
 ## Decision Log
 
 | Date | Decision | Reason | Impact |
@@ -49,3 +58,7 @@ FlutterFlow should send structured requests to Hermes or a backend API placehold
 | 2026-05-29 | AI Hub Orchestrator is the routing layer. | Requests may need to route to different agents/workflows. | API design must include request type, status, approval, workflow routing, and task metadata. |
 | 2026-05-29 | Internal tools must not be exposed to clients. | Clients should not see Hermes, Claude, Gemini, Google AI Studio, Codex, or internal AI tooling. | UI copy and architecture must hide internal implementation details. |
 | 2026-05-29 | One reusable FlutterFlow template should support three theme variants. | The product will serve multiple clients with different brand looks. | Theme variables and screen structure must be reusable. |
+| 2026-05-29 | Sprint 006 is a FlutterFlow mobile app blueprint sprint, not a build sprint. | The project needs a clear mobile screen/navigation/API contract before FlutterFlow work starts. | Builder must create planning/docs only and avoid implementation. |
+| 2026-05-29 | React/Vite app remains current/reference/local implementation until explicitly reclassified. | Existing work may still be useful as behavior reference. | Builder should not delete, retire, or rewrite it during Sprint 006. |
+| 2026-05-29 | Hermes/API is preferred for AI assistant behavior. Firebase direct access should be limited to app state/auth/storage/profile needs. | AI reasoning and routing should stay backend-controlled rather than embedded in FlutterFlow screens. | FlutterFlow should call APIs for AI actions instead of owning assistant logic. |
+| 2026-05-29 | Client visual theme must be configurable. | Trina may have multiple client/persona looks. | First theme can be Barbie-inspired, but docs must avoid locking the whole product to one theme. |

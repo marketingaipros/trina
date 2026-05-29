@@ -124,3 +124,32 @@ Do not expose Hermes, Claude, Gemini, Google AI Studio, Codex, or internal orche
 - Hermes is the backend AI brain and AI Hub Orchestrator is the routing layer.
 - FlutterFlow V1 may use mock data and placeholder API actions until UI and schema are approved.
 - The existing React/Vite app must not be changed or replaced in this sprint.
+
+## FlutterFlow Mobile App Blueprint
+
+Sprint 006 defines the mobile app blueprint before any FlutterFlow build begins. The first mobile implementation should be a polished assistant shell with simple navigation, clear API boundaries, and configurable visual theming.
+
+Recommended first screens:
+
+- Splash / Loading
+- Welcome / Intro
+- Sign In / Demo Access
+- Home Dashboard
+- Chat
+- Tasks / Reminders
+- Memory / Profile
+- Files / Uploads placeholder
+- Settings
+- Error / Offline
+
+Post-login bottom navigation:
+
+- Home
+- Chat
+- Tasks
+- Memory
+- Settings
+
+FlutterFlow owns screens, navigation, forms, local UI state, display components, and theme variables. Firebase may support approved auth, profile, app state, storage references, and metadata. Hermes/API owns assistant reasoning, memory reasoning, action routing, business rules, sensitive context selection, and connector decisions. AI Hub Orchestrator routes between the mobile app, Hermes, Firebase, and future service connectors.
+
+FlutterFlow should not directly call model providers or own assistant prompt logic.

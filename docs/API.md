@@ -125,3 +125,48 @@ FlutterFlow should send structured request objects to Hermes or a backend API pl
 - Waiting for Client
 - Approved
 - Changes Requested
+
+## FlutterFlow Mobile Assistant Chat Contract
+
+Sprint 006 recommends that the mobile Chat screen call Hermes/API or AI Hub Orchestrator for assistant behavior. FlutterFlow should not directly call model providers, embed prompts, own memory reasoning, or execute connector actions.
+
+### Assistant Chat Request
+
+```json
+{
+  "userId": "string",
+  "sessionId": "string",
+  "message": "string",
+  "clientTheme": "trina-barbie-v1",
+  "source": "flutterflow-mobile",
+  "metadata": {
+    "screen": "chat",
+    "locale": "en-US",
+    "timezone": "America/Chicago"
+  }
+}
+```
+
+### Assistant Chat Response
+
+```json
+{
+  "reply": "string",
+  "sessionId": "string",
+  "actions": [
+    {
+      "type": "task_created",
+      "label": "string",
+      "status": "pending"
+    }
+  ],
+  "memoryHints": [
+    {
+      "category": "preference",
+      "label": "string",
+      "safeToDisplay": true
+    }
+  ],
+  "error": null
+}
+```

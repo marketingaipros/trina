@@ -1,12 +1,14 @@
 # State
 
 ## Current Sprint
-`005-local-repo-baseline-flutterflow-direction`
+`006-flutterflow-mobile-app-blueprint`
 
 ## Current Status
 Sprint 003 production release readiness validation passed without deployment and without production code changes. Sprint 004 was prepared as the controlled web V1 deploy sprint, but no deploy should occur until the owner explicitly approves the deploy scope.
 
-Sprint 005 is a documentation-only direction alignment sprint. The client-facing mobile app direction is now FlutterFlow-first, with Hermes as the backend AI brain and AI Hub Orchestrator as the routing layer. The existing local React/Vite/Firebase app remains preserved as the current/reference implementation and must not be confused with the planned FlutterFlow client mobile frontend.
+Sprint 005 was accepted, committed, and pushed in commit `ae335f743febe73c6f15884a87ffdf06c08ecb62`. The client-facing mobile app direction is now FlutterFlow-first, with Hermes as the backend AI brain and AI Hub Orchestrator as the routing layer. The existing local React/Vite/Firebase app remains preserved as the current/reference implementation and must not be confused with the planned FlutterFlow client mobile frontend.
+
+Sprint 006 is a documentation-only FlutterFlow Mobile App Blueprint sprint. It defines the first mobile screens, navigation model, user flows, data ownership, API contract direction, theme assumptions, and validation criteria before any FlutterFlow implementation begins.
 
 ## Recently Completed
 - Existing Barbie / TrinaOS Voice app inspected.
@@ -36,9 +38,11 @@ Sprint 005 is a documentation-only direction alignment sprint. The client-facing
   - Git remote is `https://github.com/marketingaipros/trina.git`.
   - App stack is Vite, React, Firebase, Tailwind CSS, and Capacitor.
   - The Sprint 005 Architect Pack exists at `architect-packs/trina-005-flutterflow-direction-architect-pack.md`.
+- Sprint 005 docs checkpoint was committed and pushed:
+  - `ae335f743febe73c6f15884a87ffdf06c08ecb62`
 
 ## Active Sprint Goal
-Document the local repo baseline and align project planning around a FlutterFlow-first client mobile direction without changing app/runtime code.
+Create a Builder-ready FlutterFlow mobile app blueprint without changing app/runtime code.
 
 ## Known Stable Areas
 - Vite React app structure exists.
@@ -61,10 +65,14 @@ Document the local repo baseline and align project planning around a FlutterFlow
 - Production deploy commands have not been approved or run.
 - Whether the existing React/Vite app becomes internal admin/reference, remains maintained, or is retired after a FlutterFlow MVP is not decided.
 - FlutterFlow backend integration path is not final; default planning assumes structured requests to a backend API placeholder first.
+- FlutterFlow screen implementation has not started.
+- Mobile auth, upload storage, minimum MVP depth, and generated-code repo policy remain undecided.
 
 ## Next Actions
-- Use `planning/sprints/005-local-repo-baseline-flutterflow-direction/` as the active Sprint 005 handoff.
-- Give the FlutterFlow build brief to FlutterFlow or a FlutterFlow builder after documentation review.
+- Use `planning/sprints/006-flutterflow-mobile-app-blueprint/` as the active Sprint 006 handoff.
+- Review and accept Sprint 006 blueprint docs before starting FlutterFlow implementation.
+- Do not create a FlutterFlow project, generated export, Firebase schema change, or runtime implementation during Sprint 006.
+- Prepare a future Sprint 007 FlutterFlow first-screen build handoff only after Sprint 006 is accepted.
 - Keep the existing React/Vite app preserved as current/reference implementation until the owner decides its long-term role.
 - Confirm whether FlutterFlow will use Firebase directly, a Hermes API endpoint, or both before backend integration.
 - Confirm the first client theme before FlutterFlow visual build.
@@ -79,3 +87,4 @@ Document the local repo baseline and align project planning around a FlutterFlow
 - Native mobile behavior cannot be fully validated without local native Firebase config files and device/emulator testing.
 - Live chat behavior still depends on deployed function secrets, including `OPENROUTER_API_KEY`.
 - FlutterFlow production integration is blocked until request schema, storage/auth model, and UI are approved.
+- FlutterFlow implementation remains blocked until Sprint 006 blueprint acceptance is complete.
