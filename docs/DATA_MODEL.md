@@ -85,3 +85,123 @@ Backend-owned mobile push token records.
 
 ## Local Storage
 The app also uses browser localStorage for local tasks, transactions, events, auth UID cache, and Google connection state.
+
+## Planned FlutterFlow / Hermes Collections
+
+These planned collections support the FlutterFlow client mobile direction. They are documentation targets, not implemented app/runtime code in Sprint 005.
+
+### `users`
+- `user_id`
+- `client_id`
+- `name`
+- `email`
+- `phone`
+- `role`
+- `profile_photo_url`
+- `notification_preferences`
+- `created_at`
+- `updated_at`
+
+### `clients`
+- `client_id`
+- `client_name`
+- `app_name`
+- `app_theme`
+- `status`
+- `primary_contact_user_id`
+- `drive_folder_url`
+- `created_at`
+- `updated_at`
+
+### `requests`
+- `request_id`
+- `client_id`
+- `user_id`
+- `request_type`
+- `request_title`
+- `request_text`
+- `voice_note_url`
+- `uploaded_file_url`
+- `priority`
+- `due_date`
+- `output_format`
+- `task_status`
+- `approval_status`
+- `assigned_agent_or_workflow`
+- `notes`
+- `created_at`
+- `updated_at`
+
+### `tasks`
+- `task_id`
+- `request_id`
+- `client_id`
+- `title`
+- `description`
+- `status`
+- `priority`
+- `due_date`
+- `assigned_to`
+- `source_request_id`
+- `created_at`
+- `updated_at`
+
+### `files`
+- `file_id`
+- `client_id`
+- `request_id`
+- `file_name`
+- `file_type`
+- `file_url`
+- `storage_location`
+- `uploaded_by`
+- `uploaded_at`
+- `notes`
+
+### `deliverables`
+- `deliverable_id`
+- `client_id`
+- `request_id`
+- `task_id`
+- `title`
+- `description`
+- `file_url`
+- `status`
+- `approval_status`
+- `version`
+- `created_at`
+- `updated_at`
+
+### `themes`
+- `theme_id`
+- `client_id`
+- `theme_name`
+- `app_name`
+- `primary_color`
+- `secondary_color`
+- `background_color`
+- `accent_color`
+- `card_style`
+- `button_style`
+- `icon_style`
+- `typography_notes`
+- `created_at`
+- `updated_at`
+
+### `approvals`
+- `approval_id`
+- `client_id`
+- `deliverable_id`
+- `request_id`
+- `status`
+- `requested_at`
+- `responded_at`
+- `response_notes`
+
+### `settings`
+- `setting_id`
+- `client_id`
+- `user_id`
+- `setting_key`
+- `setting_value`
+- `updated_at`

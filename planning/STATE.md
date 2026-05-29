@@ -1,10 +1,12 @@
 # State
 
 ## Current Sprint
-`004-controlled-web-v1-deploy`
+`005-local-repo-baseline-flutterflow-direction`
 
 ## Current Status
-Sprint 003 production release readiness validation passed without deployment and without production code changes. Sprint 004 is now prepared as the controlled web V1 deploy sprint. No deploy should occur until the owner explicitly approves the deploy scope.
+Sprint 003 production release readiness validation passed without deployment and without production code changes. Sprint 004 was prepared as the controlled web V1 deploy sprint, but no deploy should occur until the owner explicitly approves the deploy scope.
+
+Sprint 005 is a documentation-only direction alignment sprint. The client-facing mobile app direction is now FlutterFlow-first, with Hermes as the backend AI brain and AI Hub Orchestrator as the routing layer. The existing local React/Vite/Firebase app remains preserved as the current/reference implementation and must not be confused with the planned FlutterFlow client mobile frontend.
 
 ## Recently Completed
 - Existing Barbie / TrinaOS Voice app inspected.
@@ -29,9 +31,14 @@ Sprint 003 production release readiness validation passed without deployment and
 - V1 launch scope was documented as web-first.
 - Android and iOS were documented as blocked until native Firebase config and device/emulator testing are confirmed.
 - Telegram was documented as blocked until token and webhook setup are confirmed without exposing secrets.
+- Sprint 005 local baseline was checked:
+  - Current branch is `main`.
+  - Git remote is `https://github.com/marketingaipros/trina.git`.
+  - App stack is Vite, React, Firebase, Tailwind CSS, and Capacitor.
+  - The Sprint 005 Architect Pack exists at `architect-packs/trina-005-flutterflow-direction-architect-pack.md`.
 
 ## Active Sprint Goal
-Execute a controlled Firebase web V1 deploy for Trina / TrinaOS Voice after explicit owner approval, then verify the live hosted app with a post-deploy smoke test checklist.
+Document the local repo baseline and align project planning around a FlutterFlow-first client mobile direction without changing app/runtime code.
 
 ## Known Stable Areas
 - Vite React app structure exists.
@@ -42,6 +49,8 @@ Execute a controlled Firebase web V1 deploy for Trina / TrinaOS Voice after expl
 - Reminder creation and popup architecture exists in code.
 - Web build, type-check, and Functions syntax checks pass locally.
 - Firebase project target is `barbie-92edc`.
+- 120x planning and documentation structure exists.
+- Git remote is connected to `https://github.com/marketingaipros/trina.git`.
 
 ## Known Incomplete Areas
 - Gmail send is intentionally V2/disabled for V1 stability.
@@ -50,11 +59,16 @@ Execute a controlled Firebase web V1 deploy for Trina / TrinaOS Voice after expl
 - Browser speech recognition is not a complete native mobile voice solution.
 - Debug logging policy for raw user message text is not decided.
 - Production deploy commands have not been approved or run.
+- Whether the existing React/Vite app becomes internal admin/reference, remains maintained, or is retired after a FlutterFlow MVP is not decided.
+- FlutterFlow backend integration path is not final; default planning assumes structured requests to a backend API placeholder first.
 
 ## Next Actions
-- Read the Sprint 004 handoff prompt and summarize the deploy plan before running commands.
-- Re-run final local validation commands after owner approval.
-- Approve or defer Firebase deploy actions for Hosting, Functions, and Firestore rules.
+- Use `planning/sprints/005-local-repo-baseline-flutterflow-direction/` as the active Sprint 005 handoff.
+- Give the FlutterFlow build brief to FlutterFlow or a FlutterFlow builder after documentation review.
+- Keep the existing React/Vite app preserved as current/reference implementation until the owner decides its long-term role.
+- Confirm whether FlutterFlow will use Firebase directly, a Hermes API endpoint, or both before backend integration.
+- Confirm the first client theme before FlutterFlow visual build.
+- Defer Firebase deploy actions for Hosting, Functions, and Firestore rules until explicitly approved.
 - Decide debug log policy before broad production usage.
 - Confirm Telegram secret and webhook setup if Telegram is included in V1.
 - Keep V1 launch scope web-first unless native mobile validation is approved and completed.
@@ -64,3 +78,4 @@ Execute a controlled Firebase web V1 deploy for Trina / TrinaOS Voice after expl
 - Telegram cannot be considered live until `TELEGRAM_BOT_TOKEN` is configured and webhook setup is confirmed.
 - Native mobile behavior cannot be fully validated without local native Firebase config files and device/emulator testing.
 - Live chat behavior still depends on deployed function secrets, including `OPENROUTER_API_KEY`.
+- FlutterFlow production integration is blocked until request schema, storage/auth model, and UI are approved.

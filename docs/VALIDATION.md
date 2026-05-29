@@ -217,3 +217,51 @@ firebase deploy --only hosting
 ### Sprint 004 Status
 
 Status: Prepared, not run. No Sprint 004 validation or deploy commands have been run during the apply-pack step.
+
+## Sprint 005 FlutterFlow Direction Validation
+
+Sprint 005 is a documentation-only baseline and direction alignment sprint. It should not change app/runtime code, deploy, stage, commit, push, print secrets, or modify `.env.local`.
+
+### Baseline Checks
+
+```bash
+git status --branch --short
+git remote -v
+git branch --show-current
+find planning -maxdepth 3 -type f | sort
+find docs -maxdepth 2 -type f | sort
+find architect-packs -maxdepth 1 -type f | sort
+cat package.json
+```
+
+### Acceptance Checks
+
+- Confirm local repo baseline is documented.
+- Confirm Git remote is documented.
+- Confirm existing app stack is documented.
+- Confirm FlutterFlow-first client mobile decision is recorded in `planning/DECISIONS.md`.
+- Confirm Hermes backend request schema exists in `docs/API.md`.
+- Confirm planned data collections exist in `docs/DATA_MODEL.md`.
+- Confirm FlutterFlow QA criteria exist in this file.
+- Confirm existing React/Vite app is clearly distinguished from planned FlutterFlow frontend.
+- Confirm no app code is changed.
+- Confirm no files are deleted, moved, renamed, staged, committed, or pushed.
+- Confirm `.env.local` is not printed or exposed.
+- Confirm `planning/STATE.md` clearly identifies the next action.
+
+## FlutterFlow MVP QA Checklist
+
+- Mobile layout works on common phone sizes.
+- Bottom navigation includes Home, Ask, Tasks, Files, Profile.
+- Required screens exist.
+- Request form captures required schema fields.
+- Task statuses match approved status options.
+- Approval statuses match approved status options.
+- Theme variables are reusable.
+- Client A, B, and C theme variations can be created without duplicating app logic.
+- File upload placeholder exists.
+- Voice/text input placeholder exists.
+- Backend API placeholder exists.
+- Client does not see Hermes, Claude, Gemini, Google AI Studio, Codex, or internal agent names.
+- Visual polish is acceptable for client review.
+- Accessibility basics are checked: contrast, touch target size, readable labels.

@@ -17,3 +17,8 @@
 | Which debug logging policy should be applied before broad production usage? | Owner / Architect | Before broad production usage | Open | Recommendation is reduce or redact message content; implementation would require a future approved code change. |
 | Is Firebase deploy approved for Hosting, Functions, and Firestore rules? | Owner | Sprint 004 before deploy | Open | Sprint 004 requires explicit deploy-scope approval before any deploy command. |
 | What live URL should be used for smoke testing and sharing? | Builder | Open until deploy/verification | Open | Capture from Firebase deploy output or Hosting console after deploy. |
+| Should the existing React/Vite Trina app become an internal admin/reference app after FlutterFlow starts? | Owner / Architect | Before FlutterFlow backend integration | Open | Do not decide silently. |
+| Will FlutterFlow use Firebase directly, a Hermes API endpoint, or both? | Architect / Builder | Before backend integration | Open | Default: FlutterFlow posts structured requests to a backend API placeholder first. |
+| Where will uploaded files and screenshots live: Firebase Storage, Google Drive, or both? | Architect / Owner | Before upload implementation | Open | Default: Google Drive for project organization, storage method TBD for app runtime. |
+| Is authentication required in FlutterFlow V1 or only a login placeholder? | Owner | Before FlutterFlow production build | Open | Current MVP says login placeholder. |
+| Which client theme should be built first: Barbie/Ken, Blue Skies, or Neutral Premium? | Owner | Before FlutterFlow visual build | Open | Default recommendation: build Neutral Premium structure first, then reskin Client A and B. |

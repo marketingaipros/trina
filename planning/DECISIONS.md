@@ -17,6 +17,12 @@ Reminder creation, Firestore persistence, popup notifications, dismiss, and snoo
 ## D005 - Capacitor Is the Mobile Path
 Mobile conversion uses Capacitor around the existing Vite app rather than a rewrite.
 
+## D006 - FlutterFlow Is the Planned Client Mobile Frontend
+The client-facing mobile frontend should be built first in FlutterFlow. The existing React/Vite app remains preserved as the current/reference implementation unless the owner decides a new role for it.
+
+## D007 - Hermes Is the Backend AI Brain
+FlutterFlow should send structured requests to Hermes or a backend API placeholder. Hermes classifies, routes, processes, and updates task status without exposing internal AI tooling to clients.
+
 ## Decision Log
 
 | Date | Decision | Reason | Impact |
@@ -37,3 +43,9 @@ Mobile conversion uses Capacitor around the existing Vite app rather than a rewr
 | 2026-05-15 | Sprint 004 is a controlled web V1 deploy sprint. | Sprint 003 showed web V1 is locally ready after deploy approval. | Deployment actions can proceed only after explicit approval. |
 | 2026-05-15 | Telegram is not required for web V1 launch. | Token and webhook setup are not confirmed. | Telegram remains blocked unless separately approved and configured. |
 | 2026-05-15 | Gmail send remains V2-disabled from chat during Sprint 004. | Gmail send is outside the V1 stability boundary. | No Gmail expansion during Sprint 004. |
+| 2026-05-29 | Local Trina folder is the working source for audit. | It contains the live app files and 120x planning structure. | Do not recreate folders or rerun launcher before audit. |
+| 2026-05-29 | Client-facing mobile frontend should be built first in FlutterFlow. | Clients care about polished phone-app feel and visual design. | Codex should not be used as the first frontend builder for the client app. |
+| 2026-05-29 | Hermes is the backend AI brain. | The client should experience a clean app while backend intelligence stays internal. | FlutterFlow sends structured requests to Hermes/API layer. |
+| 2026-05-29 | AI Hub Orchestrator is the routing layer. | Requests may need to route to different agents/workflows. | API design must include request type, status, approval, workflow routing, and task metadata. |
+| 2026-05-29 | Internal tools must not be exposed to clients. | Clients should not see Hermes, Claude, Gemini, Google AI Studio, Codex, or internal AI tooling. | UI copy and architecture must hide internal implementation details. |
+| 2026-05-29 | One reusable FlutterFlow template should support three theme variants. | The product will serve multiple clients with different brand looks. | Theme variables and screen structure must be reusable. |

@@ -33,6 +33,63 @@ Barbie / TrinaOS Voice is a Vite React app backed by Firebase. The browser app p
 - Web directory: `dist`.
 - Native Firebase mobile config files are not part of the repo and must not be committed.
 
+## Planned Client Mobile Architecture
+
+The planned client-facing mobile app should be built frontend-first in FlutterFlow. The existing local React/Vite/Firebase app remains the current/reference implementation and should be preserved until the owner decides whether it becomes an internal/admin app, remains a reference app, or is retired after a FlutterFlow MVP.
+
+```text
+FlutterFlow Mobile App
+        -> structured request
+Hermes Backend AI Brain
+        -> route / classify / process
+AI Hub Orchestrator
+        -> task workflows / agents / storage actions
+Google Drive / File Storage / Deliverables
+        -> status and result updates
+FlutterFlow Mobile App
+```
+
+## FlutterFlow Responsibility
+
+- Client-facing mobile UI.
+- Screen navigation.
+- Theme variables.
+- Request forms.
+- Task tracker views.
+- Deliverables library views.
+- Profile/preferences UI.
+- API calls to backend placeholders.
+
+## Hermes Responsibility
+
+- Receive structured requests.
+- Classify intent.
+- Handle or route task processing.
+- Generate or organize outputs.
+- Update task status and approval state.
+
+## AI Hub Orchestrator Responsibility
+
+- Route requests to the correct agent or workflow.
+- Track workflow ownership.
+- Coordinate QA and next action.
+
+## Google Drive Responsibility
+
+- Store project deliverables, client folders, source materials, and handoff assets.
+- Organize files outside the client-facing app.
+
+## Codex Responsibility
+
+- Audit local repo state.
+- Apply Architect Packs.
+- Maintain planning and documentation files.
+- Build helper scripts or backend glue only after approved sprint plans.
+
+## Client-Facing Rule
+
+Do not expose Hermes, Claude, Gemini, Google AI Studio, Codex, or internal orchestration details in the client UI.
+
 ## Deployment
 - Hosting public directory: `dist`.
 - SPA fallback rewrite points to `/index.html`.
@@ -60,3 +117,10 @@ Barbie / TrinaOS Voice is a Vite React app backed by Firebase. The browser app p
 - Deploy scope must be explicitly approved before any Firebase deploy command is run.
 - Telegram, Android, iOS, and Gmail send remain outside the required V1 web launch path unless separately approved and validated.
 - Post-deploy smoke testing should verify the live hosted app, auth, chat, reminders, Gmail V2-disabled behavior, and documented blocked channels.
+
+## Sprint 005 FlutterFlow Direction Notes
+- Sprint 005 is documentation and baseline alignment only.
+- The client-facing mobile version is FlutterFlow-first.
+- Hermes is the backend AI brain and AI Hub Orchestrator is the routing layer.
+- FlutterFlow V1 may use mock data and placeholder API actions until UI and schema are approved.
+- The existing React/Vite app must not be changed or replaced in this sprint.

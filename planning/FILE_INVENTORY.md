@@ -49,3 +49,26 @@
 - `docs/assistant-architecture.md`
 - `docs/google-telegram-setup.md`
 - `docs/telegram-v1-deployment.md`
+
+## Planning
+- `planning/STATE.md` - current sprint state, baseline, known blockers, and next actions.
+- `planning/DECISIONS.md` - durable project decisions, including FlutterFlow-first client mobile direction.
+- `planning/RISKS.md` - open project and launch risks.
+- `planning/QUESTIONS.md` - open owner, architect, and builder questions.
+- `planning/sprints/001-existing-app-audit/` - existing app audit sprint.
+- `planning/sprints/002-v1-stability-validation/` - V1 stability validation sprint.
+- `planning/sprints/003-production-release-readiness/` - production release readiness sprint.
+- `planning/sprints/004-controlled-web-v1-deploy/` - controlled web V1 deploy sprint, prepared but not run.
+- `planning/sprints/005-local-repo-baseline-flutterflow-direction/` - FlutterFlow direction alignment sprint.
+
+## Architect Packs
+- `architect-packs/trina-002-v1-stability-validation.md`
+- `architect-packs/trina-003-production-release-readiness.md`
+- `architect-packs/trina-004-controlled-web-v1-deploy.md`
+- `architect-packs/trina-005-flutterflow-direction-architect-pack.md`
+
+## Sprint 005 Baseline
+- Current branch: `main`.
+- Git remote: `https://github.com/marketingaipros/trina.git`.
+- Stack from `package.json`: Vite, React 19, Firebase, Tailwind CSS, Capacitor, TypeScript.
+- Sprint 005 changed documentation only. App/runtime source files remain preserved.

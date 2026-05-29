@@ -68,3 +68,60 @@ Runs every minute. Scans pending reminders and sends mobile push notifications t
 - Gmail API.
 - Telegram Bot API.
 - Firebase Auth REST API in legacy auth helper paths.
+
+## FlutterFlow / Hermes Request Schema
+
+FlutterFlow should send structured request objects to Hermes or a backend API placeholder. Full Hermes production integration should wait until the FlutterFlow UI and request schema are approved.
+
+```json
+{
+  "client_id": "client_a",
+  "client_name": "Client A",
+  "app_theme": "barbie_ken_inspired",
+  "request_type": "Personal task",
+  "request_title": "Plan my week",
+  "request_text": "Help me organize my priorities for this week.",
+  "voice_note_url": null,
+  "uploaded_file_url": null,
+  "priority": "Normal",
+  "due_date": "2026-06-05",
+  "output_format": "Task list",
+  "task_status": "New",
+  "assigned_agent_or_workflow": "TBD",
+  "timestamp": "2026-05-29T00:00:00Z",
+  "notes": "Submitted from mobile app.",
+  "approval_status": "Not Required"
+}
+```
+
+## FlutterFlow Request Categories
+
+- Personal task
+- Scheduling help
+- Business task
+- Content request
+- Sales request
+- Research request
+- File organization
+- Workflow request
+- Reminder
+- Other
+
+## FlutterFlow Task Status Options
+
+- New
+- Received
+- In Progress
+- Needs Client Info
+- Ready for Review
+- Revision Requested
+- Approved
+- Completed
+- Archived
+
+## FlutterFlow Approval Status Options
+
+- Not Required
+- Waiting for Client
+- Approved
+- Changes Requested
