@@ -258,6 +258,17 @@ cat package.json
 - Task statuses match approved status options.
 - Approval statuses match approved status options.
 - Theme variables are reusable.
+
+## FlutterFlow First-Screen Prototype Validation
+
+| Area | Validation Method | Status | Notes |
+|---|---|---|---|
+| First screens | Confirm Splash, Welcome, Demo Access, Home Dashboard, Chat Shell, and Error/Offline are defined in handoff. | Pending | Sprint 007 |
+| Scope boundary | Confirm Tasks, Memory, Files, Settings, and Theme Preview are placeholder/future only. | Pending | Sprint 007 |
+| Theme | Confirm `trina-barbie-v1` tokens are documented and reusable. | Pending | Sprint 007 |
+| Mock data | Confirm prototype uses mock/demo data only. | Pending | Sprint 007 |
+| API stubs | Confirm live backend calls are out of scope and placeholder API rules are documented. | Pending | Sprint 007 |
+| Runtime safety | Confirm no local runtime app code or generated FlutterFlow exports changed. | Pending | Sprint 007 |
 - Client A, B, and C theme variations can be created without duplicating app logic.
 - File upload placeholder exists.
 - Voice/text input placeholder exists.
