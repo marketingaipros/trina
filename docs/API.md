@@ -233,3 +233,20 @@ Allowed states:
 - `listening`
 - `captured`
 - `error`
+
+## Sprint 009 FlutterFlow Mock Contracts
+
+Sprint 009 does not add real APIs.
+
+For FlutterFlow prototype planning, these mock contracts are approved as visual/stub behavior only:
+
+| Mock Contract | Purpose | Input | Output | Notes |
+|---|---|---|---|---|
+| `mockStartDemoSession` | Start a local demo session in the prototype. | None or selected user profile. | Demo state object. | No auth, persistence, or backend call. |
+| `mockSendAssistantMessage` | Simulate a chat/assistant response. | User message string or selected quick action. | Assistant response card and optional suggested action. | Must be clearly mock-only. |
+| `mockMicListeningState` | Simulate mic listening/processing/done states. | Tap state. | UI state transition. | No real audio capture or transcription. |
+| `mockLoadCEOBriefing` | Populate CEO briefing cards. | None. | Static briefing summary cards. | Uses sample text only. |
+| `mockLoadFinanceSnapshot` | Populate finance screen cards. | None. | Static finance metrics. | Uses fake/demo numbers only. |
+| `mockLoadStrategicAdvisorMode` | Populate strategic advisor prompt options. | None. | Prompt cards and sample answer. | No live model call. |
+
+These names describe prototype intent only. They are not production API endpoints.

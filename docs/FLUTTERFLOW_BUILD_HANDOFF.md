@@ -219,6 +219,366 @@ Bottom navigation:
 - Memory
 - Settings
 
+## Sprint 009 - Screen Build Handoff
+
+### Purpose
+
+This section defines the exact FlutterFlow screen build plan for Trina's first mobile visual prototype.
+
+This is a build handoff for the FlutterFlow operator. It is not a runtime implementation plan.
+
+### Build Boundary
+
+FlutterFlow builder may create visual screens inside FlutterFlow after approval.
+
+Local repo Builder may update docs/planning only.
+
+Do not modify:
+
+- Local React/Vite runtime code
+- Firebase config
+- Hermes/API implementation
+- Package files
+- Native folders
+- Production release files
+- Generated FlutterFlow exports
+- Secrets or `.env` files
+
+### Visual Identity
+
+Trina should feel like a polished personal AI executive assistant with a soft Barbie-inspired visual layer.
+
+| Element | Direction |
+|---|---|
+| Background | Pale pink or soft blush |
+| Primary CTA | Hot pink |
+| Cards | White or very light pink with rounded corners |
+| Typography | Clean, mobile-readable, not playful/kid-like |
+| Icons | Simple line icons, rounded style |
+| Mood | Premium, organized, feminine, executive assistant |
+| Layout | Mobile-first, clear spacing, card-based |
+
+Suggested color tokens:
+
+| Token | Example |
+|---|---|
+| `trina-bg-soft` | `#FFF1F7` |
+| `trina-card` | `#FFFFFF` |
+| `trina-card-soft` | `#FFE5F0` |
+| `trina-primary` | `#FF2E93` |
+| `trina-primary-dark` | `#C2186A` |
+| `trina-text-main` | `#231F20` |
+| `trina-text-muted` | `#6F5E68` |
+| `trina-border-soft` | `#F6BFD8` |
+
+Color values are visual guidance, not final brand tokens.
+
+### Screen List
+
+The first FlutterFlow prototype should include six screens:
+
+1. Dashboard / Home
+2. Assistant / Voice Command
+3. Strategic Advisor Mode
+4. CEO Briefing
+5. Finance
+6. Settings / Profile
+
+### Screen 1 - Dashboard / Home
+
+Purpose: give the user a polished landing screen showing Trina's main value: quick access to assistant actions, executive briefing, strategy, and finance.
+
+Layout:
+
+- Top greeting area:
+  - "Good morning, Destrey" or generic "Good morning"
+  - Small subtitle: "Trina is ready for your next move."
+- Status card:
+  - "Today's Executive Snapshot"
+  - 2-3 short bullets
+- Quick action cards:
+  - "Ask Trina"
+  - "CEO Briefing"
+  - "Strategic Advisor Mode"
+  - "Finance"
+- Bottom navigation:
+  - Home
+  - Assistant
+  - Strategy
+  - Briefing
+  - Finance
+
+Mock data:
+
+```text
+Today's Executive Snapshot
+- 3 priorities need attention
+- 2 follow-ups are ready
+- Finance snapshot updated
+```
+
+Click behavior:
+
+- Tap `Ask Trina` -> Assistant screen
+- Tap `CEO Briefing` -> CEO Briefing screen
+- Tap `Strategic Advisor Mode` -> Strategic Advisor screen
+- Tap `Finance` -> Finance screen
+
+### Screen 2 - Assistant / Voice Command
+
+Purpose: show Trina as the primary conversational and voice assistant.
+
+Layout:
+
+- Header:
+  - "Ask Trina"
+  - Subtitle: "Voice or text command"
+- Central mic button:
+  - Large round hot pink button
+  - Soft shadow or glow
+  - Three states: Idle, Listening, Thinking
+- Text input:
+  - Placeholder: "Tell Trina what you need..."
+- Suggested prompts:
+  - "Prepare my CEO briefing"
+  - "Review finance snapshot"
+  - "Help me make a decision"
+  - "Draft a client follow-up"
+- Response card area:
+  - Shows mock assistant answer after action
+
+Mock behavior:
+
+- `mockMicListeningState`
+- `mockSendAssistantMessage`
+
+Example mock response:
+
+```text
+Here is the best next move:
+
+Focus on the highest-value follow-up first, then review the finance snapshot before making new commitments.
+```
+
+Click behavior:
+
+- Tap mic -> cycle through listening/thinking/done UI states.
+- Tap suggested prompt -> populate response card.
+- Tap `CEO Briefing` prompt -> can link to CEO Briefing screen.
+
+### Screen 3 - Strategic Advisor Mode
+
+Purpose: show Trina as a high-level thinking partner for business decisions.
+
+Layout:
+
+- Header:
+  - "Strategic Advisor Mode"
+  - Subtitle: "Think through decisions before you act."
+- Mode cards:
+  - "Growth Strategy"
+  - "Risk Review"
+  - "Client Opportunity"
+  - "Operations Bottleneck"
+- Main advisor card:
+  - Shows a sample strategic recommendation
+- CTA:
+  - "Ask for recommendation"
+
+Mock data:
+
+```text
+Strategic Recommendation
+
+Prioritize the offer with the shortest path to revenue, lowest setup friction, and strongest client urgency.
+```
+
+Click behavior:
+
+- Tap each mode card -> update advisor card with static mock response.
+- CTA -> Assistant screen or static response update.
+
+### Screen 4 - CEO Briefing
+
+Purpose: show a daily executive briefing view for the user.
+
+Layout:
+
+- Header:
+  - "CEO Briefing"
+  - Subtitle: "Your day, priorities, and next moves."
+- Briefing sections:
+  - Top Priorities
+  - Follow-Ups
+  - Decisions Needed
+  - Suggested Next Move
+- CTA:
+  - "Ask Trina to prioritize"
+
+Mock data:
+
+```text
+Top Priorities
+1. Review client demo readiness
+2. Confirm next sales follow-up
+3. Check finance snapshot
+
+Suggested Next Move
+Prepare the demo first, then send the follow-up while the project is fresh.
+```
+
+Click behavior:
+
+- Tap `Ask Trina to prioritize` -> Assistant screen with prefilled prompt or mock response.
+
+### Screen 5 - Finance
+
+Purpose: show a simple executive finance snapshot without real financial integration.
+
+Layout:
+
+- Header:
+  - "Finance"
+  - Subtitle: "Quick business snapshot"
+- Metric cards:
+  - Revenue Pipeline
+  - Monthly Commitments
+  - Open Opportunities
+  - Attention Needed
+- Insight card:
+  - "Trina's read"
+- CTA:
+  - "Ask Trina about cash priorities"
+
+Mock data:
+
+```text
+Revenue Pipeline: $18,500
+Monthly Commitments: $4,200
+Open Opportunities: 7
+Attention Needed: 2 items
+```
+
+Click behavior:
+
+- Tap CTA -> Assistant screen with finance prompt.
+
+Rule: do not connect to real financial data in this sprint.
+
+### Screen 6 - Settings / Profile
+
+Purpose: give the prototype a complete app feel without building real account management.
+
+Layout:
+
+- Header:
+  - "Settings"
+- Profile card:
+  - Name: "Destrey"
+  - Role: "CEO / Operator"
+- Preference rows:
+  - Assistant tone
+  - Briefing time
+  - Voice mode
+  - Notification style
+- Footer note:
+  - "Prototype settings only"
+
+Mock behavior:
+
+- Rows may open static placeholder panels.
+- No account, auth, persistence, or backend behavior.
+
+### Navigation
+
+Use bottom tabs:
+
+1. Home
+2. Assistant
+3. Strategy
+4. Briefing
+5. Finance
+
+Settings can be reached from a profile icon in the top right.
+
+The existing browser screenshot direction includes left-side navigation. For mobile, use bottom tabs and quick-action cards so the interface feels native to a phone.
+
+### Prototype Click Path
+
+The first demo path should be:
+
+```text
+Dashboard
+-> Ask Trina
+-> Tap central mic
+-> See mock response
+-> Strategic Advisor Mode
+-> CEO Briefing
+-> Finance
+-> Back to Dashboard
+```
+
+Secondary path:
+
+```text
+Dashboard
+-> CEO Briefing
+-> Ask Trina to prioritize
+-> Assistant response
+```
+
+### Mock Data Rules
+
+- All numbers must be clearly fake/sample data.
+- Do not use real client financial data.
+- Do not connect to Firebase.
+- Do not connect to Hermes/API.
+- Do not call a live AI model.
+- Do not add auth.
+- Do not store user input.
+- Do not create production release assets.
+
+### Screenshot / Export Storage
+
+Default storage location for lightweight proof assets:
+
+```text
+references/flutterflow/sprint-009/
+```
+
+Suggested files:
+
+```text
+references/flutterflow/sprint-009/dashboard.png
+references/flutterflow/sprint-009/assistant.png
+references/flutterflow/sprint-009/strategic-advisor-mode.png
+references/flutterflow/sprint-009/ceo-briefing.png
+references/flutterflow/sprint-009/finance.png
+references/flutterflow/sprint-009/settings.png
+references/flutterflow/sprint-009/click-path-notes.md
+```
+
+If FlutterFlow export files are large or generated, do not commit them unless explicitly approved. Store them externally and document the link or location.
+
+### FlutterFlow Builder Checklist
+
+Before screen build:
+
+- Read Sprint 009 requirements, blueprint, acceptance, and handoff prompt.
+- Confirm no runtime repo changes are needed.
+- Confirm visual direction.
+- Confirm screen list.
+- Confirm mock data.
+- Confirm screenshot storage.
+
+After screen build:
+
+- Capture screenshots of all six screens.
+- Capture click-path notes.
+- Confirm all mock actions are labeled as prototype-only.
+- Confirm no backend integration was created.
+- Confirm no production release work was created.
+
 ### Behavior
 
 - Home and Chat should work.

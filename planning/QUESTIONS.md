@@ -34,3 +34,12 @@
 | Should the central microphone action be visual-only or tappable with a mock listening state? | Owner / Builder | Sprint 008 implementation | Open | Recommended: tappable mock state only, no real speech or backend connection. |
 | Should `Strategic Advisor Mode` and `CEO Briefing` appear on Home Dashboard, Chat Shell, or both? | Owner / Builder | Sprint 008 implementation | Open | Recommended: Home Dashboard hero context plus Chat Shell mode/status chip. |
 | Where should Sprint 008 FlutterFlow screenshots be stored after build review? | Owner / Architect | After Sprint 008 build | Open | Recommended: `references/flutterflow/sprint-008/` or external shared folder, not runtime app folders. |
+
+## Sprint 009 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Should Sprint 009 visual proof files be committed under `references/flutterflow/sprint-009/`, or stored externally with only links in repo docs? | Operator | Before Sprint 010 build completion | Open | Default recommendation: use `references/flutterflow/sprint-009/` for lightweight screenshots and notes only. |
+| Should the first FlutterFlow prototype use a bottom navigation bar, a home dashboard with quick actions, or both? | Architect / Operator | Before FlutterFlow build starts | Proposed | Recommended: use both bottom tabs and home quick-action cards. |
+| Should the mic button appear on every screen or only the main Assistant screen? | Architect / Operator | Before FlutterFlow build starts | Proposed | Recommended: persistent central mic on the main Assistant screen only, with smaller mic entry points elsewhere. |
+| Should the prototype include a fake onboarding screen or start directly at the dashboard? | Operator | Before FlutterFlow build starts | Proposed | Recommended: start directly at the dashboard for first client demo speed. |

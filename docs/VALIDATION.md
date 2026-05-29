@@ -218,6 +218,31 @@ firebase deploy --only hosting
 
 Status: Prepared, not run. No Sprint 004 validation or deploy commands have been run during the apply-pack step.
 
+## Sprint 009 Validation - FlutterFlow Screen Build Handoff
+
+Sprint 009 is complete when the repo contains a Builder-ready FlutterFlow handoff and no runtime implementation changes.
+
+### Required Checks
+
+```bash
+git status --branch --short
+find planning/sprints/009-flutterflow-screen-build-handoff -maxdepth 1 -type f | sort
+test -f docs/FLUTTERFLOW_BUILD_HANDOFF.md && echo "handoff doc exists"
+rg -n "009-flutterflow-screen-build-handoff|Dashboard|Assistant|Strategic Advisor Mode|CEO Briefing|Finance|Settings|mockStartDemoSession|mockSendAssistantMessage|mockMicListeningState|mockLoadCEOBriefing|mockLoadFinanceSnapshot|references/flutterflow/sprint-009|FlutterFlow only|No local React/Vite runtime code" planning docs
+git diff --name-only
+git diff --stat
+```
+
+### Acceptance Validation
+
+- Sprint 009 folder exists.
+- Sprint 009 contains exactly the four required sprint files.
+- `docs/FLUTTERFLOW_BUILD_HANDOFF.md` contains screen-by-screen build instructions.
+- Mock/stub behavior is documented as non-production.
+- Visual proof storage is documented.
+- No runtime app code changed.
+- No Firebase, Hermes/API implementation, package, native, release, generated export, secret, or env files changed.
+
 ## Sprint 005 FlutterFlow Direction Validation
 
 Sprint 005 is a documentation-only baseline and direction alignment sprint. It should not change app/runtime code, deploy, stage, commit, push, print secrets, or modify `.env.local`.

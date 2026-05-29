@@ -70,3 +70,12 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-29 | Sprint 008 prototype uses the current app screenshot as visual reference. | The owner wants the first mobile prototype to preserve the existing Trina visual identity. | FlutterFlow screens should adapt the screenshot's pale pink, hot pink CTA, rounded card, assistant dashboard, mic, and quick-action language to mobile. |
 | 2026-05-29 | Sprint 008 uses mock data and API stubs only. | The first visual prototype should prove UX before connecting backend systems. | No Firebase, Gmail, backend API, live auth, or model calls are connected. |
 | 2026-05-29 | The first FlutterFlow prototype keeps `trina-barbie-v1` configurable. | The visual direction is approved for the first prototype but should not lock the product forever. | Theme tokens remain reusable and future themes remain possible. |
+
+## Sprint 009 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-29 | Sprint 009 is FlutterFlow handoff planning only. | The prototype needs exact screen-level instructions before visual build work begins. | Codex must update docs/planning only and must not create FlutterFlow exports or runtime code. |
+| 2026-05-29 | Visual proof assets should default to `references/flutterflow/sprint-009/`. | Keeps screenshots and prototype reference material outside runtime code while preserving evidence in the project folder. | FlutterFlow screenshots, notes, and exports can be organized without polluting app source. |
+| 2026-05-29 | The first FlutterFlow prototype should use mock data and stub behavior only. | The goal is visual validation before backend integration. | No Firebase, Hermes/API, authentication, persistence, or production mobile release work is included. |
+| 2026-05-29 | Mobile navigation should adapt the browser screenshot's left-side navigation into bottom tabs and quick-action cards. | FlutterFlow prototype is mobile-first and should not force desktop navigation into a phone layout. | The FlutterFlow builder should use mobile-native navigation patterns. |
