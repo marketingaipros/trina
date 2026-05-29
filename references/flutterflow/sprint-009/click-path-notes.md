@@ -16,6 +16,8 @@ Use Sprint 009 docs as the source of truth:
 
 This evidence note tracks FlutterFlow-only prototype work.
 
+The demo screenshot is a visual reference only. Sprint 009 should prioritize the clearest mobile prototype flow over matching the screenshot exactly.
+
 Do not modify:
 
 - Local React/Vite runtime code
