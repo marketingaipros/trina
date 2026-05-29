@@ -1,7 +1,7 @@
 # State
 
 ## Current Sprint
-`007-flutterflow-first-screen-build-handoff`
+`008-flutterflow-first-visual-prototype`
 
 ## Current Status
 Sprint 003 production release readiness validation passed without deployment and without production code changes. Sprint 004 was prepared as the controlled web V1 deploy sprint, but no deploy should occur until the owner explicitly approves the deploy scope.
@@ -11,6 +11,8 @@ Sprint 005 was accepted, committed, and pushed in commit `ae335f743febe73c6f1588
 Sprint 006 is a documentation-only FlutterFlow Mobile App Blueprint sprint. It defines the first mobile screens, navigation model, user flows, data ownership, API contract direction, theme assumptions, and validation criteria before any FlutterFlow implementation begins.
 
 Sprint 007 is a documentation-only FlutterFlow First Screen Build Handoff sprint. It prepares the first FlutterFlow Builder package for the initial visual prototype without building in FlutterFlow and without changing local app/runtime code.
+
+Sprint 008 is a FlutterFlow-first visual prototype planning/build-scope sprint. It uses the Sprint 007 FlutterFlow handoff and the current app screenshot as visual reference. The build target is FlutterFlow only, using mock data and API stubs, with no local React/Vite runtime changes and no live Firebase, Gmail, backend API, auth, or production mobile release work.
 
 ## Recently Completed
 - Existing Barbie / TrinaOS Voice app inspected.
@@ -45,7 +47,7 @@ Sprint 007 is a documentation-only FlutterFlow First Screen Build Handoff sprint
 - Sprint 006 FlutterFlow mobile app blueprint docs exist at `planning/sprints/006-flutterflow-mobile-app-blueprint/` and are the source for Sprint 007 first-screen scope.
 
 ## Active Sprint Goal
-Create a Builder-ready FlutterFlow first-screen build handoff without changing app/runtime code.
+Create the Sprint 008 planning/docs package for the first FlutterFlow visual prototype without changing app/runtime code.
 
 ## Known Stable Areas
 - Vite React app structure exists.
@@ -72,11 +74,12 @@ Create a Builder-ready FlutterFlow first-screen build handoff without changing a
 - Mobile auth, upload storage, minimum MVP depth, and generated-code repo policy remain undecided.
 
 ## Next Actions
-- Use `planning/sprints/007-flutterflow-first-screen-build-handoff/` as the active Sprint 007 handoff.
-- Review and accept Sprint 007 first-screen handoff docs before starting FlutterFlow implementation.
-- Do not create a FlutterFlow project, generated export, Firebase schema change, or runtime implementation during Sprint 007.
+- Use `planning/sprints/008-flutterflow-first-visual-prototype/` as the active Sprint 008 handoff.
+- Review and accept Sprint 008 first visual prototype docs before starting FlutterFlow implementation.
+- Build the first six FlutterFlow screens only after the Sprint 008 docs are accepted.
+- Do not create a FlutterFlow project, generated export, Firebase schema change, runtime implementation, production mobile release file, stage, commit, or push during the repo docs step.
 - Treat Barbie-inspired `trina-barbie-v1` as the approved first visual prototype direction while keeping theme tokens configurable for future themes.
-- After Sprint 007 is accepted, use `docs/FLUTTERFLOW_BUILD_HANDOFF.md` as the FlutterFlow Builder input for the first visual prototype.
+- After Sprint 008 is accepted, use `docs/FLUTTERFLOW_BUILD_HANDOFF.md` as the FlutterFlow Builder input for the first visual prototype.
 - Keep the existing React/Vite app preserved as current/reference implementation until the owner decides its long-term role.
 - Confirm whether FlutterFlow will use Firebase directly, a Hermes API endpoint, or both before backend integration.
 - Defer Firebase deploy actions for Hosting, Functions, and Firestore rules until explicitly approved.
@@ -90,4 +93,4 @@ Create a Builder-ready FlutterFlow first-screen build handoff without changing a
 - Native mobile behavior cannot be fully validated without local native Firebase config files and device/emulator testing.
 - Live chat behavior still depends on deployed function secrets, including `OPENROUTER_API_KEY`.
 - FlutterFlow production integration is blocked until request schema, storage/auth model, and UI are approved.
-- FlutterFlow implementation remains blocked until Sprint 007 first-screen handoff acceptance is complete.
+- FlutterFlow implementation remains blocked until Sprint 008 first visual prototype docs are accepted and the owner explicitly approves FlutterFlow build execution.

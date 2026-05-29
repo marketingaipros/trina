@@ -378,6 +378,118 @@ Before calling the FlutterFlow prototype ready:
 - Screens are mobile-first and preview cleanly.
 - Screenshots are captured for Architect review.
 
+## Sprint 008 First Visual Prototype Additions
+
+Sprint 008 uses this handoff plus the current app screenshot as the visual reference for the first FlutterFlow visual prototype.
+
+### Screenshot Reference
+
+The prototype should adapt the screenshot's overall visual identity to mobile:
+
+- Pale pink background.
+- Hot pink primary CTA.
+- Soft rounded cards.
+- Left-side quick action/navigation concept adapted for mobile.
+- Large central microphone action.
+- Executive assistant feel.
+- `Strategic Advisor Mode`.
+- `CEO Briefing`.
+- Finance quick action.
+
+Do not make the phone UI feel like a desktop screen squeezed onto mobile. Preserve the concept, not the exact desktop layout.
+
+### Recommended Mobile Adaptation
+
+- Use bottom navigation for Home, Chat, Tasks, Memory, and Settings.
+- Keep Home and Chat functional in the visual prototype.
+- Keep Tasks, Memory, and Settings as placeholders.
+- Use a Home Dashboard quick-action grid or horizontal quick-action strip to represent the screenshot's left navigation concept.
+- Make the central microphone action the primary visual focus on Home Dashboard.
+- Place `Strategic Advisor Mode` as a visible mode/status chip on Home Dashboard and Chat Shell.
+- Place `CEO Briefing` as a quick action and a chat prompt chip.
+- Place `Finance` as a quick action with mock subtext such as `Review cash flow snapshot`.
+
+### Sprint 008 Additional Theme Tokens
+
+| Token | Value | Usage |
+|---|---|---|
+| `hotPinkPressed` | `#E83D91` | Pressed CTA and active button state |
+| `palePanelPink` | `#FFF0F7` | Secondary card panels |
+| `mutedRose` | `#A55B82` | Placeholder and metadata text |
+
+### Sprint 008 Mock Data
+
+```json
+{
+  "demoUser": {
+    "displayName": "Destrey",
+    "theme": "trina-barbie-v1",
+    "mode": "Strategic Advisor Mode"
+  },
+  "homeDashboard": {
+    "primaryPrompt": "What should we move forward today?",
+    "assistantStatus": "Ready",
+    "quickActions": [
+      {
+        "label": "CEO Briefing",
+        "description": "Review today's priorities"
+      },
+      {
+        "label": "Finance",
+        "description": "Review cash flow snapshot"
+      },
+      {
+        "label": "Plan My Day",
+        "description": "Organize the next actions"
+      },
+      {
+        "label": "Ask Trina",
+        "description": "Start a focused chat"
+      }
+    ],
+    "recentActivity": [
+      "Prepared a CEO briefing outline.",
+      "Drafted priorities for the FlutterFlow prototype.",
+      "Flagged finance review as a quick action."
+    ]
+  },
+  "chatMessages": [
+    {
+      "role": "user",
+      "text": "Give me a CEO briefing for today."
+    },
+    {
+      "role": "assistant",
+      "text": "Here is your focused briefing: review prototype progress, confirm finance priorities, and keep the next build scoped to the six approved screens."
+    }
+  ]
+}
+```
+
+### Sprint 008 API Stubs
+
+Use named placeholders only:
+
+- `mockStartDemoSession`
+- `mockSendAssistantMessage`
+- `mockMicListeningState`
+
+These stubs are not live endpoints. Do not connect Firebase, Gmail, backend APIs, live auth, model providers, Telegram, Hermes, AI Hub, browser speech recognition, or native speech during Sprint 008.
+
+### Sprint 008 Validation Evidence
+
+The FlutterFlow Builder should report:
+
+- Screens created.
+- Components created.
+- Theme tokens used.
+- Mock data used.
+- Navigation behavior.
+- Microphone mock state behavior.
+- Confirmation that all API behavior is stubbed.
+- Screenshot or preview notes for Architect review.
+- Anything not completed.
+
 ## FlutterFlow Builder Prompt
 
 Use this with the FlutterFlow Builder after Sprint 007 is accepted.

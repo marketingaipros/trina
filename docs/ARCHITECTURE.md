@@ -153,3 +153,13 @@ Post-login bottom navigation:
 FlutterFlow owns screens, navigation, forms, local UI state, display components, and theme variables. Firebase may support approved auth, profile, app state, storage references, and metadata. Hermes/API owns assistant reasoning, memory reasoning, action routing, business rules, sensitive context selection, and connector decisions. AI Hub Orchestrator routes between the mobile app, Hermes, Firebase, and future service connectors.
 
 FlutterFlow should not directly call model providers or own assistant prompt logic.
+
+## Sprint 008 FlutterFlow Visual Prototype Notes
+
+Sprint 008 keeps FlutterFlow responsible for the first visual prototype only.
+
+The local React/Vite/Firebase app remains the current/reference implementation and is not modified by the Sprint 008 docs step.
+
+Sprint 008 does not change production architecture, connect live services, create generated FlutterFlow exports, or create production mobile release files.
+
+The first prototype uses mock data and API stubs only while adapting the current app screenshot identity into a mobile FlutterFlow shell.

@@ -170,3 +170,66 @@ Sprint 006 recommends that the mobile Chat screen call Hermes/API or AI Hub Orch
   "error": null
 }
 ```
+
+## FlutterFlow Sprint 008 Prototype Stubs
+
+Sprint 008 uses placeholder contracts only. These are not live endpoints and must not be wired to Firebase, Gmail, backend APIs, live auth, model providers, Telegram, Hermes, or AI Hub during the first visual prototype.
+
+### `mockStartDemoSession`
+
+Purpose: move the user from Welcome or Demo Access into the Home Dashboard demo state.
+
+Request:
+
+```json
+{
+  "mode": "demo",
+  "clientTheme": "trina-barbie-v1"
+}
+```
+
+Response:
+
+```json
+{
+  "sessionId": "demo-session-001",
+  "displayName": "Destrey",
+  "status": "ready"
+}
+```
+
+### `mockSendAssistantMessage`
+
+Purpose: show how Chat Shell will later call Hermes/API without wiring a live endpoint.
+
+Request:
+
+```json
+{
+  "sessionId": "demo-session-001",
+  "message": "Give me a CEO briefing for today.",
+  "clientTheme": "trina-barbie-v1",
+  "source": "flutterflow-mobile"
+}
+```
+
+Response:
+
+```json
+{
+  "reply": "Here is your focused briefing: review prototype progress, confirm finance priorities, and keep the next build scoped to the six approved screens.",
+  "actions": [],
+  "error": null
+}
+```
+
+### `mockMicListeningState`
+
+Purpose: let the central microphone action show visual feedback without real speech recognition.
+
+Allowed states:
+
+- `idle`
+- `listening`
+- `captured`
+- `error`

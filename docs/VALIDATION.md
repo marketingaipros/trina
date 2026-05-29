@@ -301,3 +301,29 @@ git diff --stat
 | Data ownership | Confirm Firebase vs Hermes/API responsibilities are documented. | Pending | Sprint 006 |
 | Theme | Confirm first theme is configurable and not hard-coded as permanent identity. | Pending | Sprint 006 |
 | Safety | Confirm no runtime code/config was changed during blueprint sprint. | Pending | Sprint 006 |
+
+## Sprint 008 FlutterFlow First Visual Prototype Validation
+
+Sprint 008 is a docs/planning application step for the first FlutterFlow visual prototype. It should not run app, Firebase, deploy, package installation, build, FlutterFlow export, or production mobile release commands.
+
+### Commands
+
+```bash
+git status --branch --short
+find planning/sprints/008-flutterflow-first-visual-prototype -maxdepth 1 -type f | sort
+test -f docs/FLUTTERFLOW_BUILD_HANDOFF.md && echo "handoff doc exists"
+rg -n "008-flutterflow-first-visual-prototype|Strategic Advisor Mode|CEO Briefing|Finance|mockStartDemoSession|mockSendAssistantMessage|mockMicListeningState|trina-barbie-v1|FlutterFlow only|No local React/Vite runtime code" planning docs
+git diff --name-only
+git diff --stat
+```
+
+### Checklist
+
+| Area | Validation Method | Status | Notes |
+|---|---|---|---|
+| Sprint files | Confirm the Sprint 008 folder includes requirements, blueprint, acceptance, and handoff prompt. | Pending | Sprint 008 |
+| Screen scope | Confirm Splash, Welcome, Demo Access, Home Dashboard, Chat Shell, and Error/Offline are defined. | Pending | Sprint 008 |
+| Screenshot identity | Confirm pale pink background, hot pink CTA, rounded cards, central mic, left-nav adaptation, `Strategic Advisor Mode`, `CEO Briefing`, and Finance quick action are documented. | Pending | Sprint 008 |
+| Theme | Confirm `trina-barbie-v1` tokens are documented and reusable. | Pending | Sprint 008 |
+| Data/API boundary | Confirm mock data and API stubs only; no live Firebase, Gmail, backend API, auth, or model calls. | Pending | Sprint 008 |
+| Runtime safety | Confirm no local runtime app code, generated exports, or production mobile release files changed. | Pending | Sprint 008 |
