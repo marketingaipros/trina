@@ -1,0 +1,19 @@
+# Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Is `TELEGRAM_BOT_TOKEN` already created in Firebase secrets for this project? | Builder / Operator | Sprint 003 validation | Open | Needed before Telegram can be considered live. Do not paste the token into docs or chat. |
+| Has the Telegram webhook URL been set with BotFather/API after deploy? | Builder / Operator | Sprint 003 validation | Open | Needed to validate Telegram message flow. |
+| Which device/platform is the V1 launch target: web only, Android, iOS, or all three? | Product owner | Before go-live approval | Answered for Sprint 003 | Default launch scope is web-first. Android and iOS remain blocked until native Firebase config and device/emulator testing are confirmed. |
+| Are Firestore rules ready for current V1 user flows? | Builder | Sprint 002 | Open | Validate against auth, messages, reminders, notifications, and user-owned data. |
+| Should debug logs containing user message text be disabled, redacted, reduced, or kept for short-term troubleshooting? | Architect / owner | Before go-live approval | Open | Privacy and support decision needed before long-term production use. |
+| Should Telegram messages be tied to the daycare owner's Firebase UID or kept as `telegram:{telegramUserId}`? | Architect / Operator | Future sprint | Open | Existing Sprint 001 question. |
+| Should Gmail connect UI remain visible if sending is V2? | Architect / Operator | Future sprint | Open | Existing Sprint 001 question. |
+| Which timezone should all reminders use: local browser time, daycare timezone, or account setting? | Architect / Operator | Future sprint | Open | Existing Sprint 001 question. |
+| Should Sprint 003 prioritize production release cleanup, live Firebase deployment verification, or mobile device testing? | Architect / Operator | Sprint 003 | Open | Sprint 002 validation passed local build/lint/syntax, but live readiness still needs an approved next focus. |
+| Should the existing `sendGmailEmail` callable remain deployed while Gmail send is V2-disabled in chat? | Architect / Operator | Sprint 003 | Open | Chat intent routing disables sending, but the backend callable still exists for authenticated callers. |
+| Is Firebase production deploy approved for this sprint? | Owner | Before deploy command | Open | Required before any `firebase deploy` command is run. No deploy was run in Sprint 003 validation. |
+| Should web V1 go-live proceed before Telegram is live? | Owner | Before go-live approval | Open | Recommended path is yes: web-first can proceed while Telegram remains blocked/out of launch, if owner accepts that scope. |
+| Which debug logging policy should be applied before broad production usage? | Owner / Architect | Before broad production usage | Open | Recommendation is reduce or redact message content; implementation would require a future approved code change. |
+| Is Firebase deploy approved for Hosting, Functions, and Firestore rules? | Owner | Sprint 004 before deploy | Open | Sprint 004 requires explicit deploy-scope approval before any deploy command. |
+| What live URL should be used for smoke testing and sharing? | Builder | Open until deploy/verification | Open | Capture from Firebase deploy output or Hosting console after deploy. |
