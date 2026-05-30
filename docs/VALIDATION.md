@@ -272,6 +272,51 @@ git diff --check
 - `references/flutterflow/sprint-009/click-path-notes.md` must not mark CEO Briefing evidence present until actual evidence exists.
 - No runtime app code, generated exports, Firebase, Hermes/API, backend, package, native, release, secret, or env files changed.
 
+## Sprint 011 Validation - FlutterFlow Prototype Readiness
+
+Sprint 011 is a planning/docs-only readiness checkpoint. It confirms the broader FlutterFlow prototype can move forward even while CEO Briefing remains deferred.
+
+### Required Checks
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+```
+
+### FlutterFlow Prototype Evidence Validation
+
+Current accepted evidence should be validated by checking the screenshot files under:
+
+```text
+references/flutterflow/sprint-009/
+```
+
+Accepted evidence files:
+
+- `dashboard.png`
+- `assistant.png`
+- `strategic-advisor-mode.png`
+- `finance.png`
+- `settings.png`
+
+Deferred evidence:
+
+- `ceo-briefing.png`
+
+Validation rule:
+
+CEO Briefing must not be marked complete unless this exact real screenshot file exists:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Placeholder evidence is not allowed.
+
+Sprint 011 confirms the broader prototype can move forward even while CEO Briefing remains deferred.
+
 ## Sprint 005 FlutterFlow Direction Validation
 
 Sprint 005 is a documentation-only baseline and direction alignment sprint. It should not change app/runtime code, deploy, stage, commit, push, print secrets, or modify `.env.local`.

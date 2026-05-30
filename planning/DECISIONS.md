@@ -87,3 +87,11 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-30 | CEO Briefing evidence is deferred and does not block the broader prototype. | The real screenshot is still missing, and the prototype can move forward with the gap documented rather than fabricated. | Do not mark CEO Briefing complete or create placeholder evidence; keep `references/flutterflow/sprint-009/ceo-briefing.png` as the future evidence path. |
 | 2026-05-30 | Sprint 010 uses FlutterFlow-only prototype work. | The sprint fixes prototype evidence, not app behavior or backend integration. | Do not use generated FlutterFlow exports, local runtime code, Firebase, Hermes/API, backend calls, auth, live AI, real voice capture, or real financial data. |
 | 2026-05-30 | CEO Briefing naming may change in a future sprint. | The screen concept may fit the product better under a broader briefing name. | Future candidates include Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing. |
+
+## Sprint 011 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-30 | Defer CEO Briefing screenshot evidence instead of blocking prototype progress. | The screen may be renamed or redesigned, and the broader prototype should not be blocked by one missing evidence file. | CEO Briefing remains deferred, not complete. Future briefing work should be handled in a later focused sprint. |
+| 2026-05-30 | Future briefing screen name is not locked. | Candidate names include Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, and Command Briefing. | Future FlutterFlow work should avoid treating `CEOBriefing` as final naming. |
+| 2026-05-30 | Next prototype work should focus on demo-path polish. | Current accepted evidence is enough to move forward, while backend and generated-code work remain premature. | Recommend `012-flutterflow-demo-path-polish` as the next sprint. |

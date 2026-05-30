@@ -212,6 +212,30 @@ Do not fabricate screenshots. Do not create image files unless actual screenshot
 
 Architect decision: CEO Briefing evidence is not required to move the broader prototype forward. If this screen is revisited later, it may be renamed to Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing.
 
+## CEO Briefing Evidence Status
+
+CEO Briefing is deferred, not complete.
+
+Missing evidence path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+This missing screenshot does not block broader FlutterFlow prototype progress.
+
+No placeholder screenshot should be created.
+
+Future briefing screen work should wait until screen naming and prototype structure are stable.
+
+Current accepted screenshot evidence:
+
+- `dashboard.png`
+- `assistant.png`
+- `strategic-advisor-mode.png`
+- `finance.png`
+- `settings.png`
+
 Later design direction:
 
 - `Today's Priorities`

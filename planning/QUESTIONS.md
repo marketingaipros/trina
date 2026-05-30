@@ -52,3 +52,12 @@
 | Should CEO Briefing evidence live in Sprint 009 or Sprint 010 references? | Architect | Sprint 010 | Answered | Keep the future screenshot path as `references/flutterflow/sprint-009/ceo-briefing.png`, but mark evidence deferred until real screenshot evidence exists. |
 | Should the final FlutterFlow project be exported to code? | Architect | Future sprint | Open | Out of scope for Sprint 010. |
 | Should CEO Briefing be renamed later? | Architect / Owner | Future sprint | Open | Candidate names: Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing. |
+
+## Sprint 011 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| What should the future briefing screen be called? | Architect / Operator | Before future briefing screen sprint | Open | Candidate names: Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, Command Briefing. |
+| What is the accepted demo path for the next prototype review? | Architect / Operator | Before next FlutterFlow build sprint | Open | Sprint 011 recommends the next sprint focus on demo-path polish. |
+| When should FlutterFlow generated code export become in scope? | Architect | Before runtime implementation | Open | Currently out of scope. |
+| Which accepted screenshots should be recaptured for final demo readiness? | Architect / Operator | Sprint 012 | Open | Recommended: accepted screen set only, excluding deferred CEO Briefing unless a later sprint reopens it. |
