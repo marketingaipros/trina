@@ -137,6 +137,52 @@ The Sprint 009 FlutterFlow prototype build checklist covers these six active scr
 
 ## Expected Navigation Path
 
+## Sprint 012 Accepted Demo Path
+
+Sprint 012 accepts a demo path that excludes the deferred CEO Briefing screen.
+
+Accepted demo screen set:
+
+1. Dashboard
+2. Assistant
+3. Strategic Advisor
+4. Finance Snapshot
+5. Settings
+
+Preferred guided flow:
+
+```text
+Dashboard -> Assistant -> Strategic Advisor -> Finance Snapshot -> Settings -> Dashboard
+```
+
+Direct Dashboard hub navigation into each accepted screen is also acceptable:
+
+```text
+Dashboard -> Assistant -> Dashboard
+Dashboard -> Strategic Advisor -> Dashboard
+Dashboard -> Finance Snapshot -> Dashboard
+Dashboard -> Settings -> Dashboard
+```
+
+Display labels:
+
+| Internal / Existing Page | Demo Label |
+|---|---|
+| Dashboard | Dashboard |
+| Assistant | Assistant |
+| StrategicAdvisor | Strategic Advisor |
+| FinanceSnapshot | Finance Snapshot |
+| Settings | Settings |
+
+CEO Briefing remains deferred, not complete, and is not required for the Sprint 012 accepted demo path.
+
+Screenshot evidence rules for Sprint 012:
+
+- Accepted evidence remains in `references/flutterflow/sprint-009/`.
+- Refresh accepted-screen screenshots only after real manual FlutterFlow changes.
+- Do not create placeholder evidence.
+- Do not include `.DS_Store` in the evidence contract.
+
 Primary click path:
 
 ```text

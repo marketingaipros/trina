@@ -61,3 +61,12 @@
 | What is the accepted demo path for the next prototype review? | Architect / Operator | Before next FlutterFlow build sprint | Open | Sprint 011 recommends the next sprint focus on demo-path polish. |
 | When should FlutterFlow generated code export become in scope? | Architect | Before runtime implementation | Open | Currently out of scope. |
 | Which accepted screenshots should be recaptured for final demo readiness? | Architect / Operator | Sprint 012 | Open | Recommended: accepted screen set only, excluding deferred CEO Briefing unless a later sprint reopens it. |
+
+## Sprint 012 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| What final page names should be used for production? | Architect / Operator | Before production prototype naming lock | Open | Sprint 012 uses display labels only and avoids source-level renames. |
+| Should CEO Briefing become Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing later? | Architect / Operator | Future briefing sprint | Open | CEO Briefing remains deferred, not complete, during Sprint 012. |
+| Which accepted FlutterFlow screens need refreshed screenshots after manual polish? | Operator / Builder | After manual FlutterFlow changes | Open | Refresh accepted screen evidence only when real screenshots exist. |
+| What is the next real prototype build target after demo path polish? | Architect / Operator | After Sprint 012 review | Open | Candidate should stay FlutterFlow/static-only unless a later Architect Pack approves backend/generated/runtime work. |

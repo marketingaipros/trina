@@ -14,6 +14,37 @@ Do not modify the local React/Vite repo.
 
 Do not commit generated FlutterFlow exports to the repo unless a later sprint explicitly approves that workflow.
 
+## Sprint 012 Demo Path Polish
+
+Sprint 012 defines the accepted demo path that can be shown without being blocked by the deferred CEO Briefing screen.
+
+Accepted demo screen set:
+
+1. Dashboard
+2. Assistant
+3. Strategic Advisor
+4. Finance Snapshot
+5. Settings
+
+CEO Briefing remains deferred, not complete, and is not part of the accepted Sprint 012 demo path.
+
+Preferred demo flow:
+
+```text
+Dashboard -> Assistant -> Strategic Advisor -> Finance Snapshot -> Settings -> Dashboard
+```
+
+Direct Dashboard navigation into each accepted screen is also acceptable for the demo.
+
+Use display labels only in this sprint. Do not rename repo files, generated FlutterFlow files, or source-level artifacts.
+
+Evidence rules:
+
+- Accepted screenshot evidence remains under `references/flutterflow/sprint-009/`.
+- Refresh screenshots only after real manual FlutterFlow changes.
+- Do not create placeholder screenshots.
+- Do not include `.DS_Store` in the evidence contract.
+
 ## First Build Scope
 
 Build these screens first:

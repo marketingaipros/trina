@@ -67,3 +67,11 @@
 | Deferred CEO Briefing evidence may be mistaken for completed evidence. | Medium | Medium | Keep click-path notes and validation docs explicit: deferred, not complete. | Open |
 | Future page renaming may create duplicate FlutterFlow screens if handled carelessly. | Medium | Medium | Decide final screen names before rebuilding briefing workflows. | Open |
 | Prototype scope may expand into backend/auth/release work too early. | Medium | High | Keep current prototype track FlutterFlow/static-only until a later Architect Pack approves implementation scope. | Open |
+
+## Sprint 012 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| CEO Briefing may be accidentally marked complete while Sprint 012 works around it. | Medium | Medium | Keep CEO Briefing outside the accepted demo path and require real screenshot evidence before completion. | Open |
+| Manual FlutterFlow polish may diverge from repo docs if evidence is not captured after changes. | Medium | Medium | Refresh only real accepted-screen screenshots after manual changes and update click-path notes. | Open |
+| Page labels may change later and create source-level rename churn. | Medium | Low | Use human-facing display labels for Sprint 012 and avoid renaming repo files or generated artifacts. | Open |

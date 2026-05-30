@@ -95,3 +95,9 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-30 | Defer CEO Briefing screenshot evidence instead of blocking prototype progress. | The screen may be renamed or redesigned, and the broader prototype should not be blocked by one missing evidence file. | CEO Briefing remains deferred, not complete. Future briefing work should be handled in a later focused sprint. |
 | 2026-05-30 | Future briefing screen name is not locked. | Candidate names include Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, and Command Briefing. | Future FlutterFlow work should avoid treating `CEOBriefing` as final naming. |
 | 2026-05-30 | Next prototype work should focus on demo-path polish. | Current accepted evidence is enough to move forward, while backend and generated-code work remain premature. | Recommend `012-flutterflow-demo-path-polish` as the next sprint. |
+
+## Sprint 012 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-30 | Sprint 012 will polish the accepted FlutterFlow demo path without requiring CEO Briefing. | CEO Briefing naming and design may change later, and it should not block prototype progress. | Sprint 012 demo readiness uses Dashboard, Assistant, Strategic Advisor, Finance Snapshot, and Settings as the accepted screen set. |

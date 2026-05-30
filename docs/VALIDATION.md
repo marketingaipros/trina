@@ -317,6 +317,55 @@ Placeholder evidence is not allowed.
 
 Sprint 011 confirms the broader prototype can move forward even while CEO Briefing remains deferred.
 
+## Sprint 012 Validation - FlutterFlow Demo Path Polish
+
+Sprint 012 is a planning/docs-only demo-path polish checkpoint. It documents the accepted demo path around the deferred CEO Briefing screen.
+
+### Required Checks
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+```
+
+If screenshots changed after real manual FlutterFlow work, also run:
+
+```bash
+find references/flutterflow/sprint-009 -maxdepth 1 -type f | sort
+```
+
+### Demo Path Validation
+
+Accepted demo screen set:
+
+- Dashboard
+- Assistant
+- Strategic Advisor
+- Finance Snapshot
+- Settings
+
+Preferred guided flow:
+
+```text
+Dashboard -> Assistant -> Strategic Advisor -> Finance Snapshot -> Settings -> Dashboard
+```
+
+Direct Dashboard hub navigation into each accepted screen is also acceptable.
+
+### Acceptance Validation
+
+- Sprint 012 folder exists.
+- Sprint 012 contains exactly the four required sprint files.
+- `planning/STATE.md` identifies Sprint 012 as the active planning checkpoint.
+- `docs/FLUTTERFLOW_BUILD_HANDOFF.md` documents the accepted demo path or points to the Sprint 012 files.
+- `references/flutterflow/sprint-009/click-path-notes.md` documents the Sprint 012 accepted demo path.
+- CEO Briefing remains deferred, not complete.
+- No placeholder CEO Briefing evidence is created.
+- `.DS_Store` is not included in the evidence contract.
+- No runtime app code, React/Vite code, generated FlutterFlow export, Firebase, Hermes/API, backend, package, native, release, secret, or env files changed.
+
 ## Sprint 005 FlutterFlow Direction Validation
 
 Sprint 005 is a documentation-only baseline and direction alignment sprint. It should not change app/runtime code, deploy, stage, commit, push, print secrets, or modify `.env.local`.
