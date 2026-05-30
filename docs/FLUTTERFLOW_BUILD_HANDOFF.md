@@ -850,6 +850,59 @@ The FlutterFlow Builder should report:
 - Screenshot or preview notes for Architect review.
 - Anything not completed.
 
+## Sprint 010 - CEO Briefing Evidence Deferral
+
+Sprint 010 Architect Pack was applied and the Sprint 010 review checkpoint passed. The real CEO Briefing screenshot is still missing at:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Architect decision: CEO Briefing screenshot evidence is deferred, not complete, and is not required to move the broader Trina prototype forward.
+
+This is FlutterFlow-only prototype work. Do not modify local React/Vite runtime code, Firebase files, Hermes/API implementation, package files, native folders, release files, generated FlutterFlow exports, secrets, or `.env` files.
+
+### CEO Briefing Screen
+
+When this screen is picked back up, create or rebuild the missing `CEOBriefing` page manually inside the clean FlutterFlow project.
+
+Required screen content:
+
+- Page title: `CEO Briefing`
+- Sections:
+  - `Today's Priorities`
+  - `Follow-ups`
+  - `Decisions Needed`
+  - `Next Best Move`
+- CTA: `Ask Trina to Prioritize`
+- Back/home control to `Dashboard`
+
+Use the existing `trina-barbie-v1` prototype styling: soft pink/white background, hot pink accents, rounded cards, and polished executive assistant feel.
+
+Future naming candidates include Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing.
+
+### Sprint 010 Navigation
+
+Wire these prototype paths:
+
+```text
+Dashboard CEO Briefing button -> CEOBriefing
+CEOBriefing Ask Trina to Prioritize -> Assistant
+CEOBriefing back/home control -> Dashboard
+```
+
+Confirm the app initial page remains `Dashboard`.
+
+### Sprint 010 Evidence
+
+When real manual FlutterFlow work is completed, save the real screenshot as:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Do not create placeholder screenshot files. Do not mark CEO Briefing present until actual evidence exists. The broader prototype can move forward with this evidence gap documented as deferred.
+
 ## FlutterFlow Builder Prompt
 
 Use this with the FlutterFlow Builder after Sprint 007 is accepted.

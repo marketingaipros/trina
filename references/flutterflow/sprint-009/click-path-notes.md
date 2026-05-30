@@ -197,18 +197,28 @@ Prototype rules:
 
 ## Screenshot Evidence
 
-FlutterFlow prototype screenshots were manually created outside local runtime code. CEO Briefing remains pending due to a FlutterFlow Designer generation/import issue.
+FlutterFlow prototype screenshots were manually created outside local runtime code. CEO Briefing is intentionally deferred, not complete. The missing screenshot does not block the broader Trina prototype from moving forward.
 
 | Screenshot | Status | Notes |
 |---|---|---|
 | `dashboard.png` | Present | Dashboard / Home screen proof. |
 | `assistant.png` | Present | Assistant / Voice Command screen proof. |
 | `strategic-advisor-mode.png` | Present | Strategic Advisor Mode screen proof. |
-| `ceo-briefing.png` | Pending | CEO Briefing screen proof remains pending due to FlutterFlow Designer generation/import issue. |
+| `ceo-briefing.png` | Deferred | Real screenshot is still missing at `references/flutterflow/sprint-009/ceo-briefing.png`; do not create placeholder or fake evidence. |
 | `finance.png` | Present | Finance screen proof. |
 | `settings.png` | Present | Settings / Profile screen proof. |
 
 Do not fabricate screenshots. Do not create image files unless actual screenshots are available.
+
+Architect decision: CEO Briefing evidence is not required to move the broader prototype forward. If this screen is revisited later, it may be renamed to Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing.
+
+Later design direction:
+
+- `Today's Priorities`
+- `Follow-ups`
+- `Decisions Needed`
+- `Next Best Move`
+- CTA: `Ask Trina to Prioritize`
 
 ## Validation Checklist
 
@@ -220,7 +230,7 @@ Before manual FlutterFlow screen creation:
 - Confirm mock/stub behavior stays prototype-only.
 - Confirm evidence location is `references/flutterflow/sprint-009/`.
 
-After manual FlutterFlow screen creation:
+After future manual FlutterFlow screen creation:
 
 - Capture all six screenshots listed above.
 - Confirm primary and secondary click paths work.
@@ -241,8 +251,9 @@ git diff --check
 
 ## Unresolved FlutterFlow Build Notes
 
-- Manual FlutterFlow screen creation has not started in this repo checkpoint.
-- Screenshot evidence is pending until actual FlutterFlow screens are available.
+- CEO Briefing screenshot evidence is deferred, not complete.
+- The broader Trina prototype can move forward with this evidence gap documented.
+- The future screenshot path remains `references/flutterflow/sprint-009/ceo-briefing.png`.
 - Confirm whether lightweight screenshot files should be committed under this folder or stored externally with links before final build completion.
 - Confirm whether Settings / Profile should be top-right-icon only or also available in a secondary menu.
 - Confirm whether the mic visual cycle should include a separate `done` state in addition to the documented idle/listening/thinking states.

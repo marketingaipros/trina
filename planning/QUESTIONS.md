@@ -43,3 +43,12 @@
 | Should the first FlutterFlow prototype use a bottom navigation bar, a home dashboard with quick actions, or both? | Architect / Operator | Before FlutterFlow build starts | Proposed | Recommended: use both bottom tabs and home quick-action cards. |
 | Should the mic button appear on every screen or only the main Assistant screen? | Architect / Operator | Before FlutterFlow build starts | Proposed | Recommended: persistent central mic on the main Assistant screen only, with smaller mic entry points elsewhere. |
 | Should the prototype include a fake onboarding screen or start directly at the dashboard? | Operator | Before FlutterFlow build starts | Proposed | Recommended: start directly at the dashboard for first client demo speed. |
+
+## Sprint 010 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Should CEO Briefing become a richer production workflow later? | Architect | Future sprint | Open | Sprint 010 only builds the prototype screen. |
+| Should CEO Briefing evidence live in Sprint 009 or Sprint 010 references? | Architect | Sprint 010 | Answered | Keep the future screenshot path as `references/flutterflow/sprint-009/ceo-briefing.png`, but mark evidence deferred until real screenshot evidence exists. |
+| Should the final FlutterFlow project be exported to code? | Architect | Future sprint | Open | Out of scope for Sprint 010. |
+| Should CEO Briefing be renamed later? | Architect / Owner | Future sprint | Open | Candidate names: Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing. |

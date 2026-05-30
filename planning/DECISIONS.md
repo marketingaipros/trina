@@ -79,3 +79,11 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-29 | Visual proof assets should default to `references/flutterflow/sprint-009/`. | Keeps screenshots and prototype reference material outside runtime code while preserving evidence in the project folder. | FlutterFlow screenshots, notes, and exports can be organized without polluting app source. |
 | 2026-05-29 | The first FlutterFlow prototype should use mock data and stub behavior only. | The goal is visual validation before backend integration. | No Firebase, Hermes/API, authentication, persistence, or production mobile release work is included. |
 | 2026-05-29 | Mobile navigation should adapt the browser screenshot's left-side navigation into bottom tabs and quick-action cards. | FlutterFlow prototype is mobile-first and should not force desktop navigation into a phone layout. | The FlutterFlow builder should use mobile-native navigation patterns. |
+
+## Sprint 010 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-30 | CEO Briefing evidence is deferred and does not block the broader prototype. | The real screenshot is still missing, and the prototype can move forward with the gap documented rather than fabricated. | Do not mark CEO Briefing complete or create placeholder evidence; keep `references/flutterflow/sprint-009/ceo-briefing.png` as the future evidence path. |
+| 2026-05-30 | Sprint 010 uses FlutterFlow-only prototype work. | The sprint fixes prototype evidence, not app behavior or backend integration. | Do not use generated FlutterFlow exports, local runtime code, Firebase, Hermes/API, backend calls, auth, live AI, real voice capture, or real financial data. |
+| 2026-05-30 | CEO Briefing naming may change in a future sprint. | The screen concept may fit the product better under a broader briefing name. | Future candidates include Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing. |

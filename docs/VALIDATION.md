@@ -243,6 +243,35 @@ git diff --stat
 - No runtime app code changed.
 - No Firebase, Hermes/API implementation, package, native, release, generated export, secret, or env files changed.
 
+## Sprint 010 Validation - FlutterFlow CEO Briefing Evidence Deferral
+
+Sprint 010 Architect Pack was applied and the Sprint 010 review checkpoint passed. The real CEO Briefing screenshot is still missing at `references/flutterflow/sprint-009/ceo-briefing.png`.
+
+Architect decision: CEO Briefing screenshot evidence is deferred, not complete, and is not required to move the broader Trina prototype forward. No placeholder or fake evidence should be created.
+
+### Required Checks
+
+```bash
+git status --branch --short
+find references/flutterflow/sprint-009 -maxdepth 1 -type f | sort
+test -f references/flutterflow/sprint-009/ceo-briefing.png && echo "ceo briefing evidence exists"
+git diff --name-only
+git diff --stat
+git diff --check
+```
+
+### Acceptance Validation
+
+- Sprint 010 folder exists.
+- Sprint 010 contains exactly the four required sprint files.
+- CEO Briefing screenshot evidence is marked deferred, not complete.
+- Missing evidence path remains `references/flutterflow/sprint-009/ceo-briefing.png`.
+- Future CEO Briefing design direction includes `Today's Priorities`, `Follow-ups`, `Decisions Needed`, `Next Best Move`, and `Ask Trina to Prioritize`.
+- Future naming candidates include Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing.
+- The broader prototype may move forward with this evidence gap documented.
+- `references/flutterflow/sprint-009/click-path-notes.md` must not mark CEO Briefing evidence present until actual evidence exists.
+- No runtime app code, generated exports, Firebase, Hermes/API, backend, package, native, release, secret, or env files changed.
+
 ## Sprint 005 FlutterFlow Direction Validation
 
 Sprint 005 is a documentation-only baseline and direction alignment sprint. It should not change app/runtime code, deploy, stage, commit, push, print secrets, or modify `.env.local`.

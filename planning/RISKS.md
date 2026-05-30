@@ -49,3 +49,13 @@
 | Mock behavior may be confused with real backend behavior. | Medium | High | Label all mock actions and stub contracts clearly. | Open |
 | Screenshot/export files may be scattered outside the project handoff. | Medium | Medium | Use `references/flutterflow/sprint-009/` or explicitly document external storage. | Open |
 | Mobile navigation may not translate cleanly from the existing browser layout. | Medium | Medium | Define bottom tabs, quick actions, and screen entry points before build. | Open |
+
+## Sprint 010 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| FlutterFlow Designer import can create broken or duplicate theme/page artifacts. | Medium | Medium | Build the CEO Briefing page manually inside the clean FlutterFlow project unless Designer import is clearly safe. | Open |
+| Hidden or stale FlutterFlow initial route may point to `HomePage`. | Medium | Medium | Keep the initial page set to `Dashboard` before testing. | Mitigated from Sprint 009, monitor |
+| Imported visual buttons may not fire actions in Preview/Test. | Medium | Medium | Use real FlutterFlow Button/IconButton widgets for the CEO Briefing CTA and back/home navigation. | Open |
+| CEO Briefing may be overbuilt. | Medium | Medium | Use mock/static content only and keep screen focused on prototype evidence. | Open |
+| Missing CEO Briefing screenshot evidence could be mistaken for completed work. | Medium | Medium | Mark CEO Briefing as deferred, not complete, and preserve the no-placeholder evidence rule. | Mitigated |

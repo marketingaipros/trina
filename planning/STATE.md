@@ -2,32 +2,37 @@
 
 ## Current Sprint
 
-Sprint 009 - `009-flutterflow-screen-build-handoff`
+Sprint 010 - `010-flutterflow-ceo-briefing-screen-fix`
 
 ## Current Status
 
-Sprint 008 is complete and pushed as a docs/planning checkpoint.
+Sprint 009 produced the Builder-ready FlutterFlow screen build handoff and prototype evidence set for Trina's first mobile visual prototype.
 
-Sprint 009 is preparing the Builder-ready FlutterFlow screen build handoff for Trina's first mobile visual prototype. This sprint defines exact screens, screen layouts, mock data, clickable prototype behavior, screenshot/export storage expectations, and validation rules.
+Sprint 010 Architect Pack was applied and the Sprint 010 review checkpoint passed. The real CEO Briefing screenshot is still missing at `references/flutterflow/sprint-009/ceo-briefing.png`.
+
+Architect decision: CEO Briefing screenshot evidence is intentionally deferred, not complete, and is not required to move the broader Trina prototype forward.
 
 ## Recently Completed
 
 - Sprint 008 Architect Pack was created, applied, validated, staged, committed, and pushed.
 - Sprint 008 established Trina's first FlutterFlow visual prototype scope.
 - Sprint 008 documented the six-screen prototype direction, visual identity, mock behavior, and FlutterFlow-only boundary.
+- Sprint 009 defined the Dashboard, Assistant, Strategic Advisor Mode, CEO Briefing, Finance, and Settings FlutterFlow prototype evidence expectations.
+- Sprint 010 planning/docs were applied for the CEO Briefing evidence fix.
+- Sprint 010 review checkpoint passed with strict scope control.
 
 ## Active Work
 
-- Create Sprint 009 planning files.
-- Tighten `docs/FLUTTERFLOW_BUILD_HANDOFF.md` into screen-by-screen FlutterFlow build instructions.
-- Define clickable prototype path and mock data rules.
-- Define where visual proof screenshots should be stored.
+- Carry forward the broader FlutterFlow prototype with CEO Briefing screenshot evidence documented as deferred.
+- Keep the future CEO Briefing / briefing screen FlutterFlow-only and mock/static unless a later sprint changes scope.
+- Do not create `ceo-briefing.png` until real screenshot evidence exists.
 
 ## Next Action
 
-After Sprint 009 is applied, the Builder must read the Sprint 009 files and summarize the FlutterFlow build plan before creating or modifying anything.
+The project can move forward to the next sprint with the CEO Briefing evidence gap documented as deferred.
 
 ## Blockers
 
-- FlutterFlow screen creation still requires explicit approval after the Sprint 009 handoff is reviewed.
-- Screenshot/export storage should default to `references/flutterflow/sprint-009/` unless the operator chooses external shared storage.
+- CEO Briefing screenshot evidence is deferred, not complete.
+- `references/flutterflow/sprint-009/ceo-briefing.png` must not be fabricated or created before actual screenshot evidence exists.
+- Generated FlutterFlow exports, runtime code, Firebase, Hermes/API, backend, package, native, and release files remain out of scope.
