@@ -197,16 +197,16 @@ Prototype rules:
 
 ## Screenshot Evidence
 
-Screenshots are not available yet. Capture these manually after the FlutterFlow screens exist:
+FlutterFlow prototype screenshots were manually created outside local runtime code. CEO Briefing remains pending due to a FlutterFlow Designer generation/import issue.
 
 | Screenshot | Status | Notes |
 |---|---|---|
-| `dashboard.png` | Pending | Dashboard / Home screen proof. |
-| `assistant.png` | Pending | Assistant / Voice Command screen proof. |
-| `strategic-advisor-mode.png` | Pending | Strategic Advisor Mode screen proof. |
-| `ceo-briefing.png` | Pending | CEO Briefing screen proof. |
-| `finance.png` | Pending | Finance screen proof. |
-| `settings.png` | Pending | Settings / Profile screen proof. |
+| `dashboard.png` | Present | Dashboard / Home screen proof. |
+| `assistant.png` | Present | Assistant / Voice Command screen proof. |
+| `strategic-advisor-mode.png` | Present | Strategic Advisor Mode screen proof. |
+| `ceo-briefing.png` | Pending | CEO Briefing screen proof remains pending due to FlutterFlow Designer generation/import issue. |
+| `finance.png` | Present | Finance screen proof. |
+| `settings.png` | Present | Settings / Profile screen proof. |
 
 Do not fabricate screenshots. Do not create image files unless actual screenshots are available.
 
