@@ -40,6 +40,12 @@ The Sprint 009 FlutterFlow prototype build checklist covers these six active scr
 5. Finance
 6. Settings / Profile
 
+## Sprint 016 Evidence Status
+
+Sprint 016 preserves the CEO Briefing evidence deferral. The repo must not treat CEO Briefing screenshot evidence as complete unless a real screenshot from the actual FlutterFlow prototype exists.
+
+Do not create `references/flutterflow/sprint-009/ceo-briefing.png` as placeholder evidence. If CEO Briefing is still missing, renamed, or unverified in FlutterFlow, document that as deferred rather than fabricating proof.
+
 ## Screen Build Checklist
 
 ### Dashboard / Home

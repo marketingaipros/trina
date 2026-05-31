@@ -86,3 +86,11 @@
 |---|---|---|---|---|
 | Which core app paths must work before adding CEO Briefing? | Architect / Operator | Sprint 015 | Open | Prioritize the current app working flow over missing CEO Briefing evidence. |
 | Should the Dashboard CEO Briefing button be hidden, disabled, redirected, or left as a future placeholder until the page exists? | Architect / Operator | Sprint 015 | Open | Builder should not decide silently. Architect should define the safest MVP behavior. |
+
+## Sprint 016 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Is the CEO Briefing screen actually rebuilt inside FlutterFlow yet? | Operator / Builder | Before evidence closure | Open | Do not assume yes without real prototype evidence. |
+| Where should final CEO Briefing screenshot evidence live if captured in a later sprint? | Architect | Before evidence capture | Open | Default remains `references/flutterflow/sprint-009/` unless a later sprint changes it. |
+| What is the next approved implementation step after functional stabilization? | Architect | After Sprint 016 | Open | Should become Sprint 017 only after this checkpoint is clean. |

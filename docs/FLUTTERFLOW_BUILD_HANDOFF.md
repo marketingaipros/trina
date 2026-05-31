@@ -14,6 +14,16 @@ Do not modify the local React/Vite repo.
 
 Do not commit generated FlutterFlow exports to the repo unless a later sprint explicitly approves that workflow.
 
+## Sprint 016 Functional Stabilization Checkpoint
+
+Sprint 016 is a planning/docs and validation stabilization sprint after the Sprint 015 checkpoint.
+
+Use the project folder and Sprint 016 files as the source of truth before any next build step. The Builder must summarize the current prototype flow, expected file boundaries, validation steps, and blockers before implementation begins.
+
+CEO Briefing remains deferred unless real screenshot evidence exists from the actual FlutterFlow prototype. Do not create placeholder screenshot evidence, and do not create `references/flutterflow/sprint-009/ceo-briefing.png` without explicit authorization and a real screenshot.
+
+Protected scope remains unchanged: no runtime app code, generated FlutterFlow export code, Firebase, Hermes, backend, package/native, build, or release files are approved for Sprint 016.
+
 ## Sprint 012 Demo Path Polish
 
 Sprint 012 defines the accepted demo path that can be shown without being blocked by the deferred CEO Briefing screen.

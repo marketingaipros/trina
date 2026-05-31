@@ -67,6 +67,24 @@ npm run lint
 node --check functions/index.js
 ```
 
+## Sprint 016 Planning/Docs Validation
+
+Sprint 016 uses docs-safe validation only:
+
+```bash
+git diff --check
+git status --branch --short
+```
+
+Sprint 016 validation must also confirm:
+
+- `planning/sprints/016-flutterflow-functional-app-stabilization/` exists.
+- The Sprint 016 requirements, blueprint, acceptance, and handoff prompt files exist.
+- Changed files stay inside the Sprint 016 planning/docs/evidence-note allowlist.
+- CEO Briefing evidence remains deferred unless a real FlutterFlow screenshot exists.
+- No placeholder `references/flutterflow/sprint-009/ceo-briefing.png` is created.
+- No runtime app code, generated FlutterFlow export code, Firebase, Hermes, backend, package/native, build, or release files are changed.
+
 ## Deploy Commands
 
 Deploy only when explicitly approved:

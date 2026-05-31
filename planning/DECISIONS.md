@@ -115,3 +115,11 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | Date | Decision | Reason | Impact |
 |---|---|---|---|
 | 2026-05-31 | Defer CEO Briefing screen and screenshot evidence until after core app functionality is stable. | Sprint 014 recorded the evidence capture as blocked because no working CEO Briefing page or real screenshot was available. Continuing to chase evidence for a missing screen would waste build time. | Sprint 015 shifts focus to app functionality. CEO Briefing remains a future feature, not a current blocker. |
+
+## Sprint 016 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-30 | Sprint 016 remains planning/docs and validation stabilization only. | The project needs a clean state after the Sprint 015 checkpoint before new implementation work starts. | Codex must not modify runtime app code, generated FlutterFlow code, Firebase, Hermes, backend, package/native, or release files. |
+| 2026-05-30 | CEO Briefing screenshot evidence remains deferred unless captured from the real FlutterFlow prototype. | Fake or placeholder evidence would make validation unreliable. | No placeholder `ceo-briefing.png` may be created. |
+| 2026-05-30 | The next build step must be based on sprint files, not chat memory. | The 120x workflow requires folder-based handoff. | Codex must read Sprint 016 files and summarize before any implementation. |
