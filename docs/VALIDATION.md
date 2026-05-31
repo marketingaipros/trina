@@ -1049,3 +1049,42 @@ Sprint 015 validation should focus on whether the app can be used through its co
 | Finance path | Opens Finance screen if included in current prototype | Pending |
 | Strategic Advisor path | Opens Strategic Advisor screen if included in current prototype | Pending |
 | CEO Briefing path | Deferred because page does not exist | Deferred |
+
+## Sprint 027 Core App Completion Polish Validation
+
+Sprint 027 starts with an apply-pack/docs-only checkpoint before runtime implementation.
+
+Apply-pack validation uses docs-safe checks only:
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Implementation validation, after explicit approval, should run:
+
+```bash
+npm run lint
+npm run build
+```
+
+Manual implementation smoke checks should verify:
+
+1. Dashboard/Home remains reachable from primary navigation.
+2. Assistant / Voice Entry remains reachable.
+3. Sprint 026 Assistant text capture still creates a local task and opens Tasks.
+4. Supported speech transcript capture still follows the same safe local task path.
+5. Empty Assistant input keeps Capture and Send disabled.
+6. Tasks and Notifications empty/fallback states remain understandable.
+7. Return navigation to Dashboard/Home is reliable.
+8. Primary non-CEO app surfaces do not show obvious dead ends.
+9. CEO Briefing remains deferred, untouched, out of scope, and without screenshot evidence.
+
+Do not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```

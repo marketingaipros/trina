@@ -2,11 +2,13 @@
 
 ## Current Sprint
 
-Sprint 026 - `026-assistant-voice-entry-and-task-flow-stabilization`
+Sprint 027 - `027-core-app-completion-polish-and-navigation-hardening`
 
 ## Current Status
 
-Sprint 026 is an app-completion implementation sprint for the Assistant / voice entry / task and reminder flow.
+Sprint 027 is a docs/planning-ready app-completion polish sprint for the current local Vite React app shell.
+
+Sprint 027 should preserve the Sprint 026 Assistant capture path while inspecting and tightening surrounding navigation, return behavior, active-state clarity, empty states, and local fallback copy. Runtime implementation has not started and requires operator approval after the Builder summarizes the plan.
 
 Sprint 026 implementation added a narrow local Assistant capture path: typed or recognized Assistant input can be saved as a local task, then the app routes to Tasks so the captured item is visible. Notifications now explain browser-notification fallback states while keeping captured Assistant tasks visible in Tasks.
 
@@ -32,10 +34,11 @@ Sprint 023 remains useful historical reset context for forward app-completion wo
 - Sprint 025 removed stale active CEO Briefing build momentum from uncommitted planning artifacts.
 - Sprint 026 planning files were created for Assistant voice entry and task/reminder flow stabilization.
 - Sprint 026 runtime implementation connected Assistant capture to local task visibility and improved related empty/fallback states.
+- Sprint 027 planning files were created from the architect pack as a docs/planning-only checkpoint.
 
 ## Active Focus
 
-Validate Sprint 026 implementation and decide whether to commit the narrow runtime/docs changes.
+Prepare Sprint 027 implementation by inspecting the current local app shell and summarizing a narrow navigation-polish plan before any runtime edits.
 
 ## Out of Scope
 
@@ -51,7 +54,7 @@ Validate Sprint 026 implementation and decide whether to commit the narrow runti
 
 ## Next Action
 
-Review Sprint 026 validation results, then commit if accepted.
+Builder should read Sprint 027 requirements, blueprint, acceptance, handoff prompt, and validation guidance, then summarize the intended inspection and implementation plan for operator approval.
 
 ## Blockers
 
