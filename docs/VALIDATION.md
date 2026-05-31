@@ -475,3 +475,41 @@ git diff --stat
 | Theme | Confirm `trina-barbie-v1` tokens are documented and reusable. | Pending | Sprint 008 |
 | Data/API boundary | Confirm mock data and API stubs only; no live Firebase, Gmail, backend API, auth, or model calls. | Pending | Sprint 008 |
 | Runtime safety | Confirm no local runtime app code, generated exports, or production mobile release files changed. | Pending | Sprint 008 |
+
+## Sprint 013 FlutterFlow CEO Briefing Deferred Evidence Validation
+
+Sprint 013 is a documented deferred-evidence checkpoint. It should not run app, Firebase, deploy, package installation, build, FlutterFlow export, backend, native, or release commands.
+
+CEO Briefing evidence remains deferred until this file exists:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Commands
+
+```bash
+git status --branch --short
+find references/flutterflow/sprint-009 -maxdepth 1 -type f | sort
+test -f references/flutterflow/sprint-009/ceo-briefing.png && echo "ceo briefing evidence exists"
+git diff --name-only
+git diff --stat
+git diff --check
+```
+
+If the screenshot exists, also run:
+
+```bash
+file references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Checklist
+
+| Area | Validation Method | Status | Notes |
+|---|---|---|---|
+| Sprint files | Confirm the Sprint 013 folder includes requirements, blueprint, acceptance, and handoff prompt. | Pending | Sprint 013 |
+| Evidence file | Confirm `references/flutterflow/sprint-009/ceo-briefing.png` exists before marking evidence complete. | Deferred | No real screenshot is available. |
+| Forward progress | Confirm missing CEO Briefing evidence is not treated as an active blocker. | Pending | Next action is to create the next Architect Pack for actual app build progress. |
+| Manual FlutterFlow validation | Confirm CEO Briefing or a documented briefing equivalent exists in the real FlutterFlow project only when future evidence capture resumes. | Deferred | Not required before the next Architect Pack. |
+| Navigation | Record Dashboard to CEO Briefing, CEO Briefing to Dashboard, and CEO Briefing CTA to Assistant as tested, missing, or untested only when future evidence capture resumes. | Deferred | Not required before the next Architect Pack. |
+| Runtime safety | Confirm no runtime app code, generated FlutterFlow exports, Firebase, backend, package, native, release, deploy, or secret files changed. | Pending | Sprint 013 |

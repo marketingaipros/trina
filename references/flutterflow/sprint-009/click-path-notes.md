@@ -260,7 +260,7 @@ Architect decision: CEO Briefing evidence is not required to move the broader pr
 
 ## CEO Briefing Evidence Status
 
-CEO Briefing is deferred, not complete.
+CEO Briefing screenshot evidence is deferred after Sprint 013, not complete.
 
 Missing evidence path:
 
@@ -268,11 +268,11 @@ Missing evidence path:
 references/flutterflow/sprint-009/ceo-briefing.png
 ```
 
-This missing screenshot does not block broader FlutterFlow prototype progress.
+This missing screenshot does not block broader FlutterFlow prototype or app-build progress.
 
 No placeholder screenshot should be created.
 
-Future briefing screen work should wait until screen naming and prototype structure are stable.
+Sprint 013 documents the evidence gap as deferred because no real screenshot is available. Future manual FlutterFlow validation should confirm the real screen title, visible briefing content, and available navigation paths before marking evidence present.
 
 Current accepted screenshot evidence:
 
@@ -289,6 +289,29 @@ Later design direction:
 - `Decisions Needed`
 - `Next Best Move`
 - CTA: `Ask Trina to Prioritize`
+
+## Sprint 013 CEO Briefing Evidence Capture
+
+Required evidence path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Current status: deferred. The screenshot file is missing and no real screenshot is available.
+
+Manual FlutterFlow validation should record:
+
+- Whether CEO Briefing or a renamed briefing equivalent exists.
+- Whether the screen uses the existing Trina pink/white visual direction.
+- Whether the screen contains briefing-specific content.
+- Whether `Dashboard -> CEO Briefing` works.
+- Whether `CEO Briefing -> Dashboard` works.
+- Whether `CEO Briefing -> Ask Trina to Prioritize -> Assistant` works.
+
+Do not mark `ceo-briefing.png` present until the real screenshot exists at the required path.
+
+This deferred evidence gap should not block moving forward. The next project action is to create the next Architect Pack for actual app build progress.
 
 ## Validation Checklist
 
@@ -321,7 +344,7 @@ git diff --check
 
 ## Unresolved FlutterFlow Build Notes
 
-- CEO Briefing screenshot evidence is deferred, not complete.
+- CEO Briefing screenshot evidence is deferred after Sprint 013, not complete.
 - The broader Trina prototype can move forward with this evidence gap documented.
 - The future screenshot path remains `references/flutterflow/sprint-009/ceo-briefing.png`.
 - Confirm whether lightweight screenshot files should be committed under this folder or stored externally with links before final build completion.

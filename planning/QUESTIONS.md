@@ -70,3 +70,12 @@
 | Should CEO Briefing become Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing later? | Architect / Operator | Future briefing sprint | Open | CEO Briefing remains deferred, not complete, during Sprint 012. |
 | Which accepted FlutterFlow screens need refreshed screenshots after manual polish? | Operator / Builder | After manual FlutterFlow changes | Open | Refresh accepted screen evidence only when real screenshots exist. |
 | What is the next real prototype build target after demo path polish? | Architect / Operator | After Sprint 012 review | Open | Candidate should stay FlutterFlow/static-only unless a later Architect Pack approves backend/generated/runtime work. |
+
+## Sprint 013 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Does the real FlutterFlow project currently contain a CEO Briefing screen or renamed briefing equivalent? | Operator / Builder | Sprint 013 manual validation | Open | If renamed, document the visible title before marking evidence complete. |
+| Which CEO Briefing navigation paths are confirmed in FlutterFlow Test/Run mode? | Operator / Builder | Before Sprint 013 completion | Open | Record Dashboard to CEO Briefing, CEO Briefing to Dashboard, and CEO Briefing CTA to Assistant as tested, missing, or untested. |
+| Has a real screenshot been saved at `references/flutterflow/sprint-009/ceo-briefing.png`? | Operator / Builder | Future evidence capture | Deferred | Evidence remains pending until the real PNG exists. This does not block the next Architect Pack for actual app build progress. |
+| What should the next actual app-build Architect Pack cover? | Architect / Operator | Next sprint | Open | Sprint 013 does not approve runtime/generated/backend/Firebase/package/native/release work; the next pack should define the build scope explicitly. |

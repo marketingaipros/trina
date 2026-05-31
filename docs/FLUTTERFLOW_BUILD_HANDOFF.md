@@ -976,6 +976,33 @@ Recommended next build direction:
 - Confirm visible screen naming
 - Preserve static/mock-only behavior unless a later Architect Pack approves implementation work
 
+## Sprint 013 CEO Briefing Evidence Capture
+
+Sprint 013 is a documented deferred-evidence checkpoint, not an active blocker.
+
+Required evidence path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Current status: deferred. The required screenshot file does not exist in the repo, and no real FlutterFlow screenshot is available.
+
+The operator should use the real FlutterFlow project to validate:
+
+- CEO Briefing screen exists, or a renamed briefing equivalent is clearly documented.
+- The screen preserves the existing `trina-barbie-v1` pink/white visual direction.
+- The screen contains briefing-specific content, not placeholder-only content.
+- Dashboard can navigate to CEO Briefing, if that path exists.
+- CEO Briefing can return to Dashboard.
+- CEO Briefing CTA can navigate to Assistant, if that path exists.
+
+Do not mark the CEO Briefing evidence gap closed until a real FlutterFlow screenshot is saved as `references/flutterflow/sprint-009/ceo-briefing.png`.
+
+The missing CEO Briefing screenshot should not block moving forward. The next project action is to create the next Architect Pack for actual app build progress.
+
+Do not create placeholder screenshots. Do not export generated FlutterFlow code. Do not modify runtime app code, Firebase, backend, package, native, release, deploy, or secret files.
+
 ## FlutterFlow Builder Prompt
 
 Use this with the FlutterFlow Builder after Sprint 007 is accepted.
