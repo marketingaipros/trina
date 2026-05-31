@@ -33,7 +33,7 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
             <Bell size={48} className="mb-4 opacity-20" />
             <p className="text-sm">No active notifications</p>
-            <p className="text-xs mt-1">We'll alert you 15 minutes before your events.</p>
+            <p className="text-xs mt-1">Event alerts and reminders will appear here.</p>
           </div>
         ) : (
           notifications.map((notif) => (
@@ -44,7 +44,9 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
               }`}
             >
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                notif.isPast ? 'bg-pink-100 text-pink-500' : 'bg-indigo-50 text-indigo-500'
+                notif.type === 'reminder'
+                  ? 'bg-pink-100 text-pink-500'
+                  : notif.isPast ? 'bg-pink-100 text-pink-500' : 'bg-indigo-50 text-indigo-500'
               }`}>
                 <Bell size={20} />
               </div>
@@ -64,9 +66,9 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
                   )}
                 </div>
               </div>
-              {notif.isPast && (
+              {(notif.isPast || notif.type === 'reminder') && (
                 <div className="px-2 py-0.5 bg-pink-500 text-white text-[8px] font-black uppercase rounded-full tracking-tighter">
-                  Active
+                  {notif.type === 'reminder' ? 'Reminder' : 'Active'}
                 </div>
               )}
             </div>
@@ -76,7 +78,7 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
       
       <div className="p-6 text-center">
         <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">
-          MAOS v3 Notification Engine
+          Trina notification center
         </p>
       </div>
     </div>

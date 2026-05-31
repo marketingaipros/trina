@@ -45,7 +45,8 @@ export function getReminderTime(reminder) {
   if (!reminder?.remindAt) return null;
   if (typeof reminder.remindAt.toDate === "function") return reminder.remindAt.toDate();
   if (reminder.remindAt instanceof Date) return reminder.remindAt;
-  return new Date(reminder.remindAt);
+  const parsed = new Date(reminder.remindAt);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
 export function isReminderDue(reminder, now = new Date()) {

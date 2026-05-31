@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import Dashboard from './components/Dashboard';
 import TasksView from './components/TasksView';
@@ -9,6 +9,7 @@ import NotificationsView from './components/NotificationsView';
 import BrainDumpView from './components/BrainDumpView';
 import CalendarView from './components/CalendarView';
 import KnowledgeBaseView from './components/KnowledgeBaseView';
+import Navigation from './components/Navigation';
 import * as Knowledge from './services/knowledgeService';
 import { AppMode, Task, Transaction, CalendarEvent, BrainDumpResult } from './types';
 import * as Storage from './services/storageService';
@@ -23,6 +24,7 @@ import {
   isReminderDue,
   snoozeReminder,
   subscribePendingReminders,
+  getReminderTime,
 } from './src/lib/reminderNotifications.js';
 import { registerMobilePushNotifications } from './src/lib/mobilePush';
 import { firebaseAuth } from './src/lib/barbieAI.js';
@@ -85,7 +87,7 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!("Notification" in window)) return;
+    if (!("Notification" in window) || typeof Notification.requestPermission !== "function") return;
     if (Notification.permission === "default") {
       Notification.requestPermission().catch(() => {});
     }
@@ -152,10 +154,14 @@ const App: React.FC = () => {
       playNotificationSound();
 
       if ("Notification" in window && Notification.permission === "granted" && !browserNotifiedRef.current.has(dueReminder.id)) {
-        new Notification("Reminder", {
-          body: dueReminder.title || dueReminder.message || "You have a reminder.",
-        });
-        browserNotifiedRef.current.add(dueReminder.id);
+        try {
+          new Notification("Reminder", {
+            body: dueReminder.title || dueReminder.message || "You have a reminder.",
+          });
+          browserNotifiedRef.current.add(dueReminder.id);
+        } catch (error) {
+          console.warn("Browser reminder notification failed:", error);
+        }
       }
     };
 
@@ -373,6 +379,23 @@ const App: React.FC = () => {
       });
     }
   };
+
+  const notificationItems = useMemo(() => {
+    const reminderItems = pendingReminders.map((reminder) => {
+      const remindAt = getReminderTime(reminder);
+      return {
+        id: `reminder-${reminder.id}`,
+        type: 'reminder',
+        title: reminder.title || 'Reminder',
+        message: reminder.message || reminder.title || 'You have a reminder.',
+        date: remindAt ? remindAt.toLocaleDateString() : 'Scheduled reminder',
+        time: remindAt ? remindAt.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : undefined,
+        isPast: remindAt ? remindAt.getTime() <= Date.now() : false,
+      };
+    });
+
+    return [...reminderItems, ...notifications];
+  }, [notifications, pendingReminders]);
 
   const addCalendarEvent = useCallback(async (event: Omit<CalendarEvent, 'id' | 'createdAt'>) => {
     const newEvent = Storage.addEvent(event);
@@ -764,7 +787,7 @@ const App: React.FC = () => {
       case AppMode.NOTIFICATIONS:
         return (
           <NotificationsView
-            notifications={notifications}
+            notifications={notificationItems}
             onBack={() => setCurrentMode(AppMode.DASHBOARD)}
           />
         );
@@ -794,6 +817,8 @@ const App: React.FC = () => {
       <main className="flex-1 overflow-hidden relative">
         {renderContent()}
       </main>
+
+      <Navigation currentMode={currentMode} onNavigate={setCurrentMode} />
 
       {/* Toast Notification */}
       {activeToast && (

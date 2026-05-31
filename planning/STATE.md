@@ -2,15 +2,19 @@
 
 ## Current Sprint
 
-Sprint 020 - `020-flutterflow-ceo-briefing-real-screenshot-pass`
+Sprint 024 - `024-existing-app-runtime-audit-and-stabilization`
 
 ## Current Status
 
+Sprint 023 reset the project direction so app completion can move forward.
+
+CEO Briefing remains deferred, not complete, and not blocking app completion.
+
+Sprint 024 is the active forward-build sprint. The goal is to audit and stabilize the visible existing app shell around non-CEO paths.
+
 Sprint 016 was completed as a docs/planning stabilization checkpoint and pushed to `origin/main`.
 
-Sprint 020 is an operator-led FlutterFlow Designer / Preview evidence pass for the previously deferred CEO Briefing screen. Its purpose is to verify the real screen, validate required click paths, and capture a real screenshot only if actual FlutterFlow evidence exists.
-
-The Sprint 020 Architect Pack is labeled as `020-flutterflow-ceo-briefing-real-screenshot-pass` and keeps current local work limited to planning/docs/evidence-note updates plus the real screenshot file only if the operator captures it from FlutterFlow Designer or Preview.
+Sprint 021 planned a FlutterFlow-only prototype build handoff for the missing CEO Briefing screen, but Sprint 023 supersedes that loop. CEO Briefing is no longer an active build target unless the operator explicitly reopens it in a future sprint.
 
 Sprint 010 was completed as a documented deferral decision. The missing CEO Briefing evidence remains deferred, not complete:
 
@@ -26,8 +30,13 @@ Sprint 019 formally defers CEO Briefing evidence because no real FlutterFlow scr
 
 Sprint 020 reopens only the real CEO Briefing evidence pass. The operator confirmed the real FlutterFlow project is accessible and Dashboard / Home is visible. CEO Briefing does not exist, no approved renamed equivalent was found, briefing-specific content is absent, all required CEO Briefing click paths failed, and no real screenshot was captured. No placeholder screenshot was created.
 
+Sprint 021 is the follow-up build plan for that confirmed gap. It does not create screenshot evidence during local pack application and does not mark CEO Briefing complete.
+
 ## Recently Completed
 
+- Sprint 023 docs/planning reset applied.
+- CEO Briefing stale blocker language neutralized.
+- App-completion direction restored around the existing usable app shell.
 - Sprint 008 Architect Pack was created, applied, validated, staged, committed, and pushed.
 - Sprint 008 established Trina's first FlutterFlow visual prototype scope.
 - Sprint 008 documented the six-screen prototype direction, visual identity, mock behavior, and FlutterFlow-only boundary.
@@ -52,25 +61,60 @@ Sprint 020 reopens only the real CEO Briefing evidence pass. The operator confir
 - No placeholder `references/flutterflow/sprint-009/ceo-briefing.png` was created.
 - Sprint 019 formally deferred CEO Briefing evidence until operator / FlutterFlow Builder validation is available.
 - Sprint 020 operator evidence pass confirmed FlutterFlow access and Dashboard / Home visibility, but CEO Briefing is absent with no renamed equivalent.
+- Sprint 021 Architect Pack was created for the missing CEO Briefing screen build.
 - `main` is aligned with `origin/main`.
 
 ## Active Work
 
-- Record Sprint 020 operator evidence results.
-- Keep the CEO Briefing screenshot evidence gap open because the real screen is absent and no screenshot was captured.
-- Keep local work limited to planning/docs unless a later Architect Pack explicitly approves implementation.
+- Sprint 024 runtime implementation has been applied within the approved non-CEO shell stabilization scope.
+- Dashboard, bottom navigation, Notifications/reminders, and reminder browser-notification guards were stabilized.
+- Required command validation passed.
+- Manual browser smoke testing passed for visible non-CEO paths available in the current app shell.
+
+## Active Focus
+
+Make visible non-CEO app paths either:
+
+1. Navigate correctly.
+2. Render without runtime errors.
+3. Provide usable static/mock behavior where that was already the app direction.
+4. Show clear intentional placeholder handling where full behavior is not part of this sprint.
+
+## Sprint 024 Target Areas
+
+- Dashboard navigation.
+- Assistant and/or voice entry.
+- Tasks.
+- Finance.
+- Calendar.
+- Notifications/reminders.
+- Settings-equivalent paths.
+
+## Out of Scope
+
+- CEO Briefing build, rebuild, screenshot evidence, or validation.
+- FlutterFlow designer work.
+- FlutterFlow generated code export.
+- Firebase or backend work.
+- Hermes work.
+- Package/dependency changes unless explicitly approved.
+- Native iOS/Android work.
+- Release, deployment, or production build work.
+- Large redesign or dashboard replacement.
 
 ## Next Action
 
-Architect / operator must decide whether to rebuild CEO Briefing, rename the briefing concept, remove the Dashboard entry point, or keep the feature deferred in a later approved sprint.
+Review Sprint 024 results and decide the next focused app-completion sprint.
 
-If a future approved sprint creates or verifies the screen and captures evidence, the screenshot must be saved exactly as:
+Recommended next candidates:
 
 ```text
-references/flutterflow/sprint-009/ceo-briefing.png
+025-assistant-voice-entry-completion
+025-tasks-notifications-local-workflow
+025-dashboard-navigation-polish
 ```
 
-Codex must not start implementation-style work beyond docs/planning updates.
+CEO Briefing remains deferred and non-blocking.
 
 ## Blockers
 
@@ -93,3 +137,5 @@ Deferred:
 - No runtime app code, generated FlutterFlow export code, backend, Firebase, Hermes, package/native, build, or release work is approved in Sprint 020.
 - Sprint 020 cannot mark CEO Briefing evidence complete until the operator verifies the real FlutterFlow project and a real screenshot exists at `references/flutterflow/sprint-009/ceo-briefing.png`.
 - Sprint 020 confirmed the real FlutterFlow project is accessible, but CEO Briefing is absent and all CEO Briefing paths fail.
+- No runtime app code, generated FlutterFlow export code, backend, Firebase, Hermes, package/native, build, release, deploy, live AI, or real financial data work is approved in Sprint 021 local pack application.
+- Sprint 021 cannot mark CEO Briefing screenshot evidence complete until a real FlutterFlow screenshot exists at `references/flutterflow/sprint-009/ceo-briefing.png`.

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, CheckSquare, DollarSign, BrainCircuit, CalendarDays, RotateCw } from 'lucide-react';
+import { LayoutDashboard, CheckSquare, DollarSign, Bell, CalendarDays, BookOpen } from 'lucide-react';
 import { AppMode } from '../types';
 
 interface NavigationProps {
@@ -12,9 +12,9 @@ const Navigation: React.FC<NavigationProps> = ({ currentMode, onNavigate }) => {
     { mode: AppMode.DASHBOARD, icon: LayoutDashboard, label: 'Home' },
     { mode: AppMode.TASKS, icon: CheckSquare, label: 'Tasks' },
     { mode: AppMode.FINANCE, icon: DollarSign, label: 'Finance' },
-    { mode: AppMode.BRAIN_DUMP, icon: BrainCircuit, label: 'Brain Dump' },
     { mode: AppMode.CALENDAR, icon: CalendarDays, label: 'Calendar' },
-    { mode: AppMode.WEEKLY_RESET, icon: RotateCw, label: 'Reset' },
+    { mode: AppMode.NOTIFICATIONS, icon: Bell, label: 'Alerts' },
+    { mode: AppMode.KNOWLEDGE_BASE, icon: BookOpen, label: 'Context' },
   ];
 
   return (
@@ -31,7 +31,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentMode, onNavigate }) => {
               }`}
             >
               <item.icon size={20} strokeWidth={isActive ? 2.5 : 2} />
-              <span className="text-[10px] font-medium">{item.label}</span>
+              <span className="text-[10px] font-medium leading-none text-center">{item.label}</span>
             </button>
           );
         })}

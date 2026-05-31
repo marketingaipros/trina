@@ -67,6 +67,151 @@ npm run lint
 node --check functions/index.js
 ```
 
+## CEO Briefing Evidence Status
+
+CEO Briefing screenshot evidence is deferred.
+
+The failed/blank CEO Briefing page with `Try Again` is treated as blocked evidence, not pass evidence.
+
+The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
+
+## Sprint 024 Validation Plan
+
+Sprint 024 validation proves that the visible non-CEO app shell can be used without obvious broken paths.
+
+## Sprint 024 Implementation Notes
+
+Runtime implementation is limited to approved non-CEO shell stabilization files.
+
+Implemented stabilization:
+
+- Mounted the existing bottom navigation shell so visible non-CEO paths are reachable outside the Dashboard quick buttons.
+- Aligned bottom navigation targets to Home, Tasks, Finance, Calendar, Notifications, and Context.
+- Included pending reminders in the Notifications view so reminder paths render in the visible notification center.
+- Guarded browser reminder notification creation so unsupported, blocked, denied, or throwing notification states do not crash the app.
+- Hardened reminder time parsing so invalid reminder timestamps are treated as unavailable instead of invalid dates.
+
+CEO Briefing remains deferred and no screenshot evidence is required or created for Sprint 024.
+
+## Sprint 024 Validation Results
+
+Date: 2026-05-31
+
+### Commands Run
+
+```bash
+npm run lint
+npm run build
+git diff --check
+git status --branch --short
+```
+
+### Command Results
+
+- `npm run lint`: Pass. TypeScript completed with exit code 0.
+- `npm run build`: Pass. Vite production build completed.
+- `git diff --check`: Pass. No whitespace errors reported.
+- `git status --branch --short`: Reported in Sprint 024 closeout.
+
+### Build Warnings
+
+- Vite still reports the pre-existing mixed static/dynamic import warning for `services/authService.ts`.
+- Vite still reports the production JavaScript chunk is larger than the default 500 kB warning threshold.
+
+### Manual Browser Smoke Test
+
+Local URL:
+
+```text
+http://127.0.0.1:3000/
+```
+
+Observed results:
+
+- Dashboard loads without runtime errors.
+- Bottom navigation renders and routes to Home, Tasks, Finance, Calendar, Alerts, and Context.
+- Dashboard quick buttons for Finance, Tasks, Brain Dump, Calendar, Knowledge Base, and Notifications remain visible.
+- Assistant/voice entry renders on Dashboard. Microphone click opens the browser microphone permission prompt without crashing, and text fallback remains visible.
+- Tasks screen renders and shows existing task data.
+- Finance screen renders and shows the existing financial snapshot.
+- Calendar screen renders and shows the calendar grid and empty-state handling for the selected date.
+- Notifications/reminders screen renders with a clear empty state when no active notifications are present.
+- Context / Knowledge Base renders as the current settings-equivalent/context path and shows a clear empty state.
+- Browser reminder notification creation is guarded in code so unsupported, denied, blocked, or throwing browser notification states do not crash the app.
+
+### Acceptance Status
+
+Sprint 024 acceptance criteria passed for the current visible non-CEO app shell.
+
+Remaining follow-up:
+
+- No automated browser test exists for due-reminder delivery timing or real browser notification permission permutations.
+- A future sprint should choose the next feature-complete target: Assistant/voice entry, Tasks/notifications workflow, or Dashboard navigation polish.
+
+## Required Commands
+
+Run:
+
+```bash
+npm run lint
+npm run build
+git diff --check
+git status --branch --short
+```
+
+If any command is unavailable or fails because of pre-existing issues, document:
+
+1. The exact command.
+2. The result.
+3. Whether the failure is caused by Sprint 024 changes or pre-existing project state.
+4. The recommended follow-up.
+
+## Manual Smoke Test
+
+After implementation, manually check these paths in the browser:
+
+1. Dashboard loads without runtime errors.
+2. Dashboard navigation cards/buttons route to intended non-CEO views.
+3. Assistant and/or voice entry opens or shows an intentional placeholder.
+4. Tasks screen renders without runtime errors.
+5. Finance screen renders without runtime errors or clearly shows placeholder state.
+6. Calendar screen renders without runtime errors or clearly shows placeholder state.
+7. Notifications/reminders screen renders without runtime errors.
+8. Reminder popup/notification behavior does not crash when permissions are unavailable, blocked, or not yet granted.
+9. Settings-equivalent path renders or is clearly handled.
+10. CEO Briefing remains deferred and is not treated as required pass evidence.
+
+## Evidence Rules
+
+Sprint 024 does not require screenshot evidence.
+
+Do not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Do not treat absent CEO Briefing screenshot evidence as a Sprint 024 failure.
+
+## Sprint 023 App Completion Forward Build Validation
+
+Sprint 023 uses docs-safe validation only:
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png || echo "Review screenshot manually before treating as pass evidence"
+```
+
+Sprint 023 validation must also confirm:
+
+- Sprint 023 planning files exist.
+- Changed files stay inside the Architect Pack allowlist.
+- CEO Briefing is deferred and not reopened as active implementation work.
+- No runtime app code, generated FlutterFlow export code, Firebase, Hermes, backend, package/native, build, release, deploy, or screenshot evidence files are changed.
+
 ## Sprint 016 Planning/Docs Validation
 
 Sprint 016 uses docs-safe validation only:
@@ -267,6 +412,46 @@ file references/flutterflow/sprint-009/ceo-briefing.png
 ### Sprint 020 Evidence Result
 
 The operator could access the real FlutterFlow project and confirmed Dashboard / Home is visible. CEO Briefing does not exist, no approved renamed equivalent was found, briefing-specific content is absent, all required CEO Briefing click paths failed, and no real screenshot was captured. `references/flutterflow/sprint-009/ceo-briefing.png` must remain absent.
+
+## Sprint 021 FlutterFlow CEO Briefing Screen Build Validation - Deferred
+
+Sprint 021 is historical validation context only. It previously prepared a FlutterFlow-only manual build handoff, but Sprint 023 supersedes that path and moves app completion forward around CEO Briefing.
+
+Do not use Sprint 021 validation as an instruction to build, validate, or capture evidence for CEO Briefing during the immediate app-completion path.
+
+### Required Checks
+
+```bash
+git status --branch --short
+find planning/sprints/021-flutterflow-ceo-briefing-screen-build -maxdepth 1 -type f | sort
+test -f docs/FLUTTERFLOW_BUILD_HANDOFF.md
+test -f docs/VALIDATION.md
+test -f references/flutterflow/sprint-009/click-path-notes.md
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git diff --name-only
+git diff --stat
+git diff --check
+```
+
+### Deferred FlutterFlow Checks
+
+These checks are not required for the next app-completion step unless the operator explicitly reopens CEO Briefing:
+
+| Item | Required Result | Current Local Status | Notes |
+|---|---|---|---|
+| CEO Briefing screen | Deferred unless explicitly reopened | Deferred | Do not build for current app-completion work. |
+| Dashboard / Home -> CEO Briefing | Deferred unless explicitly reopened | Deferred | Not required for the next app-completion step. |
+| CEO Briefing -> Dashboard / Home | Deferred unless explicitly reopened | Deferred | Not required for the next app-completion step. |
+| CEO Briefing -> Ask Trina to Prioritize -> Assistant | Deferred unless explicitly reopened | Deferred | Not required for the next app-completion step. |
+| `references/flutterflow/sprint-009/ceo-briefing.png` | Real FlutterFlow screenshot only | Absent unless real evidence exists | Do not fabricate screenshot evidence. |
+
+### Evidence Completion Rules
+
+- Do not create `references/flutterflow/sprint-009/ceo-briefing.png` unless it is a real FlutterFlow Designer or Preview screenshot captured after the screen exists.
+- Do not mark CEO Briefing screenshot evidence complete while the PNG is absent.
+- Do not create placeholder, fake, renamed-unrelated, generated, or text-only screenshot evidence.
+- Keep Sprint 021 changed files limited to the Architect Pack, planning files, validation docs, handoff docs, and click-path notes.
+- Confirm no runtime app code, generated FlutterFlow exports, Firebase, Hermes/API, backend, package or lock files, native folders, build outputs, release files, secrets, or `.env` files were changed.
 
 ## Deploy Commands
 
