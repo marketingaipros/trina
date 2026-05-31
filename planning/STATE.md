@@ -2,11 +2,13 @@
 
 ## Current Sprint
 
-Sprint 025 - `025-planning-docs-cleanup-and-forward-state`
+Sprint 026 - `026-assistant-voice-entry-and-task-flow-stabilization`
 
 ## Current Status
 
-Sprint 025 is a planning/docs cleanup checkpoint. It resolves dirty planning, docs, architect-pack, sprint-folder, and FlutterFlow reference-note artifacts left from Sprint 021, Sprint 022, Sprint 023, and Sprint 024.
+Sprint 026 is an app-completion planning checkpoint for the Assistant / voice entry / task and reminder flow. Runtime implementation has not started yet; the next Builder step must read the Sprint 026 files and summarize before any code changes.
+
+Sprint 025 was a planning/docs cleanup checkpoint. It resolved dirty planning, docs, architect-pack, sprint-folder, and FlutterFlow reference-note artifacts left from Sprint 021, Sprint 022, Sprint 023, and Sprint 024.
 
 Sprint 024 is the latest app-completion runtime audit/stabilization context. Its approved non-CEO shell work stabilized Dashboard, bottom navigation, Notifications/reminders, and browser-notification guards.
 
@@ -26,18 +28,11 @@ Sprint 023 remains useful historical reset context for forward app-completion wo
 - Sprint 024 required validation passed.
 - Sprint 024 manual browser smoke testing passed for visible non-CEO paths available in the current app shell.
 - Sprint 025 removed stale active CEO Briefing build momentum from uncommitted planning artifacts.
+- Sprint 026 planning files were created for Assistant voice entry and task/reminder flow stabilization.
 
 ## Active Focus
 
-Keep the repo ready for the next app-completion sprint. The next sprint should build on Sprint 024 results and focus on one visible non-CEO app-completion target.
-
-Recommended next candidates:
-
-```text
-assistant-voice-entry-completion
-tasks-notifications-local-workflow
-dashboard-navigation-polish
-```
+Prepare for Sprint 026 implementation by reading the new sprint folder, summarizing the intended Assistant -> task/reminder -> notification path, and listing any runtime files before editing.
 
 ## Out of Scope
 
@@ -53,7 +48,9 @@ dashboard-navigation-polish
 
 ## Next Action
 
-Create or approve the next focused app-completion sprint based on Sprint 024 results. CEO Briefing remains deferred and should not be reopened unless explicitly requested.
+Use `planning/sprints/026-assistant-voice-entry-and-task-flow-stabilization/handoff-prompt.md` as the next Builder start prompt.
+
+The next step is summary-first only: read the Sprint 026 files, inspect the likely app flow files, and wait for implementation approval before runtime changes.
 
 ## Blockers
 

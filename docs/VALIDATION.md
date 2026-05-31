@@ -185,6 +185,43 @@ Sprint 025 validation must also confirm:
 - No screenshot evidence is created.
 - No runtime app code, Firebase, backend, Hermes, package, native, release, build, or export files are modified.
 
+## Sprint 026 Assistant Flow Stabilization Validation
+
+Sprint 026 starts with an apply-pack/docs-only checkpoint before runtime implementation.
+
+Apply-pack validation uses docs-safe checks only:
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Implementation validation, after explicit approval, should run the safe project checks that exist in this repo:
+
+```bash
+npm run lint
+npm run build
+```
+
+Manual implementation smoke checks should verify:
+
+1. Dashboard or navigation exposes the Assistant / voice entry path.
+2. The user can reach a task/reminder capture surface.
+3. Empty input is handled safely.
+4. A created or simulated task/reminder is visible in Tasks, Notifications, reminders, or the relevant local surface.
+5. The user can return to the main app surface without a dead end.
+6. Notifications/reminders remain safe when browser notification permission is unavailable, blocked, denied, or unsupported.
+7. CEO Briefing remains deferred, non-blocking, out of scope, and without screenshot evidence.
+
+Do not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
 ## Manual Smoke Test
 
 After implementation, manually check these paths in the browser:
