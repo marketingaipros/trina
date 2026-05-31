@@ -18,6 +18,7 @@ interface VoiceDashboardProps {
   onConnectGmail: () => void;
   tasks: Task[];
   events: CalendarEvent[];
+  onAssistantCapture: (message: string, source: 'typed' | 'voice') => Task | null;
 }
 
 const VoiceDashboard: React.FC<VoiceDashboardProps> = ({ 
@@ -32,7 +33,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
   isGmailConnected,
   onConnectGmail,
   tasks,
-  events
+  events,
+  onAssistantCapture
 }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [briefing, setBriefing] = useState<string | null>(null);
@@ -184,6 +186,18 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     ? (timer / initialTimerValue) * 100 
     : 100;
 
+  const captureLocalTask = (message: string, source: 'typed' | 'voice') => {
+    const cleanMessage = message.trim();
+    if (!cleanMessage || isTypingLoading) return;
+
+    const capturedTask = onAssistantCapture(cleanMessage, source);
+    if (!capturedTask) return;
+
+    setTypedReply(`Saved "${capturedTask.title}" as a local task.`);
+    setTypedError(null);
+    setTypedMessage('');
+  };
+
   const sendMessageToBarbie = async (message: string) => {
     const cleanMessage = message.trim();
     if (!cleanMessage || isTypingLoading) return;
@@ -267,7 +281,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
 
         if (transcript) {
           setTypedMessage(transcript);
-          void sendMessageToBarbie(transcript);
+          captureLocalTask(transcript, 'voice');
         }
       };
 
@@ -359,8 +373,13 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     await sendMessageToBarbie(typedMessage);
   };
 
+  const handleCaptureSubmit = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
+    captureLocalTask(typedMessage, 'typed');
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-full relative overflow-hidden bg-[#fff5f7]">
+    <div className="flex flex-col items-center justify-center h-full relative overflow-hidden bg-[#fff5f7] pb-20">
       <style>{`
         @keyframes subtle-breath {
           0%, 100% { transform: scale(1); opacity: 0.8; }
@@ -469,9 +488,9 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
       )}
 
       {/* Main Avatar Section */}
-      <div className="flex-1 flex flex-col items-center justify-center w-full max-w-sm z-10 pt-16">
+      <div className="flex-1 flex flex-col items-center justify-center w-full max-w-sm z-10 pt-10">
         
-        <div className="relative w-80 h-80 flex items-center justify-center mb-6">
+        <div className="relative w-80 h-80 flex items-center justify-center mb-3">
           {/* Design Rings */}
           <div className="absolute inset-0 m-auto w-[340px] h-[340px] rounded-full bg-pink-100/20 border border-pink-100/30" />
           <div className="absolute inset-0 m-auto w-[280px] h-[280px] rounded-full bg-white border border-pink-100/50 shadow-sm" />
@@ -517,7 +536,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
         </div>
 
         {/* Hero Text */}
-        <div className="text-center mb-12 h-24 px-6">
+        <div className="text-center mb-6 h-24 px-6">
            {!isConnected && !isSpeechListening ? (
              <div className="animate-fade-in">
                 <h1 className="text-4xl font-black text-gray-900 tracking-tighter">HI I'M BARBIE!</h1>
@@ -575,13 +594,23 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
               placeholder="Type your message to Barbie..."
               className="flex-1 min-w-0 px-4 py-3 bg-transparent text-sm font-semibold text-gray-800 placeholder:text-pink-200 outline-none disabled:opacity-60"
             />
-            <button
-              type="submit"
-              disabled={!typedMessage.trim() || isTypingLoading}
-              className="px-5 py-3 rounded-xl bg-pink-500 text-white text-xs font-black uppercase tracking-widest shadow-md shadow-pink-100 hover:bg-pink-600 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-            >
-              Send
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleCaptureSubmit}
+                disabled={!typedMessage.trim() || isTypingLoading}
+                className="px-4 py-3 rounded-xl bg-gray-900 text-white text-xs font-black uppercase tracking-widest shadow-md hover:bg-gray-800 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              >
+                Capture
+              </button>
+              <button
+                type="submit"
+                disabled={!typedMessage.trim() || isTypingLoading}
+                className="px-5 py-3 rounded-xl bg-pink-500 text-white text-xs font-black uppercase tracking-widest shadow-md shadow-pink-100 hover:bg-pink-600 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              >
+                Send
+              </button>
+            </div>
           </div>
 
           {isTypingLoading && (

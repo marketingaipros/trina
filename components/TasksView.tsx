@@ -251,8 +251,11 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
       {/* Task List */}
       <div className="flex-1 space-y-3 overflow-y-auto p-4 no-scrollbar">
         {filteredTasks.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-gray-400">
-            <p>No tasks found.</p>
+          <div className="flex flex-col items-center justify-center h-full text-center text-gray-400 px-8">
+            <p className="font-bold text-gray-500">No tasks found.</p>
+            <p className="text-sm mt-2">
+              Use the plus button here, or capture a note from the Assistant on the Dashboard.
+            </p>
           </div>
         ) : (
           filteredTasks.map((task) => (

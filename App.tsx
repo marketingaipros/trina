@@ -11,7 +11,7 @@ import CalendarView from './components/CalendarView';
 import KnowledgeBaseView from './components/KnowledgeBaseView';
 import Navigation from './components/Navigation';
 import * as Knowledge from './services/knowledgeService';
-import { AppMode, Task, Transaction, CalendarEvent, BrainDumpResult } from './types';
+import { AppMode, Task, Transaction, CalendarEvent, BrainDumpResult, Priority, TaskStatus } from './types';
 import * as Storage from './services/storageService';
 import { useLive } from './hooks/useLive';
 import { BrainCircuit, Activity, X, Info, Bell } from 'lucide-react';
@@ -338,6 +338,35 @@ const App: React.FC = () => {
     Gmail.requestGmailToken();
   };
 
+  const handleAssistantCapture = useCallback((message: string, source: 'typed' | 'voice') => {
+    const cleanMessage = message.trim();
+    if (!cleanMessage) return null;
+
+    const normalizedTitle = cleanMessage
+      .replace(/^(remind me to|reminder to|add a task to|add task to|task to|todo to)\s+/i, '')
+      .replace(/^(reminder|task|todo):\s*/i, '')
+      .trim();
+
+    const title = normalizedTitle || cleanMessage;
+    const newTask = Storage.addTask({
+      title,
+      priority: Priority.MEDIUM,
+      status: TaskStatus.TODO,
+      delegatable: false,
+    });
+
+    setTasks(prev => [...prev, newTask]);
+    setActiveToast({
+      id: `assistant-capture-${newTask.id}`,
+      title: source === 'voice' ? 'Voice Task Captured' : 'Task Captured',
+      message: 'Saved locally and opened in Tasks.',
+      type: 'info',
+    });
+    setCurrentMode(AppMode.TASKS);
+
+    return newTask;
+  }, []);
+
   const handleDismissReminder = async () => {
     if (!activeReminder) return;
     const reminderId = activeReminder.id;
@@ -396,6 +425,18 @@ const App: React.FC = () => {
 
     return [...reminderItems, ...notifications];
   }, [notifications, pendingReminders]);
+
+  const notificationSupportMessage = useMemo(() => {
+    if (typeof window === 'undefined' || !('Notification' in window)) {
+      return 'Browser notifications are not supported here. In-app reminders and task capture still work.';
+    }
+
+    if (Notification.permission === 'denied') {
+      return 'Browser notifications are blocked. In-app reminders and task capture still work.';
+    }
+
+    return null;
+  }, []);
 
   const addCalendarEvent = useCallback(async (event: Omit<CalendarEvent, 'id' | 'createdAt'>) => {
     const newEvent = Storage.addEvent(event);
@@ -789,6 +830,7 @@ const App: React.FC = () => {
           <NotificationsView
             notifications={notificationItems}
             onBack={() => setCurrentMode(AppMode.DASHBOARD)}
+            notificationSupportMessage={notificationSupportMessage}
           />
         );
       default:
@@ -807,6 +849,7 @@ const App: React.FC = () => {
             onConnectGmail={handleGmailConnect}
             tasks={tasks}
             events={events}
+            onAssistantCapture={handleAssistantCapture}
           />
         );
     }

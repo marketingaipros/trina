@@ -14,9 +14,10 @@ interface Notification {
 interface NotificationsViewProps {
   notifications: Notification[];
   onBack: () => void;
+  notificationSupportMessage?: string | null;
 }
 
-const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, onBack }) => {
+const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, onBack, notificationSupportMessage }) => {
   return (
     <div className="h-full flex flex-col bg-gray-50">
       <header className="flex items-center justify-between p-4 bg-white border-b border-gray-100">
@@ -29,11 +30,19 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
       </header>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {notificationSupportMessage && (
+          <div className="p-4 rounded-2xl bg-pink-50 border border-pink-100 text-pink-700 text-sm font-semibold">
+            {notificationSupportMessage}
+          </div>
+        )}
+
         {notifications.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
             <Bell size={48} className="mb-4 opacity-20" />
             <p className="text-sm">No active notifications</p>
-            <p className="text-xs mt-1">Event alerts and reminders will appear here.</p>
+            <p className="text-xs mt-1 text-center px-6">
+              Event alerts and reminders will appear here. Captured Assistant tasks are saved in Tasks.
+            </p>
           </div>
         ) : (
           notifications.map((notif) => (

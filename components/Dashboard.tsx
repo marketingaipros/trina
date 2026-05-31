@@ -17,6 +17,7 @@ interface DashboardProps {
   onConnectGmail: () => void;
   tasks: any[];
   events: any[];
+  onAssistantCapture: (message: string, source: 'typed' | 'voice') => any;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ 
@@ -32,7 +33,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   isGmailConnected,
   onConnectGmail,
   tasks,
-  events
+  events,
+  onAssistantCapture
 }) => {
   const NavButton = ({ icon: Icon, mode, label }: { icon: any, mode: AppMode, label: string }) => (
     <button 
@@ -76,6 +78,7 @@ const Dashboard: React.FC<DashboardProps> = ({
            onConnectGmail={onConnectGmail}
            tasks={tasks}
            events={events}
+           onAssistantCapture={onAssistantCapture}
          />
       </div>
     </div>

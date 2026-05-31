@@ -222,6 +222,39 @@ Do not create:
 references/flutterflow/sprint-009/ceo-briefing.png
 ```
 
+## Sprint 026 Implementation Notes
+
+Implemented validation target:
+
+- Dashboard Assistant text input can capture a local task without requiring live AI.
+- Browser speech recognition transcript capture uses the same local task path when microphone support is available.
+- Captured Assistant tasks are saved through the existing local task storage path and the app opens Tasks for visibility.
+- Tasks empty state points users back to Assistant capture or the task add button.
+- Notifications empty/fallback copy makes clear that browser notification support can be unavailable or blocked while in-app capture still works.
+
+Sprint 026 validation must confirm:
+
+```bash
+npm run lint
+npm run build
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Expected manual smoke result:
+
+- Dashboard loads.
+- Assistant capture is visible from Dashboard.
+- Empty Assistant input cannot be captured or sent.
+- Capture saves a local task and opens Tasks.
+- The captured task appears in Tasks.
+- Back navigation or bottom Home returns to Dashboard.
+- Notifications remains usable when browser notifications are unsupported or denied.
+- CEO Briefing remains deferred and untouched.
+
 ## Manual Smoke Test
 
 After implementation, manually check these paths in the browser:

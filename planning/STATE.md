@@ -6,7 +6,9 @@ Sprint 026 - `026-assistant-voice-entry-and-task-flow-stabilization`
 
 ## Current Status
 
-Sprint 026 is an app-completion planning checkpoint for the Assistant / voice entry / task and reminder flow. Runtime implementation has not started yet; the next Builder step must read the Sprint 026 files and summarize before any code changes.
+Sprint 026 is an app-completion implementation sprint for the Assistant / voice entry / task and reminder flow.
+
+Sprint 026 implementation added a narrow local Assistant capture path: typed or recognized Assistant input can be saved as a local task, then the app routes to Tasks so the captured item is visible. Notifications now explain browser-notification fallback states while keeping captured Assistant tasks visible in Tasks.
 
 Sprint 025 was a planning/docs cleanup checkpoint. It resolved dirty planning, docs, architect-pack, sprint-folder, and FlutterFlow reference-note artifacts left from Sprint 021, Sprint 022, Sprint 023, and Sprint 024.
 
@@ -29,10 +31,11 @@ Sprint 023 remains useful historical reset context for forward app-completion wo
 - Sprint 024 manual browser smoke testing passed for visible non-CEO paths available in the current app shell.
 - Sprint 025 removed stale active CEO Briefing build momentum from uncommitted planning artifacts.
 - Sprint 026 planning files were created for Assistant voice entry and task/reminder flow stabilization.
+- Sprint 026 runtime implementation connected Assistant capture to local task visibility and improved related empty/fallback states.
 
 ## Active Focus
 
-Prepare for Sprint 026 implementation by reading the new sprint folder, summarizing the intended Assistant -> task/reminder -> notification path, and listing any runtime files before editing.
+Validate Sprint 026 implementation and decide whether to commit the narrow runtime/docs changes.
 
 ## Out of Scope
 
@@ -48,9 +51,7 @@ Prepare for Sprint 026 implementation by reading the new sprint folder, summariz
 
 ## Next Action
 
-Use `planning/sprints/026-assistant-voice-entry-and-task-flow-stabilization/handoff-prompt.md` as the next Builder start prompt.
-
-The next step is summary-first only: read the Sprint 026 files, inspect the likely app flow files, and wait for implementation approval before runtime changes.
+Review Sprint 026 validation results, then commit if accepted.
 
 ## Blockers
 
