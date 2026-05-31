@@ -100,3 +100,13 @@
 | Codex could drift into runtime or generated FlutterFlow code changes. | Medium | High | Limit Sprint 016 to allowlisted planning/docs/evidence-note files only. | Open |
 | Prototype flow documentation could become stale against the actual FlutterFlow project. | Medium | Medium | Treat Sprint 016 as a documentation and verification checkpoint. | Open |
 | Placeholder evidence could reduce trust in validation records. | Medium | High | Do not create placeholder screenshots or fake `ceo-briefing.png`. | Open |
+
+## Sprint 017 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Placeholder screenshot is accidentally created and treated as evidence. | Medium | High | Sprint 017 explicitly forbids placeholder screenshots and keeps CEO Briefing deferred unless real evidence exists. | Open |
+| Final prototype is marked complete without all screen evidence. | Medium | High | `docs/VALIDATION.md` must list required screens, required screenshots, and click-path confirmation steps. | Open |
+| Evidence files are stored in inconsistent locations. | Medium | Medium | Sprint 017 must define evidence storage rules and document unresolved folder decisions before future capture work. | Open |
+| FlutterFlow UI state differs from documented planning state. | Medium | Medium | Validation must separate confirmed FlutterFlow state from planned or deferred work. | Open |
+| Codex modifies runtime/exported files during a docs-only readiness sprint. | Low | High | Sprint 017 handoff must include a strict allowlist and protected-file list. | Open |

@@ -123,3 +123,12 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-30 | Sprint 016 remains planning/docs and validation stabilization only. | The project needs a clean state after the Sprint 015 checkpoint before new implementation work starts. | Codex must not modify runtime app code, generated FlutterFlow code, Firebase, Hermes, backend, package/native, or release files. |
 | 2026-05-30 | CEO Briefing screenshot evidence remains deferred unless captured from the real FlutterFlow prototype. | Fake or placeholder evidence would make validation unreliable. | No placeholder `ceo-briefing.png` may be created. |
 | 2026-05-30 | The next build step must be based on sprint files, not chat memory. | The 120x workflow requires folder-based handoff. | Codex must read Sprint 016 files and summarize before any implementation. |
+
+## Sprint 017 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | Sprint 017 is docs/planning-only evidence readiness, not evidence capture. | The project needs a clean validation checklist and evidence storage rules before final prototype capture. | Codex must not create screenshots or modify runtime/exported code in Sprint 017. |
+| 2026-05-31 | CEO Briefing remains deferred unless real FlutterFlow evidence exists. | Placeholder evidence would corrupt validation history. | `ceo-briefing.png` must not be created as a placeholder. |
+| 2026-05-31 | Screenshot evidence must come from actual FlutterFlow Designer or Preview state. | Evidence should prove real prototype status, not planned or mocked status. | Docs must distinguish confirmed evidence from deferred or missing evidence. |
+| 2026-05-31 | Final prototype validation must confirm screens, navigation, storage location, and screenshot naming before capture. | Reduces confusion and prevents evidence files from being scattered or mislabeled. | `docs/VALIDATION.md` and FlutterFlow handoff docs must define the required validation path. |

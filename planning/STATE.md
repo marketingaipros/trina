@@ -2,13 +2,13 @@
 
 ## Current Sprint
 
-Sprint 016 - `016-flutterflow-functional-app-stabilization`
+Sprint 017 - `017-flutterflow-final-prototype-evidence-readiness`
 
 ## Current Status
 
-Sprint 015 planning/docs checkpoint was committed and pushed to `origin/main`.
+Sprint 016 was completed as a docs/planning stabilization checkpoint and pushed to `origin/main`.
 
-Sprint 016 is a planning/docs and validation stabilization sprint. It verifies the current FlutterFlow prototype handoff state, preserves the CEO Briefing evidence deferral unless real screenshot evidence exists, and prepares the next safe build step.
+Sprint 017 is a docs/planning-only readiness sprint. Its purpose is to tighten the final FlutterFlow prototype validation path, screenshot evidence rules, and click-path confirmation steps before any future evidence capture or FlutterFlow build work.
 
 Sprint 010 was completed as a documented deferral decision. The missing CEO Briefing evidence remains deferred, not complete:
 
@@ -36,20 +36,27 @@ Sprint 013 documented that the CEO Briefing screenshot evidence gap remained def
 - Sprint 014 blocked-evidence documentation checkpoint was committed and pushed.
 - Sprint 015 Architect Pack was applied as a planning/docs checkpoint to defer CEO Briefing and prioritize functional app stabilization.
 - Sprint 015 planning/docs checkpoint was committed and pushed.
+- Sprint 016 docs/planning stabilization checkpoint was committed and pushed.
+- Sprint 016 kept CEO Briefing evidence deferred.
+- Sprint 016 created no placeholder screenshot.
+- Sprint 016 changed no runtime app code, generated FlutterFlow export, Firebase, Hermes, backend, package/native, build, or release files.
 - CEO Briefing remains deferred.
 - No placeholder `references/flutterflow/sprint-009/ceo-briefing.png` was created.
 - `main` is aligned with `origin/main`.
 
 ## Active Work
 
-- Apply Sprint 016 planning files.
-- Review the current prototype flow documentation.
-- Produce a Builder summary before any implementation work.
+- Apply Sprint 017 planning files.
+- Tighten final FlutterFlow prototype evidence readiness documentation.
 - Keep local work limited to planning/docs unless a later Architect Pack explicitly approves implementation.
 
 ## Next Action
 
-Apply Sprint 016 planning files, review the current prototype flow documentation, and produce a Builder summary before any implementation work. Do not build CEO Briefing or fabricate screenshot evidence.
+Apply the Sprint 017 Architect Pack to create the Sprint 017 planning folder and update validation/handoff documentation.
+
+After the pack is applied, Codex must report the created files, updated files, validation results, changed-file list, and any incomplete or uncertain acceptance criteria.
+
+Codex must not start implementation-style work beyond docs/planning updates.
 
 ## Blockers
 
@@ -62,4 +69,6 @@ Deferred:
 - CEO Briefing does not currently exist as a confirmed working FlutterFlow page.
 - Core app functionality still needs to be prioritized and validated.
 - Generated FlutterFlow exports, runtime code, Firebase, Hermes/API, backend, package, native, and release files remain out of scope.
-- No runtime app code, generated FlutterFlow export code, backend, Firebase, Hermes, package/native, or release work is approved in Sprint 016.
+- No runtime app code, generated FlutterFlow export code, backend, Firebase, Hermes, package/native, or release work is approved in Sprint 017.
+- Final prototype evidence is not complete until required screenshots and click-path confirmations are captured from actual FlutterFlow state.
+- Final evidence storage location remains an open question: use a dedicated future evidence folder such as `references/flutterflow/sprint-018/`, or preserve Sprint 009 continuity only for screenshots that close Sprint 009 evidence gaps.

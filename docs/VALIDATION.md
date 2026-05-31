@@ -85,6 +85,76 @@ Sprint 016 validation must also confirm:
 - No placeholder `references/flutterflow/sprint-009/ceo-briefing.png` is created.
 - No runtime app code, generated FlutterFlow export code, Firebase, Hermes, backend, package/native, build, or release files are changed.
 
+## Sprint 017 FlutterFlow Final Prototype Evidence Validation
+
+Sprint 017 is a docs/planning-only readiness checkpoint. It defines what must be checked before Trina is treated as having final FlutterFlow prototype evidence.
+
+### Required Checks
+
+```bash
+git diff --check
+git status --branch --short
+git diff --name-only
+git diff --stat
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Screen Validation Matrix
+
+| Screen | Required? | Evidence Required | Status | Notes |
+|---|---:|---|---|---|
+| Dashboard / Home | Yes | Screenshot from FlutterFlow Preview or Designer | Pending | Must show main prototype entry state. |
+| Assistant | Yes | Screenshot from FlutterFlow Preview or Designer | Pending | Must show assistant interaction screen or static prototype equivalent. |
+| Tasks / Priorities | Yes | Screenshot from FlutterFlow Preview or Designer | Pending | Must show task/prioritization workflow if included in current scope. |
+| Memory / Context | Conditional | Screenshot if included in current prototype scope | Pending | Confirm against latest handoff docs. |
+| CEO Briefing | Deferred unless real evidence exists | Screenshot only if real FlutterFlow state confirms it | Deferred | Do not create placeholder `ceo-briefing.png`. |
+
+### Click-Path Validation Checklist
+
+Before final prototype evidence is accepted:
+
+- [ ] Dashboard screen is visible in FlutterFlow Preview or Designer.
+- [ ] Assistant screen is reachable from Dashboard or documented navigation.
+- [ ] Tasks / Priorities screen is reachable from Dashboard or documented navigation, if in current scope.
+- [ ] CEO Briefing button status is documented accurately.
+- [ ] Any deferred screen is clearly labeled deferred.
+- [ ] Any mock/static data is labeled prototype content.
+- [ ] Screenshot filenames match the validation checklist.
+- [ ] Screenshot storage folder is documented or an approved open question is recorded.
+- [ ] No placeholder screenshots are created.
+- [ ] No generated FlutterFlow export or runtime code is modified as part of evidence readiness.
+
+### Suggested Screenshot Filenames
+
+Use stable lowercase names:
+
+```text
+dashboard.png
+assistant.png
+tasks-priorities.png
+memory-context.png
+ceo-briefing.png
+```
+
+Only create `ceo-briefing.png` if it is real evidence.
+
+### Evidence Source Notes
+
+Each screenshot should have a note identifying:
+
+- capture date
+- source environment
+- screen name
+- whether the screen is confirmed, deferred, or incomplete
+- any known mismatch between FlutterFlow state and planning docs
+
+### Evidence Folder Question
+
+Final evidence storage remains unresolved until the Architect/operator approves a capture sprint. Recommended options:
+
+- Use a dedicated future evidence folder such as `references/flutterflow/sprint-018/`.
+- Preserve `references/flutterflow/sprint-009/` only for screenshots that specifically close Sprint 009 evidence gaps.
+
 ## Deploy Commands
 
 Deploy only when explicitly approved:

@@ -94,3 +94,12 @@
 | Is the CEO Briefing screen actually rebuilt inside FlutterFlow yet? | Operator / Builder | Before evidence closure | Open | Do not assume yes without real prototype evidence. |
 | Where should final CEO Briefing screenshot evidence live if captured in a later sprint? | Architect | Before evidence capture | Open | Default remains `references/flutterflow/sprint-009/` unless a later sprint changes it. |
 | What is the next approved implementation step after functional stabilization? | Architect | After Sprint 016 | Open | Should become Sprint 017 only after this checkpoint is clean. |
+
+## Sprint 017 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Which FlutterFlow screens are currently confirmed in Designer or Preview? | Operator / FlutterFlow Builder | Before final evidence capture | Open | Sprint 017 defines the expected list, but actual confirmation requires FlutterFlow access. |
+| Where should final prototype screenshots be stored if they are not tied to Sprint 009 evidence? | Architect / Operator | Before capture | Open | Recommendation: use a dedicated future evidence sprint folder such as `references/flutterflow/sprint-018/`, unless maintaining Sprint 009 evidence continuity is required. |
+| Should CEO Briefing evidence remain in Sprint 009 references or move to a new final evidence folder once real evidence exists? | Architect / Operator | Before capture | Open | Keep deferred until real screenshot exists. Do not silently decide the folder during Sprint 017. |
+| What exact filenames should be used for each required screenshot? | Architect / Builder | Before capture | Open | Sprint 017 proposes stable lowercase names in `docs/VALIDATION.md`; final capture should confirm them before saving evidence. |

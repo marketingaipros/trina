@@ -24,6 +24,72 @@ CEO Briefing remains deferred unless real screenshot evidence exists from the ac
 
 Protected scope remains unchanged: no runtime app code, generated FlutterFlow export code, Firebase, Hermes, backend, package/native, build, or release files are approved for Sprint 016.
 
+## Sprint 017 Final Prototype Evidence Readiness
+
+Sprint 017 prepares the FlutterFlow prototype for final evidence capture. This sprint does not perform runtime implementation, FlutterFlow export, Firebase/Hermes/backend work, screenshot capture, or release work.
+
+### Required Prototype Screens to Confirm
+
+The final prototype validation path must confirm the current status of these screens:
+
+1. Dashboard / Home
+2. Assistant
+3. Tasks / Priorities
+4. Memory / Context, if present in the current prototype scope
+5. CEO Briefing, only if real FlutterFlow evidence exists
+6. Any additional screens explicitly listed in the current Sprint 016 stabilization notes
+
+Each screen should be marked as one of:
+
+- Confirmed in FlutterFlow
+- Needs build/fix
+- Deferred
+- Evidence missing
+
+### Required Navigation / Click Path Checks
+
+The final prototype evidence plan must confirm:
+
+1. Dashboard opens successfully in FlutterFlow Preview.
+2. Primary navigation from Dashboard reaches Assistant.
+3. Primary navigation from Dashboard reaches Tasks / Priorities, if those screens are in current scope.
+4. CEO Briefing button status is documented:
+   - connected, if real FlutterFlow state confirms it
+   - deferred, if not confirmed
+   - missing, if expected but not present
+5. Assistant return or next-step flow is documented.
+6. Any mock/static content is labeled as prototype content.
+
+### Evidence Rules
+
+- Do not create placeholder screenshots.
+- Do not claim evidence exists unless a real screenshot or exported proof exists.
+- Do not create `references/flutterflow/sprint-009/ceo-briefing.png` unless it is a real screenshot.
+- Screenshots must be named consistently.
+- Evidence notes must say where each screenshot came from:
+  - FlutterFlow Designer
+  - FlutterFlow Preview
+  - exported image
+  - other documented source
+
+### Future Evidence Capture Recommendation
+
+If final evidence capture becomes the next sprint, use a dedicated evidence sprint folder such as:
+
+```text
+references/flutterflow/sprint-018/
+```
+
+or preserve continuity in:
+
+```text
+references/flutterflow/sprint-009/
+```
+
+only when the screenshot specifically closes a Sprint 009 evidence gap.
+
+This folder choice remains an open question until the Architect/operator approves the final evidence capture scope.
+
 ## Sprint 012 Demo Path Polish
 
 Sprint 012 defines the accepted demo path that can be shown without being blocked by the deferred CEO Briefing screen.

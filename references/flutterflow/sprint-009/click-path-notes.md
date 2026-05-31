@@ -46,6 +46,37 @@ Sprint 016 preserves the CEO Briefing evidence deferral. The repo must not treat
 
 Do not create `references/flutterflow/sprint-009/ceo-briefing.png` as placeholder evidence. If CEO Briefing is still missing, renamed, or unverified in FlutterFlow, document that as deferred rather than fabricating proof.
 
+## Sprint 017 Evidence Readiness Note
+
+Sprint 017 does not close the Sprint 009 CEO Briefing evidence gap.
+
+The CEO Briefing screenshot remains deferred unless a real FlutterFlow Designer or Preview screenshot is captured.
+
+Do not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+unless the file contains real screenshot evidence.
+
+Sprint 017 prepares the validation checklist and click-path rules needed for a future evidence capture pass.
+
+### Current CEO Briefing Evidence Status
+
+| Item | Status | Notes |
+|---|---|---|
+| CEO Briefing screen existence | Deferred / unconfirmed | Requires real FlutterFlow confirmation. |
+| Dashboard to CEO Briefing navigation | Deferred / unconfirmed | Must be validated in FlutterFlow. |
+| CEO Briefing to Assistant navigation | Deferred / unconfirmed | Must be validated in FlutterFlow. |
+| `ceo-briefing.png` screenshot | Missing by design | Must not be created as a placeholder. |
+
+### Final Evidence Folder Question
+
+Final prototype evidence may use a future dedicated folder such as `references/flutterflow/sprint-018/`, or keep using `references/flutterflow/sprint-009/` only when a screenshot specifically closes a Sprint 009 evidence gap.
+
+This remains an open Architect/operator decision before future capture work.
+
 ## Screen Build Checklist
 
 ### Dashboard / Home
