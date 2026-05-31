@@ -79,3 +79,10 @@
 | Which CEO Briefing navigation paths are confirmed in FlutterFlow Test/Run mode? | Operator / Builder | Before Sprint 013 completion | Open | Record Dashboard to CEO Briefing, CEO Briefing to Dashboard, and CEO Briefing CTA to Assistant as tested, missing, or untested. |
 | Has a real screenshot been saved at `references/flutterflow/sprint-009/ceo-briefing.png`? | Operator / Builder | Future evidence capture | Deferred | Evidence remains pending until the real PNG exists. This does not block the next Architect Pack for actual app build progress. |
 | What should the next actual app-build Architect Pack cover? | Architect / Operator | Next sprint | Open | Sprint 013 does not approve runtime/generated/backend/Firebase/package/native/release work; the next pack should define the build scope explicitly. |
+
+## Sprint 015 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Which core app paths must work before adding CEO Briefing? | Architect / Operator | Sprint 015 | Open | Prioritize the current app working flow over missing CEO Briefing evidence. |
+| Should the Dashboard CEO Briefing button be hidden, disabled, redirected, or left as a future placeholder until the page exists? | Architect / Operator | Sprint 015 | Open | Builder should not decide silently. Architect should define the safest MVP behavior. |

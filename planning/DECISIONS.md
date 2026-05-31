@@ -109,3 +109,9 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-30 | Sprint 013 reopens only the CEO Briefing evidence gap. | The project now needs real FlutterFlow screenshot evidence for the deferred screen. | Work remains limited to manual FlutterFlow validation, one real screenshot at `references/flutterflow/sprint-009/ceo-briefing.png`, and planning/docs/evidence notes. |
 | 2026-05-30 | CEO Briefing evidence remains pending until the real screenshot file exists. | The required screenshot is not present in the repo during pack application. | Do not mark CEO Briefing evidence complete, do not create placeholders, and do not claim the gap is closed before the PNG exists. |
 | 2026-05-30 | Sprint 013 is a documented deferred-evidence checkpoint, not an active blocker. | No real CEO Briefing screenshot is available, and blocking app-build progress on missing evidence would stall the project unnecessarily. | Move forward by creating the next Architect Pack for actual app build progress while preserving the no-fake-evidence rule. |
+
+## Sprint 015 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | Defer CEO Briefing screen and screenshot evidence until after core app functionality is stable. | Sprint 014 recorded the evidence capture as blocked because no working CEO Briefing page or real screenshot was available. Continuing to chase evidence for a missing screen would waste build time. | Sprint 015 shifts focus to app functionality. CEO Briefing remains a future feature, not a current blocker. |

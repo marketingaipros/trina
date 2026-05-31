@@ -551,3 +551,26 @@ Manual FlutterFlow validation required before completion:
 | Return navigation | Confirm `CEO Briefing -> Dashboard` or documented home route. | Blocked | No real FlutterFlow project session, FlutterFlow URL, or operator-verified result is available. |
 | Prioritize CTA navigation | Confirm `CEO Briefing -> Ask Trina to Prioritize -> Assistant`. | Blocked | No real FlutterFlow project session, FlutterFlow URL, or operator-verified result is available. |
 | Runtime safety | Confirm no runtime app code, generated FlutterFlow exports, Firebase, backend, package, native, release, deploy, or secret files changed. | Pending | Sprint 014 |
+
+## Sprint 015 Functional App Stabilization Validation
+
+Sprint 015 validation should focus on whether the app can be used through its core paths.
+
+### Required Validation Areas
+
+- Dashboard opens and shows intended primary actions.
+- Existing buttons route to real screens or are documented as blocked.
+- Missing screens are documented truthfully.
+- No placeholder screenshot is used as evidence.
+- CEO Briefing remains deferred until a real screen exists.
+
+### Manual FlutterFlow Validation Checklist
+
+| Path / Item | Expected Result | Status |
+|---|---|---|
+| Dashboard primary navigation | Opens real screens or clearly documented placeholders | Pending |
+| Assistant path | Opens Assistant screen if included in current prototype | Pending |
+| Settings path | Opens Settings screen if included in current prototype | Pending |
+| Finance path | Opens Finance screen if included in current prototype | Pending |
+| Strategic Advisor path | Opens Strategic Advisor screen if included in current prototype | Pending |
+| CEO Briefing path | Deferred because page does not exist | Deferred |

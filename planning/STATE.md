@@ -2,11 +2,11 @@
 
 ## Current Sprint
 
-Sprint 014 - `014-ceo-briefing-screenshot-evidence-capture`
+Sprint 015 - `015-functional-app-stabilization-and-ceo-briefing-defer`
 
 ## Current Status
 
-Sprint 014 is an evidence-capture checkpoint for the deferred CEO Briefing screenshot gap.
+Sprint 015 is a planning/docs checkpoint that defers CEO Briefing and redirects the project toward functional app stabilization.
 
 Sprint 010 was completed as a documented deferral decision. The missing CEO Briefing evidence remains deferred, not complete:
 
@@ -16,7 +16,7 @@ references/flutterflow/sprint-009/ceo-briefing.png
 
 The broader FlutterFlow prototype is not blocked by this deferred evidence gap. Sprint 012 documents the accepted demo path around the deferred screen.
 
-Sprint 013 documented that the CEO Briefing screenshot evidence gap remained deferred because no real screenshot was available. Sprint 014 reopens only that evidence gap. CEO Briefing evidence remains pending until the real screenshot exists.
+Sprint 013 documented that the CEO Briefing screenshot evidence gap remained deferred because no real screenshot was available. Sprint 014 recorded the evidence-capture attempt as blocked. CEO Briefing remains deferred, not complete, and should not block core app functionality work.
 
 ## Recently Completed
 
@@ -31,26 +31,28 @@ Sprint 013 documented that the CEO Briefing screenshot evidence gap remained def
 - Sprint 012 documented the accepted demo path around the deferred CEO Briefing screen.
 - Sprint 013 documented the CEO Briefing evidence gap as deferred, not complete, and not blocking.
 - Sprint 014 Architect Pack was created and applied as a planning/docs evidence-capture checkpoint.
+- Sprint 014 blocked-evidence documentation checkpoint was committed and pushed.
+- Sprint 015 Architect Pack was applied as a planning/docs checkpoint to defer CEO Briefing and prioritize functional app stabilization.
 
 ## Active Work
 
-- Capture real CEO Briefing screenshot evidence from the FlutterFlow prototype when operator access or a real screenshot is available.
-- Confirm Dashboard to CEO Briefing, CEO Briefing to Dashboard, and CEO Briefing Ask Trina to Prioritize to Assistant navigation before marking evidence complete.
-- Current Builder checkpoint: screenshot capture is blocked because no real FlutterFlow project session, FlutterFlow URL, or real CEO Briefing screenshot is available in the local repo context.
-- Keep local work limited to planning/docs/evidence notes unless a later Architect Pack explicitly approves implementation.
+- Defer CEO Briefing until after core app functionality is stable.
+- Prepare a functional app stabilization sprint focused on current screens, working navigation, broken actions, and missing destinations.
+- Keep local work limited to planning/docs unless a later Architect Pack explicitly approves implementation.
 
 ## Next Action
 
-Provide access to the real FlutterFlow prototype or provide the real CEO Briefing screenshot so it can be saved as `references/flutterflow/sprint-009/ceo-briefing.png`. Do not fabricate placeholder evidence.
+Read the Sprint 015 planning files and summarize the functional stabilization plan before implementation. Do not build CEO Briefing or fabricate screenshot evidence.
 
 ## Blockers
 
-No blocker prevents the broader FlutterFlow prototype from moving forward.
+No blocker prevents functional app stabilization planning from moving forward.
 
 Deferred:
 
 - CEO Briefing screenshot evidence remains missing and should not be faked.
 - `references/flutterflow/sprint-009/ceo-briefing.png` must not be fabricated or created before actual screenshot evidence exists.
-- Manual FlutterFlow navigation checks are blocked until a real FlutterFlow project session or operator-verified results are available.
+- CEO Briefing does not currently exist as a confirmed working FlutterFlow page.
+- Core app functionality still needs to be prioritized and validated.
 - Generated FlutterFlow exports, runtime code, Firebase, Hermes/API, backend, package, native, and release files remain out of scope.
-- No runtime or generated-code work is approved for Sprint 014.
+- No runtime or generated-code work is approved for Sprint 015.

@@ -382,3 +382,25 @@ git diff --check
 - Confirm whether lightweight screenshot files should be committed under this folder or stored externally with links before final build completion.
 - Confirm whether Settings / Profile should be top-right-icon only or also available in a secondary menu.
 - Confirm whether the mic visual cycle should include a separate `done` state in addition to the documented idle/listening/thinking states.
+
+## Sprint 015 CEO Briefing Defer
+
+Sprint 015 defers CEO Briefing and redirects work toward functional app stabilization.
+
+CEO Briefing status:
+
+- Screenshot evidence: deferred, not complete.
+- Required evidence path remains `references/flutterflow/sprint-009/ceo-briefing.png`.
+- Real screenshot file exists: no.
+- Placeholder screenshot created: no.
+- Navigation status: not passing.
+
+Do not mark the following paths as passing until they are checked against a real working screen:
+
+```text
+Dashboard -> CEO Briefing
+CEO Briefing -> Dashboard
+CEO Briefing -> Ask Trina to Prioritize -> Assistant
+```
+
+Sprint 015 should audit current working app paths and decide the safest MVP treatment for the Dashboard CEO Briefing action before future implementation.

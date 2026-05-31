@@ -84,3 +84,10 @@
 | Manual FlutterFlow validation may find the CEO Briefing screen missing or renamed. | Medium | Medium | Document the actual visible screen title and any missing paths instead of inventing evidence. | Open |
 | Evidence capture may drift into generated export, backend, Firebase, package, native, or release work. | Low | High | Keep Sprint 013 limited to manual FlutterFlow validation, screenshot evidence, and planning/docs/evidence notes. | Open |
 | Deferred CEO Briefing evidence may be treated as a blocker for app-build progress. | Medium | Medium | Treat Sprint 013 as a documented deferred-evidence checkpoint and create the next Architect Pack for app build progress. | Mitigated |
+
+## Sprint 015 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Sprint work gets blocked by the non-existent CEO Briefing screen. | High | Medium | Defer CEO Briefing and focus Sprint 015 on functional app stabilization. | Open |
+| App remains visually prototyped but not functionally complete. | Medium | High | Audit navigation, broken actions, missing screens, and core user paths before adding new feature screens. | Open |

@@ -1036,6 +1036,40 @@ Sprint 014 does not approve runtime app code changes, FlutterFlow generated-code
 
 Do not create placeholder screenshots. Do not export generated FlutterFlow code. Do not modify runtime app code, Firebase, backend, package, native, release, deploy, or secret files.
 
+## Sprint 015 Functional App Stabilization Direction
+
+CEO Briefing is no longer an active build blocker.
+
+The CEO Briefing page is not confirmed as a working FlutterFlow prototype screen. The Dashboard action may point to a missing or unimplemented destination. CEO Briefing screenshot evidence remains pending and must not be marked complete.
+
+For Sprint 015, focus should move to app functionality and stabilization.
+
+### CEO Briefing Status
+
+- CEO Briefing page exists: no confirmed working page
+- CEO Briefing screenshot evidence: pending
+- CEO Briefing navigation: not passing
+- Current treatment: deferred
+
+### Sprint 015 Build Priority
+
+The next sprint should audit and stabilize the current functional app paths before adding new screens.
+
+The Builder should identify:
+
+- Broken buttons
+- Missing pages
+- Dead navigation actions
+- Screens that exist but are not wired
+- Required app flows that cannot be completed
+- Documentation mismatches between planned prototype behavior and actual FlutterFlow behavior
+
+### Protected Scope
+
+Do not export FlutterFlow generated code.
+Do not modify runtime repo code.
+Do not create backend, Firebase, Hermes, package, native, release, auth, live AI, voice, or financial-data work.
+
 ## FlutterFlow Builder Prompt
 
 Use this with the FlutterFlow Builder after Sprint 007 is accepted.
