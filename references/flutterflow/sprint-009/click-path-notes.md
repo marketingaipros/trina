@@ -126,6 +126,45 @@ Current Sprint 019 status:
 
 Do not create placeholder screenshots. Do not mark CEO Briefing evidence complete until the real PNG exists at the required path and the click-path results are documented.
 
+## Sprint 020 FlutterFlow CEO Briefing Real Screenshot Pass
+
+Sprint 020 reopens the CEO Briefing evidence gap only as an operator-led FlutterFlow Designer / Preview pass.
+
+Evidence pass date: 2026-05-31.
+
+Owner: operator / FlutterFlow Builder.
+
+Required screenshot path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Operator evidence result:
+
+| Item | Status | Notes |
+|---|---|---|
+| FlutterFlow project access | Pass | Operator confirmed the real FlutterFlow project is accessible. |
+| Dashboard / Home visible | Pass | Operator confirmed Dashboard / Home is visible. |
+| CEO Briefing screen existence | Fail | Operator confirmed CEO Briefing does not exist. |
+| Renamed briefing equivalent | Not present | Operator confirmed no approved renamed equivalent was found. |
+| Actual screen label | Not present | No CEO Briefing screen or renamed equivalent exists to label. |
+| CEO Briefing render | Fail | No CEO Briefing screen exists, so briefing-specific content is not present. |
+| `Dashboard -> CEO Briefing` | Fail | Operator confirmed the path does not work. |
+| `CEO Briefing -> Dashboard` | Fail | Operator confirmed the path does not work because the screen is absent. |
+| `CEO Briefing -> Ask Trina to Prioritize -> Assistant` | Fail | Operator confirmed the path does not work because the screen is absent. |
+| `ceo-briefing.png` screenshot | Absent / not captured | Operator confirmed no real FlutterFlow screenshot was captured or saved. |
+
+If the operator confirms a renamed briefing equivalent, document:
+
+```text
+Documented label: CEO Briefing
+Actual FlutterFlow label: <actual label>
+Resolution: accepted rename / mismatch / follow-up required
+```
+
+Do not create placeholder screenshots. Do not rename unrelated screenshots. Do not mark the CEO Briefing evidence gap closed until a real FlutterFlow screenshot exists at the required path. Sprint 020 confirms the gap remains open because the screen is absent in the real FlutterFlow evidence pass.
+
 ## Screen Build Checklist
 
 ### Dashboard / Home

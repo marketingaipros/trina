@@ -126,3 +126,13 @@
 | CEO Briefing evidence remains unresolved because the real FlutterFlow project is not available in the local repo context. | High | Medium | Formally defer with owner, next action, exact screenshot path, and required click paths. | Mitigated |
 | A future Builder could accidentally create a placeholder `ceo-briefing.png`. | Medium | High | Keep the no-placeholder rule in Sprint 019 planning, validation, handoff, and evidence notes. | Open |
 | Formal deferral could be mistaken for completed evidence. | Medium | High | Label the screenshot absent and click paths deferred / unverified until real FlutterFlow validation exists. | Open |
+
+## Sprint 020 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| CEO Briefing click paths may be marked passing without real FlutterFlow Designer / Preview validation. | Medium | High | Sprint 020 requires operator-led validation before any path can be marked `Pass`. | Open |
+| Screenshot evidence could be fabricated or renamed from another screen. | Medium | High | Only `references/flutterflow/sprint-009/ceo-briefing.png` captured from the real FlutterFlow screen is accepted. | Open |
+| The real FlutterFlow screen may be missing, renamed, or inaccessible. | Medium | Medium | Sprint 020 confirmed the real project is accessible, but CEO Briefing is missing and no renamed equivalent was found. Leave the screenshot absent unless real evidence is captured later. | Confirmed |
+| Evidence capture could drift into generated export, runtime, Firebase, Hermes/backend, package/native, build, or release work. | Low | High | Keep Sprint 020 limited to FlutterFlow Designer / Preview verification and planning/docs/evidence notes. | Open |
+| Dashboard may expose or imply a CEO Briefing path that has no working destination. | Medium | Medium | A later approved sprint should decide whether to rebuild CEO Briefing, rename it, remove the entry point, or keep it deferred. | Open |

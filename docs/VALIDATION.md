@@ -214,6 +214,60 @@ git diff --check
 - Keep Sprint 019 changed files limited to planning/docs/evidence notes and the Architect Pack.
 - Confirm no runtime app code, generated FlutterFlow exports, Firebase, Hermes/API, backend, package or lock files, native folders, build outputs, release files, secrets, or `.env` files were changed.
 
+## Sprint 020 FlutterFlow CEO Briefing Real Screenshot Pass Validation
+
+Sprint 020 is an operator-led FlutterFlow Designer / Preview evidence pass. It does not run app build, Firebase deploy, FlutterFlow export, package installation, native build, or release commands.
+
+### Required Checks
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git status --short
+```
+
+The broader Sprint 020 validation set may also include:
+
+```bash
+git status --branch --short
+test -f references/flutterflow/sprint-009/ceo-briefing.png && echo "CEO briefing screenshot exists" || echo "CEO briefing screenshot absent"
+git diff --name-only
+git diff --stat
+```
+
+If and only if real screenshot evidence is captured, also run:
+
+```bash
+file references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Required FlutterFlow Checks
+
+| Item | Required Result | Current Builder-Pass Status | Notes |
+|---|---|---|---|
+| FlutterFlow project access | Operator can access the real project | Pass | Operator confirmed access. |
+| Dashboard / Home visible | Visible in FlutterFlow Designer / Preview | Pass | Operator confirmed Dashboard / Home is visible. |
+| CEO Briefing screen existence | Verified in FlutterFlow Designer / Preview or honestly failed/deferred | Fail | Operator confirmed CEO Briefing does not exist. |
+| Renamed briefing equivalent | Document approved rename if found | Not present | Operator confirmed no approved renamed equivalent was found. |
+| Actual screen label | `CEO Briefing` or documented accepted rename | Not present | No CEO Briefing screen or renamed equivalent exists. |
+| CEO Briefing render | Screen renders correctly with briefing-specific content | Fail | No CEO Briefing screen exists, so briefing-specific content is absent. |
+| `Dashboard -> CEO Briefing` | Pass only after real FlutterFlow validation | Fail | Operator confirmed the path does not work. |
+| `CEO Briefing -> Dashboard` | Pass only after real FlutterFlow validation | Fail | Operator confirmed the path does not work because the screen is absent. |
+| `CEO Briefing -> Ask Trina to Prioritize -> Assistant` | Pass only after real FlutterFlow validation | Fail | Operator confirmed the path does not work because the screen is absent. |
+| `references/flutterflow/sprint-009/ceo-briefing.png` | Real FlutterFlow screenshot only | Absent / not captured | Operator confirmed no real screenshot was captured or saved. |
+
+### Evidence Completion Rules
+
+- Do not create `references/flutterflow/sprint-009/ceo-briefing.png` unless it is a real FlutterFlow Designer or Preview screenshot.
+- Do not mark CEO Briefing evidence complete while the PNG is absent.
+- Do not create placeholder, fake, renamed-unrelated, generated, or text-only screenshot evidence.
+- Keep Sprint 020 changed files limited to the Architect Pack, planning files, validation docs, handoff docs, and evidence notes unless a real screenshot is captured.
+- Confirm no runtime app code, generated FlutterFlow exports, Firebase, Hermes/API, backend, package or lock files, native folders, build outputs, release files, secrets, or `.env` files were changed.
+
+### Sprint 020 Evidence Result
+
+The operator could access the real FlutterFlow project and confirmed Dashboard / Home is visible. CEO Briefing does not exist, no approved renamed equivalent was found, briefing-specific content is absent, all required CEO Briefing click paths failed, and no real screenshot was captured. `references/flutterflow/sprint-009/ceo-briefing.png` must remain absent.
+
 ## Deploy Commands
 
 Deploy only when explicitly approved:

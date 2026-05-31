@@ -146,3 +146,11 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-31 | Sprint 018 remains planning/docs evidence capture only. | The operator requested Architect Pack application without runtime implementation, generated export, Firebase, Hermes/backend, package/native, build, or release changes. | Codex must update only planning/docs/evidence notes and must not stage, commit, or push. |
 | 2026-05-31 | The Sprint 018 Architect Pack is corrected to match the Sprint 018 filename and requested scope. | The pack must clearly represent final prototype evidence capture, not a prior Sprint 014 checkpoint. | Sprint 018 preserves no-fake-evidence rules without marking CEO Briefing complete. |
 | 2026-05-31 | CEO Briefing remains missing or deferred unless the real screenshot file exists. | Evidence must come from actual FlutterFlow state, not a placeholder. | `references/flutterflow/sprint-009/ceo-briefing.png` must not be fabricated. |
+
+## Sprint 020 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | Sprint 020 is an operator-led FlutterFlow Designer / Preview evidence pass. | CEO Briefing evidence can only be closed by real prototype validation, not documentation review. | Click paths cannot be marked `Pass` unless the real FlutterFlow project is tested. |
+| 2026-05-31 | `references/flutterflow/sprint-009/ceo-briefing.png` remains the only approved closure path for CEO Briefing screenshot evidence. | The file closes a Sprint 009 evidence gap and must stay stable. | Alternate filenames or folders do not close the CEO Briefing gap. |
+| 2026-05-31 | No placeholder or fake CEO Briefing screenshot may be created during Sprint 020. | Evidence integrity matters more than making the checklist look complete. | The file remains absent unless real FlutterFlow screenshot evidence is captured. |

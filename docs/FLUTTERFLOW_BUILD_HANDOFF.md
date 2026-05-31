@@ -1202,6 +1202,40 @@ Do not export FlutterFlow generated code.
 Do not modify runtime repo code.
 Do not create backend, Firebase, Hermes, package, native, release, auth, live AI, voice, or financial-data work.
 
+## Sprint 020 CEO Briefing Real Screenshot Pass
+
+Sprint 020 is an operator-led FlutterFlow Designer / Preview evidence pass for the deferred CEO Briefing screen.
+
+Required checks:
+
+- Confirm Dashboard / Home is visible.
+- Confirm CEO Briefing exists, or document the actual renamed briefing screen label.
+- Test `Dashboard -> CEO Briefing`.
+- Confirm CEO Briefing renders correctly with briefing-specific content.
+- Test `CEO Briefing -> Dashboard`.
+- Test `CEO Briefing -> Ask Trina to Prioritize -> Assistant`.
+
+Required screenshot path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Operator evidence result:
+
+- FlutterFlow project access: pass.
+- Dashboard / Home visible: pass.
+- CEO Briefing screen existence: fail.
+- Approved renamed equivalent: not present.
+- CEO Briefing briefing-specific content: fail.
+- `Dashboard -> CEO Briefing`: fail.
+- `CEO Briefing -> Dashboard`: fail.
+- `CEO Briefing -> Ask Trina to Prioritize -> Assistant`: fail.
+- Screenshot evidence: absent / not captured.
+- Placeholder screenshot created: no.
+
+Do not create `ceo-briefing.png` unless it is a real FlutterFlow Designer or Preview screenshot. Sprint 020 confirms the CEO Briefing evidence gap remains open because the real screen is absent. Do not export generated FlutterFlow code. Do not modify runtime app code, Firebase, Hermes/backend, package, native, build, release, deploy, or secret files.
+
 ## FlutterFlow Builder Prompt
 
 Use this with the FlutterFlow Builder after Sprint 007 is accepted.

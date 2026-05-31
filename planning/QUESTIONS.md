@@ -120,3 +120,15 @@
 | Does the real FlutterFlow project currently contain CEO Briefing or an approved renamed briefing equivalent? | Operator / FlutterFlow Builder | Before future evidence closure | Deferred | Sprint 019 cannot verify this from the project folder. |
 | Can the required CEO Briefing click paths be validated in FlutterFlow Designer or Preview? | Operator / FlutterFlow Builder | Before future evidence closure | Deferred | Required paths are Dashboard to CEO Briefing, CEO Briefing to Dashboard, and CEO Briefing to Assistant through `Ask Trina to prioritize`. |
 | Has a real CEO Briefing screenshot been saved at `references/flutterflow/sprint-009/ceo-briefing.png`? | Operator / FlutterFlow Builder | Before evidence closure | Deferred | Sprint 019 keeps the file absent because no real screenshot is available. |
+
+## Sprint 020 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Does the real FlutterFlow project currently contain CEO Briefing or an approved renamed briefing equivalent? | Operator / FlutterFlow Builder | Sprint 020 evidence pass | Answered | No. Operator confirmed CEO Briefing does not exist and no approved renamed equivalent was found. |
+| What is the actual visible label of the briefing screen? | Operator / FlutterFlow Builder | Sprint 020 evidence pass | Answered | Not applicable. No CEO Briefing screen or renamed equivalent exists. |
+| Can `Dashboard -> CEO Briefing` be validated in FlutterFlow Designer or Preview? | Operator / FlutterFlow Builder | Sprint 020 evidence pass | Answered | Fail. Operator confirmed the path does not work. |
+| Can `CEO Briefing -> Dashboard` be validated in FlutterFlow Designer or Preview? | Operator / FlutterFlow Builder | Sprint 020 evidence pass | Answered | Fail. Operator confirmed the path does not work because the screen is absent. |
+| Can `CEO Briefing -> Ask Trina to Prioritize -> Assistant` be validated in FlutterFlow Designer or Preview? | Operator / FlutterFlow Builder | Sprint 020 evidence pass | Answered | Fail. Operator confirmed the path does not work because the screen is absent. |
+| Has a real CEO Briefing screenshot been saved at `references/flutterflow/sprint-009/ceo-briefing.png`? | Operator / FlutterFlow Builder | Sprint 020 evidence pass | Answered | No. Operator confirmed no real screenshot was captured or saved. The file must remain absent. |
+| Should a later sprint rebuild CEO Briefing, rename it, remove the Dashboard entry point, or keep the feature deferred? | Architect / Operator | Next approved Sprint | Open | Sprint 020 evidence shows the screen is absent and the related paths fail. |
