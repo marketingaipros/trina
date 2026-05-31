@@ -14,6 +14,22 @@ Do not modify the local React/Vite repo.
 
 Do not commit generated FlutterFlow exports to the repo unless a later sprint explicitly approves that workflow.
 
+## CEO Briefing Status
+
+CEO Briefing is deferred.
+
+Do not keep rebuilding or retrying this screen as part of the immediate app-completion path.
+
+Proceed with finishing and validating the rest of the app.
+
+Only reopen CEO Briefing if the operator explicitly requests it in a future sprint.
+
+## Superseded CEO Briefing Build Work
+
+Prior CEO Briefing build attempts and handoffs are historical only. Do not use them as active instructions to build CEO Briefing, ask the operator to build CEO Briefing, capture CEO Briefing evidence, or block app completion.
+
+Do not create `references/flutterflow/sprint-009/ceo-briefing.png` unless a future explicit sprint provides real screenshot evidence.
+
 ## Sprint 019 CEO Briefing Evidence Resolution
 
 Sprint 019 resolves the remaining CEO Briefing evidence gap as a planning/docs/evidence-note checkpoint.
@@ -1049,9 +1065,7 @@ Future naming candidates include Executive Briefing, Daily Briefing, Priority Br
 Wire these prototype paths:
 
 ```text
-Dashboard CEO Briefing button -> CEOBriefing
-CEOBriefing Ask Trina to Prioritize -> Assistant
-CEOBriefing back/home control -> Dashboard
+CEO Briefing paths remain deferred and are not part of the immediate app-completion path.
 ```
 
 Confirm the app initial page remains `Dashboard`.

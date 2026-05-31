@@ -136,3 +136,26 @@
 | The real FlutterFlow screen may be missing, renamed, or inaccessible. | Medium | Medium | Sprint 020 confirmed the real project is accessible, but CEO Briefing is missing and no renamed equivalent was found. Leave the screenshot absent unless real evidence is captured later. | Confirmed |
 | Evidence capture could drift into generated export, runtime, Firebase, Hermes/backend, package/native, build, or release work. | Low | High | Keep Sprint 020 limited to FlutterFlow Designer / Preview verification and planning/docs/evidence notes. | Open |
 | Dashboard may expose or imply a CEO Briefing path that has no working destination. | Medium | Medium | A later approved sprint should decide whether to rebuild CEO Briefing, rename it, remove the entry point, or keep it deferred. | Open |
+
+## Sprint 023 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| CEO Briefing FlutterFlow AI Designer failure | High | Low for current app completion, high only if CEO Briefing is reopened | Defer CEO Briefing. Do not treat it as blocking the rest of the app. Capture real evidence only if the feature is explicitly reopened later. | Deferred |
+
+## Sprint 024 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Builder drifts back into CEO Briefing work. | Medium | High | Keep CEO Briefing explicitly out of scope in requirements, blueprint, and acceptance. | Open |
+| Visible routes may reference missing components or stale names. | Medium | Medium | Audit Dashboard, Navigation, and App routing before editing. | Open |
+| Reminder notification behavior may depend on browser permission state. | Medium | Medium | Validate both granted/available and blocked/unavailable cases where feasible. | Open |
+| Runtime stabilization may tempt broad redesign. | Medium | Medium | Limit edits to wiring, defensive rendering, placeholders, and small fixes. | Open |
+| Tests may not exist or may be weak. | Medium | Medium | Run available lint/build commands and document any missing test coverage. | Open |
+| Package changes could destabilize the project. | Low | Medium | Do not change dependencies unless explicitly approved. | Open |
+
+## Sprint 025 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Dirty planning artifacts could re-open obsolete CEO Briefing work. | Medium | Medium | Sprint 025 classifies or removes stale Sprint 021/022/023 artifacts and preserves only durable forward-state decisions. | Mitigating |

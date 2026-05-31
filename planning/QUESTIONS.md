@@ -132,3 +132,19 @@
 | Can `CEO Briefing -> Ask Trina to Prioritize -> Assistant` be validated in FlutterFlow Designer or Preview? | Operator / FlutterFlow Builder | Sprint 020 evidence pass | Answered | Fail. Operator confirmed the path does not work because the screen is absent. |
 | Has a real CEO Briefing screenshot been saved at `references/flutterflow/sprint-009/ceo-briefing.png`? | Operator / FlutterFlow Builder | Sprint 020 evidence pass | Answered | No. Operator confirmed no real screenshot was captured or saved. The file must remain absent. |
 | Should a later sprint rebuild CEO Briefing, rename it, remove the Dashboard entry point, or keep the feature deferred? | Architect / Operator | Next approved Sprint | Open | Sprint 020 evidence shows the screen is absent and the related paths fail. |
+
+## Sprint 023 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Should CEO Briefing remain part of the immediate app-completion path? | Operator | Sprint 023 | Deferred | No. Operator directed the project to stop looping on CEO Briefing and move forward with app completion. |
+| What is the next highest-value implementation target for app completion? | Builder / Operator | Before implementation approval | Open | Recommended target should come from current docs and app state, exclude CEO Briefing, and list expected changed files before any runtime work starts. |
+
+## Sprint 024 Open Questions
+
+| Question | Owner | Needed By | Status | Notes |
+|---|---|---|---|---|
+| Which visible path should become the next feature-complete area after shell stabilization? | Architect/User | Next app-completion sprint | Open | Likely candidates: Assistant/voice entry, Tasks/notifications workflow, or Dashboard navigation polish. |
+| Does the app currently have a Settings screen, or only settings-equivalent controls? | Builder | Sprint 024 audit summary | Open | Builder should inspect current files before implementation. |
+| Are Finance and Calendar intended to be static/mock in the current prototype, or partially functional? | Builder/Architect | Sprint 024 audit summary | Open | Builder should report current behavior first. |
+| Are browser notifications required to actually fire in Sprint 024, or only avoid breaking the app? | Architect/User | Sprint 024 implementation approval if ambiguous | Open | Default: stabilize existing reminder popup/notification behavior without adding backend scheduling. |

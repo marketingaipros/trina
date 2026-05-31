@@ -40,6 +40,21 @@ The Sprint 009 FlutterFlow prototype build checklist covers these six active scr
 5. Finance
 6. Settings / Profile
 
+## CEO Briefing Click Path Status
+
+CEO Briefing is blocked/deferred.
+
+Known evidence:
+
+- FlutterFlow view shows `CEO Briefing` title, blank body, and `Try Again`.
+- This is failure evidence, not completion evidence.
+
+Current decision:
+
+- Do not continue spending app-completion sprints on CEO Briefing.
+- Do not require CEO Briefing click-path pass evidence for the next app-completion step.
+- Only reopen this path if the operator explicitly requests it later.
+
 ## Sprint 016 Evidence Status
 
 Sprint 016 preserves the CEO Briefing evidence deferral. The repo must not treat CEO Briefing screenshot evidence as complete unless a real screenshot from the actual FlutterFlow prototype exists.
@@ -164,6 +179,10 @@ Resolution: accepted rename / mismatch / follow-up required
 ```
 
 Do not create placeholder screenshots. Do not rename unrelated screenshots. Do not mark the CEO Briefing evidence gap closed until a real FlutterFlow screenshot exists at the required path. Sprint 020 confirms the gap remains open because the screen is absent in the real FlutterFlow evidence pass.
+
+## Superseded CEO Briefing Build Notes
+
+Prior CEO Briefing build notes are historical only and must not be used as active app-completion requirements. The only durable rule is that CEO Briefing remains deferred unless explicitly reopened, and `references/flutterflow/sprint-009/ceo-briefing.png` must not be created without real evidence.
 
 ## Screen Build Checklist
 

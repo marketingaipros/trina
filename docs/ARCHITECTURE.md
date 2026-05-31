@@ -79,6 +79,14 @@ FlutterFlow Mobile App
 - Store project deliverables, client folders, source materials, and handoff assets.
 - Organize files outside the client-facing app.
 
+## Forward App Architecture State
+
+Sprint 024 did not change the high-level architecture. Trina remains the existing Vite React app shell with Firebase-backed support services and a planned FlutterFlow client-mobile direction.
+
+Forward app-completion work should keep the existing app shell stable, avoid new backend/Firebase/Hermes architecture unless explicitly approved, and use clear placeholder states where a visible path is not ready.
+
+CEO Briefing remains deferred and is not part of the current active architecture path.
+
 ## Codex Responsibility
 
 - Audit local repo state.

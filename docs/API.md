@@ -69,6 +69,10 @@ Runs every minute. Scans pending reminders and sends mobile push notifications t
 - Telegram Bot API.
 - Firebase Auth REST API in legacy auth helper paths.
 
+## Sprint 024 API Outcome
+
+Sprint 024 did not add API endpoints, backend contracts, Firebase contracts, or external service integrations. The forward app-completion path remains local/frontend-first until a future sprint explicitly approves API work.
+
 ## FlutterFlow / Hermes Request Schema
 
 FlutterFlow should send structured request objects to Hermes or a backend API placeholder. Full Hermes production integration should wait until the FlutterFlow UI and request schema are approved.

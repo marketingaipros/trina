@@ -166,6 +166,25 @@ If any command is unavailable or fails because of pre-existing issues, document:
 3. Whether the failure is caused by Sprint 024 changes or pre-existing project state.
 4. The recommended follow-up.
 
+## Sprint 025 Planning/Docs Cleanup Validation
+
+Sprint 025 uses docs-safe validation only:
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Sprint 025 validation must also confirm:
+
+- Changed files stay within planning/docs/reference/architect-pack surfaces.
+- CEO Briefing remains deferred and non-blocking.
+- No screenshot evidence is created.
+- No runtime app code, Firebase, backend, Hermes, package, native, release, build, or export files are modified.
+
 ## Manual Smoke Test
 
 After implementation, manually check these paths in the browser:

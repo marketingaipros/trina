@@ -154,3 +154,24 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-31 | Sprint 020 is an operator-led FlutterFlow Designer / Preview evidence pass. | CEO Briefing evidence can only be closed by real prototype validation, not documentation review. | Click paths cannot be marked `Pass` unless the real FlutterFlow project is tested. |
 | 2026-05-31 | `references/flutterflow/sprint-009/ceo-briefing.png` remains the only approved closure path for CEO Briefing screenshot evidence. | The file closes a Sprint 009 evidence gap and must stay stable. | Alternate filenames or folders do not close the CEO Briefing gap. |
 | 2026-05-31 | No placeholder or fake CEO Briefing screenshot may be created during Sprint 020. | Evidence integrity matters more than making the checklist look complete. | The file remains absent unless real FlutterFlow screenshot evidence is captured. |
+
+## Sprint 023 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | CEO Briefing is deferred and does not block app completion. | FlutterFlow AI Designer repeatedly failed to produce a usable CEO Briefing page, and the operator explicitly directed the project to stop looping on that screen. | Future sprints must proceed with app completion around CEO Briefing unless the operator explicitly reopens it. |
+
+## Sprint 024 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | Sprint 024 will focus on existing non-CEO runtime paths. | Sprint 023 reset removed CEO Briefing as a blocker and restored forward app-completion work. | Builder should prioritize Dashboard, Assistant/voice entry, Tasks, Finance, Calendar, Notifications/reminders, and Settings-equivalent paths. |
+| 2026-05-31 | CEO Briefing remains deferred and must not be rebuilt in Sprint 024. | Prior sprints stalled around a missing FlutterFlow screen and screenshot evidence. | No CEO Briefing files, screenshot evidence, or FlutterFlow build work should be touched. |
+| 2026-05-31 | Sprint 024 may make small runtime fixes after the planning pack is applied and the pre-implementation summary is approved. | The app needs forward progress beyond docs/planning reset. | Runtime edits are allowed only inside the approved non-CEO stabilization scope. |
+| 2026-05-31 | Intentional placeholders are acceptable when a visible path is not ready for full functionality. | The sprint goal is shell stabilization, not complete feature expansion. | Placeholder states must be clear, non-crashing, and not misleading. |
+
+## Sprint 025 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | Sprint 025 cleans up planning/docs state and supersedes stale CEO Briefing momentum. | Sprint 021/022/023 left dirty planning artifacts and mixed active vs historical guidance. | Keep only durable decisions, preserve Sprint 023/024 forward-build direction, and keep CEO Briefing deferred unless explicitly reopened. |
