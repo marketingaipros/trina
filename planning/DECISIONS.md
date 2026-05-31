@@ -128,6 +128,12 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 
 | Date | Decision | Reason | Impact |
 |---|---|---|---|
+
+## Sprint 019 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | CEO Briefing evidence is formally deferred for Sprint 019. | No real FlutterFlow screenshot exists in the project folder, and no operator-verified click-path validation is available during this Builder pass. | Keep `references/flutterflow/sprint-009/ceo-briefing.png` absent until a real screenshot is captured; future closure requires operator / FlutterFlow Builder validation. |
 | 2026-05-31 | Sprint 017 is docs/planning-only evidence readiness, not evidence capture. | The project needs a clean validation checklist and evidence storage rules before final prototype capture. | Codex must not create screenshots or modify runtime/exported code in Sprint 017. |
 | 2026-05-31 | CEO Briefing remains deferred unless real FlutterFlow evidence exists. | Placeholder evidence would corrupt validation history. | `ceo-briefing.png` must not be created as a placeholder. |
 | 2026-05-31 | Screenshot evidence must come from actual FlutterFlow Designer or Preview state. | Evidence should prove real prototype status, not planned or mocked status. | Docs must distinguish confirmed evidence from deferred or missing evidence. |

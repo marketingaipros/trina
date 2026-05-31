@@ -98,6 +98,34 @@ The Sprint 018 Architect Pack preserves the evidence rules conservatively:
 | CEO Briefing to Assistant navigation | Deferred / unconfirmed | Must be validated in FlutterFlow. |
 | `ceo-briefing.png` screenshot | Missing unless file exists | Must not be created as a placeholder. |
 
+## Sprint 019 CEO Briefing Evidence Resolution Note
+
+Sprint 019 formally defers the CEO Briefing screenshot evidence gap.
+
+Reason: no real CEO Briefing FlutterFlow screenshot exists in the project folder, and no operator-verified FlutterFlow Designer or Preview click-path result is available during this Builder pass.
+
+Owner: operator / FlutterFlow Builder.
+
+Next action: open the real FlutterFlow project, confirm whether CEO Briefing or an approved renamed briefing equivalent exists, validate the required click paths, and capture a real screenshot only if the screen is present.
+
+Required future screenshot path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Current Sprint 019 status:
+
+| Item | Status | Notes |
+|---|---|---|
+| CEO Briefing screen existence | Deferred / unverified | Requires real FlutterFlow confirmation. |
+| Dashboard to CEO Briefing navigation | Deferred / unverified | Must be validated in FlutterFlow Designer or Preview. |
+| CEO Briefing to Dashboard navigation | Deferred / unverified | Must be validated in FlutterFlow Designer or Preview. |
+| CEO Briefing to Assistant navigation | Deferred / unverified | Must be validated in FlutterFlow Designer or Preview. |
+| `ceo-briefing.png` screenshot | Absent / formally deferred | Do not create unless it is a real FlutterFlow screenshot. |
+
+Do not create placeholder screenshots. Do not mark CEO Briefing evidence complete until the real PNG exists at the required path and the click-path results are documented.
+
 ## Screen Build Checklist
 
 ### Dashboard / Home

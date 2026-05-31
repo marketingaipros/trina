@@ -118,3 +118,11 @@
 | Sprint 018 Architect Pack labels could drift from the requested final prototype evidence-capture scope. | Low | Medium | Keep the pack title, sprint slug, file paths, and planning docs aligned to Sprint 018. | Mitigated |
 | Final prototype evidence is marked complete without real screenshots. | Medium | High | Require actual files before evidence is marked present and keep CEO Briefing deferred if the PNG is missing. | Open |
 | Evidence capture drifts into runtime, generated export, Firebase, Hermes/backend, package/native, build, or release work. | Low | High | Keep Sprint 018 changes limited to planning/docs/evidence notes and run changed-file checks. | Open |
+
+## Sprint 019 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| CEO Briefing evidence remains unresolved because the real FlutterFlow project is not available in the local repo context. | High | Medium | Formally defer with owner, next action, exact screenshot path, and required click paths. | Mitigated |
+| A future Builder could accidentally create a placeholder `ceo-briefing.png`. | Medium | High | Keep the no-placeholder rule in Sprint 019 planning, validation, handoff, and evidence notes. | Open |
+| Formal deferral could be mistaken for completed evidence. | Medium | High | Label the screenshot absent and click paths deferred / unverified until real FlutterFlow validation exists. | Open |

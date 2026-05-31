@@ -181,6 +181,39 @@ test ! -f references/flutterflow/sprint-009/ceo-briefing.png || echo "CEO briefi
 
 Sprint 018 validation must confirm no changes were made to runtime app code, generated FlutterFlow exports, Firebase, Hermes/API, backend, package or lock files, native folders, build outputs, release files, secrets, or `.env` files.
 
+## Sprint 019 CEO Briefing Evidence Resolution Validation
+
+Sprint 019 uses docs-safe validation only. It does not run app build, Firebase deploy, FlutterFlow export, package installation, native build, or release commands.
+
+### Required Checks
+
+```bash
+git status --branch --short
+test -f references/flutterflow/sprint-009/ceo-briefing.png && echo "CEO briefing screenshot exists" || echo "CEO briefing screenshot absent"
+git diff --name-only
+git diff --stat
+git diff --check
+```
+
+### Resolution Matrix
+
+| Item | Sprint 019 Status | Notes |
+|---|---|---|
+| CEO Briefing screenshot evidence | Formal defer | No real screenshot exists in the project folder during this Builder pass. |
+| Required future screenshot path | `references/flutterflow/sprint-009/ceo-briefing.png` | This exact path closes the Sprint 009 CEO Briefing evidence gap only when the file is real evidence. |
+| `Dashboard -> CEO Briefing` | Deferred / unverified | Requires real FlutterFlow Designer or Preview validation. |
+| `CEO Briefing -> Dashboard` | Deferred / unverified | Requires real FlutterFlow Designer or Preview validation. |
+| `CEO Briefing -> Ask Trina to prioritize -> Assistant` | Deferred / unverified | Requires real FlutterFlow Designer or Preview validation. |
+| Owner | Operator / FlutterFlow Builder | Must verify the real FlutterFlow project before capture. |
+
+### Evidence Completion Rules
+
+- Do not create `references/flutterflow/sprint-009/ceo-briefing.png` unless it is a real FlutterFlow screenshot.
+- Do not mark CEO Briefing evidence complete while the PNG is absent.
+- Do not create placeholder, fake, renamed-unrelated, generated, or text-only evidence.
+- Keep Sprint 019 changed files limited to planning/docs/evidence notes and the Architect Pack.
+- Confirm no runtime app code, generated FlutterFlow exports, Firebase, Hermes/API, backend, package or lock files, native folders, build outputs, release files, secrets, or `.env` files were changed.
+
 ## Deploy Commands
 
 Deploy only when explicitly approved:

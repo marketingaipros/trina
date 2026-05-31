@@ -112,3 +112,11 @@
 | Which real FlutterFlow screenshot files exist for final prototype evidence capture? | Operator / FlutterFlow Builder | Sprint 018 evidence capture | Open | Codex must document only files that actually exist. |
 | Should final prototype screenshots use `references/flutterflow/sprint-018/`? | Architect / Operator | Before screenshots are saved | Proposed | Recommended for final prototype evidence, while Sprint 009 remains for screenshots that close Sprint 009 gaps. |
 | Is `references/flutterflow/sprint-009/ceo-briefing.png` available as real CEO Briefing evidence? | Operator / FlutterFlow Builder | Before CEO Briefing evidence closure | Deferred | Keep CEO Briefing missing or deferred unless the actual file exists. |
+
+## Sprint 019 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Does the real FlutterFlow project currently contain CEO Briefing or an approved renamed briefing equivalent? | Operator / FlutterFlow Builder | Before future evidence closure | Deferred | Sprint 019 cannot verify this from the project folder. |
+| Can the required CEO Briefing click paths be validated in FlutterFlow Designer or Preview? | Operator / FlutterFlow Builder | Before future evidence closure | Deferred | Required paths are Dashboard to CEO Briefing, CEO Briefing to Dashboard, and CEO Briefing to Assistant through `Ask Trina to prioritize`. |
+| Has a real CEO Briefing screenshot been saved at `references/flutterflow/sprint-009/ceo-briefing.png`? | Operator / FlutterFlow Builder | Before evidence closure | Deferred | Sprint 019 keeps the file absent because no real screenshot is available. |
