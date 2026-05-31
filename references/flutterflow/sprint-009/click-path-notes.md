@@ -258,6 +258,38 @@ Do not fabricate screenshots. Do not create image files unless actual screenshot
 
 Architect decision: CEO Briefing evidence is not required to move the broader prototype forward. If this screen is revisited later, it may be renamed to Executive Briefing, Daily Briefing, Priority Briefing, Founder Briefing, or Command Briefing.
 
+## Sprint 014 CEO Briefing Evidence Capture
+
+Sprint 014 reopens only the deferred CEO Briefing screenshot evidence gap from Sprint 013.
+
+Required evidence path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Current status: pending. The real screenshot file is not present in the repo during pack application.
+
+Capture attempt status: blocked. The Builder does not have a real FlutterFlow project session, FlutterFlow URL, or provided CEO Briefing screenshot in the local repo context. No placeholder screenshot was created.
+
+Manual FlutterFlow validation still required:
+
+- Confirm CEO Briefing screen exists, or document a renamed briefing equivalent.
+- Confirm `Dashboard -> CEO Briefing`.
+- Confirm `CEO Briefing -> Dashboard`.
+- Confirm `CEO Briefing -> Ask Trina to Prioritize -> Assistant`.
+- Capture and save the real screenshot as `references/flutterflow/sprint-009/ceo-briefing.png`.
+
+Navigation verification status:
+
+| Path | Status | Notes |
+|---|---|---|
+| `Dashboard -> CEO Briefing` | Not verified | Blocked until real FlutterFlow project access or operator-verified result is available. |
+| `CEO Briefing -> Dashboard` | Not verified | Blocked until real FlutterFlow project access or operator-verified result is available. |
+| `CEO Briefing -> Ask Trina to Prioritize -> Assistant` | Not verified | Blocked until real FlutterFlow project access or operator-verified result is available. |
+
+Do not mark CEO Briefing evidence present until the real screenshot exists. Do not create placeholder or fake evidence.
+
 ## CEO Briefing Evidence Status
 
 CEO Briefing screenshot evidence is deferred after Sprint 013, not complete.

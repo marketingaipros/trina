@@ -513,3 +513,41 @@ file references/flutterflow/sprint-009/ceo-briefing.png
 | Manual FlutterFlow validation | Confirm CEO Briefing or a documented briefing equivalent exists in the real FlutterFlow project only when future evidence capture resumes. | Deferred | Not required before the next Architect Pack. |
 | Navigation | Record Dashboard to CEO Briefing, CEO Briefing to Dashboard, and CEO Briefing CTA to Assistant as tested, missing, or untested only when future evidence capture resumes. | Deferred | Not required before the next Architect Pack. |
 | Runtime safety | Confirm no runtime app code, generated FlutterFlow exports, Firebase, backend, package, native, release, deploy, or secret files changed. | Pending | Sprint 013 |
+
+## Sprint 014 CEO Briefing Screenshot Evidence Capture Validation
+
+Sprint 014 is an evidence-capture-only checkpoint for the deferred Sprint 013 CEO Briefing screenshot gap.
+
+Required evidence path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Run and report:
+
+```bash
+git status --branch --short
+find references/flutterflow/sprint-009 -maxdepth 1 -type f | sort
+test -f references/flutterflow/sprint-009/ceo-briefing.png && echo "ceo briefing evidence exists"
+git diff --name-only
+git diff --stat
+git diff --check
+```
+
+If the screenshot exists, also run:
+
+```bash
+file references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Manual FlutterFlow validation required before completion:
+
+| Area | Validation Method | Status | Notes |
+|---|---|---|---|
+| Sprint files | Confirm the Sprint 014 folder includes requirements, blueprint, acceptance, and handoff prompt. | Pending | Sprint 014 |
+| Evidence file | Confirm `references/flutterflow/sprint-009/ceo-briefing.png` exists before marking evidence complete. | Blocked | No real screenshot is available in the local repo context, and no placeholder was created. |
+| Dashboard navigation | Confirm `Dashboard -> CEO Briefing` in the real FlutterFlow prototype. | Blocked | No real FlutterFlow project session, FlutterFlow URL, or operator-verified result is available. |
+| Return navigation | Confirm `CEO Briefing -> Dashboard` or documented home route. | Blocked | No real FlutterFlow project session, FlutterFlow URL, or operator-verified result is available. |
+| Prioritize CTA navigation | Confirm `CEO Briefing -> Ask Trina to Prioritize -> Assistant`. | Blocked | No real FlutterFlow project session, FlutterFlow URL, or operator-verified result is available. |
+| Runtime safety | Confirm no runtime app code, generated FlutterFlow exports, Firebase, backend, package, native, release, deploy, or secret files changed. | Pending | Sprint 014 |

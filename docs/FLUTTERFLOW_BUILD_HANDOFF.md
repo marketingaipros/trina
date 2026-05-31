@@ -1001,6 +1001,39 @@ Do not mark the CEO Briefing evidence gap closed until a real FlutterFlow screen
 
 The missing CEO Briefing screenshot should not block moving forward. The next project action is to create the next Architect Pack for actual app build progress.
 
+## Sprint 014 CEO Briefing Screenshot Evidence Capture
+
+Sprint 014 reopens only the deferred Sprint 013 CEO Briefing screenshot evidence gap.
+
+Required evidence path:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Current status: pending. The required screenshot file does not exist in the repo during pack application.
+
+Capture attempt status: blocked. The Builder does not have a real FlutterFlow project session, FlutterFlow URL, or provided CEO Briefing screenshot in the local repo context. No placeholder screenshot was created.
+
+Manual FlutterFlow validation required before evidence can be marked complete:
+
+- CEO Briefing screen exists, or a renamed briefing equivalent is clearly documented.
+- Dashboard can navigate to CEO Briefing.
+- CEO Briefing can navigate back to Dashboard or the documented home route.
+- CEO Briefing `Ask Trina to Prioritize` can navigate to Assistant.
+
+Current navigation verification status:
+
+| Path | Status | Notes |
+|---|---|---|
+| `Dashboard -> CEO Briefing` | Not verified | Blocked until real FlutterFlow project access or operator-verified result is available. |
+| `CEO Briefing -> Dashboard` | Not verified | Blocked until real FlutterFlow project access or operator-verified result is available. |
+| `CEO Briefing -> Ask Trina to Prioritize -> Assistant` | Not verified | Blocked until real FlutterFlow project access or operator-verified result is available. |
+
+Do not mark the Sprint 013 evidence gap closed until a real FlutterFlow screenshot is saved as `references/flutterflow/sprint-009/ceo-briefing.png`.
+
+Sprint 014 does not approve runtime app code changes, FlutterFlow generated-code export, Firebase, Hermes/backend, package, native, release, deploy, or secret work.
+
 Do not create placeholder screenshots. Do not export generated FlutterFlow code. Do not modify runtime app code, Firebase, backend, package, native, release, deploy, or secret files.
 
 ## FlutterFlow Builder Prompt
