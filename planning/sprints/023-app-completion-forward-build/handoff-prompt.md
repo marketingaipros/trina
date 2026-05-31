@@ -1,7 +1,5 @@
 # Sprint 023 Builder Handoff Prompt - App Completion Forward Build
 
-> Sprint 025 note: Sprint 023 is retained as historical reset context. It is not the current active sprint after Sprint 024 runtime stabilization and Sprint 025 planning/docs cleanup.
-
 You are the Builder for Trina.
 
 The operator has decided to stop looping on CEO Briefing.

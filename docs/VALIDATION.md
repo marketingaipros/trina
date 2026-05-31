@@ -222,6 +222,30 @@ Do not create:
 references/flutterflow/sprint-009/ceo-briefing.png
 ```
 
+## Sprint 028 Closeout and Forward-State Validation
+
+Sprint 028 is a planning/docs cleanup and forward-state correction sprint. It must not start runtime implementation.
+
+Run:
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Required validation outcome:
+
+- No runtime files changed.
+- No CEO Briefing screenshot exists.
+- No FlutterFlow export exists.
+- Bad `.md.md` Sprint 028 file is removed.
+- Tracked Sprint 023 Architect Pack is restored if it was deleted.
+- Correct Sprint 028 pack exists with a single `.md` extension.
+- Sprint 028 folder contains `requirements.md`, `blueprint.md`, `acceptance.md`, and `handoff-prompt.md`.
+
 ## Sprint 026 Implementation Notes
 
 Implemented validation target:

@@ -1,7 +1,5 @@
 # Sprint 023 Acceptance Criteria - App Completion Forward Build
 
-> Sprint 025 note: Sprint 023 is retained as historical reset context. It is not the current active sprint after Sprint 024 runtime stabilization and Sprint 025 planning/docs cleanup.
-
 Sprint 023 planning is complete when:
 
 - Sprint 023 folder exists.

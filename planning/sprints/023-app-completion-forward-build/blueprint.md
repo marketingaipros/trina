@@ -1,7 +1,5 @@
 # Sprint 023 Blueprint - App Completion Forward Build
 
-> Sprint 025 note: Sprint 023 is retained as historical reset context. It is not the current active sprint after Sprint 024 runtime stabilization and Sprint 025 planning/docs cleanup.
-
 ## Objective
 
 Create a clean forward path for completing Trina without letting CEO Briefing consume more sprint cycles.

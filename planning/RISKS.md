@@ -159,3 +159,11 @@
 | Risk | Likelihood | Impact | Mitigation | Status |
 |---|---:|---:|---|---|
 | Dirty planning artifacts could re-open obsolete CEO Briefing work. | Medium | Medium | Sprint 025 classifies or removes stale Sprint 021/022/023 artifacts and preserves only durable forward-state decisions. | Mitigating |
+
+## Sprint 028 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Mislabeled Architect Pack content could be applied because the filename looks correct. | Medium | High | Inspect pack contents before application and keep only the corrected single-extension Sprint 028 pack. | Mitigated |
+| Duplicate Sprint 028 pack names could confuse future Builder handoffs. | Medium | Medium | Remove the bad `.md.md` duplicate and keep the corrected `.md` pack as the source of truth. | Mitigated |
+| Cleanup work could drift back into CEO Briefing instead of app completion. | Medium | High | Keep CEO Briefing deferred, untouched, and non-blocking in Sprint 028 planning and validation. | Mitigated |

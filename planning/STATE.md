@@ -2,27 +2,27 @@
 
 ## Current Sprint
 
-Sprint 027 - `027-core-app-completion-polish-and-navigation-hardening`
+Sprint 028 - `028-sprint-027-closeout-validation-and-forward-state`
 
 ## Current Status
 
-Sprint 027 is a docs/planning-ready app-completion polish sprint for the current local Vite React app shell.
+Sprint 028 is the active planning/docs closeout correction sprint.
 
-Sprint 027 should preserve the Sprint 026 Assistant capture path while inspecting and tightening surrounding navigation, return behavior, active-state clarity, empty states, and local fallback copy. Runtime implementation has not started and requires operator approval after the Builder summarizes the plan.
+Sprint 023 planning reset has been applied and remains the forward app-completion baseline. Sprint 027 runtime implementation has been reviewed as the immediate pre-implementation context for the next app shell polish step.
 
-Sprint 026 implementation added a narrow local Assistant capture path: typed or recognized Assistant input can be saved as a local task, then the app routes to Tasks so the captured item is visible. Notifications now explain browser-notification fallback states while keeping captured Assistant tasks visible in Tasks.
+CEO Briefing is deferred, not complete, and must not block the rest of the app.
 
-Sprint 025 was a planning/docs cleanup checkpoint. It resolved dirty planning, docs, architect-pack, sprint-folder, and FlutterFlow reference-note artifacts left from Sprint 021, Sprint 022, Sprint 023, and Sprint 024.
+## Active Sprint
 
-Sprint 024 is the latest app-completion runtime audit/stabilization context. Its approved non-CEO shell work stabilized Dashboard, bottom navigation, Notifications/reminders, and browser-notification guards.
+`planning/sprints/028-sprint-027-closeout-validation-and-forward-state/`
 
-CEO Briefing remains deferred, not complete, and non-blocking.
+## Next Action
 
-Sprint 021 CEO Briefing build guidance is superseded and not active. The uncommitted Sprint 021 CEO Briefing build artifacts were removed because they reopened stale active-build momentum.
+Builder should complete Sprint 028 validation, then stop before runtime implementation. The next implementation target is core app shell polish: navigation, return paths, active-state clarity, empty states, and fallback copy across the Vite React shell.
 
-Sprint 022 reset value is absorbed into durable state: stop looping on CEO Briefing and continue app completion. The uncommitted Sprint 022 architect pack was removed rather than kept as a competing active pack.
+## Forward Context
 
-Sprint 023 remains useful historical reset context for forward app-completion work. It should not be treated as the current active sprint after Sprint 024 and Sprint 025.
+Sprint 028 corrects the planning handoff after a bad double-extension Sprint 028 file was found to contain Sprint 023 content. File contents must win over filenames when conflicts exist.
 
 ## Recently Completed
 
@@ -38,7 +38,7 @@ Sprint 023 remains useful historical reset context for forward app-completion wo
 
 ## Active Focus
 
-Prepare Sprint 027 implementation by inspecting the current local app shell and summarizing a narrow navigation-polish plan before any runtime edits.
+Close the Sprint 027 review loop, preserve the Sprint 023 reset baseline, and prepare the next runtime polish sprint without starting implementation.
 
 ## Out of Scope
 
@@ -51,10 +51,6 @@ Prepare Sprint 027 implementation by inspecting the current local app shell and 
 - Native iOS/Android work.
 - Release, deployment, build, or production export work.
 - Screenshot evidence creation.
-
-## Next Action
-
-Builder should read Sprint 027 requirements, blueprint, acceptance, handoff prompt, and validation guidance, then summarize the intended inspection and implementation plan for operator approval.
 
 ## Blockers
 

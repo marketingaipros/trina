@@ -175,3 +175,10 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | Date | Decision | Reason | Impact |
 |---|---|---|---|
 | 2026-05-31 | Sprint 025 cleans up planning/docs state and supersedes stale CEO Briefing momentum. | Sprint 021/022/023 left dirty planning artifacts and mixed active vs historical guidance. | Keep only durable decisions, preserve Sprint 023/024 forward-build direction, and keep CEO Briefing deferred unless explicitly reopened. |
+
+## Sprint 028 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | File contents win over filenames when an Architect Pack label conflicts with its contents. | A mislabeled Sprint 028 pack contained Sprint 023 content and could send Builders back into stale work. | Future pack application must inspect contents before applying a filename-based sprint assumption. |
+| 2026-05-31 | CEO Briefing remains deferred and non-blocking during Sprint 028 closeout. | Sprint 028 is a planning/docs cleanup and forward-state correction sprint, not CEO Briefing work. | The next implementation target stays focused on core app shell polish. |
