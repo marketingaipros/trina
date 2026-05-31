@@ -103,3 +103,12 @@
 | Where should final prototype screenshots be stored if they are not tied to Sprint 009 evidence? | Architect / Operator | Before capture | Open | Recommendation: use a dedicated future evidence sprint folder such as `references/flutterflow/sprint-018/`, unless maintaining Sprint 009 evidence continuity is required. |
 | Should CEO Briefing evidence remain in Sprint 009 references or move to a new final evidence folder once real evidence exists? | Architect / Operator | Before capture | Open | Keep deferred until real screenshot exists. Do not silently decide the folder during Sprint 017. |
 | What exact filenames should be used for each required screenshot? | Architect / Builder | Before capture | Open | Sprint 017 proposes stable lowercase names in `docs/VALIDATION.md`; final capture should confirm them before saving evidence. |
+
+## Sprint 018 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Should the Sprint 018 Architect Pack content be corrected to match the Sprint 018 filename and requested scope? | Architect / Operator | Before future reuse | Answered | Corrected to Sprint 018 FlutterFlow Final Prototype Evidence Capture. |
+| Which real FlutterFlow screenshot files exist for final prototype evidence capture? | Operator / FlutterFlow Builder | Sprint 018 evidence capture | Open | Codex must document only files that actually exist. |
+| Should final prototype screenshots use `references/flutterflow/sprint-018/`? | Architect / Operator | Before screenshots are saved | Proposed | Recommended for final prototype evidence, while Sprint 009 remains for screenshots that close Sprint 009 gaps. |
+| Is `references/flutterflow/sprint-009/ceo-briefing.png` available as real CEO Briefing evidence? | Operator / FlutterFlow Builder | Before CEO Briefing evidence closure | Deferred | Keep CEO Briefing missing or deferred unless the actual file exists. |

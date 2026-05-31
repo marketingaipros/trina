@@ -77,6 +77,27 @@ Final prototype evidence may use a future dedicated folder such as `references/f
 
 This remains an open Architect/operator decision before future capture work.
 
+## Sprint 018 Final Prototype Evidence Capture Note
+
+Sprint 018 applies the final prototype evidence-capture planning/docs checkpoint.
+
+The Sprint 018 Architect Pack preserves the evidence rules conservatively:
+
+- Do not create placeholder screenshots.
+- Do not document screenshot evidence unless the actual file exists.
+- Keep CEO Briefing missing or deferred unless `references/flutterflow/sprint-009/ceo-briefing.png` exists.
+- Use a dedicated `references/flutterflow/sprint-018/` evidence folder for final prototype screenshots unless the screenshot specifically closes a Sprint 009 evidence gap.
+
+### Current Sprint 018 CEO Briefing Evidence Status
+
+| Item | Status | Notes |
+|---|---|---|
+| CEO Briefing screen existence | Deferred / unconfirmed | Requires real FlutterFlow confirmation. |
+| Dashboard to CEO Briefing navigation | Deferred / unconfirmed | Must be validated in FlutterFlow. |
+| CEO Briefing to Dashboard navigation | Deferred / unconfirmed | Must be validated in FlutterFlow. |
+| CEO Briefing to Assistant navigation | Deferred / unconfirmed | Must be validated in FlutterFlow. |
+| `ceo-briefing.png` screenshot | Missing unless file exists | Must not be created as a placeholder. |
+
 ## Screen Build Checklist
 
 ### Dashboard / Home

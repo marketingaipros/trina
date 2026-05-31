@@ -155,6 +155,32 @@ Final evidence storage remains unresolved until the Architect/operator approves 
 - Use a dedicated future evidence folder such as `references/flutterflow/sprint-018/`.
 - Preserve `references/flutterflow/sprint-009/` only for screenshots that specifically close Sprint 009 evidence gaps.
 
+## Sprint 018 FlutterFlow Final Prototype Evidence Capture Validation
+
+Sprint 018 uses docs-safe validation only. It does not run app build, Firebase deploy, FlutterFlow export, or native release commands.
+
+### Required Checks
+
+```bash
+git diff --check
+git status --branch --short
+git diff --name-only
+git diff --stat
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png || echo "CEO briefing screenshot exists"
+```
+
+### Evidence Completion Rules
+
+- Document screenshot evidence only when the actual file exists.
+- Do not create fake screenshots.
+- Do not create placeholder evidence images.
+- Keep CEO Briefing evidence missing or deferred unless `references/flutterflow/sprint-009/ceo-briefing.png` exists.
+- Keep changed files limited to planning/docs/evidence notes.
+
+### Sprint 018 Scope Check
+
+Sprint 018 validation must confirm no changes were made to runtime app code, generated FlutterFlow exports, Firebase, Hermes/API, backend, package or lock files, native folders, build outputs, release files, secrets, or `.env` files.
+
 ## Deploy Commands
 
 Deploy only when explicitly approved:

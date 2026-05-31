@@ -132,3 +132,11 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-05-31 | CEO Briefing remains deferred unless real FlutterFlow evidence exists. | Placeholder evidence would corrupt validation history. | `ceo-briefing.png` must not be created as a placeholder. |
 | 2026-05-31 | Screenshot evidence must come from actual FlutterFlow Designer or Preview state. | Evidence should prove real prototype status, not planned or mocked status. | Docs must distinguish confirmed evidence from deferred or missing evidence. |
 | 2026-05-31 | Final prototype validation must confirm screens, navigation, storage location, and screenshot naming before capture. | Reduces confusion and prevents evidence files from being scattered or mislabeled. | `docs/VALIDATION.md` and FlutterFlow handoff docs must define the required validation path. |
+
+## Sprint 018 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | Sprint 018 remains planning/docs evidence capture only. | The operator requested Architect Pack application without runtime implementation, generated export, Firebase, Hermes/backend, package/native, build, or release changes. | Codex must update only planning/docs/evidence notes and must not stage, commit, or push. |
+| 2026-05-31 | The Sprint 018 Architect Pack is corrected to match the Sprint 018 filename and requested scope. | The pack must clearly represent final prototype evidence capture, not a prior Sprint 014 checkpoint. | Sprint 018 preserves no-fake-evidence rules without marking CEO Briefing complete. |
+| 2026-05-31 | CEO Briefing remains missing or deferred unless the real screenshot file exists. | Evidence must come from actual FlutterFlow state, not a placeholder. | `references/flutterflow/sprint-009/ceo-briefing.png` must not be fabricated. |

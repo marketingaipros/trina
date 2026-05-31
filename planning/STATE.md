@@ -2,13 +2,15 @@
 
 ## Current Sprint
 
-Sprint 017 - `017-flutterflow-final-prototype-evidence-readiness`
+Sprint 018 - `018-flutterflow-final-prototype-evidence-capture`
 
 ## Current Status
 
 Sprint 016 was completed as a docs/planning stabilization checkpoint and pushed to `origin/main`.
 
-Sprint 017 is a docs/planning-only readiness sprint. Its purpose is to tighten the final FlutterFlow prototype validation path, screenshot evidence rules, and click-path confirmation steps before any future evidence capture or FlutterFlow build work.
+Sprint 018 is a docs/planning-only final prototype evidence-capture checkpoint. Its purpose is to apply the Sprint 018 Architect Pack boundary, prepare truthful final evidence capture notes, and preserve the rule that screenshots are documented only when the actual files exist.
+
+The Sprint 018 Architect Pack is labeled as `018-flutterflow-final-prototype-evidence-capture` and keeps current work limited to the operator-requested final prototype evidence-capture planning/docs surface.
 
 Sprint 010 was completed as a documented deferral decision. The missing CEO Briefing evidence remains deferred, not complete:
 
@@ -40,21 +42,22 @@ Sprint 013 documented that the CEO Briefing screenshot evidence gap remained def
 - Sprint 016 kept CEO Briefing evidence deferred.
 - Sprint 016 created no placeholder screenshot.
 - Sprint 016 changed no runtime app code, generated FlutterFlow export, Firebase, Hermes, backend, package/native, build, or release files.
+- Sprint 017 planning/docs readiness checkpoint was applied before Sprint 018.
 - CEO Briefing remains deferred.
 - No placeholder `references/flutterflow/sprint-009/ceo-briefing.png` was created.
 - `main` is aligned with `origin/main`.
 
 ## Active Work
 
-- Apply Sprint 017 planning files.
-- Tighten final FlutterFlow prototype evidence readiness documentation.
+- Apply Sprint 018 planning files.
+- Document final FlutterFlow prototype evidence-capture rules.
 - Keep local work limited to planning/docs unless a later Architect Pack explicitly approves implementation.
 
 ## Next Action
 
-Apply the Sprint 017 Architect Pack to create the Sprint 017 planning folder and update validation/handoff documentation.
+Apply the Sprint 018 Architect Pack to create the Sprint 018 planning folder and update validation/handoff/evidence documentation.
 
-After the pack is applied, Codex must report the created files, updated files, validation results, changed-file list, and any incomplete or uncertain acceptance criteria.
+After the pack is applied, Codex must report the created files, updated files, scope check, validation results, and final git status.
 
 Codex must not start implementation-style work beyond docs/planning updates.
 
@@ -72,3 +75,5 @@ Deferred:
 - No runtime app code, generated FlutterFlow export code, backend, Firebase, Hermes, package/native, or release work is approved in Sprint 017.
 - Final prototype evidence is not complete until required screenshots and click-path confirmations are captured from actual FlutterFlow state.
 - Final evidence storage location remains an open question: use a dedicated future evidence folder such as `references/flutterflow/sprint-018/`, or preserve Sprint 009 continuity only for screenshots that close Sprint 009 evidence gaps.
+- No runtime app code, generated FlutterFlow export code, backend, Firebase, Hermes, package/native, or release work is approved in Sprint 018.
+- Sprint 018 does not create fake screenshots or placeholder evidence images.

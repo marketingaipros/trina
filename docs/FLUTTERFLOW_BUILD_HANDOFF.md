@@ -90,6 +90,32 @@ only when the screenshot specifically closes a Sprint 009 evidence gap.
 
 This folder choice remains an open question until the Architect/operator approves the final evidence capture scope.
 
+## Sprint 018 Final Prototype Evidence Capture
+
+Sprint 018 applies the final prototype evidence-capture planning/docs checkpoint. It does not approve runtime implementation, FlutterFlow generated-code export, Firebase/Hermes/backend work, package/native/build/release changes, screenshot fabrication, or placeholder evidence images.
+
+Only real FlutterFlow Designer or Preview screenshots may be documented as evidence. If a screenshot file does not exist, its evidence status must remain missing, deferred, or untested.
+
+The Sprint 018 Architect Pack path is:
+
+```text
+architect-packs/trina-018-flutterflow-final-prototype-evidence-capture-architect-pack.md
+```
+
+Sprint 018 keeps strict evidence rules and does not mark CEO Briefing complete unless this real screenshot exists:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Recommended final prototype evidence folder:
+
+```text
+references/flutterflow/sprint-018/
+```
+
+Use `references/flutterflow/sprint-009/` only for screenshots that specifically close Sprint 009 evidence gaps.
+
 ## Sprint 012 Demo Path Polish
 
 Sprint 012 defines the accepted demo path that can be shown without being blocked by the deferred CEO Briefing screen.
