@@ -430,7 +430,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
           className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-pink-200 hover:bg-pink-600 active:scale-95 transition-all disabled:opacity-50"
         >
           {isBriefingLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
-          <span>CEO Briefing</span>
+          <span>Daily Snapshot</span>
         </button>
       </div>
 
@@ -440,7 +440,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
           <div className="bg-white p-6 rounded-[2rem] shadow-2xl border border-pink-100 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-1.5 h-full bg-pink-500" />
             <div className="flex justify-between items-start mb-3">
-              <p className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em]">Executive Briefing</p>
+              <p className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em]">Daily Snapshot</p>
               <div className="flex gap-2">
                 {isBriefingSpeaking ? (
                   <button onClick={stopBriefing} className="p-1.5 text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100">

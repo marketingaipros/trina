@@ -107,9 +107,12 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
         <div className="flex items-center gap-3">
             <button 
                 onClick={onBack}
-                className="p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100"
+                aria-label="Return to Home"
+                title="Return to Home"
+                className="flex items-center gap-1 p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100"
             >
                 <ArrowLeft size={24} />
+                <span className="sr-only">Home</span>
             </button>
             <h1 className="text-xl font-bold text-gray-900">Task Tracker</h1>
         </div>
@@ -252,9 +255,13 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
       <div className="flex-1 space-y-3 overflow-y-auto p-4 no-scrollbar">
         {filteredTasks.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center text-gray-400 px-8">
-            <p className="font-bold text-gray-500">No tasks found.</p>
+            <p className="font-bold text-gray-500">
+              {tasks.length === 0 ? 'No tasks yet.' : 'No tasks match this filter.'}
+            </p>
             <p className="text-sm mt-2">
-              Use the plus button here, or capture a note from the Assistant on the Dashboard.
+              {tasks.length === 0
+                ? 'Use the plus button here, or capture a note from the Assistant on the Dashboard.'
+                : 'Switch to All Tasks or capture a new item from the Assistant on the Dashboard.'}
             </p>
           </div>
         ) : (

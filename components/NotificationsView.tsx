@@ -24,6 +24,7 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
         <div className="flex items-center gap-3">
           <button onClick={onBack} className="p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100">
             <ArrowLeft size={24} />
+            <span className="sr-only">Return to Home</span>
           </button>
           <h1 className="text-xl font-bold text-gray-900">Notifications</h1>
         </div>

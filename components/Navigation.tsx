@@ -26,8 +26,9 @@ const Navigation: React.FC<NavigationProps> = ({ currentMode, onNavigate }) => {
             <button
               key={item.mode}
               onClick={() => onNavigate(item.mode)}
-              className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${
-                isActive ? 'text-pink-600' : 'text-gray-500 hover:text-gray-700'
+              aria-current={isActive ? 'page' : undefined}
+              className={`flex flex-col items-center justify-center w-full h-full space-y-1 rounded-2xl transition-colors ${
+                isActive ? 'bg-pink-50 text-pink-600' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
               }`}
             >
               <item.icon size={20} strokeWidth={isActive ? 2.5 : 2} />

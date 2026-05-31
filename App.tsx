@@ -844,7 +844,7 @@ const App: React.FC = () => {
             onToggleVoice={() => isConnected ? disconnect() : connect()}
             timer={timerSeconds}
             initialTimerValue={initialTimerValue}
-            notificationCount={notifications.length}
+            notificationCount={notificationItems.length}
             isGmailConnected={isGmailConnected}
             onConnectGmail={handleGmailConnect}
             tasks={tasks}
