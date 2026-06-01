@@ -325,6 +325,51 @@ Also confirm no files were changed in:
 - native/build/release/deployment
 - CEO Briefing
 
+### Sprint 032 Validation Results
+
+Date: 2026-06-01
+
+Sprint 032 closed as validation/reporting only. No runtime fix was made.
+
+Automated validation passed:
+
+- `npm run lint`: Pass.
+- `npm run build`: Pass with known existing Vite warnings for mixed static/dynamic `services/authService.ts` import and a production JavaScript chunk larger than the default 500 kB warning threshold.
+- `git diff --check`: Pass.
+- `git status --branch --short`: Clean.
+- `git diff --name-only`: Empty before closeout docs updates.
+- `git diff --cached --name-only`: Empty.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+
+Browser validation results:
+
+- Dashboard/Home loaded.
+- Bottom navigation reached Tasks, Finance, Calendar, Notifications, and Knowledge Base.
+- Assistant / Voice Entry remained reachable.
+- Typed Assistant input created a visible task.
+- Empty Assistant input kept capture disabled.
+- Created task appeared in Tasks.
+- Task complete/incomplete toggle remained usable.
+- Knowledge Base loaded after a coordinate click fallback when browser automation timed out on the semantic nav locator.
+- Browser microphone validation was blocked by browser permission denial; speech capture was not rewritten.
+
+Confirmed issue:
+
+- Task edit/delete controls are missing from the Tasks UI.
+- Task edit/delete acceptance is not satisfied.
+- `components/TasksView.tsx` renders task toggle, title, priority, and deadline, but no edit/delete controls.
+- The visible props inspected expose `onAddTask` and `onUpdateTask`; no delete handler appears available.
+- No runtime fix was made.
+
+Sprint 033 candidate:
+
+- Add explicit accessible task edit/delete controls.
+- Add or confirm delete plumbing from parent state.
+- Preserve typed Assistant task capture.
+- Preserve task toggle behavior.
+- Preserve existing task display.
+- Keep CEO Briefing untouched.
+
 ```text
 references/flutterflow/sprint-009/ceo-briefing.png
 ```

@@ -196,3 +196,4 @@
 | Hover-only controls may be harder to use on touch devices. | Medium | Medium | Validate in touch-capable browser or responsive emulation and record confirmed issues for Sprint 033 if needed. | Open |
 | Accessibility labels may exist in code but still be awkward in real browser use. | Medium | Medium | Perform practical inspection of buttons, names, labels, and focus flow where possible. | Open |
 | CEO Briefing could re-enter scope by accident due to old planning history. | Low | High | Keep CEO Briefing explicitly protected and absent. | Open |
+| Task edit/delete controls are missing from the Tasks UI. | High | Medium | Carry forward to Sprint 033 candidate work: add explicit accessible edit/delete controls, confirm delete plumbing from parent state, and preserve capture/toggle behavior. | Confirmed |
