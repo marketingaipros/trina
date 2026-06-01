@@ -222,6 +222,94 @@ Do not create:
 references/flutterflow/sprint-009/ceo-briefing.png
 ```
 
+## Sprint 035 - Notification Reminder Flow Hardening
+
+Sprint 035 validates the notification and reminder experience after the recent task-flow work.
+
+### Required Commands
+
+Run before closeout:
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git status --branch --short
+```
+
+### Browser Validation Checklist
+
+Validate:
+
+- Dashboard/Home remains reachable.
+- Bottom navigation remains reachable and visually stable.
+- Assistant remains reachable from the app flow.
+- Notifications view opens from navigation.
+- Empty Notifications state is clear and not broken.
+- Notification/reminder items render without layout breakage.
+- Notification counts or badges do not show stale or impossible values.
+- Task-created reminder-related notices, if present in the current app, remain visible and understandable.
+- Notification UI remains usable on mobile viewport.
+- Fixed bottom navigation does not overlap critical notification content.
+- Existing task flow from Sprint 034 remains intact enough to support reminder/notification validation.
+
+### Protected Validation
+
+Confirm:
+
+```bash
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Do not validate by creating CEO Briefing screenshot evidence.
+
+### Non-Blocking Known Build Warnings
+
+Existing Vite warnings about mixed static/dynamic imports or chunk size are non-blocking unless Sprint 035 introduces a new build failure or acceptance failure.
+
+### Sprint 035 Validation Results
+
+Date: 2026-06-01
+
+Runtime changes: none.
+
+Browser validation confirmed:
+
+- Dashboard/Home loaded and exposed the Notifications path.
+- Notifications opened from bottom navigation.
+- Notifications active navigation state was correct.
+- Empty Notifications state was clear and readable.
+- Browser notification blocked fallback copy was shown clearly.
+- Mobile Notifications viewport remained usable at 390x844.
+- Fixed bottom navigation did not overlap the empty-state copy, Back Home control, or notification-center footer.
+- Assistant typed task capture still created a visible task and opened Tasks.
+- Notifications remained empty after local task capture, which matches the current wiring because captured local tasks are not notification items.
+
+Code inspection confirmed:
+
+- Dashboard notification badge count uses `notificationItems.length`.
+- Notifications view renders the same `notificationItems` array.
+- `notificationItems` is composed from pending Firestore reminders plus local event-window notifications.
+- Pending reminder items map through `getReminderTime()` and render with title, message, date/time, and `Reminder` status copy.
+- Event notifications render only inside the local due window.
+
+Known validation caveat:
+
+- No live pending Firestore reminder was present in the local browser session, so populated Firestore reminder item behavior was validated by code inspection rather than live reminder delivery.
+
+### Sprint 035 Command Results
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git status --branch --short
+```
+
+Results are recorded in the Sprint 035 closeout report.
+
 ## Sprint 032 - Browser Smoke, Accessibility, and Device Validation
 
 Sprint 032 validates the current Trina app shell after Sprint 031 accessibility polish.

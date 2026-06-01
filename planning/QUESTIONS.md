@@ -188,3 +188,11 @@
 | 2026-06-01 | Does the bottom navigation still leave enough room for task controls on mobile after Sprint 033 padding fix? | Builder | Answered | Yes. Mobile browser validation showed task edit/delete controls visible and usable above the fixed bottom navigation. |
 | 2026-06-01 | Should Sprint 034 introduce new task features such as due dates, reminders, priorities, or categories? | Architect / User | Answered | No. Sprint 034 is regression hardening only. New task features belong in a later sprint. |
 | 2026-06-01 | Should CEO Briefing be touched in Sprint 034? | Architect / User | Answered | No. CEO Briefing remains deferred and protected. |
+
+## Sprint 035 Open Questions
+
+| Question | Owner | Status | Notes |
+|---|---|---|---|
+| Does Sprint 035 require runtime changes, or will inspection and validation confirm the notification/reminder flow is already stable? | Builder | Answered | No runtime changes were needed. Inspection and browser validation found no concrete Sprint 035 acceptance failure. |
+| Are any notification/reminder count mismatches present after Sprint 034 task-flow validation? | Builder | Answered | No mismatch was found. Dashboard badge count and Notifications rendering both use `notificationItems.length` / `notificationItems` from the same composed reminder plus event list. |
+| Can all notification/reminder interactions be validated in the local browser wrapper? | Builder | Answered with caveat | Dashboard, Notifications empty state, mobile layout, active nav, and Assistant task capture were browser-validated. Live pending Firestore reminder item behavior was validated by code inspection because no live pending reminder was present. |

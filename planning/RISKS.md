@@ -217,3 +217,12 @@
 | Edit/delete behavior may affect existing Assistant capture or task persistence. | Medium | High | Preserve existing task state ownership and storage patterns. Validate Assistant typed capture creates visible tasks after edits. | Mitigated - existing state/storage behavior preserved. |
 | Browser validation may miss microphone-specific behavior. | Low | Medium | Treat microphone/live speech as out of scope unless broken by task flow changes. Validate typed Assistant capture as the required path. | Accepted - typed capture validated; microphone-specific behavior remained out of scope. |
 | CEO Briefing work may accidentally re-enter scope. | Low | High | Keep CEO Briefing explicitly protected. Run absence guard before closeout. | Mitigated. |
+
+## Sprint 035 Risks
+
+| Risk | Impact | Mitigation | Status |
+|---|---|---|---|
+| Notification and reminder state may drift from task state after recent task-flow hardening. | Users may see stale counts, missing fallback copy, or unclear reminders. | Validate Dashboard badge/count behavior, Notifications copy, and task-related reminder visibility before changing runtime code. | Active for Sprint 035 |
+| Browser validation may not cover every native confirmation or timing behavior. | Some interaction paths may require code inspection instead of full automation. | Pair browser validation with targeted code inspection and document any uncertainty in `docs/VALIDATION.md`. | Accepted - browser covered empty/mobile/navigation; live Firestore reminder item behavior remained inspection-based. |
+| CEO Briefing deferral could be accidentally disturbed by broad navigation or page cleanup. | Reopens a known deferred workstream and wastes app-completion effort. | Keep CEO Briefing and its screenshot evidence path protected in every Sprint 035 prompt and validation step. | Mitigated - protected scope was untouched and absence guard passed. |
+| Vite build warnings may distract from Sprint 035 scope. | Builder may chase non-blocking warnings and expand scope. | Treat existing warnings as non-blocking unless Sprint 035 acceptance fails because of them. | Mitigated - build warnings remained non-blocking and no runtime change was made. |
