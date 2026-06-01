@@ -201,4 +201,4 @@
 
 | Question | Status | Notes |
 |---|---|---|
-| Can populated reminder-backed notifications be validated through existing local browser actions, or is a dev-only fixture/helper needed? | Open | Codex should answer after inspecting existing notification/reminder wiring and before making runtime changes. |
+| Can populated reminder-backed notifications be validated through existing local browser actions, or is a dev-only fixture/helper needed? | Answered | Existing local actions can render event notifications and task capture, but cannot reliably create a populated reminder-backed notification without live Firestore data. Sprint 036 adds a dev-only `?trinaReminderFixture=1` browser fixture that injects one local pending reminder into the existing reminder mapping path. |

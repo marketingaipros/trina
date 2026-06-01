@@ -35,4 +35,4 @@ Decide whether a runtime fixture/helper is needed or whether existing test/brows
 - Do not touch CEO Briefing.
 - Do not create or restore `references/flutterflow/sprint-009/ceo-briefing.png`.
 - Do not modify backend, Firebase, Hermes, package/dependency, native, build, release, deployment, FlutterFlow export, auth, database, or live AI files.
-- Runtime changes are allowed only for concrete Sprint 035 acceptance failures.
+- Runtime changes are allowed only for concrete Sprint 036 reminder-backed notification validation gaps.

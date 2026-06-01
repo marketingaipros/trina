@@ -40,8 +40,41 @@ type ReminderNotification = {
   type?: string;
 };
 
+const shouldUseDevReminderFixture = () =>
+  process.env.NODE_ENV !== 'production' &&
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search).get('trinaReminderFixture') === '1';
+
+const getInitialAppMode = (): AppMode => {
+  if (
+    shouldUseDevReminderFixture() &&
+    new URLSearchParams(window.location.search).get('trinaStart') === 'notifications'
+  ) {
+    return AppMode.NOTIFICATIONS;
+  }
+
+  return AppMode.DASHBOARD;
+};
+
+const withDevReminderFixture = (reminders: ReminderNotification[]): ReminderNotification[] => {
+  if (!shouldUseDevReminderFixture()) return reminders;
+
+  const fixture: ReminderNotification = {
+    id: 'dev-reminder-fixture',
+    title: 'Fixture reminder',
+    message: 'Local validation reminder for Sprint 036.',
+    remindAt: new Date(Date.now() + 10 * 60 * 1000),
+    status: 'pending',
+    type: 'reminder',
+  };
+
+  return reminders.some((reminder) => reminder.id === fixture.id)
+    ? reminders
+    : [fixture, ...reminders];
+};
+
 const App: React.FC = () => {
-  const [currentMode, setCurrentMode] = useState<AppMode>(AppMode.DASHBOARD);
+  const [currentMode, setCurrentMode] = useState<AppMode>(getInitialAppMode);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [events, setEvents] = useState<CalendarEvent[]>([]);
@@ -118,14 +151,14 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (!authUid) {
-      setPendingReminders([]);
+      setPendingReminders(withDevReminderFixture([]));
       return () => {};
     }
 
     return subscribePendingReminders(
       authUid,
       (reminders: ReminderNotification[]) => {
-        setPendingReminders(reminders);
+        setPendingReminders(withDevReminderFixture(reminders));
       },
       (error: any) => {
         console.warn("Reminder listener failed:", error);

@@ -231,4 +231,4 @@
 
 | Risk | Likelihood | Impact | Mitigation | Status |
 |---|---:|---:|---|---|
-| Reminder-backed notification validation may depend on live/local browser data that is not always present. | Medium | Medium | Sprint 036 should define a safe local fixture, seed path, or repeatable validation method that proves populated reminder rendering without backend or production data changes. | Active |
+| Reminder-backed notification validation may depend on live/local browser data that is not always present. | Medium | Medium | Sprint 036 adds a dev-only `?trinaReminderFixture=1` browser fixture that proves populated reminder rendering through the existing notification item mapping without backend or production data changes. | Mitigated |

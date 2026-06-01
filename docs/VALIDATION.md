@@ -248,6 +248,29 @@ Browser/manual validation:
 
 If a fixture/helper is added, it must be local-only, easy to remove, and must not require backend, Firebase rules, package, native, build, release, or deployment changes.
 
+### Sprint 036 Local Reminder Fixture
+
+For local browser validation only, start the dev server and open:
+
+```text
+http://127.0.0.1:3000/?trinaReminderFixture=1
+```
+
+To open directly on the populated Notifications view for repeatable proof, use:
+
+```text
+http://127.0.0.1:3000/?trinaReminderFixture=1&trinaStart=notifications
+```
+
+The query parameters are ignored outside non-production runtime. `trinaReminderFixture=1` injects one local pending reminder with `type: reminder` into the existing `pendingReminders -> notificationItems -> Dashboard/Notifications` path. `trinaStart=notifications` only changes the initial local view when the reminder fixture is enabled. The fixture does not write to Firestore, localStorage, backend services, Firebase rules, native files, package files, build files, release files, or deployment config.
+
+Expected browser proof:
+
+- The Dashboard Notifications badge count includes the fixture reminder.
+- Opening Notifications shows a populated card titled `Fixture reminder`.
+- The card has the `Reminder` pill and uses the existing reminder styling.
+- Removing the query parameter restores normal live-data behavior.
+
 ## Sprint 035 - Notification Reminder Flow Hardening
 
 Sprint 035 validates the notification and reminder experience after the recent task-flow work.
