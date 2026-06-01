@@ -222,6 +222,32 @@ Do not create:
 references/flutterflow/sprint-009/ceo-briefing.png
 ```
 
+## Sprint 036 - Reminder Validation Fixture and Notification Empty-State Hardening
+
+Sprint 036 validates the populated reminder-backed notification path that Sprint 035 could only inspect by code because no live pending Firestore reminder existed in the local browser session.
+
+Required validation:
+
+- `npm run lint`
+- `npm run build`
+- `git diff --check`
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`
+- `git status --branch --short`
+
+Browser/manual validation:
+
+- Dashboard/Home remains reachable.
+- Notifications remains reachable.
+- Notifications empty/fallback state remains readable.
+- A populated reminder-backed notification item can be seen through a safe local validation path.
+- Dashboard notification count and Notifications rendering remain aligned.
+- Assistant typed task capture still creates a visible task.
+- Tasks view still renders created tasks.
+- Bottom navigation active state still works.
+- Mobile viewport around `390x844` has no fixed bottom-nav overlap.
+
+If a fixture/helper is added, it must be local-only, easy to remove, and must not require backend, Firebase rules, package, native, build, release, or deployment changes.
+
 ## Sprint 035 - Notification Reminder Flow Hardening
 
 Sprint 035 validates the notification and reminder experience after the recent task-flow work.

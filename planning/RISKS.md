@@ -226,3 +226,9 @@
 | Browser validation may not cover every native confirmation or timing behavior. | Some interaction paths may require code inspection instead of full automation. | Pair browser validation with targeted code inspection and document any uncertainty in `docs/VALIDATION.md`. | Accepted - browser covered empty/mobile/navigation; live Firestore reminder item behavior remained inspection-based. |
 | CEO Briefing deferral could be accidentally disturbed by broad navigation or page cleanup. | Reopens a known deferred workstream and wastes app-completion effort. | Keep CEO Briefing and its screenshot evidence path protected in every Sprint 035 prompt and validation step. | Mitigated - protected scope was untouched and absence guard passed. |
 | Vite build warnings may distract from Sprint 035 scope. | Builder may chase non-blocking warnings and expand scope. | Treat existing warnings as non-blocking unless Sprint 035 acceptance fails because of them. | Mitigated - build warnings remained non-blocking and no runtime change was made. |
+
+## Sprint 036 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Reminder-backed notification validation may depend on live/local browser data that is not always present. | Medium | Medium | Sprint 036 should define a safe local fixture, seed path, or repeatable validation method that proves populated reminder rendering without backend or production data changes. | Active |

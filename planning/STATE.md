@@ -2,31 +2,33 @@
 
 ## Current Sprint
 
-Sprint 035 - Notification Reminder Flow Hardening
+Sprint 036 - Reminder Validation Fixture and Notification Empty-State Hardening
 
 ## Current Status
 
-Sprint 034 closed cleanly as a planning/docs validation closeout. No runtime changes were needed. Task add, display, filter, toggle, edit, delete guard behavior, Assistant capture, navigation, and mobile/fixed-nav behavior were validated.
+Sprint 035 closed clean as a validation/docs-only notification/reminder hardening pass. No runtime changes were needed. Dashboard/Home, Notifications, bottom navigation, mobile layout, shared notification item source, and Assistant typed task capture were validated.
 
-Sprint 035 is the next narrow app-completion sprint. It focuses on the notification and reminder experience that supports task follow-up visibility across Dashboard, Notifications, and task-related reminder state.
-
-Sprint 035 inspection and browser validation found no concrete runtime acceptance failure requiring code changes. Dashboard/Home, bottom navigation, Notifications reachability, empty Notifications fallback copy, mobile Notifications layout, fixed bottom-nav spacing, Dashboard notification count wiring, reminder subscription mapping, and existing Assistant task capture were validated by browser testing and targeted code inspection.
+Sprint 036 is active. The goal is to close the remaining populated reminder validation gap by defining and, if needed, implementing a safe local validation fixture or test path for reminder-backed notification items.
 
 ## Recently Completed
 
-- Sprint 033 added accessible task edit/delete controls.
-- Sprint 034 validated the task workflow after Sprint 033 and found no runtime changes were required.
-- CEO Briefing remained deferred and untouched.
-- Sprint 035 validation completed without runtime code changes.
-- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- Sprint 035 notification/reminder flow validation completed.
+- Sprint 035 committed and pushed on `main` with clean status.
+- CEO Briefing remained untouched and `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
 
 ## Next Action
 
-Review Sprint 035 validation results and decide whether to stage the Sprint 035 planning/docs and validation documentation changes.
+Apply Sprint 036 planning files.
+
+Have Codex read Sprint 036 files and summarize before implementation.
+
+Inspect existing notification/reminder data flow.
+
+Decide whether a runtime fixture/helper is needed or whether existing test/browser flow is enough.
 
 ## Active Sprint Folder
 
-`planning/sprints/035-notification-reminder-flow-hardening/`
+`planning/sprints/036-reminder-validation-fixture-and-notification-empty-state-hardening/`
 
 ## Guardrails
 
