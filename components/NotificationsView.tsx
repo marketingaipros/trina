@@ -42,7 +42,7 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
             <Bell size={48} className="mb-4 opacity-20" />
             <p className="text-sm font-bold text-gray-500">No active notifications</p>
             <p className="text-xs mt-1 text-center px-6">
-              Event alerts and reminders will appear here. Browser notifications can be unavailable or blocked, but in-app reminders and captured Assistant tasks still stay visible.
+              Event notifications and reminders will appear here. Browser notifications can be unavailable or blocked, but in-app reminders and captured Assistant tasks still stay visible.
             </p>
             <button
               onClick={onBack}

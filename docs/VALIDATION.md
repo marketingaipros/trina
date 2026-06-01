@@ -283,7 +283,7 @@ test ! -f references/flutterflow/sprint-009/ceo-briefing.png
 Manual implementation smoke checks should verify:
 
 1. Dashboard/Home loads without runtime errors.
-2. Bottom navigation routes to Home, Tasks, Notifications/Alerts, Calendar, Finance, and Knowledge Base/Context as currently named.
+2. Bottom navigation routes to Home, Tasks, Notifications, Calendar, Finance, and Knowledge / Knowledge Base as currently named.
 3. Active bottom navigation state matches the visible destination.
 4. Dashboard exposes Assistant / Voice Entry.
 5. Typed Assistant capture saves a task and opens or updates Tasks visibility.
@@ -374,6 +374,47 @@ Protected validation:
 - CEO Briefing remains deferred.
 - `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
 - Do not mark CEO Briefing evidence complete.
+
+### Sprint 030 Implementation Notes
+
+Sprint 030 inspection found no existing web UI, browser, component, or smoke-test script in `package.json`. The only available repo validation scripts are `npm run lint`, `npm run build`, and Vite preview/dev commands; the only discovered test file is the native Android example unit test. No package or dependency files were changed.
+
+Automated smoke coverage was not added because the repo does not currently include clean web smoke-test tooling and Sprint 030 forbids dependency churn. The lightweight repeatable smoke path for this sprint is the manual checklist below plus code inspection for capture wiring.
+
+Confirmed label alignment:
+
+- Bottom navigation uses compact `Knowledge`.
+- Dashboard and the Knowledge screen use full `Knowledge Base`.
+- Notifications user-facing copy uses `Notifications`, not `Alerts`.
+- No runtime user-facing `Context` label was found in the current app shell.
+
+Confirmed capture preservation by code inspection:
+
+- Typed Assistant capture in `components/VoiceDashboard.tsx` calls `captureLocalTask(typedMessage, 'typed')`.
+- `captureLocalTask` calls the `onAssistantCapture` prop.
+- `App.tsx` handles `onAssistantCapture` through `handleAssistantCapture`, which saves with `Storage.addTask(...)`, updates local task state, shows a confirmation toast, and routes to `AppMode.TASKS`.
+- Speech recognition results in `components/VoiceDashboard.tsx` still call `captureLocalTask(transcript, 'voice')`, preserving the same transcript-to-task path.
+
+Live speech capture remains environment-dependent because it requires a browser/device with microphone permission granted. If local browser permission is denied or unavailable, document the limitation and preserve the existing speech path by inspection rather than rewriting microphone behavior.
+
+### Sprint 030 Manual Smoke Checklist
+
+Use the current local app shell after running the required command validation:
+
+1. Open the app locally with `npm run dev` or an equivalent approved local preview.
+2. Confirm Dashboard/Home loads without runtime errors.
+3. Confirm bottom navigation reaches Home, Tasks, Finance, Calendar, Notifications, and Knowledge.
+4. Confirm active bottom navigation state is visible and matches the current surface.
+5. Confirm Dashboard quick actions expose Finance, Tasks, Brain Dump, Calendar, Knowledge Base, and Notifications.
+6. Confirm Assistant / Voice Entry is visible on Dashboard.
+7. Type a task into the Assistant input and press Capture.
+8. Confirm the app opens Tasks and the captured task is visible.
+9. Confirm empty/fallback states remain clear for Tasks, Notifications, Calendar, Finance, and Knowledge Base.
+10. Confirm Knowledge Base naming follows the product rule: `Knowledge Base` for full copy and `Knowledge` only for compact nav.
+11. Confirm Notifications copy uses `Notifications`, not `Alerts`.
+12. Test speech capture only in a browser/device where microphone permission can be granted. If permission is denied or unavailable, record that live speech capture was not completed and that the transcript-to-task path was preserved by code inspection.
+13. Confirm CEO Briefing remains deferred and is not part of the smoke pass.
+14. Confirm `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
 
 ## Sprint 026 Implementation Notes
 

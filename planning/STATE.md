@@ -6,9 +6,11 @@ Sprint 030 - `030-lightweight-ui-smoke-coverage-and-label-consistency`
 
 ## Current Status
 
+Sprint 030 implementation and validation are complete pending review, staging, commit, and push approval.
+
 Sprint 029 is complete, committed, and pushed.
 
-Sprint 030 is ready for planning/docs application. The sprint should add lightweight confidence around the core app shell without returning to CEO Briefing or expanding into backend/build/release work.
+Sprint 030 adds lightweight confidence around the core app shell without returning to CEO Briefing or expanding into backend/build/release work.
 
 Sprint 023 planning reset has been applied and remains the protected forward app-completion baseline.
 
@@ -20,7 +22,7 @@ CEO Briefing is deferred, not complete, and must not block the rest of the app.
 
 ## Next Action
 
-Read Sprint 030 files and summarize before implementation.
+Review Sprint 030 closeout results and decide whether to stage, commit, and push.
 
 ## Forward Context
 
@@ -46,15 +48,22 @@ Sprint 029 applies narrow runtime polish for bottom navigation active-state clar
 
 ## Active Focus
 
-Create and apply Sprint 030 planning docs, then prepare a read-and-summarize checkpoint before any implementation.
+Sprint 030 inspected the current app shell and found no clean existing web UI smoke-test tooling beyond `npm run lint` and `npm run build`. Automated smoke coverage was not added because the repo has no current web test harness and the sprint avoids dependency churn.
+
+The implementation keeps the runtime change narrow: Notifications empty-state copy now uses `Event notifications` instead of `Event alerts`. Existing Knowledge Base labels already align with the Sprint 030 rule: `Knowledge Base` for full feature copy and `Knowledge` for compact bottom navigation.
+
+Typed Assistant capture remains routed to Tasks through `VoiceDashboard` -> `handleAssistantCapture` -> `Storage.addTask(...)` -> `AppMode.TASKS`. Speech capture remains preserved by code inspection through the same local task capture path when browser speech recognition returns a transcript.
+
+Sprint 030 validation has been run with `npm run lint`, `npm run build`, `git diff --check`, `git status --branch --short`, and the CEO Briefing evidence absence guard. Manual browser smoke passed for Dashboard/Home reachability, bottom navigation reachability, active navigation state, Assistant / Voice Entry visibility, typed Assistant capture, captured task visibility in Tasks, Knowledge Base label consistency, and Notifications copy.
+
+Live speech capture was not completed because the browser reported microphone permission denied. Sprint 030 preserves speech capture by code inspection: browser speech recognition transcripts still call the same local task capture path as typed capture.
 
 ## Next Actions
 
-1. Apply the Sprint 030 Architect Pack to planning/docs.
-2. Have Codex read Sprint 030 files and summarize before implementation.
-3. Implement narrow runtime/test/docs changes only after summary approval.
-4. Validate that core navigation, typed Assistant capture, and speech capture verification path are covered.
-5. Keep CEO Briefing deferred and untouched.
+1. Review Sprint 030 changed-file surface.
+2. Confirm whether live speech capture should remain deferred until microphone permission is available.
+3. Stage, commit, and push only after approval.
+4. Keep CEO Briefing deferred and untouched.
 
 ## Out of Scope
 
@@ -70,9 +79,11 @@ Create and apply Sprint 030 planning docs, then prepare a read-and-summarize che
 
 ## Blockers
 
-Speech capture live testing may require a browser/device with microphone permission granted.
+No blocker prevents Sprint 030 closeout from moving forward.
 
-No blocker prevents lightweight UI smoke coverage planning from moving forward.
+Open verification note:
+
+- Live speech capture still requires a browser/device with microphone permission granted. Sprint 030 preserves the existing transcript-to-task path by code inspection.
 
 Deferred:
 

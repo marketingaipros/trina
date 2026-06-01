@@ -153,5 +153,5 @@
 
 | Date | Question | Owner | Status | Notes |
 |---|---|---|---|---|
-| 2026-05-31 | Can speech capture be live-tested in a browser/device where microphone permission is granted? | Builder / Operator | Open | If not available during Sprint 030, document the limitation and preserve the existing speech path without risky changes. |
-| 2026-05-31 | Does the repo already include lightweight UI/browser test tooling that can be reused without adding a new framework? | Builder | Open | Builder should inspect before implementation and avoid dependency churn. |
+| 2026-05-31 | Can speech capture be live-tested in a browser/device where microphone permission is granted? | Builder / Operator | Open | Sprint 030 preserved the transcript-to-task path by code inspection. Live verification still requires an operator/browser session with microphone permission granted. |
+| 2026-05-31 | Does the repo already include lightweight UI/browser test tooling that can be reused without adding a new framework? | Builder | Answered | No clean existing web UI/browser smoke tooling was found. Sprint 030 uses documented manual smoke coverage plus `npm run lint` and `npm run build`; no package or dependency changes were made. |
