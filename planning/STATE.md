@@ -2,9 +2,13 @@
 
 ## Current Sprint
 
-Sprint 030 - `030-lightweight-ui-smoke-coverage-and-label-consistency`
+Sprint 031 - `031-core-app-polish-and-task-flow-hardening`
 
 ## Current Status
+
+Sprint 031 Architect Pack has been applied as a planning/docs-only pass.
+
+Sprint 031 is awaiting Builder read-before-implementation summary and explicit implementation approval.
 
 Sprint 030 implementation and validation are complete pending review, staging, commit, and push approval.
 
@@ -12,21 +16,25 @@ Sprint 029 is complete, committed, and pushed.
 
 Sprint 030 adds lightweight confidence around the core app shell without returning to CEO Briefing or expanding into backend/build/release work.
 
+Sprint 031 is scoped to narrow runtime polish and task-flow hardening for the existing app shell after approval. The planning pass does not modify runtime code.
+
 Sprint 023 planning reset has been applied and remains the protected forward app-completion baseline.
 
 CEO Briefing is deferred, not complete, and must not block the rest of the app.
 
 ## Active Sprint
 
-`planning/sprints/030-lightweight-ui-smoke-coverage-and-label-consistency/`
+`planning/sprints/031-core-app-polish-and-task-flow-hardening/`
 
 ## Next Action
 
-Review Sprint 030 closeout results and decide whether to stage, commit, and push.
+Before any Sprint 031 implementation, read the required planning/docs stack and summarize scope, expected files, validation, blockers, CEO Briefing protection, and runtime-surface boundaries for approval.
 
 ## Forward Context
 
 Sprint 029 applies narrow runtime polish for bottom navigation active-state clarity, Dashboard/Home return paths, Assistant reachability, and empty/fallback copy across the existing Vite React shell. The sprint keeps Sprint 023 app-completion reset protected and keeps CEO Briefing deferred.
+
+Sprint 031 should preserve the Sprint 023 app-completion reset and Sprint 030 smoke-validation baseline while looking only for confirmed small polish issues in Home / Dashboard, Assistant / Voice Entry, Tasks, Notifications, Calendar, Finance, and Knowledge Base.
 
 ## Recently Completed
 
@@ -48,6 +56,12 @@ Sprint 029 applies narrow runtime polish for bottom navigation active-state clar
 
 ## Active Focus
 
+Sprint 031 planning/docs are now in place for a future implementation pass. The sprint must not start implementation until the Builder has inspected the required files, summarized the plan, and received explicit approval.
+
+Sprint 031 implementation, if approved later, should make the smallest safe confirmed UI/copy/navigation/task-flow changes only. It must not change architecture, storage, dependencies, backend, Firebase, Hermes, packages, native build surfaces, release/deployment files, auth, database behavior, live AI behavior, FlutterFlow exports, or CEO Briefing.
+
+CEO Briefing remains out of scope. `references/flutterflow/sprint-009/ceo-briefing.png` must remain absent unless a future owner-approved evidence pass captures real proof.
+
 Sprint 030 inspected the current app shell and found no clean existing web UI smoke-test tooling beyond `npm run lint` and `npm run build`. Automated smoke coverage was not added because the repo has no current web test harness and the sprint avoids dependency churn.
 
 The implementation keeps the runtime change narrow: Notifications empty-state copy now uses `Event notifications` instead of `Event alerts`. Existing Knowledge Base labels already align with the Sprint 030 rule: `Knowledge Base` for full feature copy and `Knowledge` for compact bottom navigation.
@@ -60,9 +74,9 @@ Live speech capture was not completed because the browser reported microphone pe
 
 ## Next Actions
 
-1. Review Sprint 030 changed-file surface.
-2. Confirm whether live speech capture should remain deferred until microphone permission is available.
-3. Stage, commit, and push only after approval.
+1. Review Sprint 031 planning/docs application.
+2. If implementation is requested later, perform the required read-before-implementation summary and wait for approval.
+3. Preserve typed Assistant capture to Tasks and preserve the speech capture path by live smoke testing or code inspection.
 4. Keep CEO Briefing deferred and untouched.
 
 ## Out of Scope

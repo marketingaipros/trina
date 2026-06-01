@@ -375,6 +375,64 @@ Protected validation:
 - `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
 - Do not mark CEO Briefing evidence complete.
 
+## Sprint 031 Core App Polish and Task-Flow Hardening Validation
+
+Sprint 031 starts with an apply-pack docs/planning step before runtime implementation. The apply-pack step must not modify runtime app files.
+
+Apply-pack validation uses docs-safe checks only:
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Required apply-pack outcome:
+
+- Sprint 031 planning folder exists.
+- Sprint 031 `requirements.md`, `blueprint.md`, `acceptance.md`, and `handoff-prompt.md` exist.
+- `planning/STATE.md` points to Sprint 031 as the active planning/docs application step.
+- Runtime app files remain unchanged.
+- CEO Briefing remains deferred and untouched.
+- No CEO Briefing screenshot evidence is created.
+- Sprint 023 app-completion reset and Sprint 030 smoke-validation baseline remain protected.
+
+Before implementation, Builder must read the required planning/docs stack and summarize:
+
+1. What Sprint 031 is supposed to accomplish.
+2. Which files it expects to modify.
+3. What tests or validation it will run.
+4. Any blockers or ambiguities.
+5. How it will protect CEO Briefing deferral.
+6. How it will avoid unrelated runtime, backend, Firebase, Hermes, package, native, build, release, deployment, auth, database, live AI, and FlutterFlow export files.
+
+Implementation validation, after explicit approval, should run:
+
+```bash
+npm run lint
+npm run build
+git diff --check
+git status --branch --short
+git diff --name-only
+git diff --cached --name-only
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Manual implementation smoke checks should verify:
+
+1. Home / Dashboard is reachable.
+2. Bottom navigation works and active state is visible.
+3. Assistant / Voice Entry is reachable.
+4. Typed Assistant capture creates a task.
+5. Captured task is visible in Tasks.
+6. Speech capture path is preserved by live test when microphone permission is available, or by code inspection when permission is blocked.
+7. Notifications copy remains consistent.
+8. Knowledge Base label consistency remains correct.
+9. Calendar and Finance empty states remain understandable.
+10. CEO Briefing remains untouched, deferred, and absent from required validation.
+
 ### Sprint 030 Implementation Notes
 
 Sprint 030 inspection found no existing web UI, browser, component, or smoke-test script in `package.json`. The only available repo validation scripts are `npm run lint`, `npm run build`, and Vite preview/dev commands; the only discovered test file is the native Android example unit test. No package or dependency files were changed.
