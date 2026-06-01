@@ -260,9 +260,15 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
             </p>
             <p className="text-sm mt-2">
               {tasks.length === 0
-                ? 'Use the plus button here, or capture a note from the Assistant on the Dashboard.'
-                : 'Switch to All Tasks or capture a new item from the Assistant on the Dashboard.'}
+                ? 'Use the plus button here, or return Home and capture a task from the Assistant.'
+                : 'Switch to All Tasks, or return Home and capture a new item from the Assistant.'}
             </p>
+            <button
+              onClick={onBack}
+              className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
+            >
+              Back Home
+            </button>
           </div>
         ) : (
           filteredTasks.map((task) => (

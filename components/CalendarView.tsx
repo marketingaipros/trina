@@ -266,8 +266,17 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
         </h3>
 
         {selectedEvents.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-12 text-gray-400">
-            <p className="text-sm">No events scheduled</p>
+          <div className="flex flex-col items-center justify-center py-12 text-center text-gray-400 px-8">
+            <p className="text-sm font-bold text-gray-500">No events scheduled</p>
+            <p className="text-xs mt-2">
+              Add an event here when you want this local calendar to track meetings, reminders, or daycare deadlines.
+            </p>
+            <button
+              onClick={() => { setIsAdding(true); setNewDate(selectedDate); }}
+              className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
+            >
+              Add Event
+            </button>
           </div>
         ) : (
           selectedEvents.map((event) => {

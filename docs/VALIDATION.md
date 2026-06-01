@@ -246,6 +246,67 @@ Required validation outcome:
 - Correct Sprint 028 pack exists with a single `.md` extension.
 - Sprint 028 folder contains `requirements.md`, `blueprint.md`, `acceptance.md`, and `handoff-prompt.md`.
 
+## Sprint 029 Core App Navigation and Empty-State Polish Validation
+
+Sprint 029 starts with an apply-pack docs/planning step before runtime implementation. The apply-pack step must not modify runtime app files.
+
+Apply-pack validation uses docs-safe checks only:
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Required apply-pack outcome:
+
+- Sprint 029 planning folder exists.
+- Sprint 029 `requirements.md`, `blueprint.md`, `acceptance.md`, and `handoff-prompt.md` exist.
+- `planning/STATE.md` points to Sprint 029 as the active planning/docs application step.
+- Runtime app files remain unchanged.
+- CEO Briefing remains deferred and untouched.
+- No CEO Briefing screenshot evidence is created.
+- Sprint 023 app-completion reset remains protected.
+
+Implementation validation, after explicit approval, should run:
+
+```bash
+npm run lint
+npm run build
+git diff --check
+git status --branch --short
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Manual implementation smoke checks should verify:
+
+1. Dashboard/Home loads without runtime errors.
+2. Bottom navigation routes to Home, Tasks, Notifications/Alerts, Calendar, Finance, and Knowledge Base/Context as currently named.
+3. Active bottom navigation state matches the visible destination.
+4. Dashboard exposes Assistant / Voice Entry.
+5. Typed Assistant capture saves a task and opens or updates Tasks visibility.
+6. Speech transcript capture still follows the existing capture path if browser support is present.
+7. Tasks shows captured items.
+8. Tasks empty state is useful when no tasks exist.
+9. Notifications empty/fallback state is useful when no notifications exist or browser notifications are unavailable.
+10. Calendar empty/fallback state is useful when no events exist.
+11. Finance empty/fallback state is useful when live/real data is unavailable.
+12. Knowledge Base empty/fallback state is useful when no context has been added.
+13. Return-to-Dashboard/Home paths work from primary screens.
+14. CEO Briefing remains deferred and is not part of the validation pass.
+
+Sprint 029 implementation target:
+
+- Bottom navigation keeps Home, Tasks, Finance, Calendar, Notifications, and Knowledge reachable with clearer active state styling.
+- Dashboard keeps Assistant / Voice Entry reachable.
+- Typed Assistant capture continues to save local tasks and open Tasks.
+- Existing speech transcript capture continues to use the same local task path when browser support is present.
+- Tasks, Notifications, Calendar, Finance, and Knowledge Base provide clearer empty or fallback copy.
+- Return-to-Dashboard/Home affordances remain available from primary screens.
+- CEO Briefing remains untouched and deferred.
+
 ## Sprint 026 Implementation Notes
 
 Implemented validation target:

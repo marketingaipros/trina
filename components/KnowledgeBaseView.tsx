@@ -97,7 +97,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
 
   const toggleRecording = () => {
     if (!recognitionRef.current) {
-      alert("Speech recognition is not supported in this browser.");
+      setSearchError("Speech recognition is not supported in this browser. You can still type your question.");
       return;
     }
 
@@ -402,9 +402,18 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Loading Vault...</p>
           </div>
         ) : documents.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 text-gray-400 opacity-40">
-            <FileText size={64} strokeWidth={1} className="mb-4" />
-            <p className="font-bold uppercase tracking-widest text-xs">Knowledge Base Empty</p>
+          <div className="flex flex-col items-center justify-center py-20 text-center text-gray-400 px-8">
+            <FileText size={64} strokeWidth={1} className="mb-4 opacity-30" />
+            <p className="font-bold uppercase tracking-widest text-xs text-gray-500">Knowledge Base Empty</p>
+            <p className="text-xs mt-2 leading-relaxed">
+              Upload daycare docs, notes, or policies when you want Barbie to search them here. Until then, this screen stays ready without pretending knowledge has been indexed.
+            </p>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
+            >
+              Upload File
+            </button>
           </div>
         ) : (
           documents.map((doc) => (

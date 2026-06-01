@@ -13,8 +13,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentMode, onNavigate }) => {
     { mode: AppMode.TASKS, icon: CheckSquare, label: 'Tasks' },
     { mode: AppMode.FINANCE, icon: DollarSign, label: 'Finance' },
     { mode: AppMode.CALENDAR, icon: CalendarDays, label: 'Calendar' },
-    { mode: AppMode.NOTIFICATIONS, icon: Bell, label: 'Alerts' },
-    { mode: AppMode.KNOWLEDGE_BASE, icon: BookOpen, label: 'Context' },
+    { mode: AppMode.NOTIFICATIONS, icon: Bell, label: 'Notifications' },
+    { mode: AppMode.KNOWLEDGE_BASE, icon: BookOpen, label: 'Knowledge' },
   ];
 
   return (
@@ -27,12 +27,18 @@ const Navigation: React.FC<NavigationProps> = ({ currentMode, onNavigate }) => {
               key={item.mode}
               onClick={() => onNavigate(item.mode)}
               aria-current={isActive ? 'page' : undefined}
-              className={`flex flex-col items-center justify-center w-full h-full space-y-1 rounded-2xl transition-colors ${
-                isActive ? 'bg-pink-50 text-pink-600' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+              aria-label={`Open ${item.label}`}
+              title={item.label}
+              className={`flex flex-col items-center justify-center w-full h-14 space-y-1 rounded-2xl transition-all border ${
+                isActive
+                  ? 'bg-pink-50 text-pink-600 border-pink-200 shadow-sm'
+                  : 'border-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-700'
               }`}
             >
               <item.icon size={20} strokeWidth={isActive ? 2.5 : 2} />
-              <span className="text-[10px] font-medium leading-none text-center">{item.label}</span>
+              <span className={`text-[9px] leading-none text-center max-w-full truncate ${isActive ? 'font-black' : 'font-medium'}`}>
+                {item.label}
+              </span>
             </button>
           );
         })}

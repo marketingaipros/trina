@@ -40,10 +40,16 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
         {notifications.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
             <Bell size={48} className="mb-4 opacity-20" />
-            <p className="text-sm">No active notifications</p>
+            <p className="text-sm font-bold text-gray-500">No active notifications</p>
             <p className="text-xs mt-1 text-center px-6">
-              Event alerts and reminders will appear here. Captured Assistant tasks are saved in Tasks.
+              Event alerts and reminders will appear here. Browser notifications can be unavailable or blocked, but in-app reminders and captured Assistant tasks still stay visible.
             </p>
+            <button
+              onClick={onBack}
+              className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
+            >
+              Back Home
+            </button>
           </div>
         ) : (
           notifications.map((notif) => (

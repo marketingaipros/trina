@@ -39,6 +39,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   const NavButton = ({ icon: Icon, mode, label }: { icon: any, mode: AppMode, label: string }) => (
     <button 
       onClick={() => onNavigate(mode)}
+      aria-label={`Open ${label}`}
+      title={label}
       className="w-14 h-14 flex items-center justify-center bg-white border border-pink-100 rounded-2xl shadow-md text-pink-300 hover:text-pink-500 hover:border-pink-200 transition-all active:scale-90 relative group"
     >
       <Icon size={24} />
