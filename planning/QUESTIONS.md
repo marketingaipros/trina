@@ -171,3 +171,11 @@
 | 2026-05-31 | Can microphone capture be live-tested in the available browser/device environment? | Builder / Operator | Open | If permission is unavailable, Codex should document the blocker and use code inspection only. |
 | 2026-05-31 | Are hover-only edit/delete controls usable on touch/mobile after Sprint 031? | Builder | Answered | No. Sprint 032 found no task edit/delete controls visually or in the DOM. `components/TasksView.tsx` renders task toggle, title, priority, and deadline only. |
 | 2026-05-31 | Are any remaining accessibility issues confirmed strongly enough to become Sprint 033 scope? | Architect / Builder | Answered | Yes. Add explicit accessible task edit/delete controls, add or confirm delete plumbing from parent state, and preserve typed Assistant capture, task toggle behavior, existing task display, and CEO Briefing protection. |
+
+## Sprint 033 Open Questions
+
+| Date | Question | Owner | Status | Notes |
+|---|---|---|---|---|
+| 2026-06-01 | Does the existing task type include only title/status/deadline/priority, or additional fields that edit mode must preserve? | Builder | Answered | `types.ts` defines title, priority, deadline, status, delegatable, and createdAt. Sprint 033 edits title only and preserves all other fields. |
+| 2026-06-01 | Does the current UI already have a reusable button/input pattern that task edit/delete controls should follow? | Builder | Answered | Sprint 033 reused local TasksView button/input styling and lucide icon-button conventions already present in the component. |
+| 2026-06-01 | Should delete use native confirmation, or is immediate delete acceptable for MVP? | Architect / Builder | Answered | Sprint 033 uses native confirmation as the smallest accessible confirmation approach before deleting by task ID. |

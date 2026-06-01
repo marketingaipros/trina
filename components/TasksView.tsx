@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Task, TaskStatus, Priority, CalendarEvent } from '../types';
-import { Plus, Check, Clock, ArrowLeft, CalendarDays, Sparkles, Loader2, X } from 'lucide-react';
+import { Plus, Check, Clock, ArrowLeft, CalendarDays, Sparkles, Loader2, X, Pencil, Trash2 } from 'lucide-react';
 import { getLocalISODate } from '../utils/dateUtils';
 import { getTaskPrioritization } from '../services/geminiService';
 import ReactMarkdown from 'react-markdown';
@@ -10,15 +10,18 @@ interface TasksViewProps {
   events: CalendarEvent[];
   onAddTask: (task: Omit<Task, 'id' | 'createdAt'>) => void;
   onUpdateTask: (task: Task) => void;
+  onDeleteTask: (taskId: string) => void;
   onBack: () => void;
 }
 
-const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdateTask, onBack }) => {
+const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdateTask, onDeleteTask, onBack }) => {
   const [filter, setFilter] = useState<'all' | 'high' | 'todo'>('todo');
   const [isAdding, setIsAdding] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskPriority, setNewTaskPriority] = useState<Priority>(Priority.MEDIUM);
   const [newTaskDeadline, setNewTaskDeadline] = useState('');
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
+  const [editingTitle, setEditingTitle] = useState('');
   const [insights, setInsights] = useState<string | null>(null);
   const [isLoadingInsights, setIsLoadingInsights] = useState(false);
 
@@ -63,6 +66,35 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
       ...task,
       status: task.status === TaskStatus.TODO ? TaskStatus.DONE : TaskStatus.TODO
     });
+  };
+
+  const startEditing = (task: Task) => {
+    setEditingTaskId(task.id);
+    setEditingTitle(task.title);
+  };
+
+  const cancelEditing = () => {
+    setEditingTaskId(null);
+    setEditingTitle('');
+  };
+
+  const saveEditing = (task: Task) => {
+    const title = editingTitle.trim();
+    if (!title) return;
+    onUpdateTask({
+      ...task,
+      title,
+    });
+    cancelEditing();
+  };
+
+  const deleteTask = (task: Task) => {
+    const shouldDelete = window.confirm(`Delete task "${task.title}"?`);
+    if (!shouldDelete) return;
+    if (editingTaskId === task.id) {
+      cancelEditing();
+    }
+    onDeleteTask(task.id);
   };
 
   const formatTime = (time?: string) => {
@@ -255,7 +287,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
       </div>
 
       {/* Task List */}
-      <div className="flex-1 space-y-3 overflow-y-auto p-4 no-scrollbar">
+      <div className="flex-1 space-y-3 overflow-y-auto px-4 pt-4 pb-24 no-scrollbar">
         {filteredTasks.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center text-gray-400 px-8">
             <p className="font-bold text-gray-500">
@@ -274,10 +306,13 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
             </button>
           </div>
         ) : (
-          filteredTasks.map((task) => (
+          filteredTasks.map((task) => {
+            const isEditing = editingTaskId === task.id;
+
+            return (
             <div
               key={task.id}
-              className={`group flex items-center p-4 bg-white rounded-xl border transition-all ${
+              className={`group flex items-start p-4 bg-white rounded-xl border transition-all ${
                 task.status === TaskStatus.DONE
                   ? 'border-gray-100 opacity-60'
                   : isOverdue(task.deadline)
@@ -299,11 +334,50 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
               </button>
               
               <div className="flex-1 min-w-0">
-                <p className={`text-base font-medium truncate ${
-                  task.status === TaskStatus.DONE ? 'text-gray-500 line-through' : 'text-gray-900'
-                }`}>
-                  {task.title}
-                </p>
+                {isEditing ? (
+                  <div className="space-y-3">
+                    <label htmlFor={`edit-task-title-${task.id}`} className="sr-only">
+                      Edit task title
+                    </label>
+                    <input
+                      id={`edit-task-title-${task.id}`}
+                      type="text"
+                      value={editingTitle}
+                      onChange={(e) => setEditingTitle(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') saveEditing(task);
+                        if (e.key === 'Escape') cancelEditing();
+                      }}
+                      className="w-full px-3 py-2 border border-indigo-200 rounded-lg text-base font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                      autoFocus
+                    />
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => saveEditing(task)}
+                        disabled={!editingTitle.trim()}
+                        aria-label={`Save edits to task: ${task.title}`}
+                        className="px-3 py-1.5 bg-indigo-600 text-white text-xs font-bold rounded-lg disabled:opacity-50"
+                      >
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        onClick={cancelEditing}
+                        aria-label={`Cancel editing task: ${task.title}`}
+                        className="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs font-bold rounded-lg"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <p className={`text-base font-medium truncate ${
+                    task.status === TaskStatus.DONE ? 'text-gray-500 line-through' : 'text-gray-900'
+                  }`}>
+                    {task.title}
+                  </p>
+                )}
                 <div className="flex items-center gap-2 mt-1 flex-wrap">
                   <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded uppercase ${
                     task.priority === Priority.HIGH ? 'bg-red-100 text-red-600' :
@@ -325,8 +399,29 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                   )}
                 </div>
               </div>
+              <div className="ml-3 flex flex-shrink-0 items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => startEditing(task)}
+                  aria-label={`Edit task: ${task.title}`}
+                  title={`Edit task: ${task.title}`}
+                  className="p-2 text-gray-400 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                >
+                  <Pencil size={16} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => deleteTask(task)}
+                  aria-label={`Delete task: ${task.title}`}
+                  title={`Delete task: ${task.title}`}
+                  className="p-2 text-gray-400 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-200"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
             </div>
-          ))
+            );
+          })
         )}
       </div>
     </div>

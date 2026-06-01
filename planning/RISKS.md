@@ -197,3 +197,13 @@
 | Accessibility labels may exist in code but still be awkward in real browser use. | Medium | Medium | Perform practical inspection of buttons, names, labels, and focus flow where possible. | Open |
 | CEO Briefing could re-enter scope by accident due to old planning history. | Low | High | Keep CEO Briefing explicitly protected and absent. | Open |
 | Task edit/delete controls are missing from the Tasks UI. | High | Medium | Carry forward to Sprint 033 candidate work: add explicit accessible edit/delete controls, confirm delete plumbing from parent state, and preserve capture/toggle behavior. | Confirmed |
+
+## Sprint 033 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Delete plumbing may require parent state changes. | Medium | Medium | Keep delete as a simple state update by task ID and validate visible task removal. | Mitigated |
+| Edit UI may expand beyond MVP. | Medium | Medium | Edit title only unless existing task model and UI patterns safely support more fields. | Mitigated |
+| Hover-only controls may fail mobile/touch validation. | High | Medium | Make edit/delete visible or touch-accessible without hover-only interaction. | Mitigated |
+| Task capture could regress if parent state is changed incorrectly. | Medium | High | Validate typed Assistant capture, task visibility, and task toggle after implementation. | Mitigated |
+| CEO Briefing could be accidentally touched by broad commands. | Low | High | Keep CEO Briefing out of scope and run the `ceo-briefing.png` absence guard. | Mitigated |

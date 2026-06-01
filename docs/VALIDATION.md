@@ -374,6 +374,112 @@ Sprint 033 candidate:
 references/flutterflow/sprint-009/ceo-briefing.png
 ```
 
+## Sprint 033 Accessible Task Edit/Delete Controls Validation
+
+Sprint 033 starts with a planning/docs application checkpoint before runtime implementation. The apply-pack step must not modify runtime app files.
+
+### Planning/Docs Checkpoint Commands
+
+Run:
+
+```bash
+git diff --check
+git status --branch --short
+git diff --name-only
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Required planning/docs outcome:
+
+- Sprint 033 planning folder exists.
+- Sprint 033 `requirements.md`, `blueprint.md`, `acceptance.md`, and `handoff-prompt.md` exist.
+- `planning/STATE.md` points to Sprint 033 as the current planning checkpoint.
+- Runtime app files remain unchanged.
+- `components/TasksView.tsx` remains unchanged during planning/docs application.
+- `App.tsx` remains unchanged during planning/docs application.
+- CEO Briefing remains deferred and untouched.
+- No CEO Briefing screenshot evidence is created.
+
+### Implementation Commands After Approval
+
+After explicit runtime approval, run:
+
+```bash
+npm run lint
+npm run build
+git diff --check
+git status --branch --short
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Browser Validation After Approval
+
+Run the local app with:
+
+```bash
+npm run dev
+```
+
+Validate:
+
+1. Dashboard/Home loads.
+2. Bottom navigation reaches Dashboard/Home, Assistant, Tasks, Notifications, Calendar, Finance, and Knowledge Base.
+3. Typed Assistant task capture creates a visible task.
+4. Empty Assistant input cannot be captured or sent.
+5. Existing task toggle behavior still works.
+6. Each visible task has an Edit control in the DOM.
+7. Each visible task has a Delete control in the DOM.
+8. Edit can be opened, saved, and canceled.
+9. Save updates the existing task instead of creating a duplicate.
+10. Cancel leaves the task unchanged.
+11. Delete removes the task from the visible list.
+12. Edit/delete controls are keyboard reachable where practical.
+13. Edit/delete controls are touch usable in responsive/mobile emulation where practical.
+14. Edit/delete controls and Save/Cancel controls have accessible names.
+15. CEO Briefing remains untouched and `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+
+### Sprint 033 Validation Results
+
+Date: 2026-06-01
+
+Automated validation:
+
+- `npm run lint`: Pass.
+- `npm run build`: Pass with known existing Vite warnings for mixed static/dynamic `services/authService.ts` import and a production JavaScript chunk larger than the default 500 kB warning threshold.
+- `git diff --check`: Pass.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+
+Browser validation:
+
+- Dashboard/Home loaded.
+- Bottom navigation reached Home, Tasks, Finance, Calendar, Notifications, and Knowledge.
+- Assistant / Voice Entry remained reachable from Home.
+- Empty Assistant input kept Capture and Send disabled.
+- Typed Assistant capture created a visible task.
+- Existing task filters kept the new task visible under All Tasks and To Do.
+- Each visible task had explicit Edit and Delete controls in the DOM.
+- Edit/Delete controls had accessible labels and were keyboard reachable as native buttons.
+- Edit opened inline title editing for the selected task.
+- Save updated the same task without creating a duplicate.
+- Cancel left the task unchanged.
+- Enter saved while editing.
+- Escape canceled while editing.
+- Existing task toggle still worked.
+- Delete used a native confirmation prompt.
+- Confirmed delete removed the task from the visible list.
+- Cancel-delete behavior was verified by code inspection of the native confirm guard; browser automation accepted the native confirm dialog during live interaction.
+- Responsive/mobile viewport validation at 390x844 showed task controls remained present.
+
+Implementation note:
+
+- Browser validation found bottom-row task controls could be overlapped by the fixed bottom navigation before normal scroll targeting. Sprint 033 added bottom padding to the task list so controls remain reachable.
+
+Protected scope:
+
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- No FlutterFlow, Firebase, backend, Hermes, package/dependency, native, build, release, generated, or deployment files were modified.
+
 ## Sprint 028 Closeout and Forward-State Validation
 
 Sprint 028 is a planning/docs cleanup and forward-state correction sprint. It must not start runtime implementation.

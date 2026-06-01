@@ -781,6 +781,7 @@ const App: React.FC = () => {
             events={events}
             onAddTask={(t) => setTasks(prev => [...prev, Storage.addTask(t)])}
             onUpdateTask={(t) => { Storage.updateTask(t); setTasks(Storage.getTasks()); }}
+            onDeleteTask={(taskId) => { Storage.deleteTask(taskId); setTasks(Storage.getTasks()); }}
             onBack={() => setCurrentMode(AppMode.DASHBOARD)}
           />
         );
