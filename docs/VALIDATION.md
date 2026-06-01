@@ -271,6 +271,55 @@ Expected browser proof:
 - The card has the `Reminder` pill and uses the existing reminder styling.
 - Removing the query parameter restores normal live-data behavior.
 
+## Sprint 037 — Fixture Guard and Core Regression Validation
+
+Sprint 037 validates that the Sprint 036 local reminder notification fixture remains safe, repeatable, and limited to local validation.
+
+### Local fixture paths
+
+Dashboard badge proof:
+
+```text
+/?trinaReminderFixture=1
+```
+
+Direct populated Notifications proof:
+
+```text
+/?trinaReminderFixture=1&trinaStart=notifications
+```
+
+Expected populated notification content:
+
+- `Fixture reminder`
+- `Local validation reminder for Sprint 036.`
+- `Reminder` pill
+
+### Empty state proof
+
+Open Notifications without `trinaReminderFixture=1` and confirm the empty/fallback copy remains readable.
+
+### Core regression checks
+
+- Dashboard/Home reachable.
+- Notifications reachable.
+- Dashboard notification count aligns with the Notifications list when fixture is active.
+- Assistant typed task capture creates a visible task.
+- Tasks view renders created tasks.
+- Bottom nav active state works.
+- Mobile viewport around `390x844` has no fixed bottom-nav overlap.
+
+### Required commands
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git diff --name-only
+git status --branch --short
+```
+
 ## Sprint 035 - Notification Reminder Flow Hardening
 
 Sprint 035 validates the notification and reminder experience after the recent task-flow work.
