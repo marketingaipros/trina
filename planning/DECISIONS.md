@@ -182,3 +182,10 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 |---|---|---|---|
 | 2026-05-31 | File contents win over filenames when an Architect Pack label conflicts with its contents. | A mislabeled Sprint 028 pack contained Sprint 023 content and could send Builders back into stale work. | Future pack application must inspect contents before applying a filename-based sprint assumption. |
 | 2026-05-31 | CEO Briefing remains deferred and non-blocking during Sprint 028 closeout. | Sprint 028 is a planning/docs cleanup and forward-state correction sprint, not CEO Briefing work. | The next implementation target stays focused on core app shell polish. |
+
+## Sprint 030 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-05-31 | Use `Knowledge Base` as the full feature name and `Knowledge` only as a compact navigation label when space requires it. Do not use `Context` as the user-facing label for this feature unless a future sprint deliberately changes the product language. | Sprint 029 improved navigation labels but created a follow-up need to make product copy consistent. | Sprint 030 should align visible labels, empty-state copy, validation notes, and smoke checks around one product term. |
+| 2026-05-31 | Sprint 030 should add lightweight UI smoke confidence without introducing a heavy E2E testing system unless the repo already supports it cleanly. | The project needs confidence, not a test framework detour. | Prefer simple scripts, existing test setup, or documented manual smoke protocol over large test tooling changes. |

@@ -307,6 +307,74 @@ Sprint 029 implementation target:
 - Return-to-Dashboard/Home affordances remain available from primary screens.
 - CEO Briefing remains untouched and deferred.
 
+## Sprint 030 Lightweight UI Smoke Coverage and Label Consistency Validation
+
+Sprint 030 starts with an apply-pack docs/planning step before runtime or smoke implementation. The apply-pack step must not modify runtime app files.
+
+Apply-pack validation uses docs-safe checks only:
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --stat
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Required apply-pack outcome:
+
+- Sprint 030 planning folder exists.
+- Sprint 030 `requirements.md`, `blueprint.md`, `acceptance.md`, and `handoff-prompt.md` exist.
+- `planning/STATE.md` points to Sprint 030 as the active planning/docs application step.
+- Runtime app files remain unchanged.
+- CEO Briefing remains deferred and untouched.
+- No CEO Briefing screenshot evidence is created.
+- Sprint 023 app-completion reset remains protected.
+
+Implementation validation, after explicit approval, should run:
+
+```bash
+npm run lint
+npm run build
+git diff --check
+git status --branch --short
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Validate manually or with lightweight existing tooling:
+
+1. Dashboard/Home is reachable.
+2. Bottom navigation reaches:
+   - Tasks
+   - Finance
+   - Calendar
+   - Notifications
+   - Knowledge Base / Knowledge
+   - Home
+3. Active bottom navigation state is visible and accurate.
+4. Assistant / Voice Entry is reachable from Dashboard.
+5. Typed Assistant capture creates a task.
+6. Captured task appears in Tasks.
+7. Empty/fallback states remain clear for:
+   - Tasks
+   - Notifications
+   - Calendar
+   - Finance
+   - Knowledge Base
+8. Knowledge Base naming is consistent:
+   - Use `Knowledge Base` for full feature copy.
+   - Use `Knowledge` only where compact nav labels are required.
+   - Do not use `Context` as the user-facing label unless future scope changes it.
+9. Speech capture path is verified in one of two ways:
+   - Live-tested with microphone permission granted, or
+   - Preserved by code inspection with a clear note that local browser permission prevented live testing.
+
+Protected validation:
+
+- CEO Briefing remains deferred.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+- Do not mark CEO Briefing evidence complete.
+
 ## Sprint 026 Implementation Notes
 
 Implemented validation target:

@@ -167,3 +167,12 @@
 | Mislabeled Architect Pack content could be applied because the filename looks correct. | Medium | High | Inspect pack contents before application and keep only the corrected single-extension Sprint 028 pack. | Mitigated |
 | Duplicate Sprint 028 pack names could confuse future Builder handoffs. | Medium | Medium | Remove the bad `.md.md` duplicate and keep the corrected `.md` pack as the source of truth. | Mitigated |
 | Cleanup work could drift back into CEO Briefing instead of app completion. | Medium | High | Keep CEO Briefing deferred, untouched, and non-blocking in Sprint 028 planning and validation. | Mitigated |
+
+## Sprint 030 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Speech capture remains browser-permission dependent and may not be testable in every local environment. | Medium | Medium | Add a documented verification path and preserve typed capture as the reliable fallback. | Open |
+| Adding UI smoke coverage could expand into toolchain churn. | Medium | Medium | Use existing tooling first. Avoid new heavy dependencies unless absolutely necessary and explicitly justified. | Open |
+| Feature labels may drift between `Knowledge Base`, `Knowledge`, and `Context`. | Medium | Low | Standardize copy in Sprint 030 and document the label rule in decisions/validation. | Open |
+| CEO Briefing could re-enter scope through old evidence references. | Low | High | Keep absence guard and protected scope language in validation and handoff. | Open |

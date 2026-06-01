@@ -2,23 +2,25 @@
 
 ## Current Sprint
 
-Sprint 029 - `029-core-app-navigation-and-empty-state-polish`
+Sprint 030 - `030-lightweight-ui-smoke-coverage-and-label-consistency`
 
 ## Current Status
 
-Sprint 029 implementation validation passed for core app navigation and empty-state polish.
+Sprint 029 is complete, committed, and pushed.
 
-Sprint 023 planning reset has been applied and remains the protected forward app-completion baseline. Sprint 027 runtime implementation has been reviewed as the immediate pre-implementation context for the next app shell polish step. Sprint 028 corrected the planning handoff after the mislabeled Sprint 028 pack issue.
+Sprint 030 is ready for planning/docs application. The sprint should add lightweight confidence around the core app shell without returning to CEO Briefing or expanding into backend/build/release work.
+
+Sprint 023 planning reset has been applied and remains the protected forward app-completion baseline.
 
 CEO Briefing is deferred, not complete, and must not block the rest of the app.
 
 ## Active Sprint
 
-`planning/sprints/029-core-app-navigation-and-empty-state-polish/`
+`planning/sprints/030-lightweight-ui-smoke-coverage-and-label-consistency/`
 
 ## Next Action
 
-Finalize Sprint 029 Git checkpoint, then prepare Sprint 030 for lightweight UI smoke coverage, label consistency, and speech capture verification.
+Read Sprint 030 files and summarize before implementation.
 
 ## Forward Context
 
@@ -26,6 +28,11 @@ Sprint 029 applies narrow runtime polish for bottom navigation active-state clar
 
 ## Recently Completed
 
+- Sprint 029 polished bottom navigation, Dashboard reachability, Assistant / Voice Entry reachability, and empty/fallback states.
+- Sprint 029 preserved typed Assistant capture to Tasks.
+- Sprint 029 preserved speech capture path by avoiding `VoiceDashboard.tsx` changes, though live speech capture was not fully tested because the browser environment denied microphone permission.
+- Sprint 029 passed `npm run lint`, `npm run build`, `git diff --check`, and the CEO Briefing evidence absence guard.
+- Sprint 029 was committed and pushed as `f525b9d`.
 - Sprint 023 reset the project direction so app completion can move forward.
 - Sprint 023 neutralized stale CEO Briefing blocker language.
 - Sprint 024 applied non-CEO runtime stabilization within the approved scope.
@@ -39,7 +46,15 @@ Sprint 029 applies narrow runtime polish for bottom navigation active-state clar
 
 ## Active Focus
 
-Sprint 029 validation passed with `npm run lint`, `npm run build`, and `git diff --check`. Build completed with existing Vite warnings. `references/flutterflow/sprint-009/ceo-briefing.png` remains absent. CEO Briefing remains deferred and untouched.
+Create and apply Sprint 030 planning docs, then prepare a read-and-summarize checkpoint before any implementation.
+
+## Next Actions
+
+1. Apply the Sprint 030 Architect Pack to planning/docs.
+2. Have Codex read Sprint 030 files and summarize before implementation.
+3. Implement narrow runtime/test/docs changes only after summary approval.
+4. Validate that core navigation, typed Assistant capture, and speech capture verification path are covered.
+5. Keep CEO Briefing deferred and untouched.
 
 ## Out of Scope
 
@@ -55,7 +70,9 @@ Sprint 029 validation passed with `npm run lint`, `npm run build`, and `git diff
 
 ## Blockers
 
-No blocker prevents functional app stabilization planning from moving forward.
+Speech capture live testing may require a browser/device with microphone permission granted.
+
+No blocker prevents lightweight UI smoke coverage planning from moving forward.
 
 Deferred:
 

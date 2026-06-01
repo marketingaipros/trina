@@ -148,3 +148,10 @@
 | Does the app currently have a Settings screen, or only settings-equivalent controls? | Builder | Sprint 024 audit summary | Open | Builder should inspect current files before implementation. |
 | Are Finance and Calendar intended to be static/mock in the current prototype, or partially functional? | Builder/Architect | Sprint 024 audit summary | Open | Builder should report current behavior first. |
 | Are browser notifications required to actually fire in Sprint 024, or only avoid breaking the app? | Architect/User | Sprint 024 implementation approval if ambiguous | Open | Default: stabilize existing reminder popup/notification behavior without adding backend scheduling. |
+
+## Sprint 030 Open Questions
+
+| Date | Question | Owner | Status | Notes |
+|---|---|---|---|---|
+| 2026-05-31 | Can speech capture be live-tested in a browser/device where microphone permission is granted? | Builder / Operator | Open | If not available during Sprint 030, document the limitation and preserve the existing speech path without risky changes. |
+| 2026-05-31 | Does the repo already include lightweight UI/browser test tooling that can be reused without adding a new framework? | Builder | Open | Builder should inspect before implementation and avoid dependency churn. |
