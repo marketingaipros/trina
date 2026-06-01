@@ -179,3 +179,12 @@
 | 2026-06-01 | Does the existing task type include only title/status/deadline/priority, or additional fields that edit mode must preserve? | Builder | Answered | `types.ts` defines title, priority, deadline, status, delegatable, and createdAt. Sprint 033 edits title only and preserves all other fields. |
 | 2026-06-01 | Does the current UI already have a reusable button/input pattern that task edit/delete controls should follow? | Builder | Answered | Sprint 033 reused local TasksView button/input styling and lucide icon-button conventions already present in the component. |
 | 2026-06-01 | Should delete use native confirmation, or is immediate delete acceptable for MVP? | Architect / Builder | Answered | Sprint 033 uses native confirmation as the smallest accessible confirmation approach before deleting by task ID. |
+
+## Sprint 034 Open Questions
+
+| Date | Question | Owner | Status | Notes |
+|---|---|---|---|---|
+| 2026-06-01 | Are there any remaining task-flow regressions after Sprint 033 edit/delete controls? | Builder | Answered | No concrete runtime acceptance failure was found during Sprint 034 inspection and browser validation. No runtime changes were needed. |
+| 2026-06-01 | Does the bottom navigation still leave enough room for task controls on mobile after Sprint 033 padding fix? | Builder | Answered | Yes. Mobile browser validation showed task edit/delete controls visible and usable above the fixed bottom navigation. |
+| 2026-06-01 | Should Sprint 034 introduce new task features such as due dates, reminders, priorities, or categories? | Architect / User | Answered | No. Sprint 034 is regression hardening only. New task features belong in a later sprint. |
+| 2026-06-01 | Should CEO Briefing be touched in Sprint 034? | Architect / User | Answered | No. CEO Briefing remains deferred and protected. |

@@ -2,59 +2,44 @@
 
 ## Current Sprint
 
-Sprint 033 - Accessible Task Edit/Delete Controls
+Sprint 034 - Task Flow Regression Hardening
 
 ## Current Status
 
-Sprint 032 closed as a validation/reporting sprint.
+Sprint 033 was completed, committed, and pushed. It added accessible edit/delete controls for task rows/cards and preserved CEO Briefing deferral.
 
-Sprint 032 confirmed:
+Sprint 034 is a runtime hardening sprint for the task workflow. The sprint should verify and improve task flow stability across add, display, filter, toggle, edit, delete, navigation, and responsive/mobile behavior.
 
-- `npm run lint` passed.
-- `npm run build` passed with known Vite warnings.
-- `git diff --check` passed.
-- Browser validation confirmed typed Assistant task capture, task visibility, and task toggle behavior.
-- Browser validation confirmed task edit/delete controls are missing from the Tasks UI.
-- CEO Briefing stayed untouched.
-- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
-
-Sprint 033 implemented the smallest safe runtime fix for accessible task edit/delete controls.
-
-Runtime implementation touched only:
-
-- `components/TasksView.tsx`
-- `App.tsx`
-
-Sprint 033 adds visible, keyboard-reachable Edit and Delete controls for task rows/cards, inline title editing with Save and Cancel, Enter-to-save, Escape-to-cancel, native delete confirmation, and parent delete plumbing through the existing storage helper.
-
-Browser validation passed after adding bottom padding to the task list so bottom-row controls are not overlapped by the fixed bottom navigation.
+Sprint 034 inspection and browser validation found no concrete runtime acceptance failure requiring code changes. The existing Sprint 033 task-flow implementation remained stable across Assistant typed capture, task visibility, filters, toggle, edit, cancel, Enter/Escape editing, mobile controls, and fixed bottom navigation behavior.
 
 ## Recently Completed
 
 - Sprint 031 planning/docs checkpoint committed.
 - Sprint 031 runtime accessibility polish committed.
-- Core app accessibility labels/titles were improved without changing routing, task capture, speech capture, storage, backend, package files, or CEO Briefing.
 - Sprint 032 automated validation passed: `npm run lint`, `npm run build`, `git diff --check`, clean `git status --branch --short`, empty `git diff --name-only`, empty `git diff --cached --name-only`, and the CEO Briefing screenshot absence guard.
 - Sprint 032 browser validation confirmed typed Assistant task capture, task visibility, and task toggle behavior.
-- Sprint 032 browser validation confirmed missing task edit/delete controls in `components/TasksView.tsx`; this is a Sprint 033 candidate unless explicitly approved later through an Architect Pack.
-- Sprint 033 browser validation confirmed task edit, cancel, save, Enter, Escape, delete confirmation, confirmed delete, task toggle, filters, Assistant typed capture, empty input safety, core navigation, keyboard reachability, accessible labels, and responsive/mobile control presence.
-- CEO Briefing remains untouched and deferred.
-- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+- Sprint 032 browser validation confirmed missing task edit/delete controls in `components/TasksView.tsx`; this became Sprint 033 scope.
+- Sprint 033 added explicit visible task Edit/Delete controls.
+- Sprint 033 connected task delete handling through existing app/storage state.
+- Sprint 033 browser validation passed after a bottom padding fix prevented fixed navigation from overlapping bottom-row task controls.
+- Sprint 034 validation completed without runtime code changes.
+- Sprint 034 browser validation confirmed task capture, filters, edit/cancel/save/Enter/Escape, toggle, mobile control visibility, and fixed bottom-nav spacing.
+- Sprint 034 delete confirm/cancel behavior was confirmed by code inspection of the native `window.confirm` guard and delete handler; the in-app browser automation wrapper did not expose native confirm dialog control.
+- CEO Briefing remained untouched and `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
 
 ## Active Sprint Folder
 
-`planning/sprints/033-accessible-task-edit-delete-controls/`
+`planning/sprints/034-task-flow-regression-hardening/`
 
-## Next Action
+## Next Actions
 
-Sprint 033 is ready for staging approval.
+- Review Sprint 034 validation results.
+- Decide whether to stage the Sprint 034 planning/docs and validation documentation changes.
+- Use a later approved Architect Pack for any new task features or broader app work.
 
 ## Blockers
 
-- Live microphone validation depends on browser/device microphone permission.
-- Touch usability validation depends on access to a touch-capable browser or responsive mobile emulation.
-- Browser-based accessibility inspection may be limited by available tooling in the local environment.
-- Browser automation accepted the native delete confirmation dialog during live delete validation, so canceled-delete behavior was verified by code inspection of the confirm guard rather than by a native dialog cancel interaction.
+- Native browser confirm dialog accept/dismiss could not be automated through the current in-app browser wrapper during Sprint 034. Delete confirm/cancel behavior was validated by code inspection instead.
 
 ## Protected Scope
 

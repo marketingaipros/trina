@@ -207,3 +207,13 @@
 | Hover-only controls may fail mobile/touch validation. | High | Medium | Make edit/delete visible or touch-accessible without hover-only interaction. | Mitigated |
 | Task capture could regress if parent state is changed incorrectly. | Medium | High | Validate typed Assistant capture, task visibility, and task toggle after implementation. | Mitigated |
 | CEO Briefing could be accidentally touched by broad commands. | Low | High | Keep CEO Briefing out of scope and run the `ceo-briefing.png` absence guard. | Mitigated |
+
+## Sprint 034 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Task flow regressions may be introduced while polishing existing behavior. | Medium | High | Limit runtime edits to narrow task-flow fixes and validate add, toggle, edit, delete, filter, and navigation paths. | Mitigated - no runtime changes were needed. |
+| Fixed bottom navigation may overlap lower task controls on mobile or smaller screens. | Medium | Medium | Revalidate responsive/mobile behavior after Sprint 033 padding fix and avoid layout changes that reduce usable tap area. | Mitigated by browser validation. |
+| Edit/delete behavior may affect existing Assistant capture or task persistence. | Medium | High | Preserve existing task state ownership and storage patterns. Validate Assistant typed capture creates visible tasks after edits. | Mitigated - existing state/storage behavior preserved. |
+| Browser validation may miss microphone-specific behavior. | Low | Medium | Treat microphone/live speech as out of scope unless broken by task flow changes. Validate typed Assistant capture as the required path. | Accepted - typed capture validated; microphone-specific behavior remained out of scope. |
+| CEO Briefing work may accidentally re-enter scope. | Low | High | Keep CEO Briefing explicitly protected. Run absence guard before closeout. | Mitigated. |

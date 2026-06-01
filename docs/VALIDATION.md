@@ -480,6 +480,123 @@ Protected scope:
 - `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
 - No FlutterFlow, Firebase, backend, Hermes, package/dependency, native, build, release, generated, or deployment files were modified.
 
+## Sprint 034 - Task Flow Regression Hardening Validation
+
+Sprint 034 starts with a planning/docs application checkpoint before runtime implementation. The apply-pack step must not modify runtime app files.
+
+### Planning/Docs Checkpoint Commands
+
+Run:
+
+```bash
+git diff --check
+git status --branch --short
+git diff --name-only
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Required planning/docs outcome:
+
+- Sprint 034 planning folder exists.
+- Sprint 034 `requirements.md`, `blueprint.md`, `acceptance.md`, and `handoff-prompt.md` exist.
+- `planning/STATE.md` points to Sprint 034 as the current planning checkpoint.
+- Runtime app files remain unchanged.
+- CEO Briefing remains deferred and untouched.
+- No CEO Briefing screenshot evidence is created.
+
+### Implementation Commands After Approval
+
+After explicit runtime approval, run:
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git status --branch --short
+```
+
+### Browser Validation After Approval
+
+Validate:
+
+1. Dashboard/Home loads.
+2. Bottom navigation reaches core sections.
+3. Assistant / Voice Entry remains reachable.
+4. Typed Assistant capture creates a visible task.
+5. Empty Assistant input remains safe.
+6. Task list renders existing tasks.
+7. Task completion toggle works.
+8. Task filters work after adding, editing, completing, and deleting tasks.
+9. Empty states remain accurate for no tasks and filtered-out tasks.
+10. Existing Edit control remains visible, keyboard reachable, and accessible.
+11. Existing Delete control remains visible, keyboard reachable, and accessible.
+12. Edit opens inline editing for the same task.
+13. Save updates the same task without creating a duplicate.
+14. Cancel leaves the task unchanged.
+15. Enter saves where supported.
+16. Escape cancels where supported.
+17. Delete prompts before removal.
+18. Confirmed delete removes the task.
+19. Cancelled delete leaves the task unchanged where browser validation allows.
+20. Mobile/responsive view keeps task controls visible and touch usable.
+21. Bottom-row task controls are not blocked by fixed bottom navigation.
+22. CEO Briefing evidence remains absent.
+
+### Sprint 034 Validation Results
+
+Date: 2026-06-01
+
+Runtime changes:
+
+- No runtime code changes were needed.
+- Static inspection found the existing task flow still owned task state in `App.tsx`, rendered task controls in `components/TasksView.tsx`, and preserved typed Assistant capture through `components/VoiceDashboard.tsx`.
+
+Automated validation:
+
+- `npm run lint`: Pass.
+- `npm run build`: Pass with known existing Vite warnings for mixed static/dynamic `services/authService.ts` import and a production JavaScript chunk larger than the default 500 kB warning threshold.
+- `git diff --check`: Pass.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+- `git status --branch --short`: Reported in Sprint 034 closeout.
+
+Browser validation:
+
+- Dashboard/Home loaded.
+- Bottom navigation reached Home, Tasks, Finance, Calendar, Notifications, and Knowledge.
+- Assistant / Voice Entry remained reachable.
+- Empty Assistant input kept Capture disabled.
+- Typed Assistant capture created a visible task and opened Tasks.
+- Task list rendered existing tasks.
+- All Tasks and To Do filters showed the captured task.
+- High Priority filter hid the medium-priority captured task.
+- Empty/filter state remained coherent.
+- Existing Edit and Delete controls were visible and actionable.
+- Edit opened inline editing.
+- Escape canceled editing.
+- Cancel left the task unchanged.
+- Enter saved the edited title.
+- Save updated the same task without keeping the canceled draft.
+- Task complete toggle removed the task from To Do.
+- All Tasks showed the completed task.
+- Task incomplete toggle restored the to-do state.
+- Mobile viewport validation showed Edit/Delete controls visible and the Edit control click usable.
+- Mobile screenshot review showed task controls visible above the fixed bottom navigation.
+
+Delete behavior:
+
+- `components/TasksView.tsx` keeps delete behind a native `window.confirm`.
+- The cancel path returns before `onDeleteTask`.
+- The confirm path calls `onDeleteTask(task.id)`.
+- `App.tsx` handles delete through `Storage.deleteTask(taskId)` followed by `setTasks(Storage.getTasks())`.
+- Native confirm accept/dismiss could not be automated through the current in-app browser wrapper, so delete confirm/cancel behavior was validated by code inspection.
+
+Protected scope:
+
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- No backend, Firebase, Hermes, package/dependency, native, build, release, deployment, FlutterFlow export, auth, database, or live AI files were modified.
+
 ## Sprint 028 Closeout and Forward-State Validation
 
 Sprint 028 is a planning/docs cleanup and forward-state correction sprint. It must not start runtime implementation.
