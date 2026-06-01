@@ -120,6 +120,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
             <button 
               onClick={handleGetInsights}
               disabled={isLoadingInsights || tasks.length === 0}
+              aria-label="Get Barbie's Strategic Review"
               className="p-2 bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
               title="Barbie's Strategic Review"
             >
@@ -127,6 +128,8 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
             </button>
             <button 
               onClick={() => setIsAdding(!isAdding)}
+              aria-label={isAdding ? 'Close new task form' : 'Add task'}
+              title={isAdding ? 'Close new task form' : 'Add task'}
               className="p-2 bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100"
             >
               <Plus size={24} />
@@ -284,6 +287,8 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
             >
               <button
                 onClick={() => toggleStatus(task)}
+                aria-label={task.status === TaskStatus.DONE ? `Mark ${task.title} as to do` : `Mark ${task.title} done`}
+                title={task.status === TaskStatus.DONE ? 'Mark as to do' : 'Mark done'}
                 className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
                   task.status === TaskStatus.DONE
                     ? 'bg-green-500 border-green-500 text-white'

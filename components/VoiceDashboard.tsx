@@ -405,6 +405,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
           {/* Gmail Status */}
           <button 
             onClick={handleGmailWithSound}
+            aria-label={isGmailConnected ? 'Gmail is connected' : 'Connect Gmail'}
+            title={isGmailConnected ? 'Gmail is connected' : 'Connect Gmail'}
             className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-fast
               ${isGmailConnected 
                 ? 'bg-green-50 text-green-600 border border-green-100 cursor-default shadow-sm' 
@@ -427,6 +429,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
         <button 
           onClick={handleSmartBriefing}
           disabled={isBriefingLoading}
+          aria-label="Create Daily Snapshot"
+          title="Create Daily Snapshot"
           className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-pink-200 hover:bg-pink-600 active:scale-95 transition-all disabled:opacity-50"
         >
           {isBriefingLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
@@ -443,15 +447,15 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
               <p className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em]">Daily Snapshot</p>
               <div className="flex gap-2">
                 {isBriefingSpeaking ? (
-                  <button onClick={stopBriefing} className="p-1.5 text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100">
+                  <button onClick={stopBriefing} aria-label="Stop Daily Snapshot audio" title="Stop audio" className="p-1.5 text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100">
                     <Square size={14} fill="currentColor" />
                   </button>
                 ) : (
-                  <button onClick={() => speakBriefing(briefing)} className="p-1.5 text-gray-400 hover:text-pink-500 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors">
+                  <button onClick={() => speakBriefing(briefing)} aria-label="Play Daily Snapshot audio" title="Play audio" className="p-1.5 text-gray-400 hover:text-pink-500 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors">
                     <Volume2 size={14} />
                   </button>
                 )}
-                <button onClick={() => { setBriefing(null); stopBriefing(); }} className="p-1.5 text-gray-300 hover:text-gray-500 bg-gray-50 rounded-lg">
+                <button onClick={() => { setBriefing(null); stopBriefing(); }} aria-label="Close Daily Snapshot" title="Close" className="p-1.5 text-gray-300 hover:text-gray-500 bg-gray-50 rounded-lg">
                   <Square size={14} className="rotate-45" />
                 </button>
               </div>
@@ -567,6 +571,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
         {/* Large Mic Button */}
         <button
           onClick={handleToggleWithSound}
+          aria-label={isConnected || isSpeechListening ? 'Stop voice capture' : 'Start voice capture'}
+          title={isConnected || isSpeechListening ? 'Stop voice capture' : 'Start voice capture'}
           className={`
             p-12 rounded-full shadow-[0_20px_60px_-15px_rgba(244,114,182,0.5)] transition-all duration-500 transform active:scale-90 z-30 group relative
             ${isConnected || isSpeechListening
@@ -599,6 +605,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
                 type="button"
                 onClick={handleCaptureSubmit}
                 disabled={!typedMessage.trim() || isTypingLoading}
+                aria-label="Capture typed message as a task"
+                title="Capture task"
                 className="px-4 py-3 rounded-xl bg-gray-900 text-white text-xs font-black uppercase tracking-widest shadow-md hover:bg-gray-800 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
               >
                 Capture
@@ -606,6 +614,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
               <button
                 type="submit"
                 disabled={!typedMessage.trim() || isTypingLoading}
+                aria-label="Send typed message to Barbie"
+                title="Send message"
                 className="px-5 py-3 rounded-xl bg-pink-500 text-white text-xs font-black uppercase tracking-widest shadow-md shadow-pink-100 hover:bg-pink-600 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
               >
                 Send

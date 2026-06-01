@@ -79,6 +79,8 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
         <div className="flex items-center gap-3">
             <button 
                 onClick={onBack}
+                aria-label="Return to Home"
+                title="Return to Home"
                 className="p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100"
             >
                 <ArrowLeft size={24} />
@@ -89,6 +91,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
             <button 
               onClick={handleGetInsights}
               disabled={isLoadingInsights || transactions.length === 0}
+              aria-label="Get financial insights"
               className="p-2 bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
               title="Get AI Insights"
             >
@@ -96,6 +99,8 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
             </button>
             <button 
               onClick={() => setIsAdding(!isAdding)}
+              aria-label={isAdding ? 'Close finance entry form' : 'Add finance entry'}
+              title={isAdding ? 'Close finance entry form' : 'Add finance entry'}
               className="p-2 bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100"
             >
               <Plus size={24} />

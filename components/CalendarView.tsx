@@ -133,12 +133,17 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
       {/* Header */}
       <header className="flex items-center justify-between p-4 bg-white border-b border-gray-100">
         <div className="flex items-center gap-3">
-          <button onClick={onBack} className="p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100">
+          <button onClick={onBack} aria-label="Return to Home" title="Return to Home" className="p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100">
             <ArrowLeft size={24} />
           </button>
           <h1 className="text-xl font-bold text-gray-900">Calendar</h1>
         </div>
-        <button onClick={() => { setIsAdding(!isAdding); setNewDate(selectedDate); }} className="p-2 bg-pink-50 text-pink-600 rounded-full hover:bg-pink-100">
+        <button
+          onClick={() => { setIsAdding(!isAdding); setNewDate(selectedDate); }}
+          aria-label={isAdding ? 'Close event form' : 'Add event'}
+          title={isAdding ? 'Close event form' : 'Add event'}
+          className="p-2 bg-pink-50 text-pink-600 rounded-full hover:bg-pink-100"
+        >
           <Plus size={24} />
         </button>
       </header>
@@ -150,7 +155,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">
               {editingEventId ? 'Edit Event' : 'New Event'}
             </h3>
-            <button onClick={resetForm} className="text-xs text-gray-400 hover:text-gray-600">Cancel</button>
+            <button onClick={resetForm} aria-label="Cancel event form" title="Cancel event form" className="text-xs text-gray-400 hover:text-gray-600">Cancel</button>
           </div>
           <form onSubmit={handleAddOrUpdate} className="space-y-3">
             <input
@@ -212,9 +217,9 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
 
       {/* Month Navigation */}
       <div className="flex items-center justify-between px-4 py-3 bg-white">
-        <button onClick={prevMonth} className="p-2 hover:bg-gray-100 rounded-full"><ChevronLeft size={20} /></button>
+        <button onClick={prevMonth} aria-label="Previous month" title="Previous month" className="p-2 hover:bg-gray-100 rounded-full"><ChevronLeft size={20} /></button>
         <h2 className="text-lg font-bold text-gray-900">{monthName} {currentYear}</h2>
-        <button onClick={nextMonth} className="p-2 hover:bg-gray-100 rounded-full"><ChevronRight size={20} /></button>
+        <button onClick={nextMonth} aria-label="Next month" title="Next month" className="p-2 hover:bg-gray-100 rounded-full"><ChevronRight size={20} /></button>
       </div>
 
       {/* Calendar Grid */}
@@ -239,6 +244,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
               <button
                 key={day}
                 onClick={() => setSelectedDate(dateStr)}
+                aria-label={`Select ${dateStr}${dayEvents.length ? `, ${dayEvents.length} event${dayEvents.length === 1 ? '' : 's'}` : ''}`}
                 className={`h-10 rounded-xl text-sm font-medium relative flex flex-col items-center justify-center transition-all
                   ${isSelected ? 'bg-pink-500 text-white shadow-lg scale-105' : ''}
                   ${isToday && !isSelected ? 'bg-pink-50 text-pink-600 font-bold' : ''}
@@ -307,6 +313,8 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
                 <div className="flex flex-col gap-1">
                   <button
                     onClick={() => startEdit(event)}
+                    aria-label={`Edit ${event.title}`}
+                    title="Edit event"
                     className="p-1.5 text-gray-300 hover:text-pink-500 opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     <Edit2 size={14} />
@@ -314,9 +322,12 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
                   </button>
                   <button
                     onClick={() => onDeleteEvent(event.id)}
+                    aria-label={`Delete ${event.title}`}
+                    title="Delete event"
                     className="p-1.5 text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     <Trash2 size={14} />
+                    <span className="sr-only">Delete</span>
                   </button>
                 </div>
               </div>
