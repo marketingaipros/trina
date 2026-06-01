@@ -163,3 +163,11 @@
 | 2026-05-31 | Which confirmed small polish issues exist after inspecting Home / Dashboard, Assistant / Voice Entry, Tasks, Notifications, Calendar, Finance, and Knowledge Base? | Builder | Open | Implementation must inspect current runtime files first and report only confirmed issues before editing. |
 | 2026-05-31 | Can speech capture be live-tested with microphone permission granted during Sprint 031 implementation? | Builder / Operator | Open | If unavailable, preserve and document the transcript-to-task path by code inspection. |
 | 2026-05-31 | Are any runtime changes needed at all, or is the Sprint 030 baseline already sufficient for the targeted polish pass? | Builder / Operator | Open | Preferred outcome is the smallest safe change set; no-op after inspection is acceptable if no confirmed issue exists. |
+
+## Sprint 032 Open Questions
+
+| Date | Question | Owner | Status | Notes |
+|---|---|---|---|---|
+| 2026-05-31 | Can microphone capture be live-tested in the available browser/device environment? | Builder / Operator | Open | If permission is unavailable, Codex should document the blocker and use code inspection only. |
+| 2026-05-31 | Are hover-only edit/delete controls usable on touch/mobile after Sprint 031? | Builder | Open | Validate with a touch-capable browser or responsive emulation if available. |
+| 2026-05-31 | Are any remaining accessibility issues confirmed strongly enough to become Sprint 033 scope? | Architect / Builder | Open | Do not expand Sprint 032 into broad runtime fixes. Record follow-up candidates. |

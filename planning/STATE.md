@@ -2,106 +2,51 @@
 
 ## Current Sprint
 
-Sprint 031 - `031-core-app-polish-and-task-flow-hardening`
+Sprint 032 - Browser Smoke, Accessibility, and Device Validation
 
 ## Current Status
 
-Sprint 031 Architect Pack has been applied as a planning/docs-only pass.
+Sprint 031 was completed, committed, and pushed.
 
-Sprint 031 is awaiting Builder read-before-implementation summary and explicit implementation approval.
+Sprint 031 added narrow accessibility polish across the existing core app shell:
 
-Sprint 030 implementation and validation are complete pending review, staging, commit, and push approval.
+- `components/VoiceDashboard.tsx`
+- `components/TasksView.tsx`
+- `components/NotificationsView.tsx`
+- `components/CalendarView.tsx`
+- `components/FinanceView.tsx`
+- `components/KnowledgeBaseView.tsx`
 
-Sprint 029 is complete, committed, and pushed.
+Sprint 032 is a validation sprint.
 
-Sprint 030 adds lightweight confidence around the core app shell without returning to CEO Briefing or expanding into backend/build/release work.
-
-Sprint 031 is scoped to narrow runtime polish and task-flow hardening for the existing app shell after approval. The planning pass does not modify runtime code.
-
-Sprint 023 planning reset has been applied and remains the protected forward app-completion baseline.
-
-CEO Briefing is deferred, not complete, and must not block the rest of the app.
-
-## Active Sprint
-
-`planning/sprints/031-core-app-polish-and-task-flow-hardening/`
-
-## Next Action
-
-Before any Sprint 031 implementation, read the required planning/docs stack and summarize scope, expected files, validation, blockers, CEO Briefing protection, and runtime-surface boundaries for approval.
-
-## Forward Context
-
-Sprint 029 applies narrow runtime polish for bottom navigation active-state clarity, Dashboard/Home return paths, Assistant reachability, and empty/fallback copy across the existing Vite React shell. The sprint keeps Sprint 023 app-completion reset protected and keeps CEO Briefing deferred.
-
-Sprint 031 should preserve the Sprint 023 app-completion reset and Sprint 030 smoke-validation baseline while looking only for confirmed small polish issues in Home / Dashboard, Assistant / Voice Entry, Tasks, Notifications, Calendar, Finance, and Knowledge Base.
+The goal is to inspect the existing app in a real browser/device workflow, confirm the Sprint 031 accessibility improvements in practical use, verify core navigation and task capture flows, and identify only confirmed follow-up issues.
 
 ## Recently Completed
 
-- Sprint 029 polished bottom navigation, Dashboard reachability, Assistant / Voice Entry reachability, and empty/fallback states.
-- Sprint 029 preserved typed Assistant capture to Tasks.
-- Sprint 029 preserved speech capture path by avoiding `VoiceDashboard.tsx` changes, though live speech capture was not fully tested because the browser environment denied microphone permission.
-- Sprint 029 passed `npm run lint`, `npm run build`, `git diff --check`, and the CEO Briefing evidence absence guard.
-- Sprint 029 was committed and pushed as `f525b9d`.
-- Sprint 023 reset the project direction so app completion can move forward.
-- Sprint 023 neutralized stale CEO Briefing blocker language.
-- Sprint 024 applied non-CEO runtime stabilization within the approved scope.
-- Sprint 024 required validation passed.
-- Sprint 024 manual browser smoke testing passed for visible non-CEO paths available in the current app shell.
-- Sprint 025 removed stale active CEO Briefing build momentum from uncommitted planning artifacts.
-- Sprint 026 planning files were created for Assistant voice entry and task/reminder flow stabilization.
-- Sprint 026 runtime implementation connected Assistant capture to local task visibility and improved related empty/fallback states.
-- Sprint 027 planning files were created from the architect pack as a docs/planning-only checkpoint.
-- Sprint 028 corrected the planning/docs closeout handoff and prepared the forward state for app shell polish.
+- Sprint 031 planning/docs checkpoint committed.
+- Sprint 031 runtime accessibility polish committed.
+- Core app accessibility labels/titles were improved without changing routing, task capture, speech capture, storage, backend, package files, or CEO Briefing.
+- CEO Briefing remains untouched and deferred.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
 
-## Active Focus
+## Active Sprint Folder
 
-Sprint 031 planning/docs are now in place for a future implementation pass. The sprint must not start implementation until the Builder has inspected the required files, summarized the plan, and received explicit approval.
+`planning/sprints/032-browser-smoke-accessibility-and-device-validation/`
 
-Sprint 031 implementation, if approved later, should make the smallest safe confirmed UI/copy/navigation/task-flow changes only. It must not change architecture, storage, dependencies, backend, Firebase, Hermes, packages, native build surfaces, release/deployment files, auth, database behavior, live AI behavior, FlutterFlow exports, or CEO Briefing.
+## Next Action
 
-CEO Briefing remains out of scope. `references/flutterflow/sprint-009/ceo-briefing.png` must remain absent unless a future owner-approved evidence pass captures real proof.
+Codex should apply the Sprint 032 Architect Pack by creating the Sprint 032 planning files and updating validation/state/risk/question notes.
 
-Sprint 030 inspected the current app shell and found no clean existing web UI smoke-test tooling beyond `npm run lint` and `npm run build`. Automated smoke coverage was not added because the repo has no current web test harness and the sprint avoids dependency churn.
-
-The implementation keeps the runtime change narrow: Notifications empty-state copy now uses `Event notifications` instead of `Event alerts`. Existing Knowledge Base labels already align with the Sprint 030 rule: `Knowledge Base` for full feature copy and `Knowledge` for compact bottom navigation.
-
-Typed Assistant capture remains routed to Tasks through `VoiceDashboard` -> `handleAssistantCapture` -> `Storage.addTask(...)` -> `AppMode.TASKS`. Speech capture remains preserved by code inspection through the same local task capture path when browser speech recognition returns a transcript.
-
-Sprint 030 validation has been run with `npm run lint`, `npm run build`, `git diff --check`, `git status --branch --short`, and the CEO Briefing evidence absence guard. Manual browser smoke passed for Dashboard/Home reachability, bottom navigation reachability, active navigation state, Assistant / Voice Entry visibility, typed Assistant capture, captured task visibility in Tasks, Knowledge Base label consistency, and Notifications copy.
-
-Live speech capture was not completed because the browser reported microphone permission denied. Sprint 030 preserves speech capture by code inspection: browser speech recognition transcripts still call the same local task capture path as typed capture.
-
-## Next Actions
-
-1. Review Sprint 031 planning/docs application.
-2. If implementation is requested later, perform the required read-before-implementation summary and wait for approval.
-3. Preserve typed Assistant capture to Tasks and preserve the speech capture path by live smoke testing or code inspection.
-4. Keep CEO Briefing deferred and untouched.
-
-## Out of Scope
-
-- CEO Briefing build, rebuild, screenshot evidence, or validation.
-- FlutterFlow Designer work.
-- FlutterFlow generated code export.
-- Firebase or backend work.
-- Hermes work.
-- Package/dependency changes unless explicitly approved.
-- Native iOS/Android work.
-- Release, deployment, build, or production export work.
-- Screenshot evidence creation.
+After the pack is applied, Codex must read the Sprint 032 files and summarize the validation plan before performing the browser/device validation pass.
 
 ## Blockers
 
-No blocker prevents Sprint 030 closeout from moving forward.
+- Live microphone validation depends on browser/device microphone permission.
+- Touch usability validation depends on access to a touch-capable browser or responsive mobile emulation.
+- Browser-based accessibility inspection may be limited by available tooling in the local environment.
 
-Open verification note:
+## Protected Scope
 
-- Live speech capture still requires a browser/device with microphone permission granted. Sprint 030 preserves the existing transcript-to-task path by code inspection.
-
-Deferred:
-
-- CEO Briefing screenshot evidence remains missing and should not be faked.
-- `references/flutterflow/sprint-009/ceo-briefing.png` must not be fabricated or created before actual screenshot evidence exists.
-- CEO Briefing does not currently exist as a confirmed working FlutterFlow page.
-- Core app functionality still needs to be prioritized and validated in focused follow-up sprints.
+- Do not work on CEO Briefing.
+- Do not create `references/flutterflow/sprint-009/ceo-briefing.png`.
+- Do not modify FlutterFlow export, Firebase, Hermes, backend, auth, database, live AI, package/dependency, native, build, release, or deployment files.

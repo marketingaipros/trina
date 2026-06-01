@@ -222,6 +222,113 @@ Do not create:
 references/flutterflow/sprint-009/ceo-briefing.png
 ```
 
+## Sprint 032 - Browser Smoke, Accessibility, and Device Validation
+
+Sprint 032 validates the current Trina app shell after Sprint 031 accessibility polish.
+
+This is a validation sprint, not a broad implementation sprint.
+
+### Required Automated Checks
+
+Run:
+
+```bash
+npm run lint
+npm run build
+git diff --check
+git status --branch --short
+git diff --name-only
+git diff --cached --name-only
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Expected result:
+
+- lint passes
+- build passes or only known existing Vite warnings remain
+- diff check passes
+- staged files are empty unless explicitly approved later
+- CEO Briefing screenshot file remains absent
+
+### Browser Smoke Checks
+
+Validate in the available browser environment:
+
+1. Dashboard / Home loads.
+2. Bottom navigation reaches all active app areas.
+3. Assistant / Voice Entry is reachable from Dashboard/Home.
+4. Tasks is reachable from navigation.
+5. Notifications is reachable from navigation.
+6. Calendar is reachable from navigation.
+7. Finance is reachable from navigation.
+8. Knowledge Base is reachable from navigation.
+9. Home/back controls return to expected locations.
+10. No blank screen or broken route appears during core navigation.
+
+### Task Flow Checks
+
+Validate:
+
+1. Typed Assistant input can create a visible task.
+2. Empty Assistant input does not create a bad task.
+3. Created task appears in Tasks.
+4. Task complete/incomplete toggle remains usable.
+5. Existing task local behavior is preserved.
+6. No storage or persistence architecture is changed.
+
+### Speech Capture Checks
+
+Validate live if microphone permission is available:
+
+1. Microphone control is visible and labeled.
+2. Starting speech capture does not break Assistant.
+3. Stopping speech capture does not break Assistant.
+4. Speech capture path appears preserved.
+
+If live microphone testing is blocked:
+
+- Document the browser/device/permission blocker.
+- Inspect relevant code path only.
+- Do not rewrite speech capture.
+
+### Accessibility / Touch Checks
+
+Validate where practical:
+
+1. Icon-only controls have meaningful accessible names.
+2. Buttons with added titles/labels remain visually unchanged.
+3. Date buttons describe selected/current/event-count context where applicable.
+4. Edit/delete controls remain discoverable enough for browser users.
+5. Touch/mobile emulation does not hide critical controls.
+6. Focus order does not trap the user in core views.
+7. Form open/close/cancel controls are understandable.
+8. Audio controls are labeled clearly.
+
+### Protected Scope Validation
+
+Confirm:
+
+```bash
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Also confirm no files were changed in:
+
+- FlutterFlow export
+- Firebase
+- Hermes
+- backend
+- auth
+- database
+- live AI
+- package/dependencies
+- native/build/release/deployment
+- CEO Briefing
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
 ## Sprint 028 Closeout and Forward-State Validation
 
 Sprint 028 is a planning/docs cleanup and forward-state correction sprint. It must not start runtime implementation.

@@ -186,3 +186,13 @@
 | Speech capture may remain blocked by local browser microphone permission. | Medium | Medium | Preserve the transcript-to-task path by code inspection when live microphone validation is unavailable. | Open |
 | Builder could drift into backend, Firebase, Hermes, package, native, release, auth, database, live AI, or FlutterFlow export work. | Low | High | Keep Sprint 031 acceptance and handoff limited to existing frontend polish and existing validation commands. | Open |
 | CEO Briefing could be reopened through stale evidence or navigation assumptions. | Low | High | Keep CEO Briefing explicitly out of scope and verify `references/flutterflow/sprint-009/ceo-briefing.png` remains absent. | Open |
+
+## Sprint 032 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Browser smoke testing may reveal small UI/touch issues that tempt broader redesign. | Medium | Medium | Record confirmed issues for follow-up unless the Sprint 032 acceptance criteria explicitly approve a tiny fix. | Open |
+| Microphone validation may be blocked by browser permission, device limitations, or unavailable speech APIs. | Medium | Medium | Document the blocker and preserve speech behavior by code inspection instead. | Open |
+| Hover-only controls may be harder to use on touch devices. | Medium | Medium | Validate in touch-capable browser or responsive emulation and record confirmed issues for Sprint 033 if needed. | Open |
+| Accessibility labels may exist in code but still be awkward in real browser use. | Medium | Medium | Perform practical inspection of buttons, names, labels, and focus flow where possible. | Open |
+| CEO Briefing could re-enter scope by accident due to old planning history. | Low | High | Keep CEO Briefing explicitly protected and absent. | Open |
