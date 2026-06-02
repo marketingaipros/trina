@@ -279,6 +279,8 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
             </p>
             <button
               onClick={() => { setIsAdding(true); setNewDate(selectedDate); }}
+              aria-label={`Add event for ${selectedDate}`}
+              title={`Add event for ${selectedDate}`}
               className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
             >
               Add Event
@@ -315,7 +317,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
                     onClick={() => startEdit(event)}
                     aria-label={`Edit ${event.title}`}
                     title="Edit event"
-                    className="p-1.5 text-gray-300 hover:text-pink-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-pink-500 hover:bg-white/70 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-pink-200"
                   >
                     <Edit2 size={14} />
                     <span className="sr-only">Edit</span>
@@ -324,7 +326,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
                     onClick={() => onDeleteEvent(event.id)}
                     aria-label={`Delete ${event.title}`}
                     title="Delete event"
-                    className="p-1.5 text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-white/70 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-200"
                   >
                     <Trash2 size={14} />
                     <span className="sr-only">Delete</span>

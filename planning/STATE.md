@@ -2,40 +2,39 @@
 
 ## Current Sprint
 
-Sprint 039 - Forward State and Next Runtime Priority Selection
+Sprint 040 - Mobile Accessibility and Touch Target Hardening
 
 ## Current Status
 
-Sprint 038 closed cleanly and was pushed to `main`.
+Sprint 040 implementation and validation completed.
 
-Sprint 038 confirmed the core app smoke-test baseline:
+Sprint 039 closed as a docs/planning forward-state checkpoint.
 
-- Dashboard/Home reachable.
-- Assistant / Voice Entry reachable.
-- Typed task capture works.
-- Tasks render captured local task.
-- Notifications fallback state is readable.
-- Reminder fixture paths work.
-- Dashboard notification badge aligns with fixture data.
-- Notifications list renders the fixture reminder.
-- Bottom navigation active state works with `aria-current="page"`.
-- Calendar, Finance, and Knowledge Base are reachable.
-- Mobile layout around `390x844` has no horizontal overflow or bottom-nav overlap.
-
-No runtime files were changed in Sprint 038.
+Sprint 040 inspected and hardened mobile accessibility and touch usability across the existing non-CEO app shell.
 
 ## Active Work
 
-Sprint 039 is a planning and validation checkpoint.
+Sprint 040 closeout documentation records the completed runtime hardening and validation results.
 
-The Builder should verify the clean repo state, review the current planning files, and recommend the safest next focused runtime sprint.
+Confirmed issues addressed:
+
+- Calendar event edit/delete controls were hover-only and not reliable on touch devices.
+- Knowledge Base document delete was hover-only.
+- Several icon-only/dismiss controls lacked accessible labels or titles.
+- Mobile smoke confirmed undersized recurring touch targets: task row controls were 24-32px, and Knowledge Base upload/voice controls were 34-36px.
+
+Runtime fixes stayed inside the approved Sprint 040 component allowlist.
 
 ## Recently Completed
 
-- Sprint 038 Architect Pack applied.
-- Sprint 038 smoke-test execution passed.
-- Sprint 038 acceptance review passed.
-- Sprint 038 closeout committed and pushed.
+- Sprint 040 mobile accessibility and touch-target hardening implementation passed validation.
+- Task row controls and Knowledge Base upload/voice controls were confirmed live at 44px on mobile.
+- Browser smoke at `390x844` passed for Dashboard, Tasks, Finance, Notifications fixture state, Calendar, and Knowledge Base with no horizontal overflow.
+- Calendar event row actions were code-inspection verified because the selected date had no event rows in the current local smoke data.
+- Sprint 038 broad core app smoke test passed.
+- Sprint 039 preserved forward state and prepared the next runtime priority.
+- CEO Briefing remained deferred.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
 
 ## Protected Scope
 
@@ -53,6 +52,4 @@ Do not create or modify:
 
 ## Next Action
 
-Run Sprint 039 as a read-only review and planning checkpoint.
-
-Recommend the next focused Sprint 040 runtime priority without implementing it.
+Review Sprint 040 closeout changes, then stage and commit only after explicit operator approval.

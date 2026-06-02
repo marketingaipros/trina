@@ -181,6 +181,8 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
               </div>
               <button 
                 onClick={() => setInsights(null)}
+                aria-label="Close strategic review"
+                title="Close strategic review"
                 className="text-gray-300 hover:text-gray-500 transition-colors"
               >
                 <X size={16} />
@@ -300,6 +302,8 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
             </p>
             <button
               onClick={onBack}
+              aria-label="Return to Home"
+              title="Return to Home"
               className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
             >
               Back Home
@@ -324,7 +328,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                 onClick={() => toggleStatus(task)}
                 aria-label={task.status === TaskStatus.DONE ? `Mark ${task.title} as to do` : `Mark ${task.title} done`}
                 title={task.status === TaskStatus.DONE ? 'Mark as to do' : 'Mark done'}
-                className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
+                className={`flex-shrink-0 w-11 h-11 rounded-full border-2 flex items-center justify-center mr-3 transition-colors ${
                   task.status === TaskStatus.DONE
                     ? 'bg-green-500 border-green-500 text-white'
                     : 'border-gray-300 text-transparent hover:border-indigo-400'
@@ -405,7 +409,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                   onClick={() => startEditing(task)}
                   aria-label={`Edit task: ${task.title}`}
                   title={`Edit task: ${task.title}`}
-                  className="p-2 text-gray-400 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                  className="w-11 h-11 flex items-center justify-center text-gray-400 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 >
                   <Pencil size={16} />
                 </button>
@@ -414,7 +418,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                   onClick={() => deleteTask(task)}
                   aria-label={`Delete task: ${task.title}`}
                   title={`Delete task: ${task.title}`}
-                  className="p-2 text-gray-400 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-200"
+                  className="w-11 h-11 flex items-center justify-center text-gray-400 rounded-lg hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-200"
                 >
                   <Trash2 size={16} />
                 </button>

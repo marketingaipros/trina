@@ -119,6 +119,8 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
                 </div>
                 <button 
                   onClick={() => setInsights(null)}
+                  aria-label="Close financial analysis"
+                  title="Close financial analysis"
                   className="text-gray-300 hover:text-gray-500 transition-colors"
                 >
                   <X size={16} />
@@ -159,6 +161,8 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
               </p>
               <button
                 onClick={() => setIsAdding(true)}
+                aria-label="Add finance entry"
+                title="Add finance entry"
                 className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
               >
                 Add Entry

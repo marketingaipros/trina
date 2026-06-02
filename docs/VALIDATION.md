@@ -75,6 +75,85 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 040 - Mobile Accessibility and Touch Target Hardening
+
+### Purpose
+
+Sprint 040 validates and, only if necessary, lightly hardens mobile accessibility and touch usability across the current non-CEO Trina app shell.
+
+This sprint follows the clean Sprint 038 smoke baseline and Sprint 039 forward-state selection.
+
+### Required Commands
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git diff --name-only
+git status --branch --short
+```
+
+### Required Browser and Inspection Checks
+
+- Mobile viewport around `390x844`.
+- Bottom navigation touch usability and active state.
+- Accessible names, labels, or titles for major controls.
+- Keyboard/focus usability where practical.
+- Task edit/delete controls remain visible and touch usable.
+- Notifications empty, fallback, and fixture-backed states remain readable.
+- Calendar, Finance, and Knowledge Base have no obvious mobile overflow or blocked controls.
+
+### Scope Guard
+
+Sprint 040 must start with inspection and a Builder summary before runtime edits.
+
+Runtime edits, if later approved, must stay inside the Sprint 040 component allowlist and must address confirmed mobile/accessibility issues only.
+
+Sprint 040 must not touch CEO Briefing files and must not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Sprint 040 must not touch backend, Firebase, package, native, build, release, deployment, evidence, or generated FlutterFlow files.
+
+### Sprint 040 Validation Results
+
+Runtime changes:
+
+- `components/TasksView.tsx`: added labels for strategic review close/back home and made task toggle/edit/delete 44px touch targets.
+- `components/CalendarView.tsx`: made event edit/delete visible without hover and 44px; labeled empty-state add event.
+- `components/FinanceView.tsx`: labeled financial analysis close and empty-state add entry.
+- `components/KnowledgeBaseView.tsx`: labeled dismiss/audio/upload controls; made upload, voice question, and document delete controls 44px.
+
+Confirmed issues:
+
+- Calendar event edit/delete controls were hover-only, so they were not reliable on touch devices.
+- Knowledge Base document delete was hover-only.
+- Several icon-only/dismiss controls lacked accessible labels/titles.
+- Mobile smoke confirmed undersized recurring touch targets: task row controls were 24-32px, Knowledge Base upload/voice controls were 34-36px. These were hardened to 44px where patched.
+
+Command results:
+
+- `npm run lint`: Pass.
+- `npm run build`: Pass, with known non-blocking Vite warnings about `services/authService.ts` mixed import chunking and large bundle size.
+- `git diff --check`: Pass.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+
+Browser smoke results:
+
+- Mobile viewport around `390x844`: Pass for Dashboard, Tasks, Finance, Notifications fixture state, Calendar, and Knowledge Base with no horizontal overflow.
+- Tasks patched target sizes: Pass. Task row controls were confirmed live at 44px.
+- Knowledge Base patched target sizes: Pass. Upload and voice-question controls were confirmed live at 44px.
+- Calendar event row actions: Verified by code inspection because the selected date had no event rows in the current local smoke data.
+
+Protected scope:
+
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+- No staging, commit, or push happened during implementation validation.
+
 ## Sprint 039 - Forward State and Next Runtime Priority Selection
 
 ### Purpose

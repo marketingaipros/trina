@@ -279,7 +279,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
           onClick={() => fileInputRef.current?.click()}
           aria-label="Upload knowledge base file"
           title="Upload file"
-          className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white text-sm font-semibold rounded-xl hover:bg-pink-600 active:scale-95 transition-all shadow-lg shadow-pink-200"
+          className="min-h-11 flex items-center gap-2 px-4 py-2 bg-pink-500 text-white text-sm font-semibold rounded-xl hover:bg-pink-600 active:scale-95 transition-all shadow-lg shadow-pink-200"
         >
           <Upload size={16} />
           Upload
@@ -302,6 +302,8 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
           </div>
           <button
             onClick={() => setGlobalError(null)}
+            aria-label="Dismiss knowledge base error"
+            title="Dismiss error"
             className="text-red-400 hover:text-red-600 transition-colors"
           >
             <Square size={14} className="rotate-45" />
@@ -350,7 +352,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
             onClick={toggleRecording}
             aria-label={isRecording ? 'Stop voice question' : 'Start voice question'}
             title={isRecording ? 'Stop voice question' : 'Start voice question'}
-            className={`absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-all active:scale-95
+            className={`absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-lg transition-all active:scale-95
                 ${isRecording ? 'bg-pink-500 text-white shadow-lg animate-pulse' : 'bg-pink-50 text-pink-400 hover:bg-pink-100'}
               `}
             >
@@ -380,7 +382,12 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
                <p className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em]">Executive Intelligence Response</p>
                <div className="flex gap-2">
                  {isSpeaking ? (
-                   <button onClick={stopSpeaking} className="p-1.5 text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100">
+                   <button
+                     onClick={stopSpeaking}
+                     aria-label="Stop answer audio"
+                     title="Stop answer audio"
+                     className="p-1.5 text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100"
+                   >
                      <span className="sr-only">Stop answer audio</span>
                      <Square size={14} fill="currentColor" />
                    </button>
@@ -415,7 +422,9 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
             </p>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
+              aria-label="Upload knowledge base file"
+              title="Upload file"
+              className="min-h-11 mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
             >
               Upload File
             </button>
@@ -435,7 +444,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
                 onClick={() => handleDelete(doc.name, doc.displayName, doc.id)}
                 aria-label={`Delete ${doc.displayName}`}
                 title="Delete document"
-                className="p-2.5 text-gray-200 hover:text-red-500 hover:bg-red-50 rounded-xl opacity-0 group-hover:opacity-100 transition-all disabled:opacity-30"
+                className="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all disabled:opacity-30 focus:outline-none focus:ring-2 focus:ring-red-200"
               >
                 {deletingId === doc.id ? <Loader2 size={18} className="animate-spin" /> : <Trash2 size={18} />}
               </button>
