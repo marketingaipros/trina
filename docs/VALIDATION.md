@@ -75,6 +75,63 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 039 - Forward State and Next Runtime Priority Selection
+
+### Purpose
+
+Sprint 039 preserves the clean Sprint 038 smoke-test baseline and prepares the next focused runtime sprint.
+
+This sprint is docs/planning only unless a documentation correction is required.
+
+### Required Commands
+
+```bash
+git status --branch --short
+git diff --name-only
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Required Review
+
+The Builder must review:
+
+- `planning/STATE.md`
+- `planning/RISKS.md`
+- `planning/QUESTIONS.md`
+- `planning/DECISIONS.md`
+- `docs/VALIDATION.md`
+- Latest completed sprint folder
+- Current Sprint 039 files
+
+### Expected Result
+
+- Repo state is understood.
+- Sprint 038 clean baseline is preserved.
+- No runtime files are changed.
+- No protected files are touched.
+- Next Sprint 040 direction is recommended.
+- Any new risk, question, or decision is recorded only if discovered.
+
+### Protected File Check
+
+This must pass:
+
+```bash
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Completion Standard
+
+Sprint 039 is complete when:
+
+- The clean `main` baseline is confirmed.
+- Sprint 039 docs are created.
+- `planning/STATE.md` reflects Sprint 039 status.
+- `docs/VALIDATION.md` records Sprint 039 validation rules.
+- Builder recommends one focused Sprint 040 direction.
+- No implementation work has started.
+
 ## Sprint 038 - Core App Smoke Test and Forward Runtime Polish
 
 ### Purpose
