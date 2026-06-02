@@ -218,6 +218,13 @@
 | Browser validation may miss microphone-specific behavior. | Low | Medium | Treat microphone/live speech as out of scope unless broken by task flow changes. Validate typed Assistant capture as the required path. | Accepted - typed capture validated; microphone-specific behavior remained out of scope. |
 | CEO Briefing work may accidentally re-enter scope. | Low | High | Keep CEO Briefing explicitly protected. Run absence guard before closeout. | Mitigated. |
 
+## Sprint 046 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Raising the Home typed `Capture` and `Send` button height could crowd the input row or create horizontal overflow at `390x844`. | Medium | Medium | Use the smallest scoped touch-target change, preserve width behavior where possible, and validate Home for overflow and bottom-nav clearance. | Mitigated - browser validation at `390x844` found both controls `44px` tall, no typed-row horizontal overflow, and bottom nav visible/usable/unblocked. |
+| A shared button/style change could affect unrelated controls. | Medium | Medium | Prefer the local owner or a tightly scoped class after inspecting the actual Home typed action component. | Mitigated - runtime change was limited to the local Home typed `Capture` and `Send` button class strings in `components/VoiceDashboard.tsx`. |
+
 ## Sprint 043 Risks
 
 | Risk | Likelihood | Impact | Mitigation | Status |

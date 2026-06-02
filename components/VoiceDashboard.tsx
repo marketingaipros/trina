@@ -640,7 +640,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
                 disabled={!typedMessage.trim() || isTypingLoading}
                 aria-label="Capture typed message as a task"
                 title="Capture task"
-                className="px-4 py-3 rounded-xl bg-gray-900 text-white text-xs font-black uppercase tracking-widest shadow-md hover:bg-gray-800 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                className="min-h-11 px-4 py-3 rounded-xl bg-gray-900 text-white text-xs font-black uppercase tracking-widest shadow-md hover:bg-gray-800 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
               >
                 Capture
               </button>
@@ -649,7 +649,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
                 disabled={!typedMessage.trim() || isTypingLoading}
                 aria-label="Send typed message to Barbie"
                 title="Send message"
-                className="px-5 py-3 rounded-xl bg-pink-500 text-white text-xs font-black uppercase tracking-widest shadow-md shadow-pink-100 hover:bg-pink-600 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                className="min-h-11 px-5 py-3 rounded-xl bg-pink-500 text-white text-xs font-black uppercase tracking-widest shadow-md shadow-pink-100 hover:bg-pink-600 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
               >
                 Send
               </button>

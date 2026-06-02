@@ -75,6 +75,94 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 046 - Home Typed Action Touch Target Polish Validation
+
+Sprint 046 validates that the remaining Home typed `Capture` and `Send` buttons meet the mobile `44px` touch-target baseline without redesigning Home or changing typed input behavior.
+
+Required validation:
+
+- Inspect the Home typed input/action area and identify the actual owning component/styles before runtime edits.
+- Apply the smallest safe styling or component-level change after the Builder summary gate is approved.
+- Validate Home at exact `390x844` if available; otherwise document the actual measured viewport.
+- Confirm the typed `Capture` and `Send` controls are at least `44px` tall or have a minimum `44px` touch target where inspectable.
+- Confirm the existing labels, actions/handlers, input behavior, and disabled/loading behavior are preserved where inspectable.
+- Confirm no horizontal overflow on Home.
+- Confirm bottom navigation remains usable and does not block the typed action controls.
+- Smoke Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders if reachable.
+- Confirm no Sprint 045 secondary touch-target regression is observed during smoke.
+
+Required commands:
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+```
+
+Expected result:
+
+- Home typed `Capture` and `Send` controls meet the `44px` mobile touch target where safe.
+- No unrelated Home redesign, input workflow change, handler change, bottom-nav change, or feature change is introduced.
+- No unrelated runtime surfaces are refactored.
+- CEO Briefing remains untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+
+### Sprint 046 Planning Results
+
+Planning/docs-only application:
+
+- Sprint 046 Architect Pack is present at `architect-packs/trina-046-home-typed-action-touch-target-polish-architect-pack.md`.
+- Sprint 046 planning files are present under `planning/sprints/046-home-typed-action-touch-target-polish/`.
+- Runtime implementation has not started.
+- CEO Briefing files were not touched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+### Sprint 046 Validation Results
+
+Runtime change:
+
+- `components/VoiceDashboard.tsx`: added `min-h-11` only to the Home typed `Capture` and `Send` button class strings.
+
+Behavior preserved:
+
+- Existing `Capture` and `Send` labels were unchanged.
+- Existing handlers were unchanged.
+- Existing typed input behavior was unchanged.
+- Existing disabled/loading behavior was unchanged.
+- Existing Home layout, bottom navigation behavior, and pink/white visual direction were preserved.
+
+Validation path:
+
+- Browser/manual validation ran through the in-app browser against local Vite at `http://127.0.0.1:3000/?trinaReminderFixture=1`.
+- Exact viewport `390x844` was available and used.
+- Notifications/reminders were reached with the existing local `trinaReminderFixture=1` validation fixture.
+
+Browser/manual results:
+
+- Dashboard/Home rendered at exact `390x844`.
+- Home typed `Capture` measured `44px` tall.
+- Home typed `Send` measured `44px` tall.
+- The Home typed input row had no horizontal overflow.
+- Bottom navigation remained visible, usable, and unblocked.
+- Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders smoke checks passed.
+
+Command results:
+
+- `git diff --check`: Pass.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+- `npm run lint`: Pass.
+- `npm run build`: Pass, with existing non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
+
+Protected scope:
+
+- Runtime change was limited to `components/VoiceDashboard.tsx`.
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- Nothing was staged, committed, or pushed.
+
 ## Sprint 045 - Secondary Header Touch Target Polish Validation
 
 Sprint 045 validates that targeted secondary header, back, and AI action controls meet or intentionally document the mobile touch-target standard after the narrow polish pass.

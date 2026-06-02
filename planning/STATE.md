@@ -2,9 +2,11 @@
 
 ## Current Sprint
 
-Sprint 045 - Secondary Header Touch Target Polish
+Sprint 046 - Home Typed Action Touch Target Polish
 
 ## Current Status
+
+Sprint 046 implementation and validation completed.
 
 Sprint 045 implementation and validation completed.
 
@@ -25,6 +27,14 @@ Sprint 042 closes the Sprint 041 validation caveats with a small dev-only query-
 Sprint 041 implementation and validation completed with documented caveats after hardening empty, error, loading, unavailable, disabled, and fallback states across the existing non-CEO Trina app shell.
 
 ## Active Work
+
+Sprint 046 closeout documentation records the completed Home typed action touch-target polish.
+
+Sprint 046 targeted only the Home typed `Capture` and `Send` controls that Sprint 045 documented at approximately `40px` tall.
+
+Sprint 046 runtime change was limited to `components/VoiceDashboard.tsx`.
+
+Sprint 046 added `min-h-11` only to the Home typed `Capture` and `Send` button class strings, preserving labels, handlers, input behavior, disabled/loading behavior, visual direction, bottom navigation, and no-overflow behavior.
 
 Sprint 044 browser validation reached Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders at exact viewport `390x844`.
 
@@ -53,6 +63,18 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 
 ## Recently Completed
 
+- Sprint 046 browser/manual validation ran at exact viewport `390x844` against local Vite with `trinaReminderFixture=1`.
+- Home typed `Capture` and `Send` buttons both measured `44px` tall.
+- The Home typed input row had no horizontal overflow.
+- Bottom navigation remained visible, usable, and unblocked.
+- Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders smoke checks passed.
+- `git diff --check`, the CEO Briefing absence guard, `npm run lint`, and `npm run build` passed.
+- `npm run build` completed with existing non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
+- Sprint 046 did not stage, commit, push, or touch CEO Briefing files.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- Sprint 046 Architect Pack was saved at `architect-packs/trina-046-home-typed-action-touch-target-polish-architect-pack.md`.
+- Sprint 046 planning files were created under `planning/sprints/046-home-typed-action-touch-target-polish/`.
+- Sprint 046 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
 - Sprint 042 added `?trinaStateFixture=` dev-only state fixtures inside allowed component files only.
 - `trinaStateFixture=empty` live-reproduces Tasks, Calendar, Finance, and Knowledge Base empty states without changing local storage.
 - `trinaStateFixture=ai-failure` live-reproduces Daily Snapshot, Strategic Review, and Financial Analysis error states.
@@ -124,13 +146,11 @@ Do not create or modify:
 
 ## Next Action
 
-Review Sprint 045 changes, then stage and commit only after explicit operator approval.
-
-Follow-up candidate: review the Home typed Capture/Send input-bar controls in a future touch-target sprint if the operator wants all non-secondary actions aligned to `44px`.
+Review Sprint 046 closeout changes, then stage and commit only after explicit operator approval.
 
 Guardrails:
 
 - Do not touch CEO Briefing.
 - Do not create `references/flutterflow/sprint-009/ceo-briefing.png`.
-- Do not modify runtime files until the Sprint 045 summary gate is approved.
-- Keep Sprint 045 narrow to secondary header/back/AI touch-target polish.
+- Do not modify runtime files further unless a new approved implementation request requires it.
+- Keep Sprint 046 closeout limited to the accepted Home typed `Capture`/`Send` touch-target polish.
