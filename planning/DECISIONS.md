@@ -189,3 +189,9 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 |---|---|---|---|
 | 2026-05-31 | Use `Knowledge Base` as the full feature name and `Knowledge` only as a compact navigation label when space requires it. Do not use `Context` as the user-facing label for this feature unless a future sprint deliberately changes the product language. | Sprint 029 improved navigation labels but created a follow-up need to make product copy consistent. | Sprint 030 should align visible labels, empty-state copy, validation notes, and smoke checks around one product term. |
 | 2026-05-31 | Sprint 030 should add lightweight UI smoke confidence without introducing a heavy E2E testing system unless the repo already supports it cleanly. | The project needs confidence, not a test framework detour. | Prefer simple scripts, existing test setup, or documented manual smoke protocol over large test tooling changes. |
+
+## Sprint 042 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-06-02 | Sprint 042 establishes local, query-param, non-production fixtures as the preferred lightweight validation mechanism for hard-to-reproduce UI states, as long as they are guarded from production behavior and remain narrow to validation needs. | Seeded local data and service fallback behavior made empty and failure states hard to live-reproduce without risky data or backend changes. | Future validation sprints may use narrow non-production query-param fixtures before considering heavier test infrastructure, package changes, backend changes, or production feature flags. |

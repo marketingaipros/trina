@@ -75,6 +75,151 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 042 Validation - Mobile State Validation and Fixture Coverage
+
+### Purpose
+
+Sprint 042 creates a small repeatable validation path for the Sprint 041 state-coverage caveats.
+
+This sprint is not a redesign, backend, Firebase, package, native, build, release, deployment, or CEO Briefing sprint.
+
+### Required Builder Summary Gate
+
+Before runtime edits, the Builder must report:
+
+1. What Sprint 042 is supposed to accomplish.
+2. Which files it expects to modify.
+3. What tests or validation steps it will run.
+4. Any blockers or ambiguities.
+
+Implementation must wait for operator approval after that summary.
+
+### Required Commands
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git diff --name-only
+git status --branch --short
+```
+
+### Required Browser and Inspection Checks
+
+- Mobile viewport exactly `390x844`, or nearest available viewport with reason.
+- Dashboard / Daily Snapshot failure visibility where feasible.
+- Voice Dashboard capture, empty, and disabled behavior.
+- Tasks true empty state, filter empty states, and Strategic Review AI failure state where feasible.
+- Notifications empty and fallback behavior.
+- Calendar true empty selected-day/list state and preserved event controls where feasible.
+- Finance empty state, disabled/invalid submit behavior, and AI failure state where feasible.
+- Knowledge Base empty/fallback, voice failure, and delete-without-ID error states where feasible.
+- No horizontal overflow on Dashboard, Tasks, Finance, Calendar, Notifications, and Knowledge Base.
+- Sprint 040 touch/accessibility behavior remains preserved.
+
+### Validation Mechanism Rules
+
+Use the smallest practical validation mechanism:
+
+- Lightweight local fixture, mock, dev-only toggle, or test helper.
+- Documented local reset or manual steps if code support is unnecessary.
+- Small smoke script only if the repo already has a practical place for it.
+- No runtime changes if existing structure already supports repeatable validation.
+
+Do not add package dependencies without first reporting why existing tooling is insufficient and receiving explicit approval.
+
+Any helper must be narrow, local, and isolated from normal user behavior.
+
+### Scope Guard
+
+Runtime files may only be changed after approval and only if required to support validation or fix a confirmed state issue.
+
+Allowed runtime candidates:
+
+- `components/Dashboard.tsx`
+- `components/VoiceDashboard.tsx`
+- `components/TasksView.tsx`
+- `components/NotificationsView.tsx`
+- `components/CalendarView.tsx`
+- `components/FinanceView.tsx`
+- `components/KnowledgeBaseView.tsx`
+
+`components/Navigation.tsx` and `App.tsx` are inspect-only unless explicitly justified.
+
+Sprint 042 must not touch CEO Briefing files and must not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Sprint 042 must not touch backend, Firebase, package, native, build, release, deployment, environment, evidence, or generated FlutterFlow files.
+
+### Results Format
+
+Record Sprint 042 results with:
+
+- Validation mechanism used.
+- Runtime files changed, if any.
+- Which Sprint 041 caveats were live-reproduced.
+- Which states remain code-inspected only.
+- Exact or nearest mobile viewport used.
+- Horizontal overflow result.
+- Sprint 040 touch/accessibility preservation result.
+- Required command results.
+- Protected scope confirmation.
+
+### Sprint 042 Validation Results
+
+Runtime changes:
+
+- `components/VoiceDashboard.tsx`: added local/dev-only `trinaStateFixture=ai-failure` support for Daily Snapshot error validation.
+- `components/TasksView.tsx`: added local/dev-only `trinaStateFixture=empty` and `trinaStateFixture=ai-failure` support for empty task and Strategic Review error validation.
+- `components/CalendarView.tsx`: added local/dev-only `trinaStateFixture=empty` support for selected-day/list empty-state validation.
+- `components/FinanceView.tsx`: added local/dev-only `trinaStateFixture=empty` and `trinaStateFixture=ai-failure` support for empty finance, disabled submit, and Financial Analysis error validation.
+- `components/KnowledgeBaseView.tsx`: added local/dev-only `trinaStateFixture=empty` and `trinaStateFixture=kb-missing-id` support for empty vault and delete-without-ID fallback validation.
+
+Validation mechanism:
+
+- Use `?trinaStateFixture=empty,ai-failure,kb-missing-id` for local fixture validation.
+- Use `?trinaReminderFixture=1&trinaStart=notifications` with the existing Sprint 036 fixture for reminder-backed Notifications validation.
+- Fixtures are guarded by `process.env.NODE_ENV !== 'production'` and URL query parameters, and they do not mutate local storage.
+
+Command results:
+
+- `npm run lint`: Pass.
+- `git diff --check`: Pass.
+- `npm run build`: Pass, with known non-blocking Vite warnings about `services/authService.ts` mixed import chunking and large bundle size.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+
+Browser smoke results:
+
+- Browser smoke ran in isolated Chrome through DevTools at exact viewport `390x844`.
+- `trinaStateFixture=empty,ai-failure,kb-missing-id&trinaReminderFixture=1&trinaStart=notifications` live-verified Notifications fixture rendering, Tasks empty state, Calendar empty state, Finance empty state, Finance disabled submit, Daily Snapshot error, and no horizontal overflow.
+- `trinaStateFixture=ai-failure,kb-missing-id&trinaReminderFixture=1&trinaStart=notifications` live-verified Strategic Review error, Financial Analysis error, Knowledge Base missing-ID fixture rendering, Knowledge Base delete-without-ID error, Sprint 040 task row 44px controls, Knowledge Base upload/voice 44px controls, and no horizontal overflow.
+- Calendar event controls remained covered by the existing runtime code and live smoke accepted the current selected-day state when no selected event rows were visible.
+
+Live-reproduced Sprint 041 caveats:
+
+- Exact `390x844` viewport.
+- True empty states for Tasks, Calendar, Finance, and Knowledge Base through local fixtures.
+- Daily Snapshot, Strategic Review, and Financial Analysis failure states through local fixtures.
+- Finance disabled/invalid submit behavior.
+- Knowledge Base delete-without-ID fallback error.
+- Notifications reminder fixture rendering.
+- Horizontal overflow checks on in-scope views.
+- Sprint 040 touch/accessibility behavior for task controls and Knowledge Base upload/voice controls.
+
+Remaining caveats:
+
+- Calendar event row edit/delete controls were not clicked live in a populated selected-day row during Sprint 042 smoke; existing code keeps the 44px controls, and the selected-day browser check had no overflow.
+
+Protected scope:
+
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- No backend, Firebase, package, native, build config, release, deployment, environment, evidence, or generated FlutterFlow files were changed.
+
 ## Sprint 041 Validation - Empty, Error, and Loading State Hardening
 
 ### Purpose

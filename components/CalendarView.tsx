@@ -11,6 +11,15 @@ interface CalendarViewProps {
   onBack: () => void;
 }
 
+const shouldUseSprint42StateFixture = (fixture: string) =>
+  process.env.NODE_ENV !== 'production' &&
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search)
+    .get('trinaStateFixture')
+    ?.split(',')
+    .map((value) => value.trim())
+    .includes(fixture);
+
 const CATEGORY_CONFIG: Record<string, { color: string; bg: string; icon: any }> = {
   meeting: { color: 'text-blue-600', bg: 'bg-blue-50 border-blue-200', icon: Briefcase },
   deadline: { color: 'text-red-600', bg: 'bg-red-50 border-red-200', icon: Bell },
@@ -21,6 +30,7 @@ const CATEGORY_CONFIG: Record<string, { color: string; bg: string; icon: any }> 
 };
 
 const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdateEvent, onDeleteEvent, onBack }) => {
+  const visibleEvents = shouldUseSprint42StateFixture('empty') ? [] : events;
   const today = new Date();
   const todayStr = getLocalISODate(today);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
@@ -56,10 +66,10 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
 
   const getEventsForDay = (day: number): CalendarEvent[] => {
     const dateStr = getDateStr(day);
-    return events.filter(e => e.date === dateStr);
+    return visibleEvents.filter(e => e.date === dateStr);
   };
 
-  const selectedEvents = events
+  const selectedEvents = visibleEvents
     .filter(e => e.date === selectedDate)
     .sort((a, b) => (a.time || '').localeCompare(b.time || ''));
 
@@ -68,7 +78,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
     if (!newTitle.trim()) return;
 
     if (editingEventId) {
-      const originalEvent = events.find(ev => ev.id === editingEventId);
+      const originalEvent = visibleEvents.find(ev => ev.id === editingEventId);
       if (originalEvent) {
         onUpdateEvent({
           ...originalEvent,

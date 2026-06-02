@@ -2,19 +2,21 @@
 
 ## Current Sprint
 
-Sprint 041 - Empty, Error, and Loading State Hardening
+Sprint 042 - Mobile State Validation and Fixture Coverage
 
 ## Current Status
 
-Sprint 040 is closed and pushed at commit `dfce340`.
+Sprint 042 implementation and validation completed.
 
-Sprint 041 implementation and validation completed with documented caveats.
+Sprint 042 closes the Sprint 041 validation caveats with a small dev-only query-param fixture path for mobile state coverage.
 
-Sprint 041 hardened empty, error, loading, unavailable, disabled, and fallback states across the existing non-CEO Trina app shell.
+Sprint 041 implementation and validation completed with documented caveats after hardening empty, error, loading, unavailable, disabled, and fallback states across the existing non-CEO Trina app shell.
 
 ## Active Work
 
-Sprint 041 closeout documentation records the completed runtime hardening and validation results.
+Sprint 042 closeout documentation records the completed validation helper and browser smoke results.
+
+The validation helper is local/dev-only and is not exposed as a production feature.
 
 Confirmed issues addressed:
 
@@ -29,6 +31,16 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 
 ## Recently Completed
 
+- Sprint 042 added `?trinaStateFixture=` dev-only state fixtures inside allowed component files only.
+- `trinaStateFixture=empty` live-reproduces Tasks, Calendar, Finance, and Knowledge Base empty states without changing local storage.
+- `trinaStateFixture=ai-failure` live-reproduces Daily Snapshot, Strategic Review, and Financial Analysis error states.
+- `trinaStateFixture=kb-missing-id` live-reproduces Knowledge Base delete-without-document-ID error handling.
+- Browser smoke ran at exact viewport `390x844` through an isolated Chrome DevTools session.
+- Notifications fixture, empty states, AI failure states, disabled finance submit, Knowledge Base missing-ID fallback, horizontal overflow, and Sprint 040 touch/accessibility checks passed.
+- Remaining Sprint 042 caveat: Calendar selected-day edit/delete controls were not live-clicked on a populated selected-day row at `390x844`, even though code keeps 44px controls and selected-day smoke showed no horizontal overflow.
+- Sprint 042 planning folder and validation handoff were created from the Architect Pack.
+- Sprint 042 validation requirements now call for rechecking Sprint 041 caveats at exactly `390x844` or the nearest available mobile viewport with reasons.
+- Sprint 042 keeps CEO Briefing, backend, Firebase, package, native, build, release, deployment, and generated FlutterFlow surfaces out of scope.
 - Sprint 041 empty, error, loading, unavailable, disabled, and fallback state hardening passed command validation.
 - Browser/manual smoke was run near mobile size at measured viewport `351x729`.
 - Notifications and Knowledge Base empty/fallback states were live-verified.
@@ -64,4 +76,4 @@ Do not create or modify:
 
 ## Next Action
 
-Review Sprint 041 closeout changes, then stage and commit only after explicit operator approval.
+Review Sprint 042 implementation and validation results, then stage and commit only after explicit operator approval.

@@ -21,6 +21,15 @@ interface VoiceDashboardProps {
   onAssistantCapture: (message: string, source: 'typed' | 'voice') => Task | null;
 }
 
+const shouldUseSprint42StateFixture = (fixture: string) =>
+  process.env.NODE_ENV !== 'production' &&
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search)
+    .get('trinaStateFixture')
+    ?.split(',')
+    .map((value) => value.trim())
+    .includes(fixture);
+
 const VoiceDashboard: React.FC<VoiceDashboardProps> = ({ 
   isConnected, 
   isSpeaking, 
@@ -334,6 +343,10 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     setBriefingError(null);
     
     try {
+      if (shouldUseSprint42StateFixture('ai-failure')) {
+        throw new Error('Sprint 042 Daily Snapshot fixture');
+      }
+
       const text = await getSmartBriefing(tasks, events);
       setBriefing(text);
       speakBriefing(text);

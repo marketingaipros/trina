@@ -14,6 +14,15 @@ interface TasksViewProps {
   onBack: () => void;
 }
 
+const shouldUseSprint42StateFixture = (fixture: string) =>
+  process.env.NODE_ENV !== 'production' &&
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search)
+    .get('trinaStateFixture')
+    ?.split(',')
+    .map((value) => value.trim())
+    .includes(fixture);
+
 const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdateTask, onDeleteTask, onBack }) => {
   const [filter, setFilter] = useState<'all' | 'high' | 'todo'>('todo');
   const [isAdding, setIsAdding] = useState(false);
@@ -25,16 +34,20 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
   const [insights, setInsights] = useState<string | null>(null);
   const [insightsError, setInsightsError] = useState<string | null>(null);
   const [isLoadingInsights, setIsLoadingInsights] = useState(false);
+  const fixtureEmpty = shouldUseSprint42StateFixture('empty');
+  const fixtureAiFailure = shouldUseSprint42StateFixture('ai-failure');
+  const visibleTasks = fixtureEmpty ? [] : tasks;
+  const visibleEvents = fixtureEmpty ? [] : events;
 
   const today = getLocalISODate();
 
   // Get today's and upcoming events to show alongside tasks
-  const upcomingEvents = events
+  const upcomingEvents = visibleEvents
     .filter(e => e.date >= today)
     .sort((a, b) => a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || ''))
     .slice(0, 5);
 
-  const filteredTasks = tasks
+  const filteredTasks = visibleTasks
     .filter(t => {
       if (filter === 'all') return true;
       if (filter === 'todo') return t.status === TaskStatus.TODO;
@@ -126,7 +139,11 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
     setInsights(null);
     setInsightsError(null);
     try {
-      const result = await getTaskPrioritization(tasks);
+      if (fixtureAiFailure) {
+        throw new Error('Sprint 042 Strategic Review fixture');
+      }
+
+      const result = await getTaskPrioritization(visibleTasks);
       setInsights(result);
     } catch (e) {
       console.error("Failed to get insights:", e);
@@ -154,10 +171,10 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
         <div className="flex items-center gap-2">
             <button 
               onClick={handleGetInsights}
-              disabled={isLoadingInsights || tasks.length === 0}
+              disabled={isLoadingInsights || visibleTasks.length === 0}
               aria-label="Get Barbie's Strategic Review"
               className="p-2 bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
-              title={tasks.length === 0 ? "Add a task before requesting Strategic Review" : "Barbie's Strategic Review"}
+              title={visibleTasks.length === 0 ? "Add a task before requesting Strategic Review" : "Barbie's Strategic Review"}
             >
               {isLoadingInsights ? <Loader2 size={24} className="animate-spin" /> : <Sparkles size={24} />}
             </button>
@@ -313,10 +330,10 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
         {filteredTasks.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center text-gray-400 px-8">
             <p className="font-bold text-gray-500">
-              {tasks.length === 0 ? 'No tasks yet.' : 'No tasks match this filter.'}
+              {visibleTasks.length === 0 ? 'No tasks yet.' : 'No tasks match this filter.'}
             </p>
             <p className="text-sm mt-2">
-              {tasks.length === 0
+              {visibleTasks.length === 0
                 ? 'Use the plus button here, or return Home and capture a task from the Assistant.'
                 : 'Switch to All Tasks, or return Home and capture a new item from the Assistant.'}
             </p>

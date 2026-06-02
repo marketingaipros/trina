@@ -232,3 +232,13 @@
 | Risk | Likelihood | Impact | Mitigation | Status |
 |---|---:|---:|---|---|
 | Reminder-backed notification validation may depend on live/local browser data that is not always present. | Medium | Medium | Sprint 036 adds a dev-only `?trinaReminderFixture=1` browser fixture that proves populated reminder rendering through the existing notification item mapping without backend or production data changes. | Mitigated |
+
+## Sprint 042 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Builder may overbuild validation infrastructure instead of adding a small local check. | Medium | Medium | Require a Builder summary before implementation and prefer simple fixtures, documented steps, or no runtime changes when sufficient. | Mitigated - Sprint 042 added only narrow query-param fixtures inside allowed components. |
+| Dev-only validation helpers could accidentally affect normal user behavior. | Medium | High | Keep any helper narrow, local, and isolated from production-facing behavior; avoid production feature flags. | Mitigated - fixtures are gated by `process.env.NODE_ENV !== 'production'` and `?trinaStateFixture=`. |
+| Seeded local data may continue to block true empty-state reproduction. | High | Medium | Use controlled fixtures, documented local reset steps, or clearly labeled code-inspection caveats. | Mitigated - `trinaStateFixture=empty` live-reproduces target empty states without mutating storage. |
+| AI failure states may remain difficult to reproduce live without unsafe service manipulation. | Medium | Medium | Prefer safe local simulation where possible and document any remaining code-inspection-only coverage honestly. | Mitigated - `trinaStateFixture=ai-failure` safely triggers the UI error branches. |
+| CEO Briefing could re-enter scope through old validation history. | Low | High | Keep CEO Briefing explicitly protected and verify `references/flutterflow/sprint-009/ceo-briefing.png` remains absent. | Mitigated - protected scope was untouched and absence guard passed. |

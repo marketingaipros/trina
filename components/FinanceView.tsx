@@ -12,6 +12,15 @@ interface FinanceViewProps {
   onBack: () => void;
 }
 
+const shouldUseSprint42StateFixture = (fixture: string) =>
+  process.env.NODE_ENV !== 'production' &&
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search)
+    .get('trinaStateFixture')
+    ?.split(',')
+    .map((value) => value.trim())
+    .includes(fixture);
+
 const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransaction, onBack }) => {
   const [isAdding, setIsAdding] = useState(false);
   const [amount, setAmount] = useState('');
@@ -20,19 +29,22 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
   const [insights, setInsights] = useState<string | null>(null);
   const [insightsError, setInsightsError] = useState<string | null>(null);
   const [isLoadingInsights, setIsLoadingInsights] = useState(false);
+  const fixtureEmpty = shouldUseSprint42StateFixture('empty');
+  const fixtureAiFailure = shouldUseSprint42StateFixture('ai-failure');
+  const visibleTransactions = fixtureEmpty ? [] : transactions;
 
-  const income = transactions
+  const income = visibleTransactions
     .filter(t => t.type === TransactionType.INCOME)
     .reduce((sum, t) => sum + t.amount, 0);
 
-  const expense = transactions
+  const expense = visibleTransactions
     .filter(t => t.type === TransactionType.EXPENSE)
     .reduce((sum, t) => sum + t.amount, 0);
 
   const net = income - expense;
 
   // Data for chart
-  const expenseByCategory = transactions
+  const expenseByCategory = visibleTransactions
     .filter(t => t.type === TransactionType.EXPENSE)
     .reduce((acc, t) => {
       acc[t.category] = (acc[t.category] || 0) + t.amount;
@@ -67,7 +79,11 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
     setInsights(null);
     setInsightsError(null);
     try {
-      const result = await getFinanceInsights(transactions);
+      if (fixtureAiFailure) {
+        throw new Error('Sprint 042 Financial Analysis fixture');
+      }
+
+      const result = await getFinanceInsights(visibleTransactions);
       setInsights(result);
     } catch (e) {
       console.error("Failed to get insights:", e);
@@ -94,10 +110,10 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
         <div className="flex items-center gap-2">
             <button 
               onClick={handleGetInsights}
-              disabled={isLoadingInsights || transactions.length === 0}
+              disabled={isLoadingInsights || visibleTransactions.length === 0}
               aria-label="Get financial insights"
               className="p-2 bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
-              title={transactions.length === 0 ? 'Add a finance entry before requesting insights' : 'Get AI Insights'}
+              title={visibleTransactions.length === 0 ? 'Add a finance entry before requesting insights' : 'Get AI Insights'}
             >
               {isLoadingInsights ? <Loader2 size={24} className="animate-spin" /> : <Sparkles size={24} />}
             </button>
@@ -171,7 +187,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
               </div>
           </div>
 
-          {transactions.length === 0 && (
+          {visibleTransactions.length === 0 && (
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
               <DollarSign size={36} className="mx-auto mb-3 text-pink-200" />
               <p className="text-sm font-bold text-gray-600">No finance entries yet</p>

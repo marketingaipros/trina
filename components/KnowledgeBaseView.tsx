@@ -17,6 +17,15 @@ interface UploadingFile {
   error?: string;
 }
 
+const shouldUseSprint42StateFixture = (fixture: string) =>
+  process.env.NODE_ENV !== 'production' &&
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search)
+    .get('trinaStateFixture')
+    ?.split(',')
+    .map((value) => value.trim())
+    .includes(fixture);
+
 const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken, authUid }) => {
   const [documents, setDocuments] = useState<Array<{ name: string; displayName: string; id?: string; fileType?: string; uploadedAt?: any }>>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +38,8 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [globalError, setGlobalError] = useState<string | null>(null);
   const [searchError, setSearchError] = useState<string | null>(null);
+  const fixtureEmpty = shouldUseSprint42StateFixture('empty');
+  const fixtureMissingId = shouldUseSprint42StateFixture('kb-missing-id');
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<any>(null);
@@ -267,6 +278,18 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
     }
   };
 
+  const visibleDocuments = fixtureEmpty
+    ? []
+    : fixtureMissingId
+      ? [
+          {
+            name: 'sprint-042-missing-id-fixture.txt',
+            displayName: 'Sprint 042 Missing ID Fixture',
+          },
+          ...documents,
+        ]
+      : documents;
+
   return (
     <div className="h-full flex flex-col bg-gray-50">
       <header className="flex items-center justify-between p-4 bg-white border-b border-gray-100">
@@ -409,7 +432,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
 
       <div className="flex-1 overflow-y-auto p-4 space-y-2 no-scrollbar">
         <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">
-          Vault Documents ({documents.length})
+          Vault Documents ({visibleDocuments.length})
         </h3>
 
         {isLoading ? (
@@ -417,7 +440,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
             <Loader2 size={32} className="animate-spin text-pink-400" />
             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Loading Vault...</p>
           </div>
-        ) : documents.length === 0 ? (
+        ) : visibleDocuments.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center text-gray-400 px-8">
             <FileText size={64} strokeWidth={1} className="mb-4 opacity-30" />
             <p className="font-bold uppercase tracking-widest text-xs text-gray-500">Knowledge Base Empty</p>
@@ -434,7 +457,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
             </button>
           </div>
         ) : (
-          documents.map((doc) => (
+          visibleDocuments.map((doc) => (
             <div key={doc.id || doc.name} className={`flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm group hover:border-pink-200 hover:shadow-md transition-all ${deletingId === doc.id ? 'opacity-50' : ''}`}>
               <div className="text-3xl flex-shrink-0 bg-gray-50 w-12 h-12 flex items-center justify-center rounded-xl group-hover:bg-pink-50 transition-colors">
                 {getFileIcon(doc.displayName)}
