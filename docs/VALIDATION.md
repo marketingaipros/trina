@@ -218,7 +218,151 @@ Protected scope:
 
 - CEO Briefing stayed untouched.
 - `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+## Sprint 044 Validation - Forward Mobile Runtime Smoke And Next Priority Selection
+
+### Purpose
+
+Sprint 044 performs a focused forward mobile runtime smoke across the non-CEO app shell and selects the next narrow implementation priority from observed behavior.
+
+This sprint is not a runtime implementation, backend, Firebase, auth, package, dependency, native, deployment, environment, FlutterFlow, or CEO Briefing sprint.
+
+### Required Builder Summary Gate
+
+Before validation or runtime inspection beyond readback, the Builder must report:
+
+1. What Sprint 044 is supposed to accomplish.
+2. Which files it expects to inspect or modify.
+3. What validation steps it will run.
+4. Any blockers, ambiguities, or risks before validation.
+
+Implementation must wait for operator approval after that summary.
+
+### Required Commands
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+```
+
+### Required Browser and Inspection Checks
+
+- Mobile viewport exactly `390x844`, or nearest available measured viewport with reason.
+- Dashboard/Home shell renders and primary controls are reachable.
+- Tasks view renders and recently hardened task controls remain reachable where visible.
+- Calendar view renders and selected-day/event controls remain reachable where visible.
+- Finance view renders and primary controls do not show obvious blocked, empty, error, or loading regressions.
+- Knowledge Base view renders and upload/voice/delete fallback controls remain reachable where visible.
+- Notifications/reminder surface renders if reachable.
+- No obvious horizontal overflow on reachable in-scope views.
+- Fixed bottom navigation does not overlap primary controls on reachable in-scope views.
+- Recently hardened accessible labels and 44px touch-target expectations remain preserved where inspectable.
+
+### Scope Guard
+
+Runtime files may be inspected during Sprint 044, but must not be modified unless separately approved after the readback.
+
+Sprint 044 must not touch backend, Firebase, auth, package, dependency, native, build, release, deployment, environment, generated FlutterFlow, evidence, or CEO Briefing files.
+
+Sprint 044 must not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Results Format
+
+Record Sprint 044 results with:
+
+- Exact or nearest measured mobile viewport used.
+- Surfaces reached.
+- Rendering result by surface.
+- Navigation and control reachability result by surface.
+- Horizontal overflow result.
+- Bottom-navigation overlap result.
+- Recent accessibility/touch-target preservation result.
+- Any blocked or untested surfaces with reason.
+- Sprint 045 recommendation with narrow scope, expected files, validation needs, and whether it is docs-only, validation-only, or runtime implementation.
+- Required command results.
+- Protected scope confirmation.
 - No backend, Firebase, package, native, build config, release, deployment, environment, evidence, or generated FlutterFlow files were changed.
+
+### Sprint 044 Validation Results
+
+Runtime changes:
+
+- None.
+
+Validation path:
+
+- Browser smoke ran through the in-app browser against local Vite at `http://127.0.0.1:3000/?trinaReminderFixture=1`.
+- Exact viewport `390x844` was available and used.
+- Notifications/reminders were reached with the existing local `trinaReminderFixture=1` validation fixture.
+
+Surfaces reached:
+
+- Dashboard/Home
+- Tasks
+- Calendar
+- Finance
+- Knowledge Base
+- Notifications/reminders
+
+Browser smoke results:
+
+- Dashboard/Home rendered the assistant shell with quick actions, typed fallback, voice capture control, and bottom navigation. `documentElement` and `body` width both measured `390`, with no horizontal overflow. Quick action buttons measured `56x56`; bottom navigation buttons measured `62x56` and had accessible labels.
+- Tasks rendered `Task Tracker`, schedule context, filters, and existing task rows. Task row done/edit/delete controls remained visible, reachable, labeled, and measured `44x44` where inspected. No horizontal overflow was observed.
+- Calendar rendered `June 2026`, selected day `Tuesday, June 2`, and the populated `Parent Meeting` row. Selected-day edit/delete controls remained visible and reachable. No horizontal overflow was observed.
+- Finance rendered `Financial Snapshot`, net profit, revenue/expense totals, breakdown content, and bottom navigation. No blocked, empty, error, or loading regression was observed. No horizontal overflow was observed.
+- Knowledge Base rendered `Knowledge Base`, query input, voice question button, upload actions, and the empty vault state. Upload and voice controls remained reachable and labeled; the empty state did not regress. No horizontal overflow was observed.
+- Notifications/reminders rendered the fixture reminder and the blocked-browser-notification fallback message while preserving in-app reminder/task-capture messaging. No horizontal overflow was observed.
+
+Navigation and bottom navigation:
+
+- Bottom navigation successfully moved between Home, Tasks, Calendar, Finance, Knowledge, and Notifications.
+- Bottom navigation buttons measured `62x56` with accessible labels: `Open Home`, `Open Tasks`, `Open Finance`, `Open Calendar`, `Open Notifications`, and `Open Knowledge`.
+- No bottom-navigation overlap blocked primary controls on the validated surfaces.
+
+Touch/accessibility observations:
+
+- Recently hardened task row controls remained `44x44` with specific labels such as `Edit task: Renew daycare license` and `Delete task: Renew daycare license`.
+- Knowledge Base upload and voice-question controls remained at least `44px` tall and had accessible labels where inspected.
+- Dashboard quick-action buttons remained `56x56` with accessible labels.
+- Compact header/back/AI action buttons on some secondary views measured around `40x40`; this was recorded as a non-blocking observation because the Sprint 044 smoke target was preservation of recently hardened controls and no primary workflow was blocked.
+
+Empty/error/loading regression check:
+
+- Dashboard showed the known microphone-permission-denied fallback and kept typed capture/send controls visible.
+- Knowledge Base showed the expected empty vault state.
+- Notifications showed the expected browser-notification-blocked fallback plus the fixture reminder.
+- No unexpected stuck loading state, crash, or blank screen was observed on any validated surface.
+
+Recommended Sprint 045 priority:
+
+- Sprint 045 candidate: `045-secondary-header-touch-target-polish`.
+- Rationale: Sprint 044 found the main mobile shell stable, with no overflow or blocked navigation. The only current mobile polish evidence is that several secondary header/back/AI controls measure around `40x40`, while the recently hardened row, upload, voice, quick-action, and bottom-nav controls remain at or above target sizes.
+- Expected files to inspect: `components/TasksView.tsx`, `components/FinanceView.tsx`, `components/KnowledgeBaseView.tsx`, `components/NotificationsView.tsx`, `components/CalendarView.tsx`, and shared navigation/header patterns if any are introduced later.
+- Expected mode: narrow runtime implementation only after a new Architect Pack and approval; otherwise validation-only if the operator decides the 40px secondary controls are acceptable.
+- Validation needed: mobile browser smoke at `390x844`, header/back/action button size checks, horizontal overflow check, bottom-navigation overlap check, `npm run lint`, `npm run build`, `git diff --check`, and the CEO Briefing absence guard.
+
+Command results:
+
+- `git diff --check`: Pass.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+- `npm run lint`: Pass.
+- `npm run build`: Pass, with known non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
+- `git diff --name-only`: Pass, limited to allowed tracked docs.
+- `git status --branch --short`: Pass, showing allowed docs/planning changes and no staged files.
+
+Protected scope:
+
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent during browser validation.
+- No runtime, backend, Firebase, auth, package, dependency, native, build config, release, deployment, environment, evidence, or generated FlutterFlow files were changed.
 
 ## Sprint 043 Validation - Calendar Selected-Day Control Validation Closeout
 

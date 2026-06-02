@@ -2,9 +2,13 @@
 
 ## Current Sprint
 
-Sprint 043 - Calendar Selected-Day Control Validation Closeout
+Sprint 044 - Forward Mobile Runtime Smoke And Next Priority Selection
 
 ## Current Status
+
+Sprint 044 validation completed with no runtime changes.
+
+Sprint 044 performed an exact `390x844` mobile runtime smoke across the current non-CEO app shell and found no blocking runtime defect.
 
 Sprint 043 validation completed with no runtime changes.
 
@@ -19,6 +23,12 @@ Sprint 042 closes the Sprint 041 validation caveats with a small dev-only query-
 Sprint 041 implementation and validation completed with documented caveats after hardening empty, error, loading, unavailable, disabled, and fallback states across the existing non-CEO Trina app shell.
 
 ## Active Work
+
+Sprint 044 browser validation reached Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders at exact viewport `390x844`.
+
+Sprint 044 documented rendering, navigation, horizontal overflow, control reachability, bottom-nav overlap, and recently hardened accessibility/touch-target behavior.
+
+Sprint 044 recommends the narrow Sprint 045 candidate `045-secondary-header-touch-target-polish`, focused on deciding whether secondary header/back/AI action controls that measure around `40x40` should be brought up to the 44px mobile target. This should require a new Architect Pack and approval before any runtime implementation.
 
 Sprint 043 browser validation used existing local Calendar state and did not require a runtime fixture.
 
@@ -51,6 +61,16 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 - The `Parent Meeting` edit control was live-clicked and opened the edit form with existing event data.
 - A temporary `Sprint 043 Delete Test` event was created through the normal Calendar Add Event UI, live-deleted, and confirmed removed while `Parent Meeting` remained visible.
 - Selected-day row edit/delete controls measured `44x44`, remained accessible by label, and showed no horizontal overflow.
+- Sprint 044 browser smoke ran against local Vite at exact viewport `390x844`.
+- Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders were reachable through bottom navigation.
+- Notifications/reminders used the existing `trinaReminderFixture=1` local validation fixture.
+- No horizontal overflow was observed on any validated Sprint 044 surface.
+- Bottom navigation buttons measured `62x56`, had accessible labels, and did not block primary controls on validated surfaces.
+- Recently hardened task row controls remained visible, labeled, reachable, and `44x44` where inspected.
+- Knowledge Base upload/voice controls and Dashboard quick-action controls remained reachable, labeled, and at least 44px in the validated dimensions.
+- Sprint 044 recorded a non-blocking observation that several secondary header/back/AI action controls measure around `40x40`; this is the recommended narrow Sprint 045 decision/implementation candidate if the operator wants all secondary controls aligned to the 44px mobile target.
+- Sprint 044 Architect Pack was saved at `architect-packs/trina-044-forward-mobile-runtime-smoke-and-next-priority-selection-architect-pack.md`.
+- Sprint 044 planning files were created under `planning/sprints/044-forward-mobile-runtime-smoke-and-next-priority-selection/`.
 - Sprint 043 Architect Pack was saved at `architect-packs/trina-043-calendar-selected-day-control-validation-closeout-architect-pack.md`.
 - Sprint 043 planning files were created under `planning/sprints/043-calendar-selected-day-control-validation-closeout/`.
 - Sprint 042 planning folder and validation handoff were created from the Architect Pack.
