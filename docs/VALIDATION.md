@@ -220,6 +220,130 @@ Protected scope:
 - `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
 - No backend, Firebase, package, native, build config, release, deployment, environment, evidence, or generated FlutterFlow files were changed.
 
+## Sprint 043 Validation - Calendar Selected-Day Control Validation Closeout
+
+### Purpose
+
+Sprint 043 will close the remaining Sprint 042 validation caveat by proving Calendar selected-day edit/delete controls can be live-clicked on a populated selected-day row at the mobile target viewport.
+
+This sprint is not a redesign, feature expansion, backend, Firebase, Supabase, package, native, build config, release, deployment, or CEO Briefing sprint.
+
+### Required Builder Summary Gate
+
+Before runtime edits, the Builder must report:
+
+1. What Sprint 043 is supposed to accomplish.
+2. Which files it expects to inspect or modify.
+3. What validation steps it expects to run.
+4. Any blockers, risks, or ambiguities.
+5. Whether runtime changes are expected.
+
+Implementation must wait for operator approval after that summary.
+
+### Required Commands
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git diff --name-only
+git status --branch --short
+```
+
+### Required Browser and Inspection Checks
+
+- Mobile viewport exactly `390x844`, or nearest available viewport with reason.
+- Calendar selected-day populated row renders.
+- Selected-day row edit control live-clicks successfully.
+- Selected-day row delete control live-clicks successfully, or a safe confirm/cancel path is used and documented.
+- Selected-day populated row has no horizontal overflow.
+- Sprint 040 touch/accessibility expectations remain preserved, including practical 44px mobile control targets where applicable.
+
+### Validation Mechanism Rules
+
+Prefer no runtime change if existing safe local state can populate the selected-day row.
+
+If existing state cannot reliably reproduce the row, use the smallest possible Calendar-only local/dev fixture. The expected query-param shape is:
+
+```text
+?trinaStateFixture=calendar-selected-day
+```
+
+Any fixture must be guarded from production behavior, avoid persistence unless existing component patterns require it, and remain isolated from normal Calendar behavior when the query parameter is absent.
+
+### Scope Guard
+
+Runtime files may only be changed after approval and only if required to support validation or fix a confirmed selected-day control issue.
+
+Allowed runtime modification candidate:
+
+- `components/CalendarView.tsx`
+
+Inspect-only unless explicitly justified:
+
+- `App.tsx`
+- `components/Navigation.tsx`
+- `components/Dashboard.tsx`
+- `components/VoiceDashboard.tsx`
+- `components/TasksView.tsx`
+- `components/NotificationsView.tsx`
+- `components/FinanceView.tsx`
+- `components/KnowledgeBaseView.tsx`
+
+Sprint 043 must not touch CEO Briefing files and must not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Sprint 043 must not touch packages, dependencies, backend, Firebase, Supabase, native files, build config, release, deployment, environment, evidence, or generated FlutterFlow files.
+
+### Planned Results Format
+
+Record Sprint 043 results with:
+
+- Validation path used: existing state or local/dev-only fixture.
+- Runtime files changed, if any.
+- Exact or nearest mobile viewport used.
+- Edit control live-click result.
+- Delete control live-click or safe confirm/cancel result.
+- Horizontal overflow result.
+- Sprint 040 touch/accessibility preservation result.
+- Required command results.
+- Protected scope confirmation.
+
+### Sprint 043 Validation Results
+
+Runtime changes:
+
+- None.
+
+Validation path:
+
+- Used existing local Calendar state. No new fixture was needed.
+- The selected date `2026-06-02` already had a populated selected-day row: `Parent Meeting`.
+- A temporary local event named `Sprint 043 Delete Test` was created through the normal Calendar Add Event UI for safe delete validation, then deleted during the same browser session.
+
+Browser smoke results:
+
+- Browser validation ran through the in-app browser at measured viewport `351x729`, the nearest available viewport in this browser wrapper.
+- Calendar selected-day populated row rendered for Tuesday, June 2, 2026.
+- Edit control was live-clicked on `Parent Meeting`; the edit form opened and loaded the existing title into the title input without saving changes.
+- Delete control was live-clicked on the temporary `Sprint 043 Delete Test` event; the temporary event was removed and the original `Parent Meeting` row remained visible.
+- No horizontal overflow was observed. `documentElement.scrollWidth`, `documentElement.clientWidth`, `body.scrollWidth`, and `body.clientWidth` all measured `351`.
+- Sprint 040 touch/accessibility expectations remained preserved for selected-day row controls: edit/delete controls measured `44x44`, with accessible labels such as `Edit Parent Meeting`, `Delete Parent Meeting`, `Edit Sprint 043 Delete Test`, and `Delete Sprint 043 Delete Test`.
+
+Remaining caveats:
+
+- Exact `390x844` viewport was not available in the in-app browser wrapper during this validation. The measured viewport used was `351x729`.
+
+Protected scope:
+
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- No package, dependency, backend, Firebase, Supabase, native, build config, release, deployment, environment, evidence, generated FlutterFlow, or runtime source files were changed.
+
 ## Sprint 041 Validation - Empty, Error, and Loading State Hardening
 
 ### Purpose

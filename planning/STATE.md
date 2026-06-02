@@ -2,9 +2,15 @@
 
 ## Current Sprint
 
-Sprint 042 - Mobile State Validation and Fixture Coverage
+Sprint 043 - Calendar Selected-Day Control Validation Closeout
 
 ## Current Status
+
+Sprint 043 validation completed with no runtime changes.
+
+Sprint 043 closed the remaining Sprint 042 caveat:
+
+- Calendar selected-day edit/delete controls were not live-clicked on a populated selected-day row at `390x844`.
 
 Sprint 042 implementation and validation completed.
 
@@ -13,6 +19,8 @@ Sprint 042 closes the Sprint 041 validation caveats with a small dev-only query-
 Sprint 041 implementation and validation completed with documented caveats after hardening empty, error, loading, unavailable, disabled, and fallback states across the existing non-CEO Trina app shell.
 
 ## Active Work
+
+Sprint 043 browser validation used existing local Calendar state and did not require a runtime fixture.
 
 Sprint 042 closeout documentation records the completed validation helper and browser smoke results.
 
@@ -38,6 +46,13 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 - Browser smoke ran at exact viewport `390x844` through an isolated Chrome DevTools session.
 - Notifications fixture, empty states, AI failure states, disabled finance submit, Knowledge Base missing-ID fallback, horizontal overflow, and Sprint 040 touch/accessibility checks passed.
 - Remaining Sprint 042 caveat: Calendar selected-day edit/delete controls were not live-clicked on a populated selected-day row at `390x844`, even though code keeps 44px controls and selected-day smoke showed no horizontal overflow.
+- Sprint 043 validated the Calendar selected-day populated row at measured viewport `351x729`, the nearest available in-app browser viewport.
+- Existing local state provided a populated selected-day row on `2026-06-02` for `Parent Meeting`.
+- The `Parent Meeting` edit control was live-clicked and opened the edit form with existing event data.
+- A temporary `Sprint 043 Delete Test` event was created through the normal Calendar Add Event UI, live-deleted, and confirmed removed while `Parent Meeting` remained visible.
+- Selected-day row edit/delete controls measured `44x44`, remained accessible by label, and showed no horizontal overflow.
+- Sprint 043 Architect Pack was saved at `architect-packs/trina-043-calendar-selected-day-control-validation-closeout-architect-pack.md`.
+- Sprint 043 planning files were created under `planning/sprints/043-calendar-selected-day-control-validation-closeout/`.
 - Sprint 042 planning folder and validation handoff were created from the Architect Pack.
 - Sprint 042 validation requirements now call for rechecking Sprint 041 caveats at exactly `390x844` or the nearest available mobile viewport with reasons.
 - Sprint 042 keeps CEO Briefing, backend, Firebase, package, native, build, release, deployment, and generated FlutterFlow surfaces out of scope.
@@ -76,4 +91,4 @@ Do not create or modify:
 
 ## Next Action
 
-Review Sprint 042 implementation and validation results, then stage and commit only after explicit operator approval.
+Run final command validation, then stage and commit only after explicit operator approval.

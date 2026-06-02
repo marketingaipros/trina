@@ -218,6 +218,15 @@
 | Browser validation may miss microphone-specific behavior. | Low | Medium | Treat microphone/live speech as out of scope unless broken by task flow changes. Validate typed Assistant capture as the required path. | Accepted - typed capture validated; microphone-specific behavior remained out of scope. |
 | CEO Briefing work may accidentally re-enter scope. | Low | High | Keep CEO Briefing explicitly protected. Run absence guard before closeout. | Mitigated. |
 
+## Sprint 043 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Calendar selected-day edit/delete controls may remain unproven on a populated row at the mobile target viewport. | Medium | Medium | Sprint 043 reproduced a populated selected-day row and live-clicked edit/delete controls at measured viewport `351x729`, the nearest available in-app browser viewport. | Mitigated |
+| Adding fixture logic can increase production-code footprint. | Low | Low | Existing local state reproduced the selected-day row, so no runtime fixture was added. | Mitigated |
+| Delete control validation may be destructive if handled casually. | Medium | Medium | Sprint 043 created a temporary local event through the normal UI, deleted only that event, and confirmed the original `Parent Meeting` row remained visible. | Mitigated |
+| CEO Briefing work could re-enter scope through old planning history. | Low | High | CEO Briefing stayed untouched and `references/flutterflow/sprint-009/ceo-briefing.png` remained absent. | Mitigated |
+
 ## Sprint 035 Risks
 
 | Risk | Impact | Mitigation | Status |
