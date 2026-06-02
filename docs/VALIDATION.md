@@ -75,6 +75,90 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 041 Validation - Empty, Error, and Loading State Hardening
+
+### Purpose
+
+Sprint 041 validates and, only if necessary, lightly hardens empty, fallback, unavailable, failed-action, loading, pending, and disabled-control states across the current non-CEO Trina app shell.
+
+This sprint follows Sprint 040 mobile accessibility and touch-target hardening.
+
+### Required Commands
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git diff --name-only
+git status --branch --short
+```
+
+### Required Browser and Inspection Checks
+
+- Mobile viewport around `390x844`.
+- Dashboard/Home reachable and fallback panels do not look broken.
+- Tasks empty and filter states remain clear.
+- Notifications empty and fallback states remain clear.
+- Calendar empty selected day and event list states remain clear.
+- Finance empty/history states remain clear.
+- Knowledge Base no-documents and no-selected-source states remain clear.
+- Patched controls have accessible names or clear visible text.
+- No horizontal overflow.
+- Sprint 040 mobile/touch improvements remain intact.
+
+### Scope Guard
+
+Sprint 041 must start with inspection and a Builder summary before runtime edits.
+
+Runtime edits, if later approved, must stay inside the Sprint 041 component allowlist and must address confirmed empty, error, loading, unavailable, disabled, or fallback issues only.
+
+Sprint 041 must not touch CEO Briefing files and must not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Sprint 041 must not touch backend, Firebase, package, native, build, release, deployment, evidence, or generated FlutterFlow files.
+
+Known non-blocking Vite warnings may be documented if unchanged from prior validation.
+
+### Sprint 041 Validation Results
+
+Runtime changes:
+
+- `components/VoiceDashboard.tsx`: added visible Daily Snapshot failure feedback.
+- `components/TasksView.tsx`: added visible Strategic Review failure feedback and clearer disabled empty-task insight title text.
+- `components/FinanceView.tsx`: added visible Financial Analysis failure feedback and disabled invalid/non-positive finance submit states.
+- `components/KnowledgeBaseView.tsx`: added visible voice-question failure feedback and visible delete-without-document-ID fallback error text.
+
+Command results:
+
+- `npm run lint`: Pass.
+- `npm run build`: Pass, with known non-blocking Vite warnings about `services/authService.ts` mixed import chunking and large bundle size.
+- `git diff --check`: Pass.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+
+Browser/manual smoke results:
+
+- Browser/manual smoke was run near mobile size at measured viewport `351x729`.
+- Notifications and Knowledge Base empty/fallback states were live-verified.
+- Dashboard, Tasks, Finance, Calendar, Notifications, and Knowledge Base had no horizontal overflow live.
+- Sprint 040 task row controls, Calendar event controls, Knowledge Base upload/voice controls, and bottom nav touch sizes were observed preserved.
+- Knowledge Base voice failure and Finance disabled submit were live-tested.
+
+Inspection-only or caveated results:
+
+- Tasks, Finance, and Calendar true empty states were code-inspected because local seeded data existed.
+- Daily Snapshot, Task Strategic Review, and Finance AI failure states were code-inspected.
+- Some AI failure and true empty states were not live-reproduced.
+
+Protected scope:
+
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- No backend, Firebase, package, native, build, release, deployment, or evidence files were changed.
+
 ## Sprint 040 - Mobile Accessibility and Touch Target Hardening
 
 ### Purpose

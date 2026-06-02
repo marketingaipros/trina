@@ -39,6 +39,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
   const [currentTime, setCurrentTime] = useState(new Date());
   const [briefing, setBriefing] = useState<string | null>(null);
   const [isBriefingLoading, setIsBriefingLoading] = useState(false);
+  const [briefingError, setBriefingError] = useState<string | null>(null);
   const [isBriefingSpeaking, setIsBriefingSpeaking] = useState(false);
   const [typedMessage, setTypedMessage] = useState('');
   const [typedReply, setTypedReply] = useState<string | null>(null);
@@ -330,6 +331,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     playSound('click');
     setIsBriefingLoading(true);
     setBriefing(null);
+    setBriefingError(null);
     
     try {
       const text = await getSmartBriefing(tasks, events);
@@ -337,6 +339,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
       speakBriefing(text);
     } catch (e) {
       console.error("Briefing failed:", e);
+      setBriefingError("Daily Snapshot is unavailable right now. Your tasks and schedule are still saved here.");
     } finally {
       setIsBriefingLoading(false);
     }
@@ -430,7 +433,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
           onClick={handleSmartBriefing}
           disabled={isBriefingLoading}
           aria-label="Create Daily Snapshot"
-          title="Create Daily Snapshot"
+          title={isBriefingLoading ? 'Daily Snapshot is loading' : 'Create Daily Snapshot'}
           className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-pink-200 hover:bg-pink-600 active:scale-95 transition-all disabled:opacity-50"
         >
           {isBriefingLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
@@ -461,6 +464,23 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
               </div>
             </div>
             <p className="text-sm text-gray-800 font-medium leading-relaxed italic">"{briefing}"</p>
+          </div>
+        </div>
+      )}
+
+      {briefingError && (
+        <div className="absolute top-32 left-1/2 -translate-x-1/2 z-30 w-full max-w-md px-6 animate-fade-in">
+          <div className="bg-red-50 p-4 rounded-2xl shadow-xl border border-red-100 flex items-start gap-3">
+            <p className="flex-1 text-sm text-red-700 font-semibold leading-relaxed">{briefingError}</p>
+            <button
+              type="button"
+              onClick={() => setBriefingError(null)}
+              aria-label="Dismiss Daily Snapshot error"
+              title="Dismiss error"
+              className="w-8 h-8 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
+            >
+              <Square size={14} className="rotate-45" />
+            </button>
           </div>
         </div>
       )}

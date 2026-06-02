@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Transaction, TransactionType, AppMode } from '../types';
+import { Transaction, TransactionType } from '../types';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Plus, DollarSign, TrendingUp, TrendingDown, ArrowLeft, Sparkles, Loader2, X } from 'lucide-react';
+import { Plus, DollarSign, ArrowLeft, Sparkles, Loader2, X } from 'lucide-react';
 import { getLocalISODate } from '../utils/dateUtils';
 import { getFinanceInsights } from '../services/geminiService';
 import ReactMarkdown from 'react-markdown';
@@ -18,6 +18,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
   const [category, setCategory] = useState('');
   const [type, setType] = useState<TransactionType>(TransactionType.EXPENSE);
   const [insights, setInsights] = useState<string | null>(null);
+  const [insightsError, setInsightsError] = useState<string | null>(null);
   const [isLoadingInsights, setIsLoadingInsights] = useState(false);
 
   const income = transactions
@@ -47,12 +48,13 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!amount || !category) return;
+    const parsedAmount = parseFloat(amount);
+    if (!amount || !category.trim() || !Number.isFinite(parsedAmount) || parsedAmount <= 0) return;
     onAddTransaction({
-      amount: parseFloat(amount),
-      category,
+      amount: parsedAmount,
+      category: category.trim(),
       type,
-      description: category,
+      description: category.trim(),
       date: getLocalISODate(),
     });
     setAmount('');
@@ -63,11 +65,13 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
   const handleGetInsights = async () => {
     setIsLoadingInsights(true);
     setInsights(null);
+    setInsightsError(null);
     try {
       const result = await getFinanceInsights(transactions);
       setInsights(result);
     } catch (e) {
       console.error("Failed to get insights:", e);
+      setInsightsError("Financial Analysis is unavailable right now. Your local finance entries are still visible.");
     } finally {
       setIsLoadingInsights(false);
     }
@@ -93,7 +97,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
               disabled={isLoadingInsights || transactions.length === 0}
               aria-label="Get financial insights"
               className="p-2 bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
-              title="Get AI Insights"
+              title={transactions.length === 0 ? 'Add a finance entry before requesting insights' : 'Get AI Insights'}
             >
               {isLoadingInsights ? <Loader2 size={24} className="animate-spin" /> : <Sparkles size={24} />}
             </button>
@@ -129,6 +133,21 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
               <div className="prose prose-sm prose-pink max-w-none text-gray-800 font-medium leading-relaxed">
                 <ReactMarkdown>{insights}</ReactMarkdown>
               </div>
+            </div>
+          )}
+
+          {insightsError && (
+            <div className="bg-red-50 p-4 rounded-2xl border border-red-100 shadow-sm animate-fade-in flex items-start gap-3">
+              <p className="flex-1 text-sm text-red-700 font-semibold leading-relaxed">{insightsError}</p>
+              <button
+                type="button"
+                onClick={() => setInsightsError(null)}
+                aria-label="Dismiss financial analysis error"
+                title="Dismiss error"
+                className="w-8 h-8 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
+              >
+                <X size={16} />
+              </button>
             </div>
           )}
 
@@ -205,7 +224,12 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
                     placeholder="Category"
                     required
                 />
-                <button type="submit" className="w-full py-2 bg-gray-900 text-white font-semibold rounded-lg">
+                <button
+                  type="submit"
+                  disabled={!category.trim() || !amount || parseFloat(amount) <= 0}
+                  className="w-full py-2 bg-gray-900 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  title={!category.trim() || !amount || parseFloat(amount) <= 0 ? 'Enter a positive amount and category' : 'Save finance entry'}
+                >
                 Save
                 </button>
             </div>

@@ -70,6 +70,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
       recognition.onerror = (event: any) => {
         console.error('Speech recognition error', event.error);
         setIsRecording(false);
+        setSearchError(`Voice question failed: ${event.error || 'speech recognition unavailable'}. You can still type your question.`);
       };
 
       recognitionRef.current = recognition;
@@ -105,9 +106,11 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
       recognitionRef.current.stop();
     } else {
       try {
+        setSearchError(null);
         recognitionRef.current.start();
       } catch (e) {
         console.error("Recognition start error:", e);
+        setSearchError("Voice question is unavailable right now. You can still type your question.");
       }
     }
   };
@@ -167,6 +170,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
   const handleDelete = async (docName: string, displayName: string, docId?: string) => {
   if (!docId) {
     console.warn("Cannot delete document without a valid ID.");
+    setGlobalError(`Trina, I can't delete "${displayName}" because it is missing a document ID. Try reloading the vault.`);
     return;
   }
   setDeletingId(docId);

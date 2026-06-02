@@ -23,6 +23,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
   const [insights, setInsights] = useState<string | null>(null);
+  const [insightsError, setInsightsError] = useState<string | null>(null);
   const [isLoadingInsights, setIsLoadingInsights] = useState(false);
 
   const today = getLocalISODate();
@@ -123,11 +124,13 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
   const handleGetInsights = async () => {
     setIsLoadingInsights(true);
     setInsights(null);
+    setInsightsError(null);
     try {
       const result = await getTaskPrioritization(tasks);
       setInsights(result);
     } catch (e) {
       console.error("Failed to get insights:", e);
+      setInsightsError("Strategic Review is unavailable right now. Your task list is still usable.");
     } finally {
       setIsLoadingInsights(false);
     }
@@ -154,7 +157,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
               disabled={isLoadingInsights || tasks.length === 0}
               aria-label="Get Barbie's Strategic Review"
               className="p-2 bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
-              title="Barbie's Strategic Review"
+              title={tasks.length === 0 ? "Add a task before requesting Strategic Review" : "Barbie's Strategic Review"}
             >
               {isLoadingInsights ? <Loader2 size={24} className="animate-spin" /> : <Sparkles size={24} />}
             </button>
@@ -191,6 +194,23 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
             <div className="prose prose-sm prose-pink max-w-none text-gray-800 font-medium leading-relaxed">
               <ReactMarkdown>{insights}</ReactMarkdown>
             </div>
+          </div>
+        </div>
+      )}
+
+      {insightsError && (
+        <div className="p-4 pb-0">
+          <div className="bg-red-50 p-4 rounded-2xl border border-red-100 shadow-sm animate-fade-in flex items-start gap-3">
+            <p className="flex-1 text-sm text-red-700 font-semibold leading-relaxed">{insightsError}</p>
+            <button
+              type="button"
+              onClick={() => setInsightsError(null)}
+              aria-label="Dismiss strategic review error"
+              title="Dismiss error"
+              className="w-8 h-8 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
+            >
+              <X size={16} />
+            </button>
           </div>
         </div>
       )}
