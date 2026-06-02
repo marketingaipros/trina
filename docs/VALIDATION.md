@@ -75,6 +75,90 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 038 - Core App Smoke Test and Forward Runtime Polish
+
+### Purpose
+
+Sprint 038 validates the current core app after Sprint 037 fixture regression validation.
+
+The sprint confirms core flows still work and allows only narrow runtime polish tied to concrete smoke-test findings.
+
+### Required Commands
+
+```bash
+npm run lint
+npm run build
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git diff --name-only
+git status --branch --short
+```
+
+### Manual Smoke Checks
+
+- Dashboard/Home reachable.
+- Assistant / Voice Entry reachable from Dashboard.
+- Assistant typed task capture creates a visible task.
+- Tasks view renders created task.
+- Notifications reachable.
+- Notifications fallback/empty state readable without fixture.
+- Reminder-backed notification visible with `?trinaReminderFixture=1`.
+- Direct Notifications start works with `?trinaReminderFixture=1&trinaStart=notifications`.
+- Dashboard badge count aligns with Notifications list.
+- Bottom nav active state works.
+- Calendar reachable.
+- Finance reachable.
+- Knowledge Base reachable.
+- Mobile viewport around `390x844` has no fixed bottom-nav overlap.
+
+### Scope Guard
+
+Sprint 038 must not touch CEO Briefing files and must not create:
+
+```text
+references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Sprint 038 must not touch backend, Firebase, package, native, build, release, or deployment files.
+
+### Sprint 038 Validation Results
+
+Date: 2026-06-01
+
+Runtime changes: none.
+
+Command results:
+
+- `npm run lint`: Pass. TypeScript completed with exit code 0.
+- `npm run build`: Pass. Vite production build completed with known non-blocking warnings about `services/authService.ts` mixed static/dynamic import chunking and the large production JavaScript chunk.
+- `git diff --check`: Pass. No whitespace errors reported.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass. CEO Briefing screenshot evidence remains absent.
+
+Browser smoke results:
+
+- Dashboard/Home loaded and displayed the main Barbie dashboard, Daily Snapshot action, Assistant voice/text fallback, quick actions, and bottom navigation.
+- Assistant / Voice Entry was reachable from Dashboard through the visible microphone/text fallback controls.
+- Typed Assistant task capture created a local task and opened Tasks.
+- Tasks rendered the created smoke-test task.
+- Notifications opened from navigation and showed readable blocked-browser-notification fallback and empty-state copy without the fixture.
+- Calendar opened and rendered the June 2026 calendar view with existing event content.
+- Finance opened and rendered the Financial Snapshot view.
+- Knowledge Base opened and rendered the empty Knowledge Base state.
+- Bottom navigation active state worked, including `aria-current="page"` on the active Notifications tab during the Notifications check.
+- Mobile viewport around `390x844` had no horizontal overflow and no fixed bottom-nav overlap of the Notifications empty-state content, Back Home control, or notification-center footer.
+
+Fixture results:
+
+- `/?trinaReminderFixture=1`: Pass. Dashboard/Home loaded with a `1` Notifications badge.
+- `/?trinaReminderFixture=1` then opening Notifications: Pass. Notifications rendered `Fixture reminder`, `Local validation reminder for Sprint 036.`, and the `Reminder` status pill.
+- `/?trinaReminderFixture=1&trinaStart=notifications`: Pass. Direct Notifications start opened the populated fixture notification view.
+
+Known warnings and caveats:
+
+- Build warnings are pre-existing and non-blocking for Sprint 038.
+- Browser notification permission was blocked in the local session, but in-app fallback copy remained readable and the fixture-backed notification path passed.
+- No new risks, questions, decisions, architecture changes, or API changes were discovered.
+
 ## Sprint 024 Validation Plan
 
 Sprint 024 validation proves that the visible non-CEO app shell can be used without obvious broken paths.

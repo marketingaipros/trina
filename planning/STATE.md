@@ -2,28 +2,36 @@
 
 ## Current Sprint
 
-Sprint 037 - Fixture Guard and Core Regression Validation
+Sprint 038 - Core App Smoke Test and Forward Runtime Polish
 
 ## Current Status
 
-Sprint 036 is complete and pushed. Sprint 037 is active as a validation-hardening sprint focused on guarding the local reminder notification fixture and confirming core app regression paths.
+Sprint 037 fixture guard and core regression validation is closed and pushed to `main`.
+
+Sprint 038 is the active sprint. The broad core app smoke test passed with no concrete runtime issue found, so no runtime polish was needed.
+
+CEO Briefing remains deferred and out of scope.
 
 ## Recently Completed
 
-- Sprint 036 added a local reminder-backed notification validation fixture behind query parameters.
-- Sprint 036 documented the repeatable populated Notifications proof path.
-- Sprint 036 remained clear of CEO Briefing and deferred areas.
+- Sprint 037 validated the local reminder notification fixture and core regression paths.
+- Sprint 037 closed with no runtime changes.
+- CEO Briefing files stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
 
 ## Next Actions
 
-- Apply Sprint 037 planning files.
-- Have Codex read Sprint 037 files and summarize before implementation.
-- Inspect the Sprint 036 fixture guard.
-- Prefer docs/planning-only validation hardening unless a concrete runtime gap is found.
+- Review Sprint 038 smoke-test results.
+- If approved, close Sprint 038 without runtime changes.
+- Keep CEO Briefing deferred unless a future approved sprint explicitly reopens it.
 
 ## Active Sprint Folder
 
-`planning/sprints/037-fixture-guard-and-core-regression-validation/`
+`planning/sprints/038-core-app-smoke-test-and-forward-runtime-polish/`
+
+## Blockers
+
+- None known.
 
 ## Guardrails
 
