@@ -246,7 +246,7 @@ const BrainDumpView: React.FC<BrainDumpViewProps> = ({ onProcessResults, onBack 
     return (
       <div className="h-full flex flex-col bg-[#fff5f7]">
         <header className="p-6 bg-white border-b border-pink-100 flex items-center justify-between">
-             <button onClick={onBack} className="text-pink-400 flex items-center gap-2 text-sm font-bold uppercase tracking-widest">
+             <button onClick={onBack} className="min-h-11 text-pink-400 flex items-center gap-2 text-sm font-bold uppercase tracking-widest">
                  <ArrowLeft size={16} /> Back
              </button>
              <div className="text-pink-500 font-black tracking-tighter text-xl">MAOS v3 RESULT</div>
@@ -298,7 +298,7 @@ const BrainDumpView: React.FC<BrainDumpViewProps> = ({ onProcessResults, onBack 
         <div className="flex items-center gap-4">
             <button 
                 onClick={onBack}
-                className="p-2 -ml-2 text-pink-300 hover:text-pink-500 rounded-full transition-colors"
+                className="w-11 h-11 flex items-center justify-center -ml-2 text-pink-300 hover:text-pink-500 rounded-full transition-colors"
             >
                 <ArrowLeft size={24} />
             </button>
@@ -478,7 +478,7 @@ const BrainDumpView: React.FC<BrainDumpViewProps> = ({ onProcessResults, onBack 
             />
             <button 
               onClick={stopCamera}
-              className="absolute top-6 right-6 p-3 bg-white/20 backdrop-blur-md text-white rounded-full"
+              className="absolute top-6 right-6 w-11 h-11 flex items-center justify-center bg-white/20 backdrop-blur-md text-white rounded-full"
             >
               <X size={24} />
             </button>

@@ -447,7 +447,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
           disabled={isBriefingLoading}
           aria-label="Create Daily Snapshot"
           title={isBriefingLoading ? 'Daily Snapshot is loading' : 'Create Daily Snapshot'}
-          className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-pink-200 hover:bg-pink-600 active:scale-95 transition-all disabled:opacity-50"
+          className="min-h-11 flex items-center gap-2 px-4 py-2 bg-pink-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-pink-200 hover:bg-pink-600 active:scale-95 transition-all disabled:opacity-50"
         >
           {isBriefingLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
           <span>Daily Snapshot</span>
@@ -463,15 +463,15 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
               <p className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em]">Daily Snapshot</p>
               <div className="flex gap-2">
                 {isBriefingSpeaking ? (
-                  <button onClick={stopBriefing} aria-label="Stop Daily Snapshot audio" title="Stop audio" className="p-1.5 text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100">
+                  <button onClick={stopBriefing} aria-label="Stop Daily Snapshot audio" title="Stop audio" className="w-11 h-11 flex items-center justify-center text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100">
                     <Square size={14} fill="currentColor" />
                   </button>
                 ) : (
-                  <button onClick={() => speakBriefing(briefing)} aria-label="Play Daily Snapshot audio" title="Play audio" className="p-1.5 text-gray-400 hover:text-pink-500 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors">
+                  <button onClick={() => speakBriefing(briefing)} aria-label="Play Daily Snapshot audio" title="Play audio" className="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-pink-500 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors">
                     <Volume2 size={14} />
                   </button>
                 )}
-                <button onClick={() => { setBriefing(null); stopBriefing(); }} aria-label="Close Daily Snapshot" title="Close" className="p-1.5 text-gray-300 hover:text-gray-500 bg-gray-50 rounded-lg">
+                <button onClick={() => { setBriefing(null); stopBriefing(); }} aria-label="Close Daily Snapshot" title="Close" className="w-11 h-11 flex items-center justify-center text-gray-300 hover:text-gray-500 bg-gray-50 rounded-lg">
                   <Square size={14} className="rotate-45" />
                 </button>
               </div>
@@ -490,7 +490,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
               onClick={() => setBriefingError(null)}
               aria-label="Dismiss Daily Snapshot error"
               title="Dismiss error"
-              className="w-8 h-8 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
+              className="w-11 h-11 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
             >
               <Square size={14} className="rotate-45" />
             </button>

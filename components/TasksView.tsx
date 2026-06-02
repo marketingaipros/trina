@@ -161,7 +161,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                 onClick={onBack}
                 aria-label="Return to Home"
                 title="Return to Home"
-                className="flex items-center gap-1 p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100"
+                className="flex w-11 h-11 items-center justify-center gap-1 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100"
             >
                 <ArrowLeft size={24} />
                 <span className="sr-only">Home</span>
@@ -173,7 +173,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
               onClick={handleGetInsights}
               disabled={isLoadingInsights || visibleTasks.length === 0}
               aria-label="Get Barbie's Strategic Review"
-              className="p-2 bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
+              className="w-11 h-11 flex items-center justify-center bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
               title={visibleTasks.length === 0 ? "Add a task before requesting Strategic Review" : "Barbie's Strategic Review"}
             >
               {isLoadingInsights ? <Loader2 size={24} className="animate-spin" /> : <Sparkles size={24} />}
@@ -182,7 +182,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
               onClick={() => setIsAdding(!isAdding)}
               aria-label={isAdding ? 'Close new task form' : 'Add task'}
               title={isAdding ? 'Close new task form' : 'Add task'}
-              className="p-2 bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100"
+              className="w-11 h-11 flex items-center justify-center bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100"
             >
               <Plus size={24} />
             </button>
@@ -203,7 +203,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                 onClick={() => setInsights(null)}
                 aria-label="Close strategic review"
                 title="Close strategic review"
-                className="text-gray-300 hover:text-gray-500 transition-colors"
+                className="w-11 h-11 flex items-center justify-center text-gray-300 hover:text-gray-500 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <X size={16} />
               </button>
@@ -224,7 +224,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
               onClick={() => setInsightsError(null)}
               aria-label="Dismiss strategic review error"
               title="Dismiss error"
-              className="w-8 h-8 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
+              className="w-11 h-11 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
             >
               <X size={16} />
             </button>

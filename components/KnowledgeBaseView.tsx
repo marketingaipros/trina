@@ -294,7 +294,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
     <div className="h-full flex flex-col bg-gray-50">
       <header className="flex items-center justify-between p-4 bg-white border-b border-gray-100">
         <div className="flex items-center gap-3">
-          <button onClick={onBack} aria-label="Return to Home" title="Return to Home" className="p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100">
+          <button onClick={onBack} aria-label="Return to Home" title="Return to Home" className="w-11 h-11 flex items-center justify-center -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100">
             <ArrowLeft size={24} />
           </button>
           <div>
@@ -331,7 +331,7 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
             onClick={() => setGlobalError(null)}
             aria-label="Dismiss knowledge base error"
             title="Dismiss error"
-            className="text-red-400 hover:text-red-600 transition-colors"
+            className="w-11 h-11 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100 transition-colors"
           >
             <Square size={14} className="rotate-45" />
           </button>
@@ -413,13 +413,13 @@ const KnowledgeBaseView: React.FC<KnowledgeBaseViewProps> = ({ onBack, authToken
                      onClick={stopSpeaking}
                      aria-label="Stop answer audio"
                      title="Stop answer audio"
-                     className="p-1.5 text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100"
+                     className="w-11 h-11 flex items-center justify-center text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100"
                    >
                      <span className="sr-only">Stop answer audio</span>
                      <Square size={14} fill="currentColor" />
                    </button>
                  ) : (
-                   <button onClick={() => speakAnswer(searchResult)} aria-label="Play answer audio" title="Play answer audio" className="p-1.5 text-gray-400 hover:text-pink-500 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors">
+                   <button onClick={() => speakAnswer(searchResult)} aria-label="Play answer audio" title="Play answer audio" className="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-pink-500 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors">
                      <Volume2 size={14} />
                    </button>
                  )}

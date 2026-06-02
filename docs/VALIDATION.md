@@ -75,6 +75,87 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 045 - Secondary Header Touch Target Polish Validation
+
+Sprint 045 validates that targeted secondary header, back, and AI action controls meet or intentionally document the mobile touch-target standard after the narrow polish pass.
+
+Required validation:
+
+- Inspect target controls before changes and record where the touch target is below `44x44` or visually constrained.
+- Apply the smallest safe styling or component-level change.
+- Validate mobile viewport at exact `390x844` if available; otherwise document the actual measured viewport.
+- Smoke Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders if reachable.
+- Confirm no horizontal overflow.
+- Confirm bottom navigation remains usable and does not overlap primary controls.
+- Confirm targeted secondary controls are at least `44x44` where changed.
+- Confirm labels, aria-labels, visible text, or accessible names are preserved where inspectable.
+- Confirm existing primary task row controls remain at least `44x44`.
+
+Required commands:
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+```
+
+Expected result:
+
+- Targeted secondary controls meet the `44x44` mobile touch target where safe.
+- Any exception is documented with reason and follow-up recommendation.
+- No unrelated runtime behavior changes are introduced.
+- CEO Briefing remains untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+
+### Sprint 045 Validation Results
+
+Runtime changes:
+
+- `components/TasksView.tsx`: header back, Strategic Review AI action, add/close task action, Strategic Review close, and Strategic Review error-dismiss controls now use a minimum `44x44` hit area.
+- `components/CalendarView.tsx`: header back, add/close event, previous month, and next month controls now use a minimum `44x44` hit area.
+- `components/FinanceView.tsx`: header back, Financial Analysis AI action, add/close finance entry action, Financial Analysis close, and Financial Analysis error-dismiss controls now use a minimum `44x44` hit area.
+- `components/KnowledgeBaseView.tsx`: header back, knowledge-base error dismiss, and answer-audio controls now use a minimum `44x44` hit area.
+- `components/NotificationsView.tsx`: header back control now uses a minimum `44x44` hit area.
+- `components/VoiceDashboard.tsx`: Daily Snapshot action and Daily Snapshot audio/close/error-dismiss controls now use a minimum `44x44` hit area.
+- `components/BrainDumpView.tsx`: secondary back controls and camera close control now use a minimum `44x44` hit area.
+
+Validation path:
+
+- Browser smoke ran through the in-app browser against local Vite at `http://127.0.0.1:3000/?trinaReminderFixture=1`.
+- Exact viewport `390x844` was available and used.
+- Notifications/reminders were reached with the existing local `trinaReminderFixture=1` validation fixture.
+
+Browser smoke results:
+
+- Dashboard/Home rendered at exact `390x844`. `Create Daily Snapshot` measured `154x44`. The typed Capture and Send controls measured `40px` tall, remained visible, unblocked, and above the bottom navigation; they were intentionally left unchanged because Sprint 045 targeted secondary header/back/AI controls.
+- Tasks rendered `Task Tracker`. Header back, Strategic Review AI action, add task, and the inspected task row edit/delete controls all measured `44x44`.
+- Calendar rendered `Calendar`. Header back, add event, previous month, next month, and populated selected-day edit/delete controls all measured `44x44`.
+- Finance rendered `Financial Snapshot`. Header back, Financial Analysis AI action, and add finance entry controls all measured `44x44`.
+- Knowledge Base rendered `Knowledge Base`. Header back, upload action, and voice question controls measured at least `44px` tall; header back and voice question measured `44x44`.
+- Notifications/reminders rendered with the fixture reminder. Header back measured `44x44`.
+- Bottom navigation remained usable across the validated surfaces; nav buttons measured `62x56`.
+- No horizontal overflow was observed on Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, or Notifications/reminders.
+- Accessible names, aria labels, visible text, titles, and click handlers were preserved where inspectable.
+
+Command results:
+
+- `git diff --check`: Pass.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+- `npm run lint`: Pass.
+- `npm run build`: Pass, with known non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
+
+Protected scope:
+
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+Follow-up candidate:
+
+- Home typed Capture/Send controls remain `40px` tall and can be reviewed in a future input-bar touch-target sprint if the operator wants all non-secondary actions aligned to `44px`.
+
 ## Sprint 042 Validation - Mobile State Validation and Fixture Coverage
 
 ### Purpose

@@ -22,7 +22,7 @@ const NotificationsView: React.FC<NotificationsViewProps> = ({ notifications, on
     <div className="h-full flex flex-col bg-gray-50">
       <header className="flex items-center justify-between p-4 bg-white border-b border-gray-100">
         <div className="flex items-center gap-3">
-          <button onClick={onBack} aria-label="Return to Home" title="Return to Home" className="p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100">
+          <button onClick={onBack} aria-label="Return to Home" title="Return to Home" className="w-11 h-11 flex items-center justify-center -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100">
             <ArrowLeft size={24} />
             <span className="sr-only">Return to Home</span>
           </button>

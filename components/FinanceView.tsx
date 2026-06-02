@@ -101,7 +101,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
                 onClick={onBack}
                 aria-label="Return to Home"
                 title="Return to Home"
-                className="p-2 -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100"
+                className="w-11 h-11 flex items-center justify-center -ml-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100"
             >
                 <ArrowLeft size={24} />
             </button>
@@ -112,7 +112,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
               onClick={handleGetInsights}
               disabled={isLoadingInsights || visibleTransactions.length === 0}
               aria-label="Get financial insights"
-              className="p-2 bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
+              className="w-11 h-11 flex items-center justify-center bg-pink-50 text-pink-500 rounded-full hover:bg-pink-100 disabled:opacity-50 transition-all"
               title={visibleTransactions.length === 0 ? 'Add a finance entry before requesting insights' : 'Get AI Insights'}
             >
               {isLoadingInsights ? <Loader2 size={24} className="animate-spin" /> : <Sparkles size={24} />}
@@ -121,7 +121,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
               onClick={() => setIsAdding(!isAdding)}
               aria-label={isAdding ? 'Close finance entry form' : 'Add finance entry'}
               title={isAdding ? 'Close finance entry form' : 'Add finance entry'}
-              className="p-2 bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100"
+              className="w-11 h-11 flex items-center justify-center bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100"
             >
               <Plus size={24} />
             </button>
@@ -141,7 +141,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
                   onClick={() => setInsights(null)}
                   aria-label="Close financial analysis"
                   title="Close financial analysis"
-                  className="text-gray-300 hover:text-gray-500 transition-colors"
+                  className="w-11 h-11 flex items-center justify-center text-gray-300 hover:text-gray-500 rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   <X size={16} />
                 </button>
@@ -160,7 +160,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
                 onClick={() => setInsightsError(null)}
                 aria-label="Dismiss financial analysis error"
                 title="Dismiss error"
-                className="w-8 h-8 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
+                className="w-11 h-11 flex items-center justify-center text-red-400 hover:text-red-600 rounded-lg hover:bg-red-100"
               >
                 <X size={16} />
               </button>
