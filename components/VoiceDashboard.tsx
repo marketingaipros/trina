@@ -405,6 +405,20 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
         .pink-shadow { box-shadow: 0 10px 40px -10px rgba(244, 114, 182, 0.3); }
         .progress-ring { transform: rotate(-90deg); transform-origin: 50% 50%; }
         .transition-fast { transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+        @media (max-width: 380px) and (max-height: 760px) {
+          .home-avatar-section { padding-top: 1rem; }
+          .home-orb-shell { width: 16rem; height: 16rem; margin-bottom: 0.5rem; }
+          .home-orb-ring-outer { width: 17rem; height: 17rem; }
+          .home-orb-ring-inner { width: 14rem; height: 14rem; }
+          .home-orb-ripple { width: 10rem; height: 10rem; }
+          .home-orb-speaking { width: 9rem; height: 9rem; }
+          .home-orb-core { width: 9rem; height: 9rem; }
+          .home-brain-icon { width: 5rem; height: 5rem; }
+          .home-hero-copy { height: 4rem; margin-bottom: 1rem; }
+          .home-primary-mic { padding: 2rem; }
+          .home-primary-mic svg { width: 2.5rem; height: 2.5rem; }
+          .home-typed-form { margin-top: 1rem; }
+        }
       `}</style>
       
       {/* Location & Clock Top-Left */}
@@ -525,28 +539,28 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
       )}
 
       {/* Main Avatar Section */}
-      <div className="flex-1 flex flex-col items-center justify-center w-full max-w-sm z-10 pt-10">
+      <div className="home-avatar-section flex-1 flex flex-col items-center justify-center w-full max-w-sm z-10 pt-10">
         
-        <div className="relative w-80 h-80 flex items-center justify-center mb-3">
+        <div className="home-orb-shell relative w-80 h-80 flex items-center justify-center mb-3">
           {/* Design Rings */}
-          <div className="absolute inset-0 m-auto w-[340px] h-[340px] rounded-full bg-pink-100/20 border border-pink-100/30" />
-          <div className="absolute inset-0 m-auto w-[280px] h-[280px] rounded-full bg-white border border-pink-100/50 shadow-sm" />
+          <div className="home-orb-ring-outer absolute inset-0 m-auto w-[340px] h-[340px] rounded-full bg-pink-100/20 border border-pink-100/30" />
+          <div className="home-orb-ring-inner absolute inset-0 m-auto w-[280px] h-[280px] rounded-full bg-white border border-pink-100/50 shadow-sm" />
           
           {/* Reactive Ripples */}
           {(isConnected || isSpeechListening) && !isSpeaking && (
             <div 
-              className="absolute inset-0 m-auto w-[200px] h-[200px] rounded-full bg-pink-200/40 transition-fast"
+              className="home-orb-ripple absolute inset-0 m-auto w-[200px] h-[200px] rounded-full bg-pink-200/40 transition-fast"
               style={{ transform: `scale(${isSpeechListening ? 1.25 : rippleScale})`, opacity: isSpeechListening || volume > 0.01 ? 1 : 0 }}
             />
           )}
           {isConnected && isSpeaking && (
-            <div className="absolute inset-0 m-auto w-[180px] h-[180px] rounded-full bg-pink-400/20 animate-ping" />
+            <div className="home-orb-speaking absolute inset-0 m-auto w-[180px] h-[180px] rounded-full bg-pink-400/20 animate-ping" />
           )}
 
           {/* Core Orb */}
           <div 
             className={`
-              relative z-20 w-44 h-44 rounded-full flex items-center justify-center transition-fast
+              home-orb-core relative z-20 w-44 h-44 rounded-full flex items-center justify-center transition-fast
               ${isConnected || isSpeechListening
                 ? 'bg-white border-4 border-pink-100 shadow-2xl scale-100' 
                 : 'bg-white border border-pink-50 animate-breath pink-shadow'}
@@ -561,7 +575,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
             ) : (
               <div className="relative">
                 <BrainCircuit 
-                  className={`w-24 h-24 transition-fast ${isConnected && volume > 0.01 ? 'text-pink-500 scale-110' : 'text-pink-100'}`} 
+                  className={`home-brain-icon w-24 h-24 transition-fast ${isConnected && volume > 0.01 ? 'text-pink-500 scale-110' : 'text-pink-100'}`}
                   strokeWidth={1.2} 
                 />
                 {!isConnected && (
@@ -573,7 +587,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
         </div>
 
         {/* Hero Text */}
-        <div className="text-center mb-6 h-24 px-6">
+        <div className="home-hero-copy text-center mb-6 h-24 px-6">
            {!isConnected && !isSpeechListening ? (
              <div className="animate-fade-in">
                 <h1 className="text-4xl font-black text-gray-900 tracking-tighter">HI I'M BARBIE!</h1>
@@ -607,7 +621,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
           aria-label={isConnected || isSpeechListening ? 'Stop voice capture' : 'Start voice capture'}
           title={isConnected || isSpeechListening ? 'Stop voice capture' : 'Start voice capture'}
           className={`
-            p-12 rounded-full shadow-[0_20px_60px_-15px_rgba(244,114,182,0.5)] transition-all duration-500 transform active:scale-90 z-30 group relative
+            home-primary-mic p-12 rounded-full shadow-[0_20px_60px_-15px_rgba(244,114,182,0.5)] transition-all duration-500 transform active:scale-90 z-30 group relative
             ${isConnected || isSpeechListening
               ? 'bg-white border-[3px] border-pink-500 text-pink-500' 
               : 'bg-gradient-to-br from-pink-400 via-rose-500 to-pink-600 text-white hover:scale-105'
@@ -624,7 +638,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
           </p>
         )}
 
-        <form onSubmit={handleTypedSubmit} className="w-full mt-6 px-6 space-y-3">
+        <form onSubmit={handleTypedSubmit} className="home-typed-form w-full mt-6 px-6 space-y-3">
           <div className="flex items-center gap-2 bg-white border border-pink-100 rounded-2xl shadow-lg p-2">
             <input
               value={typedMessage}

@@ -2,9 +2,11 @@
 
 ## Current Sprint
 
-Sprint 046 - Home Typed Action Touch Target Polish
+Sprint 047 - Home Typed Action Row Responsive Spacing
 
 ## Current Status
+
+Sprint 047 implementation and validation completed.
 
 Sprint 046 implementation and validation completed.
 
@@ -27,6 +29,20 @@ Sprint 042 closes the Sprint 041 validation caveats with a small dev-only query-
 Sprint 041 implementation and validation completed with documented caveats after hardening empty, error, loading, unavailable, disabled, and fallback states across the existing non-CEO Trina app shell.
 
 ## Active Work
+
+Sprint 047 closeout documentation records the completed Home typed action row responsive spacing polish.
+
+Sprint 047 inspected the Home typed input/action row after Sprint 046 raised the `Capture` and `Send` buttons to `44px` tall.
+
+Sprint 047 preserved Sprint 046 touch-target behavior while checking mobile spacing, wrapping, input usability, and horizontal overflow around the typed action row.
+
+Sprint 047 runtime implementation is complete.
+
+Sprint 047 runtime ownership was confirmed in `components/VoiceDashboard.tsx`.
+
+Sprint 047 added a narrow/short viewport compact Home avatar stack layout only in `components/VoiceDashboard.tsx`.
+
+Sprint 047 did not redesign Home, change typed input behavior, change `Capture` / `Send` labels or handlers, alter disabled/loading behavior, change bottom navigation, or touch CEO Briefing.
 
 Sprint 046 closeout documentation records the completed Home typed action touch-target polish.
 
@@ -63,6 +79,20 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 
 ## Recently Completed
 
+- Sprint 047 Architect Pack was saved at `architect-packs/trina-047-home-typed-action-row-responsive-spacing-architect-pack.md`.
+- Sprint 047 planning files were created under `planning/sprints/047-home-typed-action-row-responsive-spacing/`.
+- Sprint 047 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
+- Sprint 047 confirmed a narrow mobile issue at `360x740`: the Home typed row overlapped the fixed bottom nav before the fix.
+- Sprint 047 confirmed `390x844` was already clear before implementation.
+- Sprint 047 runtime change was limited to `components/VoiceDashboard.tsx`.
+- Sprint 047 added a compact Home avatar stack layout for narrow/short viewports, preserving labels, handlers, typed input behavior, disabled/loading behavior, visual direction, and Sprint 046 `min-h-11` button height.
+- Sprint 047 browser validation passed at `390x844`: no overflow, typed row cleared bottom nav by `62px`, input remained usable, and `Capture` / `Send` both measured `44px` tall.
+- Sprint 047 browser validation passed at `360x740`: no overflow, typed row cleared bottom nav by `138px`, input remained usable, and `Capture` / `Send` both measured `44px` tall.
+- Sprint 047 smoke checks passed for Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders.
+- `git diff --check`, the CEO Briefing absence guard, `npm run lint`, and `npm run build` passed.
+- `npm run build` completed with existing non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
+- Sprint 047 did not stage, commit, push, or touch CEO Briefing files.
+- Sprint 047 keeps `references/flutterflow/sprint-009/ceo-briefing.png` absent.
 - Sprint 046 browser/manual validation ran at exact viewport `390x844` against local Vite with `trinaReminderFixture=1`.
 - Home typed `Capture` and `Send` buttons both measured `44px` tall.
 - The Home typed input row had no horizontal overflow.
@@ -146,11 +176,11 @@ Do not create or modify:
 
 ## Next Action
 
-Review Sprint 046 closeout changes, then stage and commit only after explicit operator approval.
+Review Sprint 047 closeout changes, then stage and commit only after explicit operator approval.
 
 Guardrails:
 
 - Do not touch CEO Briefing.
 - Do not create `references/flutterflow/sprint-009/ceo-briefing.png`.
 - Do not modify runtime files further unless a new approved implementation request requires it.
-- Keep Sprint 046 closeout limited to the accepted Home typed `Capture`/`Send` touch-target polish.
+- Keep Sprint 047 closeout limited to the accepted Home typed action row responsive spacing polish.

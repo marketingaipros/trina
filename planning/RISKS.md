@@ -218,6 +218,15 @@
 | Browser validation may miss microphone-specific behavior. | Low | Medium | Treat microphone/live speech as out of scope unless broken by task flow changes. Validate typed Assistant capture as the required path. | Accepted - typed capture validated; microphone-specific behavior remained out of scope. |
 | CEO Briefing work may accidentally re-enter scope. | Low | High | Keep CEO Briefing explicitly protected. Run absence guard before closeout. | Mitigated. |
 
+## Sprint 047 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Home typed row becomes cramped after Sprint 046 button-height increase. | Medium | Medium | Inspect row at mobile widths and apply the smallest local layout fix only if needed. | Mitigated - browser validation found no horizontal overflow and confirmed input usability at `390x844` and `360x740`. |
+| A shared style change affects unrelated buttons or views. | Medium | Medium | Prefer local classes in `components/VoiceDashboard.tsx`; document any shared change before applying. | Mitigated - runtime change was limited to local Home classes in `components/VoiceDashboard.tsx`; no shared styles were modified. |
+| Fixing narrow layout causes wrapping that blocks bottom nav or makes the input harder to use. | Medium | Medium | Validate at `390x844`, check bottom nav, and smoke core views. | Mitigated - `390x844` cleared nav by `62px`; `360x740` cleared nav by `138px`; core view smoke passed. |
+| CEO Briefing asset is accidentally restored or touched. | Low | High | Run the absence guard before and after changes; do not work in CEO Briefing paths. | Guarded - absence guard passed and CEO Briefing stayed untouched. |
+
 ## Sprint 046 Risks
 
 | Risk | Likelihood | Impact | Mitigation | Status |

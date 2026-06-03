@@ -75,6 +75,108 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 047 - Home Typed Action Row Responsive Spacing Validation
+
+Sprint 047 validates that the Home typed input/action row remains stable and usable on narrow mobile widths after Sprint 046 raised the typed `Capture` and `Send` buttons to the `44px` mobile touch-target baseline.
+
+Required validation:
+
+- Inspect the Home typed input/action row and identify the actual owning component/styles before runtime edits.
+- Confirm Sprint 046 `min-h-11` remains present on both typed `Capture` and `Send` buttons.
+- Apply the smallest safe local styling or component-level change after the Builder summary gate is approved, only if inspection shows crowding, overflow, poor wrapping, or input squeeze.
+- Validate Home at exact `390x844` if available; otherwise document the actual measured viewport.
+- Validate one narrower mobile width such as `360x740` if practical.
+- Confirm the typed row has no horizontal overflow.
+- Confirm typed input remains usable and is not visually crushed by the buttons.
+- Confirm `Capture` and `Send` remain at least `44px` tall.
+- Confirm existing labels, handlers, typed input behavior, and disabled/loading behavior are preserved where inspectable.
+- Confirm bottom navigation remains visible, usable, and unblocked.
+- Smoke Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders if reachable, using fixture mode if needed.
+
+Required commands:
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+git diff --cached --name-only
+```
+
+Expected result:
+
+- Home typed row has no horizontal overflow at validated mobile widths.
+- Typed input remains usable and visually stable.
+- `Capture` and `Send` remain at least `44px` tall.
+- No label, handler, typed input behavior, disabled/loading behavior, bottom-nav behavior, or broad design change is introduced.
+- No unrelated shared style change affects other controls unless explicitly documented and necessary.
+- CEO Briefing remains untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+- Nothing is staged, committed, or pushed without explicit approval.
+
+### Sprint 047 Planning Results
+
+Planning/docs-only application:
+
+- Sprint 047 Architect Pack is present at `architect-packs/trina-047-home-typed-action-row-responsive-spacing-architect-pack.md`.
+- Sprint 047 planning files are present under `planning/sprints/047-home-typed-action-row-responsive-spacing/`.
+- Runtime implementation had not started during planning/docs-only application.
+- CEO Briefing files were not touched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+### Sprint 047 Validation Results
+
+Runtime change:
+
+- `components/VoiceDashboard.tsx`: added local Home-only class hooks and a narrow/short viewport compact avatar stack layout for `max-width: 380px` and `max-height: 760px`.
+
+Confirmed issue:
+
+- At `360x740`, the Home typed row overlapped the fixed bottom nav before the fix.
+- At `390x844`, the Home typed row was already clear before implementation.
+
+Behavior preserved:
+
+- Existing `Capture` and `Send` labels were unchanged.
+- Existing handlers were unchanged.
+- Existing typed input behavior was unchanged.
+- Existing disabled/loading behavior was unchanged.
+- Sprint 046 `min-h-11` button height remained on both buttons.
+- Existing pink/white visual direction was preserved.
+- No shared style or unrelated view change was introduced.
+
+Validation path:
+
+- Browser/manual validation ran through browser automation against local Vite at `http://127.0.0.1:3000/?trinaReminderFixture=1`.
+- Exact viewport `390x844` was available and used.
+- Narrower viewport `360x740` was available and used.
+- Notifications/reminders were reached with the existing local `trinaReminderFixture=1` validation fixture.
+
+Browser/manual results:
+
+- At `390x844`, the typed row had no horizontal overflow and cleared bottom nav by `62px`.
+- At `390x844`, typed input remained usable and `Capture` / `Send` both measured `44px` tall.
+- At `360x740`, the typed row had no horizontal overflow and cleared bottom nav by `138px`.
+- At `360x740`, typed input remained usable and `Capture` / `Send` both measured `44px` tall.
+- Dashboard/Home, Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders smoke checks passed.
+
+Command results:
+
+- `git diff --check`: Pass.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: Pass.
+- `npm run lint`: Pass.
+- `npm run build`: Pass, with existing non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
+- `git diff --cached --name-only`: Empty.
+
+Protected scope:
+
+- Runtime change was limited to `components/VoiceDashboard.tsx`.
+- CEO Briefing stayed untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- Nothing was staged, committed, or pushed.
+
 ## Sprint 046 - Home Typed Action Touch Target Polish Validation
 
 Sprint 046 validates that the remaining Home typed `Capture` and `Send` buttons meet the mobile `44px` touch-target baseline without redesigning Home or changing typed input behavior.
