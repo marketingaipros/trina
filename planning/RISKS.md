@@ -236,6 +236,14 @@
 | Shared style changes could create broad UI fallout. | Medium | Medium | Prefer view-level padding, scroll, spacing, or compact behavior; document any shared change before applying. | Mitigated - no shared style changes were made. |
 | CEO Briefing work could accidentally re-enter scope. | Low | High | Keep CEO Briefing protected and run the screenshot absence guard. | Guarded - absence guard passed and CEO Briefing stayed untouched. |
 
+## Sprint 049 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Compact touch-target changes could increase vertical density and affect short-height scrolling. | Medium | Medium | Keep changes scoped to interactive controls, validate at `390x844` and `360x740`, and avoid broad layout redesign. | Mitigated - browser validation passed at both target viewports with no horizontal overflow. |
+| Calendar day-cell sizing could disturb calendar grid alignment. | Medium | Medium | Prefer minimum dimensions and padding changes that preserve grid structure; validate month layout visually. | Mitigated - day cells measured at least `44px` and preserved the 7-column grid at `360x740`. |
+| Filter chip hardening could cause wrapping or horizontal overflow. | Medium | Medium | Use wrapping/flex behavior where appropriate and verify no horizontal overflow at mobile widths. | Mitigated - Calendar and Tasks chip rows measured at least `44px` tall and did not create document-level horizontal overflow. |
+
 ## Sprint 046 Risks
 
 | Risk | Likelihood | Impact | Mitigation | Status |

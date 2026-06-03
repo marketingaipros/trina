@@ -75,6 +75,79 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 049 - Compact Touch Target Standardization Validation
+
+Sprint 049 must validate compact interactive controls after implementation.
+
+Required command validation:
+
+- `git diff --check`
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`
+- `npm run lint`
+- `npm run build`
+- `git diff --name-only`
+- `git status --branch --short`
+- `git diff --cached --name-only`
+
+Required browser/mobile validation:
+
+- Validate at `390x844`.
+- Validate at `360x740`.
+- Inspect Calendar day cells.
+- Inspect filter chips or segmented controls in Calendar and Tasks if present.
+- Inspect any compact interactive controls changed by the sprint.
+- Confirm no horizontal overflow.
+- Confirm no primary action/input is hidden behind the fixed bottom nav.
+- Confirm changed controls meet or intentionally approximate the `44px` touch-target standard.
+- Confirm no CEO Briefing files were touched.
+
+### Sprint 049 Planning Results
+
+- Planning/docs pack applied only.
+- Runtime implementation has not started.
+- Builder must read Sprint 049 files and summarize scope before implementation.
+- No runtime files were changed during planning/docs application.
+- CEO Briefing files were untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+### Sprint 049 Validation Results
+
+Runtime changes:
+
+- `components/CalendarView.tsx`: raised compact Calendar day cells from `h-10` to `min-h-[44px] min-w-[44px]`, raised Calendar category and recurring chips to `min-h-[44px]`, allowed recurring chips/action row to wrap, and raised compact Calendar form/empty-state action controls to `min-h-[44px]`.
+- `components/TasksView.tsx`: raised Task filter chips, add-form priority chips, deadline input, add/save/cancel controls, and the empty-state return button to `min-h-[44px]`; Task filters and priority rows now wrap instead of relying on horizontal chip scrolling.
+
+Inspected but not modified:
+
+- `components/FinanceView.tsx`
+- `components/KnowledgeBaseView.tsx`
+- `components/NotificationsView.tsx`
+
+Browser/mobile validation:
+
+- `390x844`: Calendar day cells measured `47x44` or larger, with the selected day at `50x46`; Calendar category and recurring chips measured `44px` tall; Task filters and priority chips measured `44px` tall; no document-level horizontal overflow was detected.
+- `360x740`: Calendar day cells measured `44x44` or larger, with the selected day at `46x46`; Calendar category and recurring chips measured `44px` tall; Task filters and priority chips measured `44px` tall; no document-level horizontal overflow was detected.
+
+Commands run:
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+git diff --cached --name-only
+```
+
+Result:
+
+- Pass. `git diff --check` completed cleanly.
+- Pass. CEO Briefing screenshot absence guard completed cleanly.
+- Pass. `npm run lint` completed with no blocking TypeScript errors.
+- Pass. `npm run build` completed; existing Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size remained non-blocking.
+- Nothing was staged, committed, or pushed.
+
 ## Sprint 048 - Short-Height Mobile Smoke Across Core Views Validation
 
 Sprint 048 validates core non-Home views at both standard and short-height mobile viewports before any runtime changes.

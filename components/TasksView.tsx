@@ -250,18 +250,18 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                 type="date"
                 value={newTaskDeadline}
                 onChange={(e) => setNewTaskDeadline(e.target.value)}
-                className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm text-gray-700"
+                className="min-h-[44px] px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-700"
                 placeholder="Deadline"
               />
             </div>
-            <div className="flex justify-between items-center">
-                <div className="flex gap-2">
+            <div className="flex flex-wrap justify-between items-center gap-3">
+                <div className="flex gap-2 flex-wrap">
                 {(Object.values(Priority) as Priority[]).map((p) => (
                     <button
                     key={p}
                     type="button"
                     onClick={() => setNewTaskPriority(p)}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                    className={`min-h-[44px] px-3 py-2 rounded-full text-xs font-semibold ${
                         newTaskPriority === p
                         ? 'bg-indigo-100 text-indigo-700 border border-indigo-200'
                         : 'bg-gray-100 text-gray-500 border border-transparent'
@@ -274,7 +274,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                 <button
                 type="submit"
                 disabled={!newTaskTitle.trim()}
-                className="px-4 py-1.5 bg-indigo-600 text-white text-sm font-semibold rounded-lg disabled:opacity-50"
+                className="min-h-[44px] px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg disabled:opacity-50"
                 >
                 Add
                 </button>
@@ -304,7 +304,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
 
       {/* Filters */}
       <div className="p-4 pb-0">
-        <div className="flex gap-2 overflow-x-auto no-scrollbar">
+        <div className="flex flex-wrap gap-2">
             {[
             { id: 'todo', label: 'To Do' },
             { id: 'high', label: 'High Priority' },
@@ -313,7 +313,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
             <button
                 key={f.id}
                 onClick={() => setFilter(f.id as any)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+                className={`min-h-[44px] px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                 filter === f.id
                     ? 'bg-gray-900 text-white'
                     : 'bg-white text-gray-600 border border-gray-200'
@@ -341,7 +341,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
               onClick={onBack}
               aria-label="Return to Home"
               title="Return to Home"
-              className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
+              className="min-h-[44px] mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
             >
               Back Home
             </button>
@@ -398,7 +398,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                         onClick={() => saveEditing(task)}
                         disabled={!editingTitle.trim()}
                         aria-label={`Save edits to task: ${task.title}`}
-                        className="px-3 py-1.5 bg-indigo-600 text-white text-xs font-bold rounded-lg disabled:opacity-50"
+                        className="min-h-[44px] px-3 py-2 bg-indigo-600 text-white text-xs font-bold rounded-lg disabled:opacity-50"
                       >
                         Save
                       </button>
@@ -406,7 +406,7 @@ const TasksView: React.FC<TasksViewProps> = ({ tasks, events, onAddTask, onUpdat
                         type="button"
                         onClick={cancelEditing}
                         aria-label={`Cancel editing task: ${task.title}`}
-                        className="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs font-bold rounded-lg"
+                        className="min-h-[44px] px-3 py-2 bg-gray-100 text-gray-600 text-xs font-bold rounded-lg"
                       >
                         Cancel
                       </button>

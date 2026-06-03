@@ -2,11 +2,13 @@
 
 ## Current Sprint
 
-Sprint 048 - Short-Height Mobile Smoke Across Core Views
+Sprint 049 - Compact Touch Target Standardization
 
 ## Current Status
 
-Sprint 048 validation completed with no runtime changes.
+Sprint 048 was closed and pushed as validation/docs only. Short-height mobile smoke validation found no confirmed runtime blocker.
+
+Sprint 049 is planned as a focused runtime polish sprint for compact touch-target standardization across core mobile controls.
 
 Sprint 047 implementation and validation completed.
 
@@ -31,6 +33,20 @@ Sprint 042 closes the Sprint 041 validation caveats with a small dev-only query-
 Sprint 041 implementation and validation completed with documented caveats after hardening empty, error, loading, unavailable, disabled, and fallback states across the existing non-CEO Trina app shell.
 
 ## Active Work
+
+Sprint 049 is ready for Builder read-first review.
+
+Sprint 049 should inspect compact interactive controls in Calendar, Tasks, and any other core view with confirmed compact controls before runtime edits.
+
+Sprint 049 should standardize confirmed compact controls toward the practical `44px` mobile touch-target standard while preserving short-height scrolling, fixed bottom navigation usability, and existing pink/white Barbie UI direction.
+
+Sprint 049 implementation and validation completed.
+
+Sprint 049 runtime changes were limited to compact interactive controls in `components/CalendarView.tsx` and `components/TasksView.tsx`.
+
+Sprint 049 hardened Calendar day cells, Calendar category and recurring chips, Calendar form action controls, Task filter chips, Task add-form priority chips, Task add/save/cancel controls, and related empty-state return buttons toward the practical `44px` mobile touch-target standard.
+
+Sprint 049 browser validation measured changed Calendar and Tasks controls at `390x844` and `360x740` with no horizontal overflow.
 
 Sprint 048 is a validation-first mobile polish sprint for core non-Home views at `390x844` and `360x740`.
 
@@ -91,6 +107,16 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 
 ## Recently Completed
 
+- Sprint 049 Architect Pack was saved at `architect-packs/trina-049-compact-touch-target-standardization-architect-pack.md`.
+- Sprint 049 planning files were created under `planning/sprints/049-compact-touch-target-standardization/`.
+- Sprint 049 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
+- Sprint 049 inspected Calendar, Tasks, Finance, Knowledge Base, and Notifications/reminders for compact interactive controls.
+- Sprint 049 confirmed the direct runtime touch-target issues were in Calendar and Tasks.
+- Sprint 049 browser validation passed at `390x844`: changed Calendar day cells, Calendar chips, Task filters, Task priority chips, and Task add control measured at least `44px` tall, with no document-level horizontal overflow.
+- Sprint 049 browser validation passed at `360x740`: changed Calendar day cells, Calendar chips, Task filters, Task priority chips, and Task add control measured at least `44px` tall, with no document-level horizontal overflow.
+- `git diff --check`, the CEO Briefing absence guard, `npm run lint`, and `npm run build` passed.
+- `npm run build` completed with existing non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
+- Sprint 049 keeps `references/flutterflow/sprint-009/ceo-briefing.png` absent.
 - Sprint 047 Architect Pack was saved at `architect-packs/trina-047-home-typed-action-row-responsive-spacing-architect-pack.md`.
 - Sprint 047 planning files were created under `planning/sprints/047-home-typed-action-row-responsive-spacing/`.
 - Sprint 047 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
@@ -200,11 +226,11 @@ Do not create or modify:
 
 ## Next Action
 
-Review Sprint 048 closeout changes, then stage and commit only after explicit operator approval.
+Review Sprint 049 implementation and validation results, then stage and commit only after explicit operator approval.
 
 Guardrails:
 
 - Do not touch CEO Briefing.
 - Do not create `references/flutterflow/sprint-009/ceo-briefing.png`.
 - Do not modify runtime files further unless a new approved implementation request requires it.
-- Keep Sprint 048 closeout limited to the accepted short-height mobile smoke validation results.
+- Keep Sprint 049 closeout limited to accepted compact touch-target standardization results.

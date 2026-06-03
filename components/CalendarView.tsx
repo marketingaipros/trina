@@ -165,7 +165,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">
               {editingEventId ? 'Edit Event' : 'New Event'}
             </h3>
-            <button onClick={resetForm} aria-label="Cancel event form" title="Cancel event form" className="text-xs text-gray-400 hover:text-gray-600">Cancel</button>
+            <button onClick={resetForm} aria-label="Cancel event form" title="Cancel event form" className="min-h-[44px] px-3 text-xs text-gray-400 hover:text-gray-600">Cancel</button>
           </div>
           <form onSubmit={handleAddOrUpdate} className="space-y-3">
             <input
@@ -194,7 +194,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
                   key={cat}
                   type="button"
                   onClick={() => setNewCategory(cat)}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold capitalize border ${
+                    className={`min-h-[44px] px-3 py-2 rounded-full text-xs font-semibold capitalize border ${
                     newCategory === cat ? CATEGORY_CONFIG[cat].bg + ' ' + CATEGORY_CONFIG[cat].color : 'bg-gray-100 text-gray-500 border-transparent'
                   }`}
                 >
@@ -202,14 +202,14 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
                 </button>
               ))}
             </div>
-            <div className="flex justify-between items-center">
-              <div className="flex gap-2">
+            <div className="flex flex-wrap justify-between items-center gap-3">
+              <div className="flex gap-2 flex-wrap">
                 {(['none', 'daily', 'weekly', 'monthly'] as const).map((r) => (
                   <button
                     key={r}
                     type="button"
                     onClick={() => setNewRecurring(r)}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold capitalize ${
+                    className={`min-h-[44px] px-3 py-2 rounded-full text-xs font-semibold capitalize ${
                       newRecurring === r ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-500'
                     }`}
                   >
@@ -217,7 +217,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
                   </button>
                 ))}
               </div>
-              <button type="submit" disabled={!newTitle.trim()} className="px-4 py-1.5 bg-pink-600 text-white text-sm font-semibold rounded-lg disabled:opacity-50">
+              <button type="submit" disabled={!newTitle.trim()} className="min-h-[44px] px-4 py-2 bg-pink-600 text-white text-sm font-semibold rounded-lg disabled:opacity-50">
                 {editingEventId ? 'Update' : 'Add'}
               </button>
             </div>
@@ -241,7 +241,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
         </div>
         <div className="grid grid-cols-7 gap-1">
           {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-            <div key={`empty-${i}`} className="h-10" />
+            <div key={`empty-${i}`} className="min-h-[44px]" />
           ))}
           {Array.from({ length: daysInMonth }).map((_, i) => {
             const day = i + 1;
@@ -255,7 +255,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
                 key={day}
                 onClick={() => setSelectedDate(dateStr)}
                 aria-label={`Select ${dateStr}${dayEvents.length ? `, ${dayEvents.length} event${dayEvents.length === 1 ? '' : 's'}` : ''}`}
-                className={`h-10 rounded-xl text-sm font-medium relative flex flex-col items-center justify-center transition-all
+                className={`min-h-[44px] min-w-[44px] rounded-xl text-sm font-medium relative flex flex-col items-center justify-center transition-all
                   ${isSelected ? 'bg-pink-500 text-white shadow-lg scale-105' : ''}
                   ${isToday && !isSelected ? 'bg-pink-50 text-pink-600 font-bold' : ''}
                   ${!isSelected && !isToday ? 'text-gray-700 hover:bg-gray-100' : ''}
@@ -291,7 +291,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events, onAddEvent, onUpdat
               onClick={() => { setIsAdding(true); setNewDate(selectedDate); }}
               aria-label={`Add event for ${selectedDate}`}
               title={`Add event for ${selectedDate}`}
-              className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
+              className="min-h-[44px] mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
             >
               Add Event
             </button>
