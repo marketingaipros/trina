@@ -75,6 +75,81 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 048 - Short-Height Mobile Smoke Across Core Views Validation
+
+Sprint 048 validates core non-Home views at both standard and short-height mobile viewports before any runtime changes.
+
+Required validation after implementation approval:
+
+- Smoke Tasks at `390x844` and `360x740`.
+- Smoke Calendar at `390x844` and `360x740`.
+- Smoke Finance at `390x844` and `360x740`.
+- Smoke Knowledge Base at `390x844` and `360x740`.
+- Smoke Notifications/reminders if reachable.
+- Confirm no checked view has horizontal overflow.
+- Confirm no primary action or input is trapped behind the fixed bottom nav.
+- Confirm short-height scrolling remains usable.
+- Confirm existing `44px` touch-target hardening is preserved where relevant.
+- If a runtime issue is confirmed, apply only the smallest local fix.
+
+Required commands:
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+git diff --cached --name-only
+```
+
+Expected result:
+
+- Runtime changes are either unnecessary or limited to confirmed short-height mobile issues.
+- Existing labels, handlers, copy, input behavior, loading states, and disabled states are preserved.
+- No backend, Firebase, native, package, release, CEO Briefing, or broad app-shell files are modified.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+- Nothing is staged, committed, or pushed without approval.
+
+### Sprint 048 Planning Results
+
+- Planning/docs pack applied only.
+- Builder summary was approved before inspection.
+- Browser/mobile smoke ran against local Vite with `?trinaReminderFixture=1`.
+- Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders were reached through bottom navigation at `390x844` and `360x740`.
+- No checked view had horizontal overflow at either viewport.
+- No primary action or input was trapped behind the fixed bottom navigation.
+- Tasks used normal page scrolling with a long seeded local task list; at scroll-bottom the lowest task controls cleared the fixed nav.
+- Calendar selected-day edit/delete controls, Finance action controls, Knowledge Base upload/voice/ask controls, Notifications back control, and bottom navigation remained usable.
+- Existing primary/action touch targets stayed at or above `44px` where prior mobile hardening applies.
+- Compact task filter chips and calendar day cells remain below `44px` in one dimension, but Sprint 048 did not confirm them as short-height blockers.
+- No runtime files were changed.
+- CEO Briefing files were untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+### Sprint 048 Validation Results
+
+Commands run:
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+git diff --cached --name-only
+```
+
+Result:
+
+- Pass. `git diff --check` completed cleanly.
+- Pass. CEO Briefing screenshot absence guard completed cleanly.
+- Pass. `npm run lint` completed with no blocking TypeScript errors.
+- Pass. `npm run build` completed; existing Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size remained non-blocking.
+- Nothing was staged, committed, or pushed.
+
 ## Sprint 047 - Home Typed Action Row Responsive Spacing Validation
 
 Sprint 047 validates that the Home typed input/action row remains stable and usable on narrow mobile widths after Sprint 046 raised the typed `Capture` and `Send` buttons to the `44px` mobile touch-target baseline.

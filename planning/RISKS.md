@@ -227,6 +227,15 @@
 | Fixing narrow layout causes wrapping that blocks bottom nav or makes the input harder to use. | Medium | Medium | Validate at `390x844`, check bottom nav, and smoke core views. | Mitigated - `390x844` cleared nav by `62px`; `360x740` cleared nav by `138px`; core view smoke passed. |
 | CEO Briefing asset is accidentally restored or touched. | Low | High | Run the absence guard before and after changes; do not work in CEO Briefing paths. | Guarded - absence guard passed and CEO Briefing stayed untouched. |
 
+## Sprint 048 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Core non-Home views may have short-height issues hidden at taller mobile sizes. | Medium | Medium | Smoke Tasks, Calendar, Finance, Knowledge Base, and reachable Notifications/reminders at `390x844` and `360x740`. | Mitigated - browser smoke found no blocking short-height issue. |
+| Small local fixes could regress previously validated taller mobile behavior. | Medium | Medium | Validate both target viewports and keep fixes local to confirmed issues. | Mitigated - no runtime fixes were needed. |
+| Shared style changes could create broad UI fallout. | Medium | Medium | Prefer view-level padding, scroll, spacing, or compact behavior; document any shared change before applying. | Mitigated - no shared style changes were made. |
+| CEO Briefing work could accidentally re-enter scope. | Low | High | Keep CEO Briefing protected and run the screenshot absence guard. | Guarded - absence guard passed and CEO Briefing stayed untouched. |
+
 ## Sprint 046 Risks
 
 | Risk | Likelihood | Impact | Mitigation | Status |

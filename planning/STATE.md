@@ -2,9 +2,11 @@
 
 ## Current Sprint
 
-Sprint 047 - Home Typed Action Row Responsive Spacing
+Sprint 048 - Short-Height Mobile Smoke Across Core Views
 
 ## Current Status
+
+Sprint 048 validation completed with no runtime changes.
 
 Sprint 047 implementation and validation completed.
 
@@ -29,6 +31,16 @@ Sprint 042 closes the Sprint 041 validation caveats with a small dev-only query-
 Sprint 041 implementation and validation completed with documented caveats after hardening empty, error, loading, unavailable, disabled, and fallback states across the existing non-CEO Trina app shell.
 
 ## Active Work
+
+Sprint 048 is a validation-first mobile polish sprint for core non-Home views at `390x844` and `360x740`.
+
+Sprint 048 Builder summary was approved before inspection.
+
+Sprint 048 inspected Tasks, Calendar, Finance, Knowledge Base, Notifications/reminders, and bottom navigation behavior at `390x844` and `360x740`.
+
+Sprint 048 found no confirmed short-height or narrow mobile usability issue requiring a runtime change.
+
+Sprint 048 runtime files stayed untouched. Closeout is limited to planning/docs validation records.
 
 Sprint 047 closeout documentation records the completed Home typed action row responsive spacing polish.
 
@@ -82,6 +94,18 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 - Sprint 047 Architect Pack was saved at `architect-packs/trina-047-home-typed-action-row-responsive-spacing-architect-pack.md`.
 - Sprint 047 planning files were created under `planning/sprints/047-home-typed-action-row-responsive-spacing/`.
 - Sprint 047 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
+- Sprint 048 Architect Pack was saved at `architect-packs/trina-048-short-height-mobile-smoke-across-core-views-architect-pack.md`.
+- Sprint 048 planning files were created under `planning/sprints/048-short-height-mobile-smoke-across-core-views/`.
+- Sprint 048 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
+- Sprint 048 browser smoke ran against local Vite with `?trinaReminderFixture=1`.
+- Sprint 048 validated Tasks, Calendar, Finance, Knowledge Base, and Notifications/reminders at exact viewport overrides `390x844` and `360x740`.
+- No checked Sprint 048 view had horizontal overflow.
+- No primary action or input was trapped behind the fixed bottom navigation.
+- Tasks required normal page scrolling with the long seeded local task list; at scroll-bottom the lowest task controls cleared the fixed nav.
+- Existing primary/action controls remained at or above the practical `44px` mobile target where Sprint 045-047 hardening applies.
+- Compact task filter chips and calendar day cells remain below `44px` in one dimension, but no short-height usability failure was confirmed in Sprint 048 scope.
+- Sprint 048 did not modify runtime, backend, Firebase, native, package, release, or CEO Briefing files.
+- Sprint 048 keeps `references/flutterflow/sprint-009/ceo-briefing.png` absent.
 - Sprint 047 confirmed a narrow mobile issue at `360x740`: the Home typed row overlapped the fixed bottom nav before the fix.
 - Sprint 047 confirmed `390x844` was already clear before implementation.
 - Sprint 047 runtime change was limited to `components/VoiceDashboard.tsx`.
@@ -176,11 +200,11 @@ Do not create or modify:
 
 ## Next Action
 
-Review Sprint 047 closeout changes, then stage and commit only after explicit operator approval.
+Review Sprint 048 closeout changes, then stage and commit only after explicit operator approval.
 
 Guardrails:
 
 - Do not touch CEO Briefing.
 - Do not create `references/flutterflow/sprint-009/ceo-briefing.png`.
 - Do not modify runtime files further unless a new approved implementation request requires it.
-- Keep Sprint 047 closeout limited to the accepted Home typed action row responsive spacing polish.
+- Keep Sprint 048 closeout limited to the accepted short-height mobile smoke validation results.
