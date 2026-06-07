@@ -10,6 +10,18 @@
 | Protected CEO Briefing artifact could accidentally reappear in repo. | Release hygiene risk | High | Sprint 052 ran `test ! -f references/flutterflow/sprint-009/ceo-briefing.png` before and after validation. | Mitigated in Sprint 052 |
 | Sprint 052 could drift into broad optimization or cleanup work. | Scope risk | Medium | Sprint 052 stayed docs-only and did not modify runtime/source files. | Mitigated in Sprint 052 |
 
+## Sprint 053 Risks - FlutterFlow Release Rollout and Client UAT Prep
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| FlutterFlow project source is out of sync with GitHub repo. | Medium | High | Confirm whether GitHub or FlutterFlow is the deployment source before testing or rollout. | Open - Sprint 053 could not confirm source alignment from repo docs/config only. |
+| FlutterFlow export/build path is unknown or undocumented. | Medium | High | Record the actual export/deploy path, commands, required tokens, and target environment in docs before rollout. | Open - no confirmed FlutterFlow project ID/name or export path was available. |
+| App passes web build but fails on target mobile/runtime environment. | Medium | High | Run target-platform smoke tests before client UAT. Do not rely on repo build alone. | Open - repo build passed, but the client UAT target is still unconfirmed. |
+| Known Vite warnings are accepted for repo release but may still affect production performance. | Medium | Medium | Keep current warnings as watch-only unless they change or create runtime symptoms during UAT. | Watch |
+| Client receives app before issue-reporting process is clear. | Medium | Medium | Prepare a client UAT checklist with blocker/minor definitions and reporting instructions. | Open - blocker/minor definitions are drafted, but tester, access method, issue channel, and approver remain placeholders. |
+| CEO Briefing file accidentally reappears during export, asset sync, or release prep. | Low | High | Run absence guard before and after Sprint 053 validation. | Guarded - Sprint 053 absence guard passed. |
+| Secrets, FlutterFlow tokens, or deployment credentials are exposed in docs or command output. | Low | High | Do not paste secrets into tracked files. Use placeholders and environment variable names only. | Guarded |
+
 ## Sprint 052 Risks
 
 | Risk | Likelihood | Impact | Mitigation | Status |

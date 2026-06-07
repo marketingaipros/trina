@@ -75,6 +75,208 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 053 - FlutterFlow Release Rollout and Client UAT Prep
+
+Sprint 053 validates whether the app is ready to move from repo release-candidate status to controlled client UAT.
+
+Sprint 052 proved repo release readiness. Sprint 053 must prove release path, runtime access, client testing instructions, and rollout safety.
+
+### Required Validation Gates
+
+#### 1. Repo State Gate
+
+Run:
+
+```bash
+git status --branch --short
+git log -1 --oneline
+git diff --check
+git diff --cached --name-only
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Expected:
+
+- Branch is clean before validation work, except approved Sprint 053 docs if already applied.
+- Latest commit is the pushed Sprint 052 closeout commit or a later approved Sprint 053 planning commit.
+- No staged files before validation.
+- CEO Briefing PNG remains absent.
+
+#### 2. Existing Build Gate
+
+Run:
+
+```bash
+npm run lint
+npm run build
+```
+
+Expected:
+
+- Lint passes.
+- Build passes.
+- Build warnings match Sprint 051/Sprint 052 accepted watch-only warnings unless explicitly reclassified.
+
+Accepted watch-only warnings:
+
+- `services/authService.ts` mixed static/dynamic import chunk-placement warning.
+- Large JS chunk warning.
+
+Any new warning, changed warning, or build failure should trigger `HOLD`.
+
+#### 3. FlutterFlow Release Path Gate
+
+The Builder must identify and document the actual release path.
+
+Possible outcomes:
+
+```text
+A. GitHub repo is source of truth and FlutterFlow is no longer part of deploy path.
+B. FlutterFlow remains source of truth and needs export/deploy verification.
+C. GitHub and FlutterFlow both exist but source alignment is unclear.
+```
+
+Expected:
+
+- The path must be documented.
+- If unclear, Sprint 053 must recommend `HOLD`.
+- Do not run deployment commands without explicit operator approval.
+
+#### 4. FlutterFlow / Runtime Smoke Gate
+
+Depending on the confirmed path, validate the app in the safest available target.
+
+Possible test targets:
+
+- Local web build
+- FlutterFlow preview
+- Local Flutter run
+- TestFlight
+- Google Play internal testing
+- Staging URL
+
+Minimum smoke flows:
+
+- App opens without crash.
+- Main navigation loads.
+- Login/auth path is verified or documented as blocked.
+- Calendar view loads.
+- Finance view loads.
+- Knowledge base view loads.
+- Short-height/mobile layout spot checks pass.
+- No missing critical assets.
+- No obvious runtime console errors.
+- CEO Briefing PNG remains absent.
+
+#### 5. Client UAT Package Gate
+
+Prepare client-facing UAT instructions covering:
+
+- Link/build/client access method: `<uat-link-or-build-placeholder>`.
+- Who should test: `<trusted-client-tester>`.
+- What flows to test: `<client-uat-flows>`.
+- What not to test yet: `<out-of-scope-uat-flows>`.
+- How to report issues: `<uat-issue-channel>`.
+- What counts as blocker.
+- What counts as minor polish.
+- Who approves go-live: `<go-live-approver>`.
+
+#### 6. Rollout Recommendation Gate
+
+Sprint 053 final recommendation must be one of:
+
+```text
+SHIP TO CLIENT UAT
+HOLD
+```
+
+Use `SHIP TO CLIENT UAT` only if repo validation passes, release path is clear, runtime smoke validation passes or is explicitly not required for the chosen target, client UAT package is prepared, no release blockers remain, and CEO Briefing PNG remains absent.
+
+Use `HOLD` if FlutterFlow/GitHub source alignment is unclear, build/lint fails, new warnings appear, runtime smoke validation fails, client access instructions are incomplete, required credentials/test data are unavailable, or CEO Briefing file reappears.
+
+### Sprint 053 Validation Results
+
+Sprint 053 validation completed as docs-only closeout.
+
+Commands run:
+
+```bash
+git status --branch --short
+git log -1 --oneline
+git diff --check
+git diff --cached --name-only
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+```
+
+Command results:
+
+- `git status --branch --short`: branch was `main...origin/main` with existing Sprint 053 docs/planning changes and untracked Sprint 053 architect/sprint files.
+- `git log -1 --oneline`: `d3ce3ce docs: close sprint 052 release candidate ship gate`.
+- `git diff --check`: pass.
+- `git diff --cached --name-only`: pass; no staged files.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: pass; file remains absent.
+- `npm run lint`: pass; `tsc --noEmit` completed with exit code 0.
+- `npm run build`: pass.
+
+Build warning captured:
+
+```text
+[plugin vite:reporter]
+(!) /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/services/authService.ts is dynamically imported by /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/services/firestoreService.ts but also statically imported by /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/App.tsx, dynamic import will not move module into another chunk.
+```
+
+Classification: watch-only and accepted for release. This is materially unchanged from Sprint 051/Sprint 052.
+
+Build warning captured:
+
+```text
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+```
+
+Classification: watch-only and accepted for release. This is materially unchanged from Sprint 051/Sprint 052.
+
+Bundle output:
+
+- `dist/index.html`: `0.85 kB`, gzip `0.51 kB`
+- `dist/assets/index-zuWMrt7T.css`: `36.42 kB`, gzip `6.55 kB`
+- `dist/assets/index-DnBKGQ2g.js`: `1,273.61 kB`, gzip `354.24 kB`
+
+Release path inspection:
+
+- Firebase Hosting is configured to serve `dist` with SPA fallback.
+- Default Firebase project is `barbie-92edc`.
+- Capacitor is configured to use `dist` for native wrappers.
+- FlutterFlow remains documented as the planned client-facing mobile frontend, but no confirmed active FlutterFlow export/deploy path or project ID/name was available from repo docs/config.
+
+Runtime smoke status:
+
+- Repo build validation passed.
+- Target-environment runtime smoke was not completed because the first UAT target/link/build remains unconfirmed.
+
+Client UAT package status:
+
+- Draft blocker/minor definitions and test-flow categories exist in Sprint 053 acceptance.
+- Tester, UAT access method, issue channel, and go-live approver remain placeholders.
+
+Final Sprint 053 recommendation:
+
+```text
+HOLD
+```
+
+Rationale:
+
+- Repo validation passed.
+- CEO Briefing PNG remains absent.
+- Release source of truth remains unresolved.
+- FlutterFlow involvement is likely from planning history but not confirmed as the active deploy/export path.
+- UAT target/access method and client-side tester values remain placeholders.
+
 ## Sprint 052 - Release-Candidate Final Verification / Ship-or-Hold Gate
 
 Sprint 052 is a release-candidate validation gate.

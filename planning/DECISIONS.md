@@ -195,3 +195,11 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | Date | Decision | Reason | Impact |
 |---|---|---|---|
 | 2026-06-02 | Sprint 042 establishes local, query-param, non-production fixtures as the preferred lightweight validation mechanism for hard-to-reproduce UI states, as long as they are guarded from production behavior and remain narrow to validation needs. | Seeded local data and service fallback behavior made empty and failure states hard to live-reproduce without risky data or backend changes. | Future validation sprints may use narrow non-production query-param fixtures before considering heavier test infrastructure, package changes, backend changes, or production feature flags. |
+
+## Sprint 053 Release Rollout Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-06-07 | Treat Sprint 052 `SHIP` as repo-release readiness only, not client rollout approval. | Sprint 052 validated lint/build/repo state but did not deploy, run native builds, or prepare client UAT. | A separate rollout/UAT sprint is required before the client starts using the app. |
+| 2026-06-07 | Sprint 053 must focus on FlutterFlow release path, environment validation, and client UAT preparation. | The app may still depend on FlutterFlow export/deployment or FlutterFlow-managed settings. | Builder must verify source alignment and deployment path before any client handoff. |
+| 2026-06-07 | Client rollout must be controlled, starting with internal validation and one trusted client-side tester before broader use. | This reduces client-facing risk and creates a clear blocker/minor-issue triage path. | Client access should not be distributed broadly until Sprint 053 acceptance criteria pass. |

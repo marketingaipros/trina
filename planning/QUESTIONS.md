@@ -2,6 +2,13 @@
 
 | Question | Owner | Needed By | Status | Answer / Notes |
 |---|---|---|---|---|
+| Is GitHub `origin/main` the deployment source, or is FlutterFlow still the source of truth for export/deploy? | Operator | Sprint 053 release path confirmation | Open | Sprint 053 found Firebase Hosting/Capacitor repo config and FlutterFlow planning docs, but source of truth remains unresolved. |
+| What is the FlutterFlow project ID or project name used for this app? | Operator | Sprint 053 FlutterFlow export/deploy verification | Open | Placeholder remains `<project-id-placeholder>` until confirmed. |
+| What target should be tested first: web preview, FlutterFlow preview, local Flutter run, TestFlight, Play internal testing, or another staging link? | Operator | Sprint 053 test plan and rollout path | Open | Sprint 053 did not infer this silently; UAT target remains `<uat-link-or-build-placeholder>`. |
+| Who is the first trusted client-side tester for UAT? | Operator | Sprint 053 controlled rollout | Open | Placeholder remains `<trusted-client-tester>`. |
+| What exact client workflows must pass before the client starts using the app? | Operator / Architect | Sprint 053 UAT checklist | Open | Draft checklist can use placeholders until confirmed. |
+| Are there client-facing credentials, demo accounts, or seed data needed for UAT? | Operator | Sprint 053 client testing setup | Open | Do not store passwords or credentials in repo files. |
+| What is the preferred issue-reporting channel during UAT? | Operator | Sprint 053 client support process | Open | Placeholder remains `<uat-issue-channel>`. |
 | Is `TELEGRAM_BOT_TOKEN` already created in Firebase secrets for this project? | Builder / Operator | Sprint 003 validation | Open | Needed before Telegram can be considered live. Do not paste the token into docs or chat. |
 | Has the Telegram webhook URL been set with BotFather/API after deploy? | Builder / Operator | Sprint 003 validation | Open | Needed to validate Telegram message flow. |
 | Which device/platform is the V1 launch target: web only, Android, iOS, or all three? | Product owner | Before go-live approval | Answered for Sprint 003 | Default launch scope is web-first. Android and iOS remain blocked until native Firebase config and device/emulator testing are confirmed. |
