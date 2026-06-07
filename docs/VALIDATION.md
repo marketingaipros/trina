@@ -75,6 +75,158 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 052 - Release-Candidate Final Verification / Ship-or-Hold Gate
+
+Sprint 052 is a release-candidate validation gate.
+
+### Required Validation Commands
+
+Run from the repository root:
+
+```bash
+git status --branch --short
+git log -1 --oneline
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+git diff --cached --name-only
+```
+
+### Required Warning Review
+
+During `npm run build`, verify whether these previously accepted watch-only warnings remain present, absent, or changed:
+
+1. `services/authService.ts` mixed static/dynamic import warning.
+2. Large chunk warning for JavaScript bundle size.
+
+If warning text changes materially, capture the new exact warning text and classify it again.
+
+### Ship Recommendation Rules
+
+Recommend `SHIP` only if:
+
+- `npm run lint` passes.
+- `npm run build` passes.
+- Any build warnings are documented and classified as accepted or watch-only.
+- No fix-required build warning exists.
+- No runtime/source files changed during Sprint 052 unless explicitly approved.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+- `git diff --cached --name-only` is empty before any closeout staging.
+- The Builder can clearly explain the release state.
+
+Recommend `HOLD` if:
+
+- lint fails.
+- build fails.
+- a new warning appears that cannot be classified as accepted/watch-only.
+- a protected file reappears.
+- a release-blocking defect is discovered.
+- validation cannot be completed with confidence.
+
+### Out of Scope
+
+Sprint 052 does not perform:
+
+- Broad code refactors.
+- Bundle optimization.
+- Auth behavior changes.
+- Firebase/backend changes.
+- Dependency upgrades.
+- Native builds.
+- Deployment.
+- CEO Briefing file creation or edits.
+
+### Sprint 052 Planning Results
+
+- Planning/docs pack applied only.
+- Release-candidate validation has not started.
+- Builder must read Sprint 052 files and summarize scope before running validation.
+- No runtime files were changed during planning/docs application.
+- CEO Briefing files were untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+### Sprint 052 Final Validation Results
+
+Sprint 052 validation completed as docs-only closeout.
+
+Starting state:
+
+- `git status --branch --short`: branch was `main...origin/main` with Sprint 052 planning/docs changes only.
+- `git log -1 --oneline`: `34e1a32 docs: close sprint 051 release warning triage gate`.
+- `git diff --cached --name-only`: empty before validation.
+- `references/flutterflow/sprint-009/ceo-briefing.png`: absent.
+
+Commands run:
+
+```bash
+git status --branch --short
+git log -1 --oneline
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+git diff --cached --name-only
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+git diff --cached --name-only
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Command results:
+
+- Pass. `git status --branch --short` showed `## main...origin/main` with Sprint 052 planning/docs changes only.
+- Pass. `git log -1 --oneline` showed `34e1a32 docs: close sprint 051 release warning triage gate`.
+- Pass. `git diff --check` completed cleanly.
+- Pass. `test ! -f references/flutterflow/sprint-009/ceo-briefing.png` completed cleanly before validation.
+- Pass. `git diff --cached --name-only` was empty before validation.
+- Pass. `npm run lint` completed with `tsc --noEmit` exit code 0.
+- Pass. `npm run build` completed successfully.
+- Pass. `git diff --name-only` showed tracked docs changes only: `docs/VALIDATION.md`, `planning/RISKS.md`, and `planning/STATE.md`.
+- Pass. `git status --branch --short` showed tracked docs changes plus the untracked Sprint 052 architect pack and sprint folder.
+- Pass. `git diff --cached --name-only` remained empty.
+- Pass. `test ! -f references/flutterflow/sprint-009/ceo-briefing.png` completed cleanly after validation.
+
+Build warning captured:
+
+```text
+[plugin vite:reporter]
+(!) /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/services/authService.ts is dynamically imported by /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/services/firestoreService.ts but also statically imported by /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/App.tsx, dynamic import will not move module into another chunk.
+```
+
+Classification: watch-only and accepted for release. This is materially unchanged from Sprint 051 and remains a chunk-placement warning, not a build failure or confirmed runtime defect.
+
+Build warning captured:
+
+```text
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+```
+
+Classification: watch-only and accepted for release. This is materially unchanged from Sprint 051 and remains a post-release performance cleanup candidate unless a measured release-blocking performance defect appears.
+
+Bundle output:
+
+- `dist/index.html`: `0.85 kB`, gzip `0.51 kB`
+- `dist/assets/index-zuWMrt7T.css`: `36.42 kB`, gzip `6.55 kB`
+- `dist/assets/index-DnBKGQ2g.js`: `1,273.61 kB`, gzip `354.24 kB`
+
+Final recommendation: `SHIP`.
+
+Rationale:
+
+- Lint passed.
+- Build passed.
+- Build warnings matched Sprint 051 accepted watch-only warnings.
+- No new or changed fix-required warning appeared.
+- No runtime/source files changed.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+- Nothing was staged, committed, pushed, deployed, or native-built.
+
 ## Sprint 051 - Release Candidate Build Warning Triage and Stability Gate Validation
 
 Sprint 051 validates the current release-candidate build warning posture before launch decision work.

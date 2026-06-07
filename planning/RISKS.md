@@ -1,5 +1,24 @@
 # Risks
 
+## Active Release-Candidate Risks
+
+| Risk | Classification | Impact | Mitigation | Status |
+|---|---|---:|---|---|
+| `services/authService.ts` is both statically imported by `App.tsx` and dynamically imported by `services/firestoreService.ts`. | Watch-only / accepted for release | Low | Do not refactor auth solely for chunk placement. Revisit only if measured runtime defect or auth behavior issue appears. | Accepted in Sprint 051 |
+| Main JS chunk is larger than Vite's default 500 kB warning threshold after minification. | Watch-only / accepted for release | Medium | Treat as post-release performance cleanup candidate unless a measured release-blocking performance defect appears. | Accepted in Sprint 051 |
+| Final release candidate may pass build but still have unverified user-path regressions. | Release gate risk | High | Sprint 052 ran final validation and recorded a ship-or-hold recommendation. | Mitigated in Sprint 052 |
+| Protected CEO Briefing artifact could accidentally reappear in repo. | Release hygiene risk | High | Sprint 052 ran `test ! -f references/flutterflow/sprint-009/ceo-briefing.png` before and after validation. | Mitigated in Sprint 052 |
+| Sprint 052 could drift into broad optimization or cleanup work. | Scope risk | Medium | Sprint 052 stayed docs-only and did not modify runtime/source files. | Mitigated in Sprint 052 |
+
+## Sprint 052 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Lint or build could fail during final release-candidate verification. | Medium | High | Sprint 052 ran `npm run lint` and `npm run build`; both passed. | Mitigated |
+| Sprint 051 accepted watch-only warnings could change or become fix-required. | Medium | High | Sprint 052 captured build output and confirmed the warning categories and bundle sizes remained materially unchanged. | Mitigated |
+| Final verification could accidentally mutate runtime/source files. | Low | High | Sprint 052 changed only planning/docs closeout files after validation passed. | Mitigated |
+| CEO Briefing artifact could reappear during final verification. | Low | High | Sprint 052 confirmed `references/flutterflow/sprint-009/ceo-briefing.png` remained absent before and after validation. | Mitigated |
+
 | Risk | Likelihood | Impact | Mitigation | Status |
 |---|---:|---:|---|---|
 | Telegram webhook is present in code but not live without `TELEGRAM_BOT_TOKEN` and webhook setup. | High | Medium | Validate secret requirement and document exact setup steps without exposing token. | Open |
