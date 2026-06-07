@@ -4,6 +4,11 @@
 
 | Risk | Classification | Impact | Mitigation | Status |
 |---|---|---:|---|---|
+| Client UAT can be blocked by missing release source of truth. | UAT gate risk | High | Sprint 054 must confirm the release source of truth or keep recommendation `HOLD`. | Active |
+| FlutterFlow ambiguity can cause duplicate or conflicting release paths. | Release-path risk | High | Confirm whether FlutterFlow is active, historical, or unresolved before sharing client access. | Active |
+| Native wrapper evidence does not equal native release readiness. | Platform risk | High | Treat Capacitor `webDir: "dist"` as repo evidence only until native target testing is explicitly approved and completed. | Active |
+| Sharing client UAT before issue channel/workflows are defined can create noisy feedback. | UAT process risk | Medium | Confirm UAT workflows, blocker/minor definitions, issue channel, first tester, and go-live approver before client handoff. | Active |
+| Credentials or demo data could be stored in repo during UAT setup. | Secret hygiene risk | High | Use placeholders only and keep passwords, tokens, signing keys, and demo credentials outside tracked files. | Active |
 | `services/authService.ts` is both statically imported by `App.tsx` and dynamically imported by `services/firestoreService.ts`. | Watch-only / accepted for release | Low | Do not refactor auth solely for chunk placement. Revisit only if measured runtime defect or auth behavior issue appears. | Accepted in Sprint 051 |
 | Main JS chunk is larger than Vite's default 500 kB warning threshold after minification. | Watch-only / accepted for release | Medium | Treat as post-release performance cleanup candidate unless a measured release-blocking performance defect appears. | Accepted in Sprint 051 |
 | Final release candidate may pass build but still have unverified user-path regressions. | Release gate risk | High | Sprint 052 ran final validation and recorded a ship-or-hold recommendation. | Mitigated in Sprint 052 |

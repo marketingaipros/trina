@@ -104,6 +104,20 @@ Do not expose Hermes, Claude, Gemini, Google AI Studio, Codex, or internal orche
 - Firestore rules file: `firestore.rules`.
 - Functions codebase: `trinaosvoice`.
 
+## Sprint 054 Release Path Evidence
+
+The current repo architecture supports a Vite web build that writes to `dist`.
+
+Repo-observed release/config evidence:
+
+- `firebase.json` configures Firebase Hosting to serve `dist` with SPA fallback.
+- `.firebaserc` sets the default Firebase project to `barbie-92edc`.
+- `capacitor.config.ts` configures Capacitor native wrappers to consume `dist`.
+
+These facts do not by themselves confirm the operator-approved release source of truth or UAT target.
+
+FlutterFlow remains a separate release-path question until the operator confirms whether it is active, historical, not needed, or still unresolved for this release.
+
 ## Sprint 002 Launch Readiness Notes
 - Trina / Barbie / TrinaOS Voice V1 should be validated before adding features.
 - V1 launch-critical paths are auth, chat, reminders, reminder popups, Firestore rules, Firebase Functions readiness, Hosting build output, and Telegram readiness.

@@ -1,5 +1,30 @@
 # API
 
+## Sprint 054 Release/UAT Interface Notes
+
+Sprint 054 does not add application APIs. It clarifies the release/config interfaces needed before controlled client UAT.
+
+Repo-observed interfaces:
+
+- Firebase project config: `.firebaserc` sets the default project to `barbie-92edc`.
+- Firebase Hosting output path: `firebase.json` serves `dist`.
+- Firebase Hosting SPA fallback: `firebase.json` rewrites `**` to `/index.html`.
+- Native wrapper web asset path: `capacitor.config.ts` uses `webDir: "dist"`.
+- Build command: `npm run build`.
+- Lint command: `npm run lint`.
+
+Unconfirmed release/UAT contracts:
+
+- Release source of truth: `<release-source-of-truth>`.
+- FlutterFlow status: `<flutterflow-active-historical-or-unresolved>`.
+- FlutterFlow project ID/name: `<project-id-placeholder>`.
+- UAT link/build: `<uat-link-or-build-placeholder>`.
+- Trusted tester: `<trusted-client-tester>`.
+- UAT issue channel: `<uat-issue-channel>`.
+- Go-live approver: `<go-live-approver>`.
+
+Do not store actual API tokens, passwords, private signing keys, client credentials, production secrets, or demo account passwords in repo files.
+
 ## Sprint 053 Release Interface Notes
 
 Sprint 053 may require documenting release/deployment interfaces. This does not mean new application APIs are being added.
