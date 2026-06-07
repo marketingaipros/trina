@@ -40,6 +40,17 @@
 | Left-side navigation from the web screenshot may not translate cleanly to mobile. | Medium | Medium | Adapt it as a mobile quick-action rail, top segmented row, horizontal action strip, or bottom nav while preserving the concept. | Open |
 | Prototype may become too broad for a first visual pass. | Medium | Medium | Limit full screen work to six screens and keep all other areas as placeholders. | Open |
 
+## Sprint 051 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Existing Vite build warnings could be treated as release blockers without source triage. | Medium | Medium | Sprint 051 captured warning text, inspected owners, and classified both warning categories. | Mitigated |
+| Existing Vite build warnings could be ignored without release rationale. | Medium | Medium | Sprint 051 documented mixed import and bundle-size warning classifications in validation and acceptance notes. | Mitigated |
+| Bundle-size cleanup could expand into a broad refactor before release. | Medium | Medium | Sprint 051 deferred broad code-splitting/manual chunking because no measured release-blocking performance defect was confirmed. | Watch |
+| Auth import cleanup could accidentally change auth initialization or fallback behavior. | Medium | High | Sprint 051 avoided auth source edits; the mixed import warning is watch-only unless a concrete auth/chunking runtime issue appears. | Watch |
+| Build-warning triage could drift into runtime redesign, backend, Firebase, dependency, deploy, or native work. | Low | High | Sprint 051 stayed docs-only and did not modify runtime/source, backend, Firebase, dependency, deployment, or native files. | Mitigated |
+| CEO Briefing could re-enter scope through old evidence references. | Low | High | Sprint 051 kept CEO Briefing out of scope and confirmed `ceo-briefing.png` remains absent. | Mitigated |
+
 ## Sprint 009 Risks
 
 | Risk | Likelihood | Impact | Mitigation | Status |

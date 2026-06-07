@@ -2,13 +2,15 @@
 
 ## Current Sprint
 
-Sprint 050 - Mobile Runtime Regression Sweep and Release Readiness
+Sprint 051 - Release Candidate Build Warning Triage and Stability Gate
 
 ## Current Status
 
 Sprint 048 was closed and pushed as validation/docs only. Short-height mobile smoke validation found no confirmed runtime blocker.
 
-Sprint 050 is planned as a regression and release-readiness sweep across the core mobile runtime surfaces after the Sprint 040-049 polish sequence.
+Sprint 051 is planned as a release-candidate stability gate for triaging the current non-blocking Vite build warnings before a launch decision.
+
+Sprint 050 is complete. The mobile runtime regression sweep passed after one narrow Finance bottom-nav overlap fix, and the build still reports the known non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
 
 Sprint 049 was completed as a focused runtime polish sprint for compact touch-target standardization across core mobile controls.
 
@@ -36,7 +38,33 @@ Sprint 041 implementation and validation completed with documented caveats after
 
 ## Active Work
 
-Sprint 050 is ready for Builder read-first review.
+Sprint 051 is ready for Builder read-first review.
+
+Sprint 051 should capture the current `npm run build` warning state, inspect `services/authService.ts` import ownership and bundle-size warning context, and classify each warning as accepted for release, watch-only, or fix-required.
+
+Sprint 051 implementation and validation completed as docs-only warning triage.
+
+Sprint 051 captured the current `npm run build` warnings, inspected `services/authService.ts` import ownership and bundle-size context, and classified both warning categories as watch-only and accepted for release.
+
+Sprint 051 did not identify a fix-required warning.
+
+Sprint 051 did not modify runtime/source files. No auth behavior, routing, Firebase, backend, dependencies, native files, deployment files, or CEO Briefing files were changed.
+
+Sprint 051 final validation passed: `git diff --check`, CEO Briefing absence guard, `npm run lint`, and `npm run build`.
+
+Sprint 051 should not modify runtime/source files unless a future approved sprint identifies a measured launch performance blocker or a concrete auth/chunking runtime issue.
+
+Sprint 051 planning/docs-only application completed.
+
+Sprint 051 planning files were created under `planning/sprints/051-release-candidate-build-warning-triage-and-stability-gate/`.
+
+Sprint 051 planning/docs-only application did not modify runtime files, stage changes, commit, push, deploy, run native builds, or touch CEO Briefing files.
+
+Sprint 051 keeps `references/flutterflow/sprint-009/ceo-briefing.png` absent.
+
+Sprint 050 is complete and ready for review/staging after owner approval.
+
+Sprint 050 was a regression and release-readiness sweep across the core mobile runtime surfaces after the Sprint 040-049 polish sequence.
 
 Sprint 050 should inspect Home / Dashboard, Calendar, Tasks, Finance, Knowledge Base, Notifications/reminders, and bottom navigation at `390x844` and `360x740` before any runtime edits.
 
@@ -139,6 +167,14 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 
 ## Recently Completed
 
+- Sprint 051 Architect Pack was saved at `architect-packs/trina-051-release-candidate-build-warning-triage-and-stability-gate-architect-pack.md`.
+- Sprint 051 planning files were created under `planning/sprints/051-release-candidate-build-warning-triage-and-stability-gate/`.
+- Sprint 051 planning/docs-only application did not modify runtime files, stage changes, commit, push, deploy, run native builds, or touch CEO Briefing files.
+- Sprint 051 keeps `references/flutterflow/sprint-009/ceo-briefing.png` absent.
+- Sprint 051 warning triage completed as docs-only closeout.
+- Sprint 051 classified the mixed `services/authService.ts` static/dynamic import warning as watch-only and accepted for release because it affects chunk placement only and the dynamic import is limited to Firestore auth re-auth recovery.
+- Sprint 051 classified the large JavaScript bundle warning as watch-only and accepted for release because no measured release-blocking performance defect was confirmed.
+- Sprint 051 did not modify runtime/source files, stage changes, commit, push, deploy, run native builds, or touch CEO Briefing files.
 - Sprint 050 Architect Pack was saved at `architect-packs/trina-050-mobile-runtime-regression-sweep-and-release-readiness-architect-pack.md`.
 - Sprint 050 planning files were created under `planning/sprints/050-mobile-runtime-regression-sweep-and-release-readiness/`.
 - Sprint 050 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.

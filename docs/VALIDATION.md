@@ -75,6 +75,107 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 051 - Release Candidate Build Warning Triage and Stability Gate Validation
+
+Sprint 051 validates the current release-candidate build warning posture before launch decision work.
+
+Required command validation:
+
+- `git diff --check`
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`
+- `npm run build`
+- `git status --branch --short`
+
+Required warning triage:
+
+- Capture the current `npm run build` warning categories.
+- Inspect static and dynamic import owners for `services/authService.ts`.
+- Inspect bundle-size warning context.
+- Classify the `services/authService.ts` mixed static/dynamic import warning as accepted for release, watch-only, or fix-required.
+- Classify the large bundle warning as accepted for release, watch-only, or fix-required.
+- Document release rationale for any accepted warning.
+- Document the smallest safe implementation path for any fix-required warning.
+
+Required final validation after any approved implementation:
+
+- `git diff --check`
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`
+- `npm run lint`
+- `npm run build`
+- `git diff --name-only`
+- `git status --branch --short`
+- `git diff --cached --name-only`
+
+Expected result:
+
+- Build continues to pass.
+- Build warnings are not left as informal release notes; each warning has a documented classification.
+- Any runtime/source change is unnecessary or limited to a small confirmed Sprint 051 warning-related fix.
+- Existing auth behavior, labels, handlers, routing, data flow, and pink/white Barbie UI are preserved.
+- No backend, Firebase, dependency, package, native config, routing, data model, release, deployment, CEO Briefing, or broad redesign files are modified.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+- Nothing is staged, committed, pushed, deployed, or native-built without approval.
+
+### Sprint 051 Planning Results
+
+- Planning/docs pack applied only.
+- Runtime/source implementation and build-warning triage have not started.
+- Builder must read Sprint 051 files and summarize scope before implementation.
+- No runtime files were changed during planning/docs application.
+- CEO Briefing files were untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+### Sprint 051 Warning Triage Results
+
+Sprint 051 warning triage completed as docs-only closeout. No runtime/source files were changed.
+
+Build warning captured:
+
+```text
+[plugin vite:reporter]
+(!) /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/services/authService.ts is dynamically imported by /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/services/firestoreService.ts but also statically imported by /Users/Dmoney/Documents/development/apps/trinaos/trinaos-voice/App.tsx, dynamic import will not move module into another chunk.
+```
+
+Classification: watch-only and accepted for release. Source inspection confirmed `App.tsx` statically imports `services/authService.ts`, while `services/firestoreService.ts` dynamically imports it only inside the `authFetch()` 401 token-refresh recovery path. The warning affects chunk placement, not build success or a confirmed runtime failure. Changing it would risk auth initialization or recovery behavior and is not justified for Sprint 051.
+
+Build warning captured:
+
+```text
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+```
+
+The generated build included:
+
+- `dist/assets/index-zuWMrt7T.css`: `36.42 kB`, gzip `6.55 kB`
+- `dist/assets/index-DnBKGQ2g.js`: `1,273.61 kB`, gzip `354.24 kB`
+
+Classification: watch-only and accepted for release. The warning remains a performance cleanup candidate, but Sprint 051 found no measured release-blocking runtime defect. Broad bundle optimization, manual chunking, dependency changes, or route-level code splitting are deferred unless launch performance becomes a measured blocker.
+
+No warnings were classified as fix-required.
+
+Commands run:
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+git diff --cached --name-only
+```
+
+Result:
+
+- Pass. `git diff --check` completed cleanly.
+- Pass. CEO Briefing screenshot absence guard completed cleanly.
+- Pass. `npm run lint` completed with no blocking TypeScript errors.
+- Pass. `npm run build` completed with the documented watch-only warnings.
+- Nothing was staged, committed, pushed, deployed, or native-built.
+
 ## Sprint 050 - Mobile Runtime Regression Sweep and Release Readiness Validation
 
 Sprint 050 validates the accumulated mobile/runtime polish from Sprints 040-049 across the core app before release-readiness decisions.
