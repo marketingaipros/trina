@@ -2,13 +2,15 @@
 
 ## Current Sprint
 
-Sprint 049 - Compact Touch Target Standardization
+Sprint 050 - Mobile Runtime Regression Sweep and Release Readiness
 
 ## Current Status
 
 Sprint 048 was closed and pushed as validation/docs only. Short-height mobile smoke validation found no confirmed runtime blocker.
 
-Sprint 049 is planned as a focused runtime polish sprint for compact touch-target standardization across core mobile controls.
+Sprint 050 is planned as a regression and release-readiness sweep across the core mobile runtime surfaces after the Sprint 040-049 polish sequence.
+
+Sprint 049 was completed as a focused runtime polish sprint for compact touch-target standardization across core mobile controls.
 
 Sprint 047 implementation and validation completed.
 
@@ -34,7 +36,37 @@ Sprint 041 implementation and validation completed with documented caveats after
 
 ## Active Work
 
-Sprint 049 is ready for Builder read-first review.
+Sprint 050 is ready for Builder read-first review.
+
+Sprint 050 should inspect Home / Dashboard, Calendar, Tasks, Finance, Knowledge Base, Notifications/reminders, and bottom navigation at `390x844` and `360x740` before any runtime edits.
+
+Sprint 050 should patch only confirmed mobile/runtime regressions, and only with small targeted changes that preserve existing labels, handlers, routing, data flow, and the pink/white Barbie visual direction.
+
+Sprint 050 planning/docs-only application completed.
+
+Sprint 050 planning files were created under `planning/sprints/050-mobile-runtime-regression-sweep-and-release-readiness/`.
+
+Sprint 050 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
+
+Sprint 050 keeps `references/flutterflow/sprint-009/ceo-briefing.png` absent.
+
+Sprint 050 implementation and validation completed.
+
+Sprint 050 found one concrete mobile regression in the Finance add-entry form: the open form overlapped the fixed bottom navigation at `390x844` and `360x740`.
+
+Sprint 050 runtime change was limited to `components/FinanceView.tsx`.
+
+Sprint 050 fixed the Finance overlap by adding bottom scroll clearance, rendering the add-entry form before the empty-state card when open, and hiding the duplicate empty-state `Add Entry` button while the form is already open.
+
+Sprint 050 final browser validation passed at `390x844` and `360x740` for Home / Dashboard, Calendar, Tasks, Finance add-entry form, Finance empty state, Knowledge Base, Notifications/reminders, and bottom navigation.
+
+Sprint 050 final validation found no horizontal overflow, no fixed bottom-nav overlap, readable empty/error states, preserved Finance `Amount` and disabled save/help reachability, and preserved Sprint 049 Calendar/Tasks touch-target behavior.
+
+`git diff --check`, the CEO Briefing absence guard, `npm run lint`, and `npm run build` passed.
+
+`npm run build` completed with existing non-blocking Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size.
+
+Sprint 050 did not stage, commit, push, or touch CEO Briefing files.
 
 Sprint 049 should inspect compact interactive controls in Calendar, Tasks, and any other core view with confirmed compact controls before runtime edits.
 
@@ -107,6 +139,11 @@ Runtime fixes stayed inside the approved Sprint 041 component allowlist.
 
 ## Recently Completed
 
+- Sprint 050 Architect Pack was saved at `architect-packs/trina-050-mobile-runtime-regression-sweep-and-release-readiness-architect-pack.md`.
+- Sprint 050 planning files were created under `planning/sprints/050-mobile-runtime-regression-sweep-and-release-readiness/`.
+- Sprint 050 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
+- Sprint 050 completed a regression/readiness sweep over core mobile runtime views at `390x844` and `360x740`.
+- Sprint 050 implementation and validation completed with one narrow Finance runtime fix and no backend, Firebase, auth, package/dependency, routing, native config, data model, release, deployment, Calendar, Tasks, or CEO Briefing changes.
 - Sprint 049 Architect Pack was saved at `architect-packs/trina-049-compact-touch-target-standardization-architect-pack.md`.
 - Sprint 049 planning files were created under `planning/sprints/049-compact-touch-target-standardization/`.
 - Sprint 049 planning/docs-only application did not modify runtime files, stage changes, commit, push, or touch CEO Briefing files.
@@ -226,11 +263,11 @@ Do not create or modify:
 
 ## Next Action
 
-Review Sprint 049 implementation and validation results, then stage and commit only after explicit operator approval.
+Review Sprint 050 final validation and stage/commit only after explicit operator approval.
 
 Guardrails:
 
 - Do not touch CEO Briefing.
 - Do not create `references/flutterflow/sprint-009/ceo-briefing.png`.
-- Do not modify runtime files further unless a new approved implementation request requires it.
-- Keep Sprint 049 closeout limited to accepted compact touch-target standardization results.
+- Do not modify runtime files further unless a new approved sprint requires it.
+- Keep Sprint 050 closeout limited to the validated Finance overlap fix and mobile runtime regression evidence.

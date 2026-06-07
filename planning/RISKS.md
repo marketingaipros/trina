@@ -244,6 +244,18 @@
 | Calendar day-cell sizing could disturb calendar grid alignment. | Medium | Medium | Prefer minimum dimensions and padding changes that preserve grid structure; validate month layout visually. | Mitigated - day cells measured at least `44px` and preserved the 7-column grid at `360x740`. |
 | Filter chip hardening could cause wrapping or horizontal overflow. | Medium | Medium | Use wrapping/flex behavior where appropriate and verify no horizontal overflow at mobile widths. | Mitigated - Calendar and Tasks chip rows measured at least `44px` tall and did not create document-level horizontal overflow. |
 
+## Sprint 050 Risks
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Mobile polish changes may introduce small spacing regressions on short-height viewports. | Medium | Medium | Validate Home / Dashboard, Calendar, Tasks, Finance, Knowledge Base, Notifications/reminders, and bottom navigation at `390x844` and `360x740`; keep any fix small. | Active |
+| Calendar grid alignment may regress if touch-target classes are adjusted again. | Low | Medium | Inspect Calendar after Sprint 049 and avoid changing it unless a confirmed Sprint 050 issue exists. | Active |
+| Wrapping filter chips may alter vertical density or bottom-nav clearance. | Medium | Low | Confirm scroll behavior, no horizontal overflow, and bottom-nav clearance before any further adjustment. | Active |
+| Release-readiness sweep may tempt broader cleanup. | Medium | Medium | Keep Sprint 050 limited to regression validation and small confirmed fixes; keep backend, Firebase, auth, packages, routing, native config, release, deployment, and data model out of scope. | Active |
+| Existing Vite warnings may distract from Sprint 050 scope. | High | Low | Document existing warnings and do not address them unless they become a direct Sprint 050 blocker. | Active |
+| CEO Briefing could re-enter scope through old planning history or evidence paths. | Low | High | Keep CEO Briefing protected and verify `references/flutterflow/sprint-009/ceo-briefing.png` remains absent. | Active |
+| Finance add-entry form may overlap the fixed bottom navigation on short mobile viewports. | Medium | Medium | Keep the fix local to `components/FinanceView.tsx`, add bottom scroll clearance, and validate the open form at `390x844` and `360x740`. | Mitigated - final mobile smoke found no Finance add-entry overlap at either viewport. |
+
 ## Sprint 046 Risks
 
 | Risk | Likelihood | Impact | Mitigation | Status |

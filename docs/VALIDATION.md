@@ -75,6 +75,87 @@ The failed/blank CEO Briefing page with `Try Again` is treated as blocked eviden
 
 The next app-completion sprint must not require `references/flutterflow/sprint-009/ceo-briefing.png` unless the operator explicitly reopens CEO Briefing.
 
+## Sprint 050 - Mobile Runtime Regression Sweep and Release Readiness Validation
+
+Sprint 050 validates the accumulated mobile/runtime polish from Sprints 040-049 across the core app before release-readiness decisions.
+
+Required command validation:
+
+- `git diff --check`
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`
+- `npm run lint`
+- `npm run build`
+- `git diff --name-only`
+- `git status --branch --short`
+- `git diff --cached --name-only`
+
+Required browser/mobile validation:
+
+- Validate at `390x844`.
+- Validate at `360x740`.
+- Check Home / Dashboard.
+- Check Calendar.
+- Check Tasks.
+- Check Finance.
+- Check Knowledge Base.
+- Check Notifications/reminders if present/reachable.
+- Check app shell / bottom navigation.
+- Confirm no horizontal overflow.
+- Confirm no primary action, input, or empty-state CTA is hidden behind the fixed bottom nav.
+- Confirm text remains readable.
+- Confirm short-height scrolling remains usable.
+- Confirm Calendar and Tasks preserve the Sprint 049 compact touch-target standard.
+- Confirm no CEO Briefing files were touched.
+
+Expected result:
+
+- Runtime changes are either unnecessary or limited to small confirmed Sprint 050 regressions.
+- Existing labels, handlers, routing, data flow, input behavior, loading states, and disabled states are preserved.
+- No backend, Firebase, auth, package/dependency, routing, native config, data model, release, deployment, CEO Briefing, or broad redesign files are modified.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+- Nothing is staged, committed, or pushed without approval.
+
+### Sprint 050 Planning Results
+
+- Planning/docs pack applied only.
+- Runtime implementation and browser/mobile validation have not started.
+- Builder must read Sprint 050 files and summarize scope before implementation.
+- No runtime files were changed during planning/docs application.
+- CEO Briefing files were untouched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remained absent.
+
+### Sprint 050 Validation Results
+
+Runtime change:
+
+- `components/FinanceView.tsx`: fixed a confirmed mobile bottom-nav overlap in the Finance add-entry form by adding bottom scroll clearance, rendering the add-entry form before the empty-state card when open, and hiding the duplicate empty-state `Add Entry` button while the form is already open.
+
+Browser/mobile validation:
+
+- `390x844`: Home / Dashboard, Calendar, Tasks, Finance empty state, Finance add-entry form, Knowledge Base, Notifications/reminders, and bottom navigation were checked. No horizontal overflow was observed. No fixed bottom-nav overlap was observed after the Finance fix. Finance `Amount` measured `top 393 / bottom 435`, and the disabled save/help control measured `top 501 / bottom 541` while the fixed nav started at `779`. Calendar and Tasks showed no sub-44px non-nav interactive controls in the validation measurement.
+- `360x740`: Home / Dashboard, Calendar, Tasks, Finance empty state, Finance add-entry form, Knowledge Base, Notifications/reminders, and bottom navigation were checked. No horizontal overflow was observed. No fixed bottom-nav overlap was observed after the Finance fix. Finance `Amount` measured `top 405 / bottom 447`, and the disabled save/help control measured `top 513 / bottom 553` while the fixed nav started at `675`. Calendar and Tasks showed no sub-44px non-nav interactive controls in the validation measurement.
+- Empty/readable state coverage included Tasks empty state, Finance empty state, Knowledge Base empty state, Notifications/reminders fixture state, microphone-denied Home fallback text, and Daily Snapshot failure feedback through the `ai-failure` fixture.
+
+Commands run:
+
+```bash
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+git diff --name-only
+git status --branch --short
+git diff --cached --name-only
+```
+
+Result:
+
+- Pass. `git diff --check` completed cleanly.
+- Pass. CEO Briefing screenshot absence guard completed cleanly.
+- Pass. `npm run lint` completed with no blocking TypeScript errors.
+- Pass. `npm run build` completed; existing Vite warnings about `services/authService.ts` mixed static/dynamic import chunking and large bundle size remained non-blocking.
+- Nothing was staged, committed, or pushed.
+
 ## Sprint 049 - Compact Touch Target Standardization Validation
 
 Sprint 049 must validate compact interactive controls after implementation.

@@ -128,7 +128,7 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
         </div>
       </header>
 
-      <div className="flex-1 overflow-y-auto no-scrollbar p-4 space-y-6">
+      <div className="flex-1 overflow-y-auto no-scrollbar p-4 pb-24 scroll-pb-24 space-y-6">
           {insights && (
             <div className="bg-white p-6 rounded-2xl shadow-xl border border-pink-100 animate-fade-in relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-1.5 h-full bg-pink-500" />
@@ -187,24 +187,6 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
               </div>
           </div>
 
-          {visibleTransactions.length === 0 && (
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
-              <DollarSign size={36} className="mx-auto mb-3 text-pink-200" />
-              <p className="text-sm font-bold text-gray-600">No finance entries yet</p>
-              <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                Add a revenue or expense entry to turn this local snapshot into a simple daycare finance view. No bank account or live integration is connected here.
-              </p>
-              <button
-                onClick={() => setIsAdding(true)}
-                aria-label="Add finance entry"
-                title="Add finance entry"
-                className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
-              >
-                Add Entry
-              </button>
-            </div>
-          )}
-
           {isAdding && (
             <form onSubmit={handleSubmit} className="bg-white p-4 rounded-xl shadow-md border border-indigo-100 animate-fade-in-down">
             <div className="flex gap-2 mb-3">
@@ -251,6 +233,26 @@ const FinanceView: React.FC<FinanceViewProps> = ({ transactions, onAddTransactio
             </div>
             </form>
         )}
+
+          {visibleTransactions.length === 0 && (
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
+              <DollarSign size={36} className="mx-auto mb-3 text-pink-200" />
+              <p className="text-sm font-bold text-gray-600">No finance entries yet</p>
+              <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                Add a revenue or expense entry to turn this local snapshot into a simple daycare finance view. No bank account or live integration is connected here.
+              </p>
+              {!isAdding && (
+                <button
+                  onClick={() => setIsAdding(true)}
+                  aria-label="Add finance entry"
+                  title="Add finance entry"
+                  className="mt-5 px-4 py-2 bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest rounded-xl border border-pink-100 hover:bg-pink-100 transition-colors"
+                >
+                  Add Entry
+                </button>
+              )}
+            </div>
+          )}
 
         {/* Expense Chart */}
         {chartData.length > 0 && (
