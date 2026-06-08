@@ -1,5 +1,18 @@
 # Questions
 
+## Sprint 066 Open Questions
+
+| Question | Why it matters | Status |
+|---|---|---|
+| What exact customer URL/path should be used for return-to-use UAT? | Client access cannot resume without a confirmed surface. | Open |
+| Does the deployed customer URL match the current repo UI and Sprint 065 behavior? | Local proof does not prove the customer-facing app. | Open |
+| Who is the first tester for controlled return-to-use UAT? | UAT ownership must be explicit before handoff. | Open |
+| Where should customer feedback and bugs be captured? | Feedback is required before client testing starts. | Open |
+| Are browser/native push notifications required, deferred, or watch-only for UAT? | In-app reminders passed locally, but push status remains unproven. | Open |
+| What auth/access posture is approved for UAT, and what remains unresolved for production? | Anonymous-auth/local smoke evidence does not settle production access. | Open |
+| Is any deploy/config action needed to expose the proven current app backend/model path? | No deploy or Firebase setting change is approved in Sprint 066. | Open |
+| Who approves moving from HOLD to Client UAT / V1 Beta? | Owner approval is required before return-to-use. | Open |
+
 ## Sprint 065 Open Questions
 
 | Question | Why it matters | Status |

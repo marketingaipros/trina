@@ -1,5 +1,18 @@
 # Risks
 
+## Sprint 066 Risks - Return-to-Use Release Gate
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Client access could be approved from local-only proof. | Medium | High | Require exact customer URL/path and deployed-version match before handoff. | Active |
+| Feedback could be missing during UAT. | High | Medium | Require one owner-approved feedback/bug channel before client access. | Active |
+| Customer auth/access posture could block the tester or create unsafe ambiguity. | Medium | High | Document UAT auth/access separately from unresolved production auth posture. | Active |
+| Browser/native push could be assumed from in-app reminder proof. | Medium | Medium | Keep browser/native push unproven until tested or owner-approved as deferral/watch-only. | Active |
+| First tester and owner approver could remain ambiguous while the app appears locally usable. | Medium | High | Require the first tester and owner/V1 Beta approver to be recorded before client handoff. | Active |
+| Deploy/config need could be assumed away because the backend/model path passed locally. | Medium | High | Keep deploy/config need unknown until the customer URL/current deployed version is proven against current repo behavior. | Active |
+| Release gate could drift into runtime, deploy, Firebase, FlutterFlow, native, credential, `docs/API.md`, or CEO Briefing work. | Low | High | Keep Sprint 066 docs/planning only and require a separate approved sprint for implementation/config work. | Active |
+| Sprint 064 untracked files could be accidentally swept into this gate. | Low | Medium | Leave Sprint 064 untracked pack/folder untouched and report them separately in `git status`. | Active |
+
 ## Sprint 065 Risks - Current App Intent Routing and Return-to-Use UX
 
 | Risk | Likelihood | Impact | Mitigation | Status |

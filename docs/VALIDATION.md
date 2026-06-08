@@ -1,5 +1,50 @@
 # Validation Plan
 
+## Sprint 066 - Return-to-Use Release Gate
+
+Sprint 066 is docs/planning-only. It does not approve Client UAT, V1 Beta, production release, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, `docs/API.md` edits, or CEO Briefing work.
+
+Required commands:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Sprint 066 Validation Result
+
+Date: 2026-06-08
+
+Result classification:
+
+```text
+HOLD - Client UAT / V1 Beta not approved
+```
+
+Release-gate evidence:
+
+- Sprint 065 local current app validation remains useful but not sufficient for client return-to-use.
+- Customer URL/current deployed version is not proven.
+- Feedback path is not confirmed.
+- Customer auth/access posture remains unresolved.
+- Browser/native push notification delivery is not proven.
+- Live voice input is not proven because Sprint 065 live voice transcript smoke was blocked by browser microphone permission denial.
+- First tester and owner approver are not confirmed.
+- Deploy/config need is unknown.
+- Owner approval for Client UAT / V1 Beta is not recorded.
+
+Scope confirmation:
+
+- Runtime/source files were not modified.
+- Deploy and Firebase settings were not modified.
+- FlutterFlow files were not modified.
+- Native build files were not modified.
+- Credentials were not modified.
+- CEO Briefing files were not modified.
+- `docs/API.md` was not modified.
+- Sprint 064 untracked files were left untouched.
+
 ## Sprint 065 - Current App Intent Routing and Return-to-Use UX
 
 Sprint 065 validates whether the existing app/current UI can safely return to customer use after fixing or clarifying the ask/task/voice flows.

@@ -2,9 +2,53 @@
 
 ## Current Sprint
 
-Sprint 065 - Current App Intent Routing and Return-to-Use UX
+Sprint 066 - Return-to-Use Release Gate
 
 ## Current Status
+
+`HOLD - Client UAT / V1 Beta not approved`
+
+Sprint 066 is the active return-to-use release gate. It is docs/planning only and does not approve Client UAT, V1 Beta, production release, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, `docs/API.md` edits, or CEO Briefing work.
+
+Sprint 065 completed the local current app intent-routing pass. That evidence remains useful because it shows the current app can answer normal typed questions, keep normal asks out of Task Tracker, separate explicit task capture, and create/show in-app due reminders locally. It is still insufficient for client release because the customer URL/current deployed version is not proven to match the current repo UI, feedback path is not confirmed, customer auth/access posture is unresolved, browser/native push notification delivery is unproven, live voice input is not proven, first tester and owner approver are not confirmed, and deploy/config need is unknown.
+
+Client UAT / V1 Beta remains not approved until all release-control blockers are resolved in project files and owner approval is recorded.
+
+## Active Sprint
+
+`planning/sprints/066-return-to-use-release-gate/`
+
+## Next Action
+
+Collect the missing release-control inputs for customer access, feedback, notification status, auth/access, deployed-version match, and owner approval before any client handoff. If resolution requires runtime/source, deploy, Firebase, FlutterFlow, native, credential, `docs/API.md`, or CEO Briefing changes, open a separate explicitly approved implementation sprint.
+
+## Blockers
+
+- Customer URL/current deployed version not proven. `https://barbie-92edc.web.app/` returns `HTTP/2 200`, but the deployed version has not been proven to match the current repo UI.
+- Feedback path not confirmed.
+- Browser/native push notification delivery unproven; the local browser validation surface reported Notification API unsupported.
+- Live voice input not proven; Sprint 065 live voice transcript smoke was blocked by browser microphone permission denial.
+- Customer auth/access posture unresolved.
+- UAT surface/link/path is not yet confirmed in project files.
+- First tester is not yet confirmed.
+- Feedback channel is not yet confirmed.
+- Notification status is not yet classified.
+- Owner approver / V1 Beta approver is not yet confirmed.
+- Production auth posture remains unresolved beyond anonymous-auth smoke/UAT evidence.
+- Any deploy/config action needed to expose the already-proven backend/model path is still unknown.
+- Owner approval for Client UAT / V1 Beta is not recorded.
+
+## Release Status
+
+`SPRINT 066 HOLD - CLIENT UAT / V1 BETA NOT APPROVED`
+
+Do not deploy, change Firebase settings, package iOS/native, start FlutterFlow migration, approve Client UAT, approve V1 Beta, modify credentials, modify `docs/API.md`, touch CEO Briefing files, or treat this as final release without explicit approval.
+
+## Previous Sprint
+
+Sprint 065 - Current App Intent Routing and Return-to-Use UX
+
+## Previous Status
 
 `HOLD - Client UAT / V1 Beta not approved`
 
