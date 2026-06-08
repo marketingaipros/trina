@@ -29,6 +29,14 @@ Sprint 069 must end with one of:
 - `PASS - client UAT started and feedback loop established`
 - `HOLD - client UAT blocked`
 
+Current status after start gate:
+
+```text
+ACTIVE - UAT feedback loop started; client closeout evidence not yet recorded.
+```
+
+Do not mark Sprint 069 as `PASS` until actual client UAT evidence records the first tester, tested URL, tested device/browser, typed question result, reminder result, feedback path result, known issues, and next sprint recommendation.
+
 ## Required Closeout Report
 
 Builder must report:

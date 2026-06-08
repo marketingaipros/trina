@@ -4,13 +4,23 @@
 
 | Question | Owner | Status | Notes |
 |---|---|---|---|
-| Who is the first client tester? | Owner | Open | Needed before calling UAT complete. |
-| What device/browser will the client use first? | Owner / Client | Open | Desktop Chrome, mobile Safari, or another browser should be recorded. |
-| Is typed-only usage acceptable during UAT? | Owner / Client | Open | Sprint 068 approved typed fallback internally; client expectation should be confirmed. |
-| Does the client need Barbie to speak answers out loud before wider use? | Owner / Client | Open | If yes, create a dedicated talk-back sprint. |
-| Are in-app reminders enough during UAT, or does the client require closed-app push? | Owner / Client | Open | If push is required, create a notification hardening sprint. |
-| What feedback format should the client use? | Owner | Open | Recommended: issue, expected behavior, device/browser, time, screenshot if available. |
-| Who gives final go/no-go after UAT? | Owner | Open | Required before full release. |
+| Who is the first client tester? | Owner | Open | Still required for Sprint 069 closeout; no tester name or role has been recorded yet. |
+| What device/browser will the client use first? | Owner / Client | Open | Still required for Sprint 069 closeout; record desktop Chrome, mobile Safari, or another tested browser. |
+| Is typed-only usage acceptable during UAT? | Owner / Client | Open | Sprint 068 approved typed fallback internally; client expectation still needs confirmation during UAT. |
+| Does the client need Barbie to speak answers out loud before wider use? | Owner / Client | Open | Still unconfirmed; if yes, create a dedicated talk-back sprint. |
+| Are in-app reminders enough during UAT, or does the client require closed-app push? | Owner / Client | Open | Still unconfirmed; if push is required, create a notification hardening sprint. |
+| What feedback format should the client use? | Owner | Open | Recommended start format: issue, expected behavior, device/browser, time, screenshot if available; final owner-approved format still needs confirmation. |
+| Who gives final go/no-go after UAT? | Owner | Open | Still required before full release; Sprint 069 remains active until this is recorded or explicitly deferred. |
+
+## Sprint 069 Start-Gate Evidence
+
+| Item | Status | Notes |
+|---|---|---|
+| Approved UAT URL | Recorded | `https://barbie-92edc.web.app/` |
+| UAT position | Recorded | Limited client return-to-use, not full production release. |
+| Allowed current use | Recorded | Typed questions, Barbie/model answers, in-app reminders, reminder dismiss, and feedback email link. |
+| Not blocking UAT | Recorded | Voice/mic input, app spoken responses, browser/native push, iPhone/native packaging, and Flutter/FlutterFlow migration remain follow-ups. |
+| Client UAT closeout evidence | Missing | First tester, device/browser, typed question result, reminder result, feedback path result, known issues, and next sprint recommendation are not yet recorded. |
 
 ## Open Questions for Sprint 068
 

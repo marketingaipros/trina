@@ -18,6 +18,30 @@ The client may use the app for typed questions, Barbie/model answers, in-app rem
 
 Sprint 069 prepares and tracks limited client UAT. The purpose is to confirm real client use, collect feedback, and convert remaining issues into future sprints.
 
+## Sprint 069 Start-Gate Evidence
+
+Status: `ACTIVE - UAT feedback loop started; client closeout evidence not yet recorded.`
+
+Start gate recorded on 2026-06-08 after Builder review of:
+
+- `AGENTS.md`
+- `planning/STATE.md`
+- `planning/DECISIONS.md`
+- `planning/DOMAIN.md`
+- `planning/RISKS.md`
+- `planning/QUESTIONS.md`
+- `docs/VALIDATION.md`
+- `planning/sprints/069-client-uat-feedback-loop/requirements.md`
+- `planning/sprints/069-client-uat-feedback-loop/blueprint.md`
+- `planning/sprints/069-client-uat-feedback-loop/acceptance.md`
+- `planning/sprints/069-client-uat-feedback-loop/handoff-prompt.md`
+
+The current approved client UAT URL remains:
+
+https://barbie-92edc.web.app/
+
+Sprint 069 must remain active until real UAT evidence records the first tester, tested device/browser, typed question result, reminder result, feedback path result, known issues, and recommended next sprint.
+
 ## Not In Current Scope
 
 - Voice recovery
@@ -29,7 +53,7 @@ Sprint 069 prepares and tracks limited client UAT. The purpose is to confirm rea
 
 ## Next Action
 
-Prepare client UAT instructions, validation checklist, feedback intake structure, and closeout criteria.
+Send the approved URL and UAT instructions to the first tester, collect the required UAT evidence, and update the Sprint 069 validation record before closeout.
 
 ## Known Follow-Ups
 

@@ -10,6 +10,32 @@ https://barbie-92edc.web.app/
 
 The app is approved for limited client return-to-use, not full production release.
 
+### Sprint 069 Start Gate
+
+Date: 2026-06-08
+
+Result:
+
+```text
+ACTIVE - UAT feedback loop started; client closeout evidence not yet recorded.
+```
+
+Builder start-gate review completed against:
+
+- `AGENTS.md`
+- `planning/STATE.md`
+- `planning/DECISIONS.md`
+- `planning/DOMAIN.md`
+- `planning/RISKS.md`
+- `planning/QUESTIONS.md`
+- `docs/VALIDATION.md`
+- `planning/sprints/069-client-uat-feedback-loop/requirements.md`
+- `planning/sprints/069-client-uat-feedback-loop/blueprint.md`
+- `planning/sprints/069-client-uat-feedback-loop/acceptance.md`
+- `planning/sprints/069-client-uat-feedback-loop/handoff-prompt.md`
+
+No client UAT closeout evidence has been recorded yet.
+
 ### Client-Tested Flows
 
 The client should validate:
@@ -53,6 +79,18 @@ Sprint 069 can close only when the project records:
 - feedback path result
 - known issues found
 - recommendation for next sprint
+
+### Open UAT Evidence Items
+
+| Evidence Item | Status | Notes |
+|---|---|---|
+| First client tester | Open | Required before Sprint 069 can close as `PASS`. |
+| First device/browser | Open | Required before Sprint 069 can close as `PASS`. |
+| Typed-only acceptance | Open | Client expectation needs confirmation. |
+| Talk-back need | Open | If required, create a future text-to-speech sprint. |
+| In-app reminder vs closed-app push expectation | Open | If closed-app push is required, create a future notification hardening sprint. |
+| Feedback format | Open | Recommended format exists, but owner/client confirmation is still needed. |
+| Final go/no-go approver | Open | Required before broader release. |
 
 ## Sprint 068 - Customer Return-to-Use Blocker Fixes
 
