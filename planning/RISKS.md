@@ -1,5 +1,16 @@
 # Risks
 
+## Sprint 063 Risks - Owner UAT Answers Intake
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Approving UAT without exact access surface | Medium | High | Require explicit owner answer and file evidence before approval. | Open |
+| Starting UAT without first tester ownership | Medium | Medium | Require named first tester or role before approval. | Open |
+| Missing feedback channel | Medium | Medium | Require owner-selected feedback channel before UAT. | Open |
+| Unclassified notification behavior | Medium | High | Require notification status before client exposure. | Open |
+| Unresolved auth posture | Medium | High | Require UAT-vs-production auth posture before approval. | Open |
+| Unknown deploy/config action | Medium | High | Require evidence whether deploy/config action is needed to expose proven backend/model path. | Open |
+
 ## Sprint 062 Risks - Resolve Client UAT Access Inputs
 
 | Risk | Likelihood | Impact | Mitigation | Status |

@@ -1,5 +1,28 @@
 # Validation Plan
 
+## Sprint 063 - Owner UAT Answers Intake Validation
+
+Sprint 063 is docs/planning-only.
+
+Required commands:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+find planning/sprints/063-owner-uat-answers-intake -maxdepth 1 -type f -print | sort
+rg -n "Sprint 063|063-owner-uat-answers-intake|Owner UAT|UAT surface|first tester|feedback channel|notification status|V1 Beta approver|auth posture|deploy/config|HOLD|APPROVED" planning docs
+```
+
+Pass condition:
+
+- Sprint 063 docs exist.
+- Owner UAT intake table exists.
+- Each required gate item is answered with evidence or marked missing.
+- Client UAT / V1 Beta remains not approved unless a later release-control sprint approves it.
+- No runtime/source, deploy, Firebase, FlutterFlow, native build, credential, or CEO Briefing files are modified.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+
 ## Sprint 062 - Resolve Client UAT Access Inputs
 
 Sprint 062 is a docs/planning-only input-resolution sprint.

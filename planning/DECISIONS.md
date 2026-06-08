@@ -36,6 +36,7 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 
 | Date | Decision | Reason | Impact |
 |---|---|---|---|
+| 2026-06-08 | Sprint 063 is an owner-answer intake sprint, not a UAT approval sprint. | Required UAT gate answers must be captured in project files before approval can be considered. | Client UAT / V1 Beta remains HOLD unless a later release-control sprint approves it. |
 | 2026-06-08 | Sprint 062 cannot approve Client UAT / V1 Beta. | Sprint 062 is an input-resolution docs/planning sprint, not an approval gate. | Keep Client UAT / V1 Beta on HOLD until a later gate sprint rechecks project-file evidence. |
 | 2026-06-08 | UAT access inputs must be written into project files before re-running the UAT approval gate. | Chat-only answers are not durable release-control evidence. | Missing owner answers remain `Missing` until recorded in planning/docs files. |
 | 2026-06-08 | Sprint 062 can collect access inputs but cannot itself approve UAT unless a future Architect Pack changes acceptance. | Prevents accidental client handoff while required release-control answers remain unresolved. | Do not deploy, change Firebase settings, modify FlutterFlow/native files, touch credentials, create CEO Briefing PNGs, or approve Client UAT / V1 Beta in this sprint. |

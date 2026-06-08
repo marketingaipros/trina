@@ -1,5 +1,21 @@
 # Questions
 
+## Sprint 063 - Owner UAT Answers Intake
+
+Sprint 063 closeout status: `HOLD - Client UAT / V1 Beta not approved`.
+
+| Gate Item | Owner Answer | Evidence Location | Status |
+|---|---|---|---|
+| Exact UAT surface/link/path | TBD | TBD | Missing |
+| First tester | TBD | TBD | Missing |
+| Feedback channel | TBD | TBD | Missing |
+| Notification status | TBD | TBD | Missing |
+| V1 Beta approver | TBD | TBD | Missing |
+| UAT-vs-production auth posture | TBD | TBD | Missing |
+| Deploy/config action needed to expose proven backend/model path | TBD | TBD | Missing |
+
+Client UAT / V1 Beta remains `HOLD` until all required answers are captured and a later release-control sprint approves controlled UAT.
+
 ## Sprint 062 - Client UAT Access Inputs
 
 Sprint 062 closeout status: `HOLD - Client UAT / V1 Beta not approved`.
