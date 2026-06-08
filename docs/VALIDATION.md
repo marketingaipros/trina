@@ -1,5 +1,212 @@
 # Validation
 
+## Sprint 071 Validation - Client Return-to-Use UAT + Real Audible Voice Check
+
+Sprint 071 UAT was started on 2026-06-08 and stopped at the deployed-client talk-back blocker.
+
+Final recommendation:
+
+```text
+HOLD - client return-to-use blocked.
+```
+
+Reason:
+
+```text
+The deployed client URL passed visible typed Q&A and feedback-link checks, but the deployed page did not expose visible Talk/Play/Stop/disable controls after a Barbie/model answer. Real audible browser/device speaker output could not be physically verified on the deployed client URL.
+```
+
+### Sprint 071 Goal
+
+Decide whether the current browser app can be returned to the client for limited use.
+
+Final recommendation must be one of:
+
+```text
+PASS - client return-to-use approved for current browser app
+PASS WITH CAVEAT - client can use the current browser app, but one or more limitations must be disclosed
+HOLD - client return-to-use blocked
+```
+
+### Required Baseline Checks
+
+Run before and after Sprint 071 UAT:
+
+```bash
+git status --branch --short
+git log --oneline -1
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Sprint 064 files must remain untracked and untouched if present.
+
+### Sprint 071 Evidence Captured
+
+Starting `git status --branch --short`:
+
+```text
+## main...origin/main
+ M docs/VALIDATION.md
+ M planning/QUESTIONS.md
+ M planning/RISKS.md
+ M planning/STATE.md
+?? architect-packs/sprint-064-existing-app-return-to-use-uat-architect-pack.md
+?? architect-packs/sprint-071-client-return-to-use-uat-real-audible-voice-check-architect-pack.md
+?? planning/sprints/064-existing-app-return-to-use-uat/
+?? planning/sprints/071-client-return-to-use-uat-real-audible-voice-check/
+```
+
+Latest commit:
+
+```text
+2dcf744 fix: restore browser talk-back for Barbie answers
+```
+
+Baseline commands:
+
+```text
+git diff --check - passed
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png - passed
+```
+
+App URL/path tested:
+
+```text
+https://barbie-92edc.web.app/
+```
+
+Browser/device used:
+
+```text
+Codex in-app browser on local Mac workspace. Physical speaker output was not audibly confirmable by Codex.
+```
+
+Typed Q&A prompt:
+
+```text
+What should I focus on today?
+```
+
+Visible Barbie/model answer result:
+
+```text
+PASS - visible Barbie/model answer appeared with daily focus guidance covering family communication, calendar check, staff tasks, follow-up, and supplies inventory.
+```
+
+Real audible talk-back:
+
+```text
+FAIL / BLOCKER - not physically heard or verifiable. The deployed client URL did not expose visible Talk/Play/Stop/disable controls after the Barbie/model answer.
+```
+
+Spoken text match:
+
+```text
+Not verified because real audible talk-back could not be triggered on the deployed client URL.
+```
+
+Stop/disable:
+
+```text
+Not verified because no deployed Talk/Play/Stop/disable controls were visible after the answer.
+```
+
+Reminder prompt:
+
+```text
+Not run. UAT stopped at the talk-back blocker.
+```
+
+Reminder acknowledgement, due reminder, dismiss/clear:
+
+```text
+Not run. UAT stopped at the talk-back blocker.
+```
+
+Feedback link visibility:
+
+```text
+PASS - visible `mailto:learnandgrowcc@gmail.com` feedback link remained present.
+```
+
+Console/backend errors:
+
+```text
+Observed console error: Google Identity Services not loaded. This did not block typed Q&A during the observed pass.
+```
+
+### Required URL Evidence
+
+Record:
+
+- Local app URL/path used for validation, if any.
+- Deployed/current client URL/path.
+- Whether the deployed/current client URL reflects Sprint 070 behavior.
+- Whether the client URL is approved, caveated, or unresolved.
+
+### Required Real Audible Voice Evidence
+
+Use a real browser/device session, not only headless automation.
+
+Record:
+
+- Browser used.
+- Device used.
+- App URL/path used.
+- Whether sound was audible.
+- Whether spoken content matched the visible final Barbie/model answer.
+- Whether stop/disable worked.
+- Any browser autoplay or user-gesture caveat.
+
+### Required Client-Use Flow
+
+Validate and record:
+
+1. App opens at the current URL/path.
+2. Typed question returns a visible Barbie/model answer.
+3. Talk-back produces real audible output.
+4. Spoken text matches the visible answer.
+5. Stop/disable works.
+6. Reminder creation works.
+7. In-app reminder appears.
+8. Reminder dismiss clears the visible reminder.
+9. Feedback link remains visible.
+
+### Protection Rules
+
+Sprint 071 validation must not modify runtime/source files, deploy, stage, commit, push, touch Firebase, Firestore rules, FlutterFlow, native/mobile packaging, credentials, CEO Briefing files, or Sprint 064 files.
+
+### PASS Standard
+
+Sprint 071 may close as `PASS` only if:
+
+- Current client URL/path is known and usable.
+- Real audible output is heard on a real browser/device.
+- Typed Q&A works.
+- Reminder create/display/dismiss works.
+- Feedback link works.
+- No core regression is found.
+
+### PASS WITH CAVEAT Standard
+
+Sprint 071 may close as `PASS WITH CAVEAT` only if:
+
+- The current app is usable for the client.
+- Any limitation is clear, acceptable, and written down.
+- The limitation does not block the client's main use case.
+
+### HOLD Standard
+
+Sprint 071 must close as `HOLD` if:
+
+- Client URL is unknown or stale.
+- Real audible voice cannot be confirmed.
+- Q&A fails.
+- Reminders fail.
+- Feedback path is missing.
+- The app cannot be safely handed back to the client.
+
 ## Sprint 070 Validation - Voice Talk-Back Restore
 
 Sprint 070 proved browser talk-back routing for visible Barbie/model answers and preserved the Sprint 069 return-to-use flow.

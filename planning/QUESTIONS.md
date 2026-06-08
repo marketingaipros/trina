@@ -1,5 +1,17 @@
 # Questions
 
+## Sprint 071 Open Questions
+
+| Question | Owner | Status | Notes |
+|---|---|---|---|
+| What exact URL should the client use right now? | Builder / Owner | Blocked for Sprint 071 | `https://barbie-92edc.web.app/` was tested, but return-to-use is blocked because the deployed URL did not expose the required talk-back controls. |
+| Does the deployed URL reflect the Sprint 070 talk-back change? | Builder | Blocked for Sprint 071 | The deployed URL did not expose visible Talk/Play/Stop/disable controls after a Barbie/model answer. |
+| Which browser/device should be considered the supported client path for now? | Owner / Client / Builder | Unresolved after Sprint 071 | Codex in-app browser on local Mac workspace was used for deployed URL validation, but no supported client path can be approved until talk-back is visible and audibly confirmed. |
+| Is real audible talk-back heard from the client-like browser/device? | Builder / Client | Blocked for Sprint 071 | Not physically heard or verified; deployed talk-back controls were not visible after the answer. |
+| Does spoken content match the visible final Barbie/model answer? | Builder / Client | Blocked for Sprint 071 | Not verified because audible talk-back could not be triggered on the deployed URL. |
+| Does the client need to keep the browser/app open for reminders to appear? | Builder / Client | Pending Sprint 071 UAT | If true, document as a caveat. |
+| Is the return-to-use recommendation `PASS`, `PASS WITH CAVEAT`, or `HOLD`? | Owner / Builder | Resolved for Sprint 071 | `HOLD - client return-to-use blocked.` |
+
 ## Sprint 070 Open Questions
 
 | Question | Owner | Status | Notes |

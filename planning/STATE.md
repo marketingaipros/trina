@@ -2,9 +2,53 @@
 
 ## Current Sprint
 
-Sprint 070 - Voice Talk-Back Restore
+Sprint 071 - Client Return-to-Use UAT + Real Audible Voice Check
 
 ## Current Status
+
+Sprint 071 UAT is stopped at `HOLD - client return-to-use blocked.`
+
+Sprint 071 must decide whether the current browser app can be returned to the client for limited use after a real browser/device audible talk-back check.
+
+Required Sprint 071 proof:
+
+- Exact current app URL/path the client should use.
+- Whether the deployed/current client URL reflects Sprint 070 behavior.
+- Typed Q&A returns a visible Barbie/model answer.
+- Real audible talk-back is heard from a real browser/device speaker or selected audio output.
+- Spoken text matches the visible final Barbie/model answer.
+- Talk-back stop/disable works.
+- Reminder create/display/dismiss works.
+- Feedback link remains visible.
+
+Sprint 071 evidence recorded on 2026-06-08:
+
+- Tested deployed client URL: `https://barbie-92edc.web.app/`.
+- Latest repo commit at start: `2dcf744 fix: restore browser talk-back for Barbie answers`.
+- Typed Q&A prompt `What should I focus on today?` returned a visible Barbie/model answer.
+- Feedback link remained visible as `mailto:learnandgrowcc@gmail.com`.
+- Deployed client URL did not expose visible Talk/Play/Stop/disable controls after the answer.
+- Real audible browser/device speaker output could not be physically verified on the deployed client URL.
+- Reminder flow was not run because Sprint 071 stopped at the talk-back blocker.
+- Observed console error: `Google Identity Services not loaded`; typed Q&A still passed.
+
+Sprint 071 final recommendation:
+
+```text
+HOLD - client return-to-use blocked.
+```
+
+Sprint 071 must not modify runtime/source files, run deploys, touch Firebase, FlutterFlow, native/mobile packaging, credentials, CEO Briefing files, or Sprint 064 files.
+
+Active sprint folder:
+
+```text
+planning/sprints/071-client-return-to-use-uat-real-audible-voice-check/
+```
+
+## Prior Sprint Snapshot
+
+### Sprint 070 - Voice Talk-Back Restore
 
 Sprint 070 is closed as `PASS - voice talk-back restored for browser-visible Barbie answers.`
 
@@ -35,40 +79,39 @@ The approved basic flow is working:
 - Feedback loop is available.
 - Final visible Barbie/model answer can be sent to browser speech synthesis.
 
-## Active Scope
+### Sprint 070 Active Scope
 
 Sprint 070 restored browser talk-back response for visible Barbie/model answers without breaking the working typed Q&A and reminder flow.
 
-Active sprint folder:
+Sprint 070 sprint folder:
 
 ```text
 planning/sprints/070-voice-talk-back-restore/
 ```
 
-## Sprint 070 Goal
+### Sprint 070 Goal
 
 Restore or prove browser talk-back response so Barbie can speak answers out loud after answering, without breaking the working typed Q&A and reminder flow.
 
-## Recently Completed
+### Recently Completed
 
 - Sprint 070 closed as PASS candidate from implementation evidence.
 - Sprint 069 closed as PASS.
 - Client UAT started and feedback loop established.
 - No blocker reported from the approved checklist.
 
-## Next Actions
+### Next Actions
 
-- Validate actual audible speaker output on the owner/client's real browser/device.
+- Resolve the deployed-client talk-back mismatch or create a separate deploy/path validation sprint before client return-to-use.
+- Validate actual audible speaker output on the owner/client's real browser/device after the client URL exposes the required talk-back controls.
 - Keep closed-app push notifications, native/mobile packaging, FlutterFlow migration, and broader voice input reliability in future sprints unless separately approved.
 
-## Blockers / Watch Items
+### Blockers / Watch Items
 
 - Client/browser voice expectations need to be kept realistic.
 - Browser autoplay rules may require a user gesture before speech can play.
 - Device/browser differences may affect voice availability.
 - Actual audible speaker output is not fully proven by headless automation.
-
-## Prior Sprint Snapshot
 
 ### Sprint 069 - Client UAT Feedback Loop
 
