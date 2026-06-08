@@ -1,5 +1,162 @@
 # Validation Plan
 
+## Sprint 065 - Current App Intent Routing and Return-to-Use UX
+
+Sprint 065 validates whether the existing app/current UI can safely return to customer use after fixing or clarifying the ask/task/voice flows.
+
+Sprint 065 must not include:
+
+- Flutter/FlutterFlow migration
+- UI redesign
+- native packaging
+- App Store/TestFlight work
+- Firebase settings changes
+- deploys unless separately approved
+- credential changes
+- CEO Briefing file creation or modification
+
+Required commands:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+```
+
+Run any existing tests if present and relevant.
+
+Required local smoke cases:
+
+1. Current UI loads.
+2. Typed normal question through assistant path:
+   - Input: `What should I focus on today?`
+   - Expected: answer from Barbie/backend/model path.
+   - Must not open Task Tracker.
+   - Must not save as a task.
+3. Explicit task capture:
+   - Input: `Capture task: call the client tomorrow`
+   - Expected: task capture behavior only when task intent is explicit.
+   - If button remains named `Capture`, label/help text must make task behavior clear.
+4. Reminder creation:
+   - Input: `Remind me in 1 minute to check the door`
+   - Expected: confirmation and due in-app reminder.
+5. Notification:
+   - In-app due reminder must be observed.
+   - Browser/native push must be recorded as passed, blocked, or unproven.
+6. Voice:
+   - If voice is supported, transcript behavior must be tested.
+   - Voice must either route to assistant answer path or be clearly labeled as task capture only.
+7. Feedback:
+   - Validate a clear feedback path exists.
+8. Auth/access:
+   - Validate the UAT access path without changing credentials or Firebase settings.
+9. Customer URL:
+   - Identify the intended customer URL/path.
+   - Confirm whether deployed version matches current repo behavior or classify as blocker.
+
+Sprint 065 can recommend return-to-use only if:
+
+- Current app/current UI loads on the approved customer path or owner approves local-only path for limited testing.
+- Typed ask flow returns answers and does not route normal questions into Task Tracker.
+- Task capture is explicit and not confused with asking Barbie.
+- Reminder creation works.
+- In-app due reminder delivery works.
+- Feedback path exists.
+- Auth/access path is clear.
+- Remaining notification limitations are documented and owner-approved.
+- Owner approval is recorded.
+
+Keep Client UAT / V1 Beta on `HOLD` if any of these remain true:
+
+- Customer URL/current deployed version is unclear.
+- Normal ask input routes to Task Tracker.
+- Voice route is confusing or unproven and owner requires voice.
+- Reminder/event creation fails.
+- In-app due reminder delivery fails.
+- No feedback path exists.
+- Auth/access path is unclear.
+- Browser/native push is required but unproven.
+
+### Sprint 065 Validation Result
+
+Date: 2026-06-08
+
+Result classification:
+
+```text
+HOLD - Client UAT / V1 Beta not approved
+```
+
+Implementation evidence:
+
+- Normal typed `Send` still routes to `askBarbie()` and returned a visible backend/model answer for `What should I focus on today?`.
+- The normal question did not open Task Tracker.
+- Task Tracker did not contain `What should I focus on today?` after the normal ask smoke.
+- The explicit task button is labeled `Capture Task`.
+- `Capture task: call the client tomorrow sprint 065` opened Task Tracker and saved the clean task title `call the client tomorrow sprint 065`.
+- Voice transcript handling now routes to the same Ask Barbie send path by code path.
+- Live voice transcript smoke was blocked because the browser reported microphone permission denied.
+- `Remind me in 1 minute to check the door` returned a visible confirmation.
+- The in-app due reminder appeared with Dismiss and Snooze controls.
+- Dismiss removed the active in-app reminder popup.
+- Browser/native push remains unproven because the local browser validation surface reported Notification API unsupported.
+- `curl -I https://barbie-92edc.web.app/` returned `HTTP/2 200`, but deployed behavior was not proven to match the current repo UI.
+- Feedback remains a blocker because no owner-approved UAT feedback channel is recorded.
+
+Commands run:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+npm run lint
+npm run build
+```
+
+`npm run build` passed with existing accepted Vite warnings:
+
+- `services/authService.ts` mixed static/dynamic import chunk warning.
+- Main JS chunk larger than 500 kB warning.
+
+## Sprint 064 - Existing App Return-to-Use UAT Validation
+
+Sprint 064 is docs/planning-only. It does not approve Client UAT, V1 Beta, production release, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, or CEO Briefing work.
+
+Required docs-scope commands:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+find planning/sprints/064-existing-app-return-to-use-uat -maxdepth 1 -type f -print | sort
+rg -n "Sprint 064|064-existing-app-return-to-use-uat|current app|current UI|return-to-use UAT|reminders|events|notifications|feedback|Flutter|FlutterFlow|HOLD" planning docs
+```
+
+Pass condition for applying the Sprint 064 Architect Pack:
+
+- Sprint 064 docs exist.
+- `planning/STATE.md` identifies Sprint 064 as the active return-to-use UAT gate.
+- `planning/DECISIONS.md` records current app/current UI as the immediate customer return-to-use path.
+- `planning/RISKS.md` records return-to-use risks around customer access, model/backend exposure, reminders/events, notifications, auth/access, feedback, and Flutter distraction.
+- `planning/QUESTIONS.md` records only the remaining operational blockers after owner clarification.
+- Client UAT / V1 Beta remains `HOLD - Client UAT / V1 Beta not approved`.
+- No runtime/source, deploy, Firebase settings, FlutterFlow, native build, credential, or CEO Briefing files are modified.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+
+Return-to-use UAT checklist for the next validation pass:
+
+| Gate | Required Evidence | Status Rule |
+|---|---|---|
+| Current app access | Exact URL/path the customer should open, with whether it is deployed or local-only. | HOLD until customer-accessible path is confirmed or owner accepts a controlled alternative. |
+| Current UI loads | App opens through the intended current UI. | Do not treat visual load alone as UAT-ready. |
+| Talk/input | Customer can speak to the app, or typed fallback is explicitly accepted. | Record voice as pass, blocker, or deferred with typed fallback. |
+| Question answering | A normal question returns an answer through the intended model/backend path. | Must prove the connected path, not a mock or static UI. |
+| Reminders/events | User can ask for a reminder/event and the app creates the expected item. | Record whether creation is persisted, scheduled, local-only, or blocked. |
+| Notifications | Due reminder/event notification is delivered, or notification status is classified. | Must be pass, blocker, owner-approved deferral, or watch-only before handoff. |
+| Feedback | Customer has one clear feedback channel or in-app/manual feedback step. | HOLD if feedback destination is missing. |
+| Auth/access | Customer can access the app without repo-stored credentials or unsafe ambiguity. | UAT auth approval does not equal production auth approval. |
+
 ## Sprint 063 - Owner UAT Answers Intake Validation
 
 Sprint 063 is docs/planning-only.

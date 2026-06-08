@@ -1,5 +1,29 @@
 # Risks
 
+## Sprint 065 Risks - Current App Intent Routing and Return-to-Use UX
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Ordinary user input may still route to Task Tracker. | High | High | Separate ask/send flow from explicit task capture flow. Validate with normal question, reminder request, and task capture examples. | Active |
+| Voice input may capture tasks instead of asking Barbie. | High | High | Route voice transcript through the same clear intent path as typed input, or clearly label voice as task capture only until fixed. | Active |
+| Deployed customer URL may not match current repo behavior. | Medium | High | Identify current customer URL, compare deployed version behavior, and do not approve UAT based on local-only proof. | Active |
+| Feedback path may be absent. | High | Medium | Add or document a simple customer feedback path suitable for UAT. | Active |
+| Browser/native push notifications may not work on customer device. | Medium | Medium | Treat in-app due reminder as passed, but classify browser/native push as unproven unless explicitly tested. | Active |
+| Sprint may expand into Flutter/FlutterFlow or native packaging. | Medium | High | Keep Sprint 065 focused on current app return-to-use UX and routing. Defer packaging to a later sprint. | Active |
+
+## Sprint 064 Risks - Existing App Return-to-Use UAT
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| App is visible locally but not accessible to the customer. | Medium | High | Require an exact current app access path before customer handoff. | Open |
+| Current app/current UI may not expose the proven model/backend path through the customer-facing surface. | Medium | High | Validate one normal question through the intended backend/model path before UAT approval. | Open |
+| Talk/input may work only through typed fallback while voice remains browser/device dependent. | Medium | Medium | Validate speech input where available and explicitly accept typed fallback or record voice as a blocker/deferral. | Open |
+| Reminder/event creation may not persist or schedule as expected. | Medium | High | Validate reminder/event creation and record whether the item is persisted, scheduled, or blocked. | Open |
+| Notification delivery for due reminders/events may be untested, unreliable, or unavailable. | High | High | Validate notification behavior or classify notifications as blocker, owner-approved deferral, or watch-only before customer handoff. | Open |
+| Auth/access may block the customer or leave the app exposed with an unsafe posture. | Medium | High | Document the UAT auth/access path and separate UAT approval from production auth approval. | Open |
+| Feedback may not have a durable channel during UAT. | Medium | Medium | Define one owner-approved feedback channel before the customer starts testing. | Open |
+| Flutter / FlutterFlow work could distract from the fastest safe return-to-use path. | Medium | Medium | Keep Flutter / FlutterFlow as later-track work unless validation proves the current app cannot support return-to-use. | Open |
+
 ## Sprint 063 Risks - Owner UAT Answers Intake
 
 | Risk | Likelihood | Impact | Mitigation | Status |

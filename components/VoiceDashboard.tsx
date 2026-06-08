@@ -291,7 +291,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
 
         if (transcript) {
           setTypedMessage(transcript);
-          captureLocalTask(transcript, 'voice');
+          void sendMessageToBarbie(transcript);
         }
       };
 
@@ -618,8 +618,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
         {/* Large Mic Button */}
         <button
           onClick={handleToggleWithSound}
-          aria-label={isConnected || isSpeechListening ? 'Stop voice capture' : 'Start voice capture'}
-          title={isConnected || isSpeechListening ? 'Stop voice capture' : 'Start voice capture'}
+          aria-label={isConnected || isSpeechListening ? 'Stop voice ask' : 'Ask Barbie by voice'}
+          title={isConnected || isSpeechListening ? 'Stop voice ask' : 'Ask Barbie by voice'}
           className={`
             home-primary-mic p-12 rounded-full shadow-[0_20px_60px_-15px_rgba(244,114,182,0.5)] transition-all duration-500 transform active:scale-90 z-30 group relative
             ${isConnected || isSpeechListening
@@ -644,7 +644,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
               value={typedMessage}
               onChange={(e) => setTypedMessage(e.target.value)}
               disabled={isTypingLoading}
-              placeholder="Type your message to Barbie..."
+              placeholder="Ask Barbie, or type Capture task: ..."
               className="flex-1 min-w-0 px-4 py-3 bg-transparent text-sm font-semibold text-gray-800 placeholder:text-pink-200 outline-none disabled:opacity-60"
             />
             <div className="flex items-center gap-2">
@@ -653,10 +653,10 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
                 onClick={handleCaptureSubmit}
                 disabled={!typedMessage.trim() || isTypingLoading}
                 aria-label="Capture typed message as a task"
-                title="Capture task"
+                title="Capture Task saves this text to Task Tracker"
                 className="min-h-11 px-4 py-3 rounded-xl bg-gray-900 text-white text-xs font-black uppercase tracking-widest shadow-md hover:bg-gray-800 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
               >
-                Capture
+                Capture Task
               </button>
               <button
                 type="submit"
@@ -669,6 +669,10 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
               </button>
             </div>
           </div>
+
+          <p className="px-2 text-[11px] font-bold text-pink-400 leading-relaxed">
+            Send asks Barbie. Capture Task saves an explicit task to Task Tracker.
+          </p>
 
           {isTypingLoading && (
             <p className="text-center text-xs font-black text-pink-400 uppercase tracking-widest">

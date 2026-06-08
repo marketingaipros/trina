@@ -2,20 +2,37 @@
 
 ## Current Sprint
 
-Sprint 063 - Owner UAT Answers Intake
+Sprint 065 - Current App Intent Routing and Return-to-Use UX
 
 ## Current Status
 
 `HOLD - Client UAT / V1 Beta not approved`
 
-Sprint 063 is the active docs/planning-only owner-answer intake sprint.
+Sprint 065 is the active current app return-to-use blocker fix planning sprint.
 
-The current objective is to capture missing owner-confirmed answers for the UAT release-control gate in project files. Client UAT / V1 Beta remains not approved, and a later gate sprint is required before approval can be reconsidered.
+Sprint 064 completed as a return-to-use UAT gate and produced a `HOLD` recommendation. The existing app/current UI can load locally. Typed `Send` can reach the backend/model and return an answer. Explicit reminders can be created and delivered as in-app due reminders.
 
-No runtime/source, deploy, Firebase, FlutterFlow, native build, credential, or CEO Briefing files are approved for modification in this sprint.
+The app is not ready to return to the client because customer-facing access is not proven and current UI intent routing is confusing.
+
+The current objective is to prepare customer return-to-use through the existing app/current UI if validation confirms that this is the fastest safe path.
+
+The owner clarified that the app was already working before recent structure/framework cleanup. The immediate business priority is to let the customer use the current app again, not to rebuild the UI, migrate to Flutter / FlutterFlow, or package native iOS before the current app path is validated.
+
+The return-to-use UAT path must validate that the customer can:
+
+1. Talk to or input requests into the app.
+2. Get answers through the intended model/backend path.
+3. Create reminders/events from requests.
+4. Receive notifications for due reminders/events, or have notification status recorded as a blocker/approved deferral.
+5. Provide feedback during UAT.
+
+Client UAT / V1 Beta remains not approved until return-to-use validation is completed and owner approval is given.
+
+Runtime/source changes are approved only for the Sprint 065 allowed files needed to fix current app intent routing. Deploy, Firebase, FlutterFlow, native build, credential, and CEO Briefing files remain out of scope.
 
 ## Recently Completed
 
+- Sprint 064 completed as `HOLD - Client UAT / V1 Beta not approved`.
 - Sprint 062 closed as `HOLD - Client UAT / V1 Beta not approved`.
 - Sprint 061 closed as `HOLD - Client UAT / V1 Beta not approved`.
 - Sprint 060 closed as HOLD. Client UAT / V1 Beta is not approved yet.
@@ -23,7 +40,7 @@ No runtime/source, deploy, Firebase, FlutterFlow, native build, credential, or C
 
 ## Active Gate
 
-Client UAT / V1 Beta can only move from HOLD to APPROVED when all of the following are documented in project files:
+Client UAT / V1 Beta can only move from HOLD to APPROVED when all of the following are documented in project files and owner approval is given:
 
 1. Exact client-accessible UAT surface/link/path.
 2. First tester name or role.
@@ -32,17 +49,24 @@ Client UAT / V1 Beta can only move from HOLD to APPROVED when all of the followi
 5. V1 Beta approver.
 6. Production auth posture note, including what is approved for UAT versus what remains unresolved for production.
 7. Whether deploy/config action is needed to expose the proven backend/model path.
+8. Return-to-use validation proof for current app load, input/talk path, question answering, reminders/events, notifications, and feedback.
+9. Current app intent routing proof that normal asks, explicit task capture, voice input, reminders/events, and feedback do not create customer confusion.
 
 ## Active Sprint
 
-`planning/sprints/063-owner-uat-answers-intake/`
+`planning/sprints/065-current-app-intent-routing-return-to-use-ux/`
 
 ## Next Action
 
-Record owner answers for the UAT access gate in project files. If any answer remains missing or ambiguous, keep Client UAT / V1 Beta on HOLD.
+Review Sprint 065 implementation and validation evidence. Keep Client UAT / V1 Beta on HOLD until the remaining customer URL/access, feedback channel, browser/native push, and owner approval blockers are resolved.
 
 ## Blockers
 
+- Customer URL/current deployed version unclear. `https://barbie-92edc.web.app/` returns `HTTP/2 200`, but the deployed version has not been proven to match the current repo UI.
+- Voice transcript now routes to Ask Barbie by code path, but live microphone transcript smoke was blocked by browser microphone permission denial.
+- Feedback path missing.
+- Browser/native push notification delivery unproven; the local browser validation surface reported Notification API unsupported.
+- Customer auth/access posture unresolved.
 - UAT surface/link/path is not yet confirmed in project files.
 - First tester is not yet confirmed.
 - Feedback channel is not yet confirmed.
@@ -50,12 +74,66 @@ Record owner answers for the UAT access gate in project files. If any answer rem
 - V1 Beta approver is not yet confirmed.
 - Production auth posture remains unresolved beyond anonymous-auth smoke/UAT evidence.
 - Any deploy/config action needed to expose the already-proven backend/model path is still unknown.
+- Current app return-to-use validation has not yet confirmed live voice transcript, customer feedback capture, browser/native push, customer auth/access, deployed-version match, and owner approval.
 
 ## Release Status
 
-`SPRINT 063 HOLD - CLIENT UAT / V1 BETA NOT APPROVED`
+`SPRINT 065 HOLD - CLIENT UAT / V1 BETA NOT APPROVED`
 
 Do not deploy, change Firebase settings, package iOS/native, start FlutterFlow migration, approve Client UAT, approve V1 Beta, or treat this as final release without explicit approval.
+
+## Sprint 065 - Current App Intent Routing and Return-to-Use UX
+
+**Status:** Runtime intent-routing implementation complete; release gate remains HOLD.
+**Result classification:** `HOLD - Client UAT / V1 Beta not approved`.
+
+Sprint 065 implemented the smallest current UI routing fix:
+
+- Normal typed questions route through the Barbie/backend/model answer path.
+- Explicit task capture is separate from normal asking and uses `Capture Task` labeling.
+- Task Tracker opens for explicit task capture or direct navigation, not normal typed asks.
+- Voice transcript handling now routes to the same Ask Barbie path by code path.
+- Reminder creation and in-app due reminder behavior passed local smoke.
+- Feedback channel remains a blocker because no owner-approved UAT feedback destination is recorded.
+- Customer URL/access path remains a blocker because the deployed URL was not proven to match the current repo UI.
+
+Sprint 065 does not approve production release, Client UAT, V1 Beta, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, or CEO Briefing work.
+
+Do not give the app back to the client until Sprint 065 passes return-to-use validation and owner approval is recorded.
+
+## Sprint 064 Findings
+
+- Local tested path: `http://127.0.0.1:3000/`
+- Likely deployed path: `https://barbie-92edc.web.app/`
+- Deployed path returned `HTTP/2 200`, but the deployed version was not proven to match the current repo UI.
+- Typed `Send` reached backend/model and returned an answer.
+- `Capture` saved ordinary input as a local task and opened Task Tracker.
+- Voice transcript path appears routed to task capture, not normal assistant answer flow.
+- Explicit reminder creation worked locally through `Send`.
+- In-app due reminder delivery worked.
+- Browser/native push delivery remains unproven.
+- Feedback path is missing.
+- Customer auth/access posture remains unresolved.
+
+## Sprint 064 - Existing App Return-to-Use UAT
+
+**Status:** Documentation/planning gate active.
+**Result classification:** `HOLD - Client UAT / V1 Beta not approved`.
+
+Sprint 064 records the owner clarification:
+
+- The app was already working before recent structure/framework cleanup.
+- The immediate goal is customer return-to-use through the existing app/current UI if that is the fastest safe path.
+- The core customer needs are talk/input, answers, reminders/events, due notifications, and feedback.
+- Flutter / FlutterFlow is a later track and should not block the immediate return-to-use path.
+
+Sprint 064 does not approve production release, Client UAT, V1 Beta, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, or CEO Briefing work.
+
+The next Builder pass should validate the current app path before any customer handoff and should keep status on HOLD unless every return-to-use gate passes or receives explicit owner-approved deferral.
+
+## Previous Active Sprint
+
+`planning/sprints/063-owner-uat-answers-intake/`
 
 ## Sprint 063 - Owner UAT Answers Intake
 

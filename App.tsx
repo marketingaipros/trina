@@ -376,8 +376,8 @@ const App: React.FC = () => {
     if (!cleanMessage) return null;
 
     const normalizedTitle = cleanMessage
-      .replace(/^(remind me to|reminder to|add a task to|add task to|task to|todo to)\s+/i, '')
-      .replace(/^(reminder|task|todo):\s*/i, '')
+      .replace(/^(capture task|capture a task|remind me to|reminder to|add a task to|add task to|task to|todo to)\s+/i, '')
+      .replace(/^(capture task|task capture|reminder|task|todo):\s*/i, '')
       .trim();
 
     const title = normalizedTitle || cleanMessage;

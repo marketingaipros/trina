@@ -1,5 +1,40 @@
 # Questions
 
+## Sprint 065 Open Questions
+
+| Question | Why it matters | Status |
+|---|---|---|
+| What exact URL/path should the customer use for UAT? | Client cannot resume use without a confirmed access path. | Open |
+| Does `https://barbie-92edc.web.app/` match the current repo UI and backend/model path? | Local `127.0.0.1` proof is not enough for customer UAT. | Open |
+| Should voice input ask Barbie by default, or should it only capture tasks? | Current behavior appears confusing for customer use. | Open |
+| What is the minimum acceptable feedback path for UAT? | Sprint 064 found no clear in-app feedback path. | Open |
+| Is in-app reminder delivery sufficient for return-to-use, or does owner require browser/native push before UAT? | Notification requirement must be clear before returning app to client. | Open |
+| What auth/access posture should the customer use for UAT? | Anonymous auth worked locally, but customer access is not approved. | Open |
+| Should manual calendar event creation be included in Sprint 065 validation or deferred? | Reminder creation passed. Calendar event live creation was not tested in Sprint 064. | Open |
+
+## Sprint 064 - Existing App Return-to-Use UAT
+
+Sprint 064 active status: `HOLD - Client UAT / V1 Beta not approved`.
+
+Owner clarification now recorded:
+
+- Use the current app/current UI first if that is the fastest safe path.
+- The app was already working before structure/framework cleanup.
+- The customer needs talk/input, answers, reminders/events, due notifications, and feedback.
+- Flutter / FlutterFlow can come later and should not block immediate return-to-use.
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| What exact URL/path should the customer open? | Owner / Builder | Before customer handoff | Open | Not confirmed in project files. Local proof alone is not a customer-accessible UAT path. |
+| Is the app currently deployed somewhere, or only visible locally? | Owner / Builder | Before customer handoff | Open | Must be confirmed before sharing access. No deploy action is approved by Sprint 064. |
+| Is the model/backend path available in the customer-facing app surface? | Builder | Sprint 064 validation | Open | Sprint 059 proved the local typed Barbie backend path, but the current customer-facing surface/path still needs return-to-use validation. |
+| Can the customer talk to the app, or is typed fallback the approved UAT input path? | Owner / Builder | Sprint 064 validation | Open | Validate speech input where available, or record typed fallback as the accepted path. |
+| How are reminders/events created and stored in the current app path? | Builder | Sprint 064 validation | Open | Must be validated or documented as blocked before UAT approval. |
+| What mechanism sends notifications for due reminders/events? | Builder | Sprint 064 validation | Open | Must be identified without changing Firebase settings or runtime code in this docs/planning sprint. |
+| Is notification delivery working now? | Builder / Owner | Before UAT approval | Open | Must be validated or classified as blocker/owner-approved deferral/watch-only. |
+| Does the customer need login credentials or an approved auth path? | Owner / Builder | Before customer handoff | Open | Do not store credentials in repo files. UAT auth posture remains separate from production auth approval. |
+| Where should customer feedback go during UAT? | Owner | Before customer handoff | Open | A single feedback channel is required before UAT approval. |
+
 ## Sprint 063 - Owner UAT Answers Intake
 
 Sprint 063 closeout status: `HOLD - Client UAT / V1 Beta not approved`.
