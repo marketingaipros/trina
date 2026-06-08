@@ -1,5 +1,19 @@
 # Questions
 
+## Sprint 061 - Client UAT Access Resolution Gate
+
+Sprint 061 closeout status: `HOLD - Client UAT / V1 Beta not approved`.
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| What is the exact client-accessible UAT surface/link/path? | Owner / Builder | Before client handoff | Open | Not confirmed in project files. |
+| Who is the first tester for controlled Client UAT? | Owner | Before client handoff | Open | Not confirmed. |
+| Where should bugs and feedback be captured during UAT? | Owner | Before client handoff | Open | Not confirmed. |
+| Are notifications a blocker, approved deferral, or watch-only item for UAT? | Owner / Architect | Before UAT approval | Open | Not classified. |
+| Who is the V1 Beta approver? | Owner / Go-live approver | Before V1 Beta | Open | Not confirmed. |
+| What auth posture is acceptable for controlled UAT, and what remains unresolved for production release? | Owner / Architect | Before UAT approval and production release | Open | UAT-vs-production auth posture remains unresolved beyond anonymous-auth smoke/UAT evidence. |
+| Is any deploy/config action required to expose the already-proven backend/model path to the first tester, or does an existing stable UAT surface already exist? | Owner / Builder | Before client handoff | Open | Still unknown; no deploy/config action is approved by Sprint 061. |
+
 ## Sprint 060 Client UAT Readiness Questions
 
 Sprint 060 closeout status: `HOLD`. Controlled Client UAT / V1 Beta is not approved until the unresolved release-gate questions below are answered.

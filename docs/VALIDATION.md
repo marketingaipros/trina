@@ -1,5 +1,63 @@
 # Validation Plan
 
+## Sprint 061 - Client UAT Access Resolution Gate
+
+Sprint 061 is a release-control validation gate.
+
+It does not approve Client UAT / V1 Beta unless the project files document all of the following:
+
+- Exact client-accessible UAT surface/link/path.
+- First tester.
+- Bug/feedback capture channel.
+- Notification status as blocker, deferral, or watch-only.
+- V1 Beta approver.
+- UAT auth posture and remaining production auth gap.
+
+Required validation commands:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+rg -n "Sprint 061|061-client-uat-access-resolution-gate|Client UAT|V1 Beta|UAT surface|feedback|notifications|approver|production auth|HOLD|APPROVED" planning docs
+```
+
+Sprint 061 can close as `APPROVED FOR CONTROLLED UAT` only if every gate item is documented.
+
+Sprint 061 must close as `HOLD` if any gate item remains unresolved.
+
+No runtime/source files, deploy files, Firebase settings, FlutterFlow files, native build files, credentials, or CEO Briefing PNG files should be touched unless a separate approved Architect Pack expands scope.
+
+### Sprint 061 Validation Result
+
+Date: 2026-06-08
+
+Result classification:
+
+```text
+HOLD - Client UAT / V1 Beta not approved
+```
+
+Sprint 061 is closed as a docs/planning-only release-control gate. It does not approve Client UAT / V1 Beta because these required items remain missing or ambiguous:
+
+- UAT surface/link/path is not confirmed.
+- First tester is not confirmed.
+- Feedback channel is not confirmed.
+- Notification status is not classified.
+- V1 Beta approver is not confirmed.
+- UAT-vs-production auth posture remains unresolved beyond anonymous-auth smoke/UAT evidence.
+- Any deploy/config action needed to expose the already-proven backend/model path is still unknown.
+
+Scope confirmation:
+
+- No runtime/source files should be changed.
+- No deploy files should be changed.
+- No Firebase settings should be changed.
+- No FlutterFlow files should be changed.
+- No native build files should be changed.
+- No credentials should be touched.
+- `references/flutterflow/sprint-009/ceo-briefing.png` must remain absent.
+
 ## Sprint 060 - Client UAT Readiness Gate
 
 Sprint 060 validates controlled Client Test Version / V1 Beta readiness after Sprint 059 proved the Barbie backend/model path.

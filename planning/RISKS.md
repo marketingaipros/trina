@@ -1,5 +1,21 @@
 # Risks
 
+## Sprint 061 Risks - Client UAT Access Resolution Gate
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Client-facing access uncertainty | Medium | High | Sprint 061 must confirm the exact client-accessible UAT surface/link/path before any UAT approval. | Open |
+| Release confusion between UAT and production | Medium | High | Document UAT as controlled test access only. Do not describe it as final production release. | Open |
+| Feedback capture gap | Medium | Medium | Confirm the bug/feedback channel before allowing first tester access. | Open |
+| Notification ambiguity | Medium | Medium | Classify notifications as blocker, deferral, or watch-only before UAT approval. | Open |
+| Production auth posture unresolved | Medium | High | Separate anonymous-auth smoke/UAT evidence from production auth requirements. | Open |
+| Unnamed V1 Beta approver | Medium | High | Identify who can approve V1 Beta before changing status from HOLD. | Open |
+| Unknown deploy/config requirement for UAT access | Medium | High | Determine whether an existing stable UAT surface already exposes the proven backend/model path or whether a separately approved deploy/config sprint is required. | Open |
+
+### Sprint 061 Risk Closeout
+
+Sprint 061 closed as `HOLD`, keeping all release-control risks open. Client UAT / V1 Beta remains blocked until the UAT surface/link/path, first tester, feedback channel, notification status, V1 Beta approver, UAT-vs-production auth posture, and any needed deploy/config action are confirmed in project files.
+
 ## Sprint 060 Risks - Client UAT Readiness Gate
 
 | Risk | Likelihood | Impact | Mitigation | Status |

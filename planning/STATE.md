@@ -2,75 +2,79 @@
 
 ## Current Sprint
 
-Sprint 060 - Client UAT Readiness Gate
+Sprint 061 - Client UAT Access Resolution Gate
 
 ## Current Status
 
-Sprint 060 closed as `HOLD`.
+HOLD - Client UAT / V1 Beta not approved.
 
-Sprint 059 closed as `PASS` and removed the Barbie backend/model smoke blocker. The current React/Vite UI can display a real Barbie backend/model response through:
+Sprint 060 closed as HOLD. Client UAT / V1 Beta is not approved yet.
 
-```text
-typed prompt -> askBarbie() -> ensureBarbieAuth() -> Firebase callable -> chatWithBarbie -> real backend/model response -> visible Barbie reply
-```
+Sprint 061 closed as a docs/planning-only release-control gate. It did not approve any client-facing test version because the required UAT access and approval evidence is still missing or ambiguous.
 
-Client UAT remains a controlled readiness decision, not automatically approved by backend smoke alone.
+## Recently Completed
 
-Current UAT posture:
+- Sprint 059 proved the real Barbie backend/model path.
+- Sprint 060 documented that Client UAT / V1 Beta remains HOLD because the release handoff is not fully confirmed.
 
-- Backend/model smoke: Proven by Sprint 059.
-- Client UAT: `HOLD` until remaining UAT logistics and workflow gates are approved.
-- Default UAT candidate surface: Current working React/Vite UI.
-- Exact UAT surface/link/path: Unresolved; owner must provide or approve the client-accessible web link/path before handoff.
-- FlutterFlow/native: Deferred for Sprint 060.
-- Deploy/release: Blocked until explicit approval.
-- Notifications: Must be classified as blocker, deferral, or watch-only before handoff.
-- Bug/feedback channel and V1 Beta approver: Unresolved owner actions before client handoff.
+## Active Gate
 
-Sprint 060 answered that controlled Client Test Version / V1 Beta readiness is not approved yet. The backend/model path was proven in Sprint 059, but client UAT remains gated by unresolved operational release items:
+Client UAT / V1 Beta can only move from HOLD to APPROVED when all of the following are documented in project files:
 
-- exact client-accessible UAT surface/link/path
-- first tester
-- bug/feedback capture channel
-- notification status as blocker, deferral, or watch-only
-- V1 Beta approver
-- production auth posture beyond anonymous-auth smoke/UAT validation
+1. Exact client-accessible UAT surface/link/path.
+2. First tester name or role.
+3. Bug/feedback capture channel.
+4. Notification status: blocker, deferral, or watch-only.
+5. V1 Beta approver.
+6. Production auth posture note, including what is approved for UAT versus what remains unresolved for production.
 
 ## Active Sprint
 
-`planning/sprints/060-client-uat-readiness-gate/`
+`planning/sprints/061-client-uat-access-resolution-gate/`
 
 ## Next Action
 
-Confirm exact UAT surface/link/path, first tester, feedback channel, notification status, and V1 Beta approver before sharing the app with the client.
+Resolve the remaining release-control evidence gaps in project files before any Client UAT / V1 Beta approval.
+
+## Blockers
+
+- UAT surface/link/path is not yet confirmed in project files.
+- First tester is not yet confirmed.
+- Feedback channel is not yet confirmed.
+- Notification status is not yet classified.
+- V1 Beta approver is not yet confirmed.
+- Production auth posture remains unresolved beyond anonymous-auth smoke/UAT evidence.
+- Any deploy/config action needed to expose the already-proven backend/model path is still unknown.
 
 ## Release Status
 
-`SPRINT 060 HOLD - CLIENT UAT NOT APPROVED`
+`SPRINT 061 HOLD - CLIENT UAT / V1 BETA NOT APPROVED`
 
-The current web UI remains the default controlled UAT candidate because Sprint 059 proved the real Barbie backend/model path. Do not deploy, change Firebase settings, package iOS/native, start FlutterFlow migration, approve Client UAT, approve V1 Beta, or treat this as final release without explicit approval.
+Do not deploy, change Firebase settings, package iOS/native, start FlutterFlow migration, approve Client UAT, approve V1 Beta, or treat this as final release without explicit approval.
 
-## Sprint 060 Closeout - Client UAT Readiness Gate
+## Sprint 061 Closeout - Client UAT Access Resolution Gate
 
 **Status:** Documentation closeout complete.
-**Result classification:** `HOLD`.
+**Result classification:** `HOLD - Client UAT / V1 Beta not approved`.
 
-Sprint 060 was a docs/planning-only UAT readiness gate. It did not approve controlled Client Test Version / V1 Beta testing.
+Sprint 061 could not approve Client UAT / V1 Beta because the release-control gate still lacks required evidence:
 
-Closeout rationale:
-
-- Sprint 059 proved the backend/model path through `typed prompt -> askBarbie() -> ensureBarbieAuth() -> Firebase callable -> chatWithBarbie -> real backend/model response -> visible Barbie reply`.
-- Backend/model smoke proof is necessary but not sufficient for client handoff.
-- Client UAT remains gated by unresolved UAT access, tester, feedback, notification, approval, and production auth decisions.
+- UAT surface/link/path is not confirmed.
+- First tester is not confirmed.
+- Feedback channel is not confirmed.
+- Notification status is not classified.
+- V1 Beta approver is not confirmed.
+- UAT-vs-production auth posture remains unresolved beyond anonymous-auth smoke/UAT evidence.
+- Any deploy/config action needed to expose the already-proven backend/model path is still unknown.
 
 Scope confirmation:
 
 - No runtime/source changes.
-- No deploy.
-- No Firebase setting change.
-- No FlutterFlow change.
-- No native build/package change.
-- No credential exposure.
+- No deploy file changes.
+- No Firebase setting changes.
+- No FlutterFlow changes.
+- No native build/package changes.
+- No credential changes.
 - No CEO Briefing PNG work.
 - `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
 
