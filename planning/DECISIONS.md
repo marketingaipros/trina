@@ -225,3 +225,10 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 |---|---|---|---|
 | 2026-06-07 | Web app backend/model smoke must pass before client UAT, PWA/home-screen, iOS wrapping, or FlutterFlow/native migration. | Sprint 057 proved visual render but not real Barbie backend/model response because Firebase auth blocked assistant Send. | Sprint 058 must focus on Firebase auth/backend smoke before release-path expansion. |
 | 2026-06-08 | The iPhone delivery path remains undecided until Sprint 057 compares web/PWA/wrapped/native/FlutterFlow options against the actual working app state. | Packaging decisions should follow evidence from the current app path. | Do not decide FlutterFlow/native or wrapped iPhone as final path during pack application. |
+
+## Sprint 059 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-06-08 | Firebase Anonymous sign-in was enabled by the operator for local/UAT Barbie backend smoke testing. | Sprint 058 showed Google popup/OAuth domain flow blocked local smoke before the callable. Anonymous auth is the smallest operator-level unblock for the existing `ensureBarbieAuth()` path. | Sprint 059 should rerun smoke without changing Firebase Console settings or credentials. |
+| 2026-06-08 | Sprint 059 proves the current web app can reach Barbie backend/model through `chatWithBarbie`, but broad client rollout still needs a controlled UAT-readiness decision. | Browser smoke passed the proof target and showed a visible non-mocked Barbie response, while UAT host/domain, first tester, issue channel, go-live approver, and final auth posture remain separate decisions. | Next sprint should prepare controlled web UAT readiness without starting iOS packaging, FlutterFlow/native work, deploys, or credential changes by default. |

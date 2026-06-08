@@ -1,5 +1,23 @@
 # Questions
 
+## Sprint 059 Open Questions
+
+- After Anonymous Auth is enabled, does `ensureBarbieAuth()` now succeed locally?
+- Does `askBarbie()` reach the `chatWithBarbie` callable?
+- Are backend/model secrets configured enough for the callable to return a real Barbie response?
+- If backend/model response works locally, what is the approved next UAT host/domain for client testing?
+- Is Anonymous Auth only for local/UAT smoke, or will a future auth sprint define the production client auth path?
+
+### Sprint 059 Validation Answers
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| After Anonymous Auth is enabled, does `ensureBarbieAuth()` now succeed locally? | Builder | Sprint 059 smoke | Answered / Pass | Browser smoke showed Firebase identity lookup returned `200`, `askBarbie()` proceeded, and no auth failure appeared during Send. |
+| Does `askBarbie()` reach the `chatWithBarbie` callable? | Builder | Sprint 059 smoke | Answered / Pass | Console showed `askBarbie called`, `function called Object`, `callable returned Object`, and `function success Object`; network showed `chatWithBarbie` returned `200`. |
+| Are backend/model secrets configured enough for the callable to return a real Barbie response? | Builder / Operator | Sprint 059 smoke | Answered / Pass for smoke | A visible Barbie response appeared in the UI. Secret values were not inspected or exposed. |
+| If backend/model response works locally, what is the approved next UAT host/domain for client testing? | Operator | Next UAT sprint | Open | Sprint 059 proved local web backend/model smoke only. The approved UAT host/domain still needs explicit confirmation. |
+| Is Anonymous Auth only for local/UAT smoke, or will a future auth sprint define the production client auth path? | Operator / Architect | Before broad client rollout | Open | Treat Anonymous Auth as the Sprint 059 local/UAT smoke unblock until a future sprint defines production/client auth posture. |
+
 ## Sprint 058 Open Questions
 
 - What is the intended local/UAT auth path: anonymous auth, Google auth, emulator auth, or another provider?

@@ -2,9 +2,19 @@
 
 ## Current Sprint
 
-Sprint 058 - Firebase Auth and Barbie Backend Smoke Unblock
+Sprint 059 - Rerun Barbie Backend Smoke After Auth Unblock
 
 ## Current Status
+
+Sprint 059 closed as `PASS`.
+
+The typed Barbie backend smoke passed after the operator enabled Firebase Anonymous sign-in in Firebase Console. Browser smoke proved:
+
+```text
+typed prompt -> askBarbie() -> ensureBarbieAuth() -> Firebase callable -> chatWithBarbie -> real backend/model response -> visible Barbie reply
+```
+
+Evidence showed typed submit, `askBarbie()` execution, successful `chatWithBarbie` callable return, and a visible Barbie response in the UI. No auth/callable/model failure appeared during the Barbie Send path.
 
 Sprint 057 closed as `HOLD`.
 
@@ -12,19 +22,105 @@ The local Vite React app renders in Chrome at `http://127.0.0.1:3000/`, and loca
 
 Client UAT remains blocked because Sprint 057 did not prove a real Barbie backend/model response. Firebase auth blocked the assistant Send path before successful `chatWithBarbie` response evidence.
 
+Sprint 058 remains `HOLD` because the callable/backend/model path was not reached.
+
+Operator has enabled Firebase Anonymous sign-in in Firebase Console.
+
+Sprint 059 goal was to rerun the typed Barbie backend smoke and prove or disprove:
+
+- `ensureBarbieAuth()` succeeds through anonymous auth.
+- `chatWithBarbie` callable is reached.
+- A real backend/model response appears in the Barbie UI.
+
+Sprint 059 proved all three. The next sprint should decide whether this PASS is enough to move to a controlled web UAT candidate, and should separately validate any required reminder/core workflow, voice/fallback, UAT host/domain, tester, issue channel, and go-live approver.
+
 ## Active Sprint
 
-`planning/sprints/058-firebase-auth-and-barbie-backend-smoke-unblock/`
+`planning/sprints/059-rerun-barbie-backend-smoke-after-auth-unblock/`
 
 ## Next Action
 
-Apply Sprint 058 planning files, then have Codex read the sprint files and summarize the implementation plan before any runtime/source changes.
+Open the next controlled UAT-readiness sprint. Keep the current repo evidence separated from any client rollout decision until the remaining UAT logistics and workflow gates are explicitly confirmed.
 
 ## Release Status
 
-`HOLD`
+`SPRINT 059 PASS - UAT READINESS DECISION NEEDED`
 
-Do not give the client the app yet. Do not package iOS. Do not start FlutterFlow/native. Prove the web auth/backend/model path first.
+The web auth/backend/model path is now proven by Sprint 059 smoke. Do not package iOS or start FlutterFlow/native. Do not give the client broad access until the next sprint confirms UAT host/domain, first tester, issue channel, go-live approver, and any required core workflow/voice fallback criteria.
+
+## Sprint 059 Closeout - Rerun Barbie Backend Smoke After Auth Unblock
+
+**Status:** Validation closeout complete.
+**Result classification:** `PASS`.
+
+Sprint 059 satisfied the backend/model smoke proof target:
+
+```text
+typed prompt -> askBarbie() -> ensureBarbieAuth() -> Firebase callable -> chatWithBarbie -> real backend/model response -> visible Barbie reply
+```
+
+Validation evidence:
+
+- `git status --branch --short`: ran; showed only existing Sprint 059 planning/doc changes.
+- `git diff --check`: passed.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: passed.
+- `node --check functions/index.js`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with existing Vite warnings:
+  - `services/authService.ts` mixed static/dynamic import chunk warning.
+  - JS chunk larger than 500 kB warning.
+- `npm run dev -- --host 127.0.0.1`: started successfully at `http://127.0.0.1:3000/`.
+- `curl -I http://127.0.0.1:3000/`: returned `HTTP/1.1 200 OK`.
+
+Browser smoke evidence:
+
+- Test prompt: `What should I focus on today?`
+- Input cleared after Send.
+- Barbie reply appeared visibly in the UI.
+- Console evidence:
+
+```text
+text submitted What should I focus on today?
+message sent What should I focus on today?
+askBarbie called What should I focus on today?
+function called Object
+callable returned Object
+function success Object
+loading reset
+```
+
+- Network evidence:
+
+```text
+POST https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=[REDACTED] -> 200
+POST https://us-central1-barbie-92edc.cloudfunctions.net/chatWithBarbie -> 200
+OPTIONS https://us-central1-barbie-92edc.cloudfunctions.net/chatWithBarbie -> 204
+```
+
+- Visible UI evidence:
+
+```text
+Today, please focus on the following tasks:
+1. Family Communication...
+2. Staff Coordination...
+3. Calendar Review...
+```
+
+Observed non-blocking error:
+
+- Console showed unrelated Gmail initialization errors: `Error: Google Identity Services not loaded`.
+- No auth/callable/model failure appeared during the Barbie Send path.
+- No secrets were printed.
+
+Scope confirmation:
+
+- No deploy.
+- No Firebase setting change by Codex.
+- No FlutterFlow change.
+- No native build change.
+- No credential exposure.
+- No CEO Briefing file change.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
 
 ## Sprint 058 Closeout - Firebase Auth and Barbie Backend Smoke Unblock
 

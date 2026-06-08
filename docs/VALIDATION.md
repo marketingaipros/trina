@@ -1,5 +1,115 @@
 # Validation Plan
 
+## Sprint 059 - Barbie Backend Smoke After Anonymous Auth Enablement
+
+Required checks:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+node --check functions/index.js
+npm run lint
+npm run build
+npm run dev -- --host 127.0.0.1
+curl -I http://127.0.0.1:3000/
+```
+
+Required browser smoke:
+
+1. Load `http://127.0.0.1:3000/`.
+2. Enter typed prompt: `What should I focus on today?`
+3. Click Send.
+4. Confirm typed submit fires.
+5. Confirm `ensureBarbieAuth()` succeeds.
+6. Confirm `askBarbie()` runs.
+7. Confirm `chatWithBarbie` callable is reached.
+8. Confirm a real backend/model response appears in the Barbie UI.
+9. Confirm response is not mocked or static.
+10. Record any exact console/network/backend errors if smoke fails.
+
+Acceptance requires a real backend/model response, not merely anonymous auth success or page load.
+
+### Sprint 059 Validation Results
+
+Date: 2026-06-08
+
+Result classification:
+
+```text
+PASS
+```
+
+Smoke proof target:
+
+```text
+typed prompt -> askBarbie() -> ensureBarbieAuth() -> Firebase callable -> chatWithBarbie -> real backend/model response -> visible Barbie reply
+```
+
+Command results:
+
+- `git status --branch --short`: ran; showed only existing Sprint 059 planning/doc changes.
+- `git diff --check`: passed.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`: passed.
+- `node --check functions/index.js`: passed.
+- `npm run lint`: passed.
+- `npm run build`: passed with existing Vite warnings:
+  - `services/authService.ts` mixed static/dynamic import chunk warning.
+  - JS chunk larger than 500 kB warning.
+- `npm run dev -- --host 127.0.0.1`: started successfully at `http://127.0.0.1:3000/`.
+- `curl -I http://127.0.0.1:3000/`: returned `HTTP/1.1 200 OK`.
+
+Browser smoke:
+
+- Test prompt: `What should I focus on today?`
+- Input cleared after Send.
+- Barbie reply appeared visibly in the UI.
+
+Console evidence:
+
+```text
+text submitted What should I focus on today?
+message sent What should I focus on today?
+askBarbie called What should I focus on today?
+function called Object
+callable returned Object
+function success Object
+loading reset
+```
+
+Network evidence:
+
+```text
+POST https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=[REDACTED] -> 200
+POST https://us-central1-barbie-92edc.cloudfunctions.net/chatWithBarbie -> 200
+OPTIONS https://us-central1-barbie-92edc.cloudfunctions.net/chatWithBarbie -> 204
+```
+
+Visible UI evidence:
+
+```text
+Today, please focus on the following tasks:
+1. Family Communication...
+2. Staff Coordination...
+3. Calendar Review...
+```
+
+Errors:
+
+- Console showed unrelated Gmail initialization errors: `Error: Google Identity Services not loaded`.
+- No auth/callable/model failure appeared during the Barbie Send path.
+- No secrets were printed.
+
+Scope confirmation:
+
+- No deploy.
+- No Firebase setting change.
+- No FlutterFlow change.
+- No native build change.
+- No credential exposure.
+- No CEO Briefing file change.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+
 ## Sprint 058 Validation - Firebase Auth and Barbie Backend Smoke
 
 Sprint 058 validates whether the local/UAT web app can produce a real Barbie backend/model response.

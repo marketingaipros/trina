@@ -1,5 +1,20 @@
 # Risks
 
+## Sprint 059 Risks - Barbie Backend Smoke After Auth Unblock
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Firebase auth may now pass but backend/model configuration may still fail. | Medium | High | Sprint 059 must separately prove callable reach and real model response. Do not mark success at auth-only pass. | Mitigated in Sprint 059: callable returned and visible backend/model reply appeared. |
+| Anonymous auth may be acceptable for smoke but not final client auth posture. | Medium | Medium | Treat anonymous auth as local/UAT smoke unblock only unless future sprint explicitly defines production auth behavior. | Open for UAT/auth posture decision. |
+
+### Sprint 059 Risk Closeout
+
+| Risk | Sprint 059 Outcome | Next Action |
+|---|---|---|
+| Firebase auth may pass but backend/model configuration may still fail. | Mitigated. Browser smoke proved `askBarbie()` execution, successful `chatWithBarbie` callable return, and a visible non-mocked Barbie response. | Use next sprint to decide controlled web UAT readiness and validate any required adjacent workflow gates. |
+| Anonymous auth may be acceptable for smoke but not final client auth posture. | Still open beyond Sprint 059. Anonymous Auth unblocked local/UAT smoke, but production/client auth posture is not decided. | Define UAT/client auth posture before broad client rollout. |
+| Gmail initialization noise may be confused with Barbie backend failure. | Observed as unrelated console noise: `Error: Google Identity Services not loaded`. Barbie Send path still passed. | Keep Gmail V2/disabled status separate from Barbie backend smoke evidence. |
+
 ## Sprint 058 Risks - Firebase Auth and Barbie Backend Smoke Unblock
 
 | Risk | Likelihood | Impact | Mitigation | Status |
