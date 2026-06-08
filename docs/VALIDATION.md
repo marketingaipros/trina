@@ -1,5 +1,60 @@
 # Validation Plan
 
+## Sprint 055 - Runtime Source Reconciliation and Backend Integration Plan
+
+Sprint 055 validates docs/planning application and source reconciliation only. It does not deploy, run native builds, modify runtime/source files, stage, commit, push, touch CEO Briefing files, inspect secrets, or store credentials.
+
+### Required Validation Commands
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+If safe package scripts exist, also run:
+
+```bash
+npm run lint
+npm run build
+```
+
+Expected:
+
+- Only docs/planning and the Sprint 055 architect pack/sprint files are changed.
+- No runtime/source files are changed.
+- CEO Briefing PNG remains absent.
+- `npm run lint` passes.
+- `npm run build` passes with only already accepted watch-only warnings unless new output is explicitly recorded.
+
+### Internal Integration Gate Before Client UAT
+
+Client UAT must remain blocked until a future approved sprint confirms:
+
+- Active release source of truth.
+- Whether FlutterFlow is active, historical/reference, or out of release scope.
+- Firebase project/environment and required services.
+- Hermes/API or Firebase Functions assistant contract for typed flow.
+- Voice assistant routing contract.
+- Internal validation environment and first tester.
+- Required workflows, issue channel, and go-live approver.
+
+### Forbidden During Sprint 055
+
+Do not run:
+
+```bash
+firebase deploy
+npm run cap:sync
+npm run cap:open:ios
+npm run cap:open:android
+npx cap sync
+npx cap open ios
+npx cap open android
+```
+
+Do not run native Xcode/Gradle builds or FlutterFlow export/deploy commands without a future explicit approval.
+
 ## Sprint 054 - Release Source of Truth and UAT Path Confirmation
 
 Sprint 054 validates the release/UAT decision gate. It does not deploy, run native builds, modify runtime/source files, stage, commit, push, touch CEO Briefing files, or store credentials.

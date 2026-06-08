@@ -1,5 +1,20 @@
 # Questions
 
+## Sprint 055 Runtime / Integration Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Is FlutterFlow still an active production/release source, or only historical/reference for this app? | Operator | Sprint 056 planning | Open | Repo inspection found FlutterFlow planning/reference history but no generated export, project ID/name, or active release path. |
+| If FlutterFlow is active, what is the project ID/name and export or deploy process? | Operator | Before any FlutterFlow release work | Open | Keep `<project-id-placeholder>` until confirmed. |
+| Is Firebase project `barbie-92edc` the intended internal integration and UAT project? | Operator | Before deploy or internal UAT | Open | `.firebaserc` points to `barbie-92edc`, but Sprint 055 did not deploy or validate live environment ownership. |
+| Which Firebase services are required for MVP: Auth, Firestore, Functions, Hosting, FCM, Storage, or another service? | Architect / Operator | Sprint 056 contract | Open | Repo shows Auth, Firestore, Functions, Hosting, and push-related code. No `storage.rules` file was present. |
+| Is Hermes the confirmed assistant/backend service for typed and voice flows, or should Firebase Functions remain the immediate backend surface? | Operator / Architect | Sprint 056 contract | Open | Docs name Hermes as intended backend AI brain, but runtime code currently uses Firebase callable Functions and no Hermes module was found. |
+| What endpoint contract should the app call for assistant requests? | Architect / Builder | Sprint 056 contract | Open | Current web typed flow uses `chatWithBarbie`; future Hermes/API request/response contract is not implemented. |
+| Are voice flows expected to run through Hermes, browser APIs plus Firebase Functions, a mobile-native bridge, or another service? | Architect / Operator | Sprint 056 contract | Open | Current voice capture appears frontend/browser-led; production voice backend routing is not confirmed. |
+| What internal environment should be validated before client UAT? | Operator | Before internal integration validation | Open | Candidate evidence exists for local Vite/Firebase build, Firebase Hosting config, and Capacitor wrappers, but no UAT link/build is confirmed. |
+| Who is the first trusted internal tester after integration works? | Operator | Before internal UAT | Open | Sprint 054 trusted tester placeholder remains unresolved. |
+| What exact workflows must pass before client rollout? | Operator / Architect | Before client UAT | Open | Typed assistant, voice assistant, reminders, task/calendar/finance/knowledge navigation, auth, and issue reporting need final confirmation. |
+
 | Question | Owner | Needed By | Status | Answer / Notes |
 |---|---|---|---|---|
 | Confirm release source of truth: GitHub/Firebase Hosting, FlutterFlow, native stores, or another path? | Operator | Sprint 054 release source-of-truth gate | Open | Sprint 053 found Firebase Hosting/Capacitor repo config and FlutterFlow planning docs, but source of truth remains unresolved. |

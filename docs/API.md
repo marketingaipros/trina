@@ -1,5 +1,62 @@
 # API
 
+## Sprint 055 Runtime / Backend Integration Notes
+
+Sprint 055 does not add or change application APIs. It reconciles the existing and missing integration contracts before backend implementation work.
+
+### Existing Repo-Observed Backend Surfaces
+
+- Firebase callable Functions in `functions/index.js`, including `chatWithBarbie`, `generateAIText`, `connectGoogleAccount`, `sendGmailEmail`, and `registerDeviceToken`.
+- HTTPS Telegram webhook in `functions/index.js`.
+- Frontend service modules that call Firebase Auth, Firestore, callable Functions, and Google/Gmail API surfaces.
+- Firebase Hosting and Functions configuration in `firebase.json`.
+
+### Missing or Unconfirmed Contracts
+
+- Hermes-specific endpoint URL, auth method, request schema, response schema, error shape, and environment ownership.
+- Whether typed assistant requests should continue through Firebase Functions first, call Hermes directly, or use Firebase Functions as a bridge to Hermes.
+- Whether voice assistant requests should send transcript text, audio references, native audio payloads, or browser SpeechRecognition output.
+- Internal integration validation target: local emulator, deployed Firebase project, staging Hosting URL, or another environment.
+- Client UAT access target/link/build.
+
+### Proposed Sprint 056 Contract Scope
+
+Sprint 056 should define the first backend assistant contract without adding client rollout scope:
+
+```json
+{
+  "userId": "string",
+  "sessionId": "string",
+  "inputMode": "typed | voice",
+  "transcript": "string",
+  "audioUrl": "string | null",
+  "intentHint": "chat | reminder | task | calendar | finance | knowledge | unknown",
+  "clientContext": {
+    "app": "trinaos-voice",
+    "source": "vite-react | flutterflow | native-wrapper",
+    "timezone": "string"
+  }
+}
+```
+
+Expected response shape to confirm:
+
+```json
+{
+  "message": "string",
+  "actions": [
+    {
+      "type": "create_reminder | create_task | update_status | none",
+      "payload": {}
+    }
+  ],
+  "status": "ok | needs_user_input | blocked | error",
+  "traceId": "string"
+}
+```
+
+Secrets, tokens, client credentials, signing keys, and real test-account passwords must stay out of repo files.
+
 ## Sprint 054 Release/UAT Interface Notes
 
 Sprint 054 does not add application APIs. It clarifies the release/config interfaces needed before controlled client UAT.

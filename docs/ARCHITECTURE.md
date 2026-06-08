@@ -1,5 +1,56 @@
 # Architecture
 
+## Runtime Source and Integration Status - Sprint 055
+
+### Active Runtime Source
+
+The active inspected runtime source is the local Vite React app in this repo.
+
+Repo evidence:
+
+- `package.json` uses Vite scripts for `dev`, `build`, and `preview`, and TypeScript validation for `lint`.
+- `index.tsx`, `App.tsx`, `components/`, and `services/` contain the current frontend runtime.
+- `firebase.json` serves `dist`, the Vite build output.
+- `capacitor.config.ts` points native wrappers at `dist`.
+
+This confirms the active repo runtime for inspection and build validation. It does not confirm that this repo is the operator-approved client UAT release source.
+
+### FlutterFlow Role
+
+FlutterFlow remains `Unknown / requires operator confirmation` for release involvement.
+
+Repo evidence shows historical/planned FlutterFlow work in planning docs and `references/flutterflow/`, but Sprint 055 did not find a committed generated FlutterFlow export, confirmed FlutterFlow project ID/name, or documented export/deploy process. Do not treat FlutterFlow as active release source until the operator confirms it.
+
+### Firebase Role
+
+Firebase is `Configured but not validated`.
+
+Repo evidence:
+
+- `.firebaserc` sets the default project to `barbie-92edc`.
+- `firebase.json` defines Hosting, Functions codebase `trinaosvoice`, and Firestore rules.
+- `firestore.rules` exists.
+- `functions/index.js` contains callable and HTTPS backend functions.
+- Frontend services reference Firebase Auth, Firestore, callable Functions, and push behavior.
+
+Sprint 055 did not deploy, run emulators, inspect secret values, or validate live Firebase behavior.
+
+### Hermes / Backend Role
+
+Hermes-specific runtime integration is `Planned but not implemented`.
+
+Project docs describe Hermes/API as the intended assistant/backend integration layer, but repo inspection did not find a Hermes runtime module, endpoint implementation, or connected service. The current web typed assistant path uses Firebase callable Functions such as `chatWithBarbie`; future Hermes/API integration needs an explicit request/response contract before implementation.
+
+### Current Connectivity Classification
+
+The current app is partially connected:
+
+- Frontend runtime exists and builds through Vite.
+- Firebase client/backend code exists.
+- Firebase live deployment and secret-backed behavior are not validated in Sprint 055.
+- Hermes/backend integration is not implemented in runtime code.
+- FlutterFlow release involvement remains unresolved.
+
 ## Overview
 Barbie / TrinaOS Voice is a Vite React app backed by Firebase. The browser app provides the assistant UI, reminder popup handling, local task/calendar/finance views, and Firebase callable access. Secret-backed AI, Gmail, Telegram, and push-notification operations live in Firebase Functions.
 

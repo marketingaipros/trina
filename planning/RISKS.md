@@ -1,5 +1,16 @@
 # Risks
 
+## Sprint 055 Risks - Runtime Source Reconciliation and Backend Integration Plan
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Client UAT starts before backend/Hermes integration is implemented and validated. | High | High | Keep release recommendation at `HOLD` and run an internal integration sprint before client rollout. | Open |
+| FlutterFlow history is mistaken for the active release source. | Medium | High | Separate repo-observed runtime source from unresolved operator-confirmed release source. | Open |
+| Firebase config is mistaken for deployed or production-validated backend behavior. | Medium | High | Document Firebase as configured/partially connected but not deployed or live-validated in Sprint 055. | Open |
+| Hermes integration is assumed from project intent but absent from runtime code. | High | High | Require a Sprint 056 contract and implementation plan before claiming Hermes-backed assistant behavior. | Open |
+| Framework polish gives a false sense of client rollout readiness. | Medium | High | Require internal integration validation of typed and voice assistant flows before client UAT. | Open |
+| Credential or environment setup could be pulled into docs while planning backend integration. | Medium | High | Keep secrets outside tracked files and document only placeholder variable names or non-secret config evidence. | Open |
+
 ## Active Release-Candidate Risks
 
 | Risk | Classification | Impact | Mitigation | Status |
