@@ -1,5 +1,25 @@
 # Risks
 
+## Sprint 060 Risks - Client UAT Readiness Gate
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Client UAT may be mistaken for final production release. | Medium | High | Label the sprint as controlled Client Test Version / V1 Beta readiness and keep production release blocked. | Active |
+| Exact UAT surface/link/path may remain unresolved after backend smoke passes. | Medium | High | Require owner-approved UAT URL/path before client handoff. | Active |
+| Notifications may be treated as a blocker without a clear V1 Beta decision. | Medium | Medium | Classify notifications as blocking, deferred, or watch-only with rationale before handoff. | Active |
+| Feedback may be lost or scattered. | Medium | Medium | Require a bug/feedback capture channel before client handoff. | Active |
+| Anonymous auth may support UAT smoke but still be unresolved for production auth posture. | Medium | High | Record auth posture as UAT-only, production-ready, or unresolved. | Active |
+
+### Sprint 060 Risk Closeout
+
+Sprint 060 closed as `HOLD`, keeping the following release-gate risks visible:
+
+- Release confusion remains active because controlled UAT / V1 Beta is not final production release and is not approved yet.
+- Client-facing access uncertainty remains active until the exact UAT surface/link/path and first tester are approved.
+- Notification ambiguity remains active until notifications are classified as blocker, deferral, or watch-only.
+- Feedback capture risk remains active until a single bug/feedback channel is approved.
+- Production auth posture remains active because anonymous auth only proves smoke/UAT viability and does not settle final production auth.
+
 ## Sprint 059 Risks - Barbie Backend Smoke After Auth Unblock
 
 | Risk | Likelihood | Impact | Mitigation | Status |

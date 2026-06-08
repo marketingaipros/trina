@@ -1,5 +1,111 @@
 # Validation Plan
 
+## Sprint 060 - Client UAT Readiness Gate
+
+Sprint 060 validates controlled Client Test Version / V1 Beta readiness after Sprint 059 proved the Barbie backend/model path.
+
+Sprint 059 proof:
+
+```text
+typed prompt -> askBarbie() -> ensureBarbieAuth() -> Firebase callable -> chatWithBarbie -> real backend/model response -> visible Barbie reply
+```
+
+Sprint 060 does not deploy, modify Firebase settings, move to FlutterFlow, package native builds, or perform final production release.
+
+### Sprint 060 Validation Result
+
+Result classification:
+
+```text
+HOLD
+```
+
+Sprint 060 is docs/planning-only. Controlled Client UAT / V1 Beta is not approved because these release-gate items remain unresolved:
+
+- exact client-accessible UAT surface/link/path
+- first tester
+- bug/feedback capture channel
+- notification status as blocker, deferral, or watch-only
+- V1 Beta approver
+- production auth posture beyond anonymous-auth smoke/UAT validation
+
+Backend/model smoke was proven in Sprint 059, but that proof does not approve client handoff by itself.
+
+### Required Docs-Safe Checks
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+rg -n "060-client-uat-readiness-gate|Client UAT|V1 Beta|current working UI|FlutterFlow|native|deploy|feedback|notifications" planning docs
+```
+
+### UAT Readiness Matrix
+
+| Gate | Required Answer | Status | Evidence / Notes |
+|---|---|---|---|
+| Client can safely test current app | Yes / No / With deferrals | HOLD / Not approved | Backend/model smoke passed, but owner must still approve exact UAT surface, first tester, feedback channel, notification status, production auth posture, and V1 Beta approver. |
+| Exact UAT surface/link/path | Approved URL/path or owner action | Owner action required | Do not invent a client link. Local `127.0.0.1` smoke evidence is not a client share link. |
+| Current UI vs FlutterFlow | Current UI unless approved otherwise | Current UI recommended | Sprint 059 proved current React/Vite UI backend/model path. FlutterFlow is deferred. |
+| Core workflows | Listed and testable | Drafted | Include app load, auth/session, typed Barbie, reminder/task, navigation, Gmail V2-disabled boundary, notification status, and fallback. |
+| Known issues | Listed | Drafted | UAT link/path, first tester, feedback channel, notification decision, production auth posture, and V1 Beta approver remain unresolved. Gmail initialization noise is known non-blocking for Barbie Send. |
+| Notifications | Blocking / deferred / watch-only | Owner decision required | Must be explicit before client handoff. |
+| Client report-back | Checklist defined | Drafted | Include device/browser, typed response, reminder/task behavior, confusion, errors, notification behavior, screenshots, and top changes. |
+| Bug/feedback capture | Approved channel or owner action | Owner action required | Required before client handoff. |
+| V1 Beta approval | Approver and criteria recorded | Owner action required | Required before beta testing. |
+| Forbidden actions | Deploy, Firebase changes, FlutterFlow, native packaging, production release | Not done | Sprint 060 is docs/planning only. |
+
+### Core Workflow Checklist
+
+- App opens at approved UAT surface.
+- Approved auth/session path works without repo-stored credentials.
+- Typed Barbie prompt returns a real backend/model response.
+- Reminder or task-style request is tested.
+- In-app reminder/task visibility is checked where available.
+- Voice/mic is tested if available, or deferred with typed fallback accepted.
+- Core navigation is smoke-tested.
+- Gmail send remains V2/disabled and non-blocking.
+- Notification status is explicitly classified.
+
+### Client Report-Back Checklist
+
+Client should report:
+
+- Device and browser used.
+- Whether app opened successfully.
+- Whether typed Barbie prompt worked.
+- Whether Barbie response was useful.
+- Whether reminder/task request behaved as expected.
+- Any confusing labels, missing information, or broken screens.
+- Notification behavior, if any.
+- Screenshots or exact error wording where useful.
+- Top three changes needed before broader beta.
+
+Do not ask the client to send passwords, tokens, API keys, or secret values.
+
+### Approval Rule
+
+V1 Beta testing is approved only if:
+
+- Exact UAT surface/link/path is approved.
+- First tester is identified.
+- Bug/feedback channel is approved.
+- Core workflow gate passes or deferrals are explicitly accepted.
+- Notifications are validated or explicitly deferred.
+- Known issues are listed.
+- Owner/go-live approver explicitly approves controlled V1 Beta testing.
+
+### Sprint 060 Guardrails
+
+- No runtime/source changes.
+- No deploy.
+- No Firebase setting changes.
+- No FlutterFlow changes.
+- No native build/package changes.
+- No credential exposure.
+- No production release.
+- Do not create or touch `references/flutterflow/sprint-009/ceo-briefing.png`.
+
 ## Sprint 059 - Barbie Backend Smoke After Anonymous Auth Enablement
 
 Required checks:

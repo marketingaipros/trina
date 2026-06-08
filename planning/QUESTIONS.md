@@ -1,5 +1,23 @@
 # Questions
 
+## Sprint 060 Client UAT Readiness Questions
+
+Sprint 060 closeout status: `HOLD`. Controlled Client UAT / V1 Beta is not approved until the unresolved release-gate questions below are answered.
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Can the client safely test the current app? | Architect / Owner | Before client handoff | HOLD / Not approved | Sprint 059 removed the backend/model smoke blocker, but UAT surface, workflows, feedback channel, notification status, approver, and production auth posture must be confirmed before handoff. |
+| What exact app surface/link/path should the client use for UAT? | Owner / Builder | Before client handoff | Open | Do not invent. Local `127.0.0.1` smoke evidence is not a client share link. Owner must provide or approve the client-accessible web link/path. |
+| Are we using the current UI for UAT, not FlutterFlow yet? | Architect / Owner | Sprint 060 | Recommended yes | Current React/Vite UI is the default UAT candidate because Sprint 059 proved its backend/model path. FlutterFlow is not the Sprint 060 UAT surface. |
+| What core workflows must be tested before client handoff? | Architect / Owner | Sprint 060 | Drafted | App load, auth/session, typed Barbie response, reminder/task request, in-app visibility where available, core navigation, typed fallback, Gmail V2-disabled boundary, and notification status. |
+| What known issues remain? | Architect / Builder | Sprint 060 | Drafted | Exact UAT link/path, first tester, bug/feedback channel, V1 Beta approver, production auth posture, and notification blocker/deferral decision remain unresolved. Gmail initialization noise is known as non-blocking for the Barbie Send path from Sprint 059. |
+| Are notifications blocking UAT? | Architect / Owner | Sprint 060 | Open | Decide whether notifications are required for V1 Beta or can be deferred/watch-only. Current UAT gate cannot silently assume either. |
+| What should the client report back? | Architect / Owner | Before client handoff | Drafted | Device/browser, app open result, typed Barbie prompt result, usefulness of response, reminder/task behavior, confusion/broken screens, notification behavior, exact errors/screenshots, and top three changes before broader beta. |
+| Where should bugs/feedback be captured? | Owner | Before client handoff | Open | Choose a single channel before sharing with client, such as planning issue list, shared doc, Notion page, GitHub issue label, or UAT feedback log. Do not store credentials or secrets. |
+| What counts as approval for V1 Beta testing? | Owner / Go-live approver | Before V1 Beta | Open | Exact UAT surface/link/path, first tester, feedback channel, core workflow gate, notification decision, known issues, and explicit owner/go-live approver approval are required. |
+| What must not happen yet? | Builder / Owner | Sprint 060 | Answered | No deploys, Firebase settings changes, FlutterFlow migration, native packaging, production release, credential exposure, runtime/source edits, or CEO Briefing PNG work without explicit approval. |
+| Is anonymous auth sufficient for production client auth? | Owner / Architect | Before production release | Open | No. Sprint 059 proved anonymous-auth smoke/UAT viability only. Production auth posture remains unresolved. |
+
 ## Sprint 059 Open Questions
 
 - After Anonymous Auth is enabled, does `ensureBarbieAuth()` now succeed locally?

@@ -2,9 +2,79 @@
 
 ## Current Sprint
 
-Sprint 059 - Rerun Barbie Backend Smoke After Auth Unblock
+Sprint 060 - Client UAT Readiness Gate
 
 ## Current Status
+
+Sprint 060 closed as `HOLD`.
+
+Sprint 059 closed as `PASS` and removed the Barbie backend/model smoke blocker. The current React/Vite UI can display a real Barbie backend/model response through:
+
+```text
+typed prompt -> askBarbie() -> ensureBarbieAuth() -> Firebase callable -> chatWithBarbie -> real backend/model response -> visible Barbie reply
+```
+
+Client UAT remains a controlled readiness decision, not automatically approved by backend smoke alone.
+
+Current UAT posture:
+
+- Backend/model smoke: Proven by Sprint 059.
+- Client UAT: `HOLD` until remaining UAT logistics and workflow gates are approved.
+- Default UAT candidate surface: Current working React/Vite UI.
+- Exact UAT surface/link/path: Unresolved; owner must provide or approve the client-accessible web link/path before handoff.
+- FlutterFlow/native: Deferred for Sprint 060.
+- Deploy/release: Blocked until explicit approval.
+- Notifications: Must be classified as blocker, deferral, or watch-only before handoff.
+- Bug/feedback channel and V1 Beta approver: Unresolved owner actions before client handoff.
+
+Sprint 060 answered that controlled Client Test Version / V1 Beta readiness is not approved yet. The backend/model path was proven in Sprint 059, but client UAT remains gated by unresolved operational release items:
+
+- exact client-accessible UAT surface/link/path
+- first tester
+- bug/feedback capture channel
+- notification status as blocker, deferral, or watch-only
+- V1 Beta approver
+- production auth posture beyond anonymous-auth smoke/UAT validation
+
+## Active Sprint
+
+`planning/sprints/060-client-uat-readiness-gate/`
+
+## Next Action
+
+Confirm exact UAT surface/link/path, first tester, feedback channel, notification status, and V1 Beta approver before sharing the app with the client.
+
+## Release Status
+
+`SPRINT 060 HOLD - CLIENT UAT NOT APPROVED`
+
+The current web UI remains the default controlled UAT candidate because Sprint 059 proved the real Barbie backend/model path. Do not deploy, change Firebase settings, package iOS/native, start FlutterFlow migration, approve Client UAT, approve V1 Beta, or treat this as final release without explicit approval.
+
+## Sprint 060 Closeout - Client UAT Readiness Gate
+
+**Status:** Documentation closeout complete.
+**Result classification:** `HOLD`.
+
+Sprint 060 was a docs/planning-only UAT readiness gate. It did not approve controlled Client Test Version / V1 Beta testing.
+
+Closeout rationale:
+
+- Sprint 059 proved the backend/model path through `typed prompt -> askBarbie() -> ensureBarbieAuth() -> Firebase callable -> chatWithBarbie -> real backend/model response -> visible Barbie reply`.
+- Backend/model smoke proof is necessary but not sufficient for client handoff.
+- Client UAT remains gated by unresolved UAT access, tester, feedback, notification, approval, and production auth decisions.
+
+Scope confirmation:
+
+- No runtime/source changes.
+- No deploy.
+- No Firebase setting change.
+- No FlutterFlow change.
+- No native build/package change.
+- No credential exposure.
+- No CEO Briefing PNG work.
+- `references/flutterflow/sprint-009/ceo-briefing.png` remains absent.
+
+## Sprint 059 State Snapshot
 
 Sprint 059 closed as `PASS`.
 
@@ -34,15 +104,15 @@ Sprint 059 goal was to rerun the typed Barbie backend smoke and prove or disprov
 
 Sprint 059 proved all three. The next sprint should decide whether this PASS is enough to move to a controlled web UAT candidate, and should separately validate any required reminder/core workflow, voice/fallback, UAT host/domain, tester, issue channel, and go-live approver.
 
-## Active Sprint
+## Previous Active Sprint
 
 `planning/sprints/059-rerun-barbie-backend-smoke-after-auth-unblock/`
 
-## Next Action
+## Previous Next Action
 
 Open the next controlled UAT-readiness sprint. Keep the current repo evidence separated from any client rollout decision until the remaining UAT logistics and workflow gates are explicitly confirmed.
 
-## Release Status
+## Previous Release Status
 
 `SPRINT 059 PASS - UAT READINESS DECISION NEEDED`
 
