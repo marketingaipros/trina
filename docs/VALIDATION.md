@@ -1,5 +1,26 @@
 # Validation Plan
 
+## Sprint 062 - Resolve Client UAT Access Inputs
+
+Sprint 062 is a docs/planning-only input-resolution sprint.
+
+Validation confirms that the missing UAT access inputs are listed in project files and that Client UAT / V1 Beta remains on `HOLD` unless all required owner answers are recorded. This validation does not approve UAT.
+
+Required validation commands:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+rg -n "Sprint 062|062-resolve-client-uat-access-inputs|UAT surface|first tester|feedback channel|notification status|V1 Beta approver|production auth|READY FOR UAT GATE RECHECK|Client UAT|HOLD" planning docs
+```
+
+Sprint 062 can close as `READY FOR UAT GATE RECHECK` only if every required input is recorded in project files.
+
+Sprint 062 must close as `HOLD` if any required input remains missing, ambiguous, or unverified.
+
+No runtime/source files, deploy files, Firebase settings, FlutterFlow files, native build files, credentials, or CEO Briefing PNG files should be touched.
+
 ## Sprint 061 - Client UAT Access Resolution Gate
 
 Sprint 061 is a release-control validation gate.

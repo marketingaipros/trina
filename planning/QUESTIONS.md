@@ -1,5 +1,21 @@
 # Questions
 
+## Sprint 062 - Client UAT Access Inputs
+
+Sprint 062 closeout status: `HOLD - Client UAT / V1 Beta not approved`.
+
+| Question | Required Answer | Current Status | Evidence Location |
+|---|---|---|---|
+| What exact UAT surface/link/path should the tester use? | URL, local path, FlutterFlow preview, TestFlight path, web app path, or other concrete entry point. | Missing | TBD |
+| Who is the first tester? | Name and role. | Missing | TBD |
+| Where should tester feedback be captured? | Email, form, shared doc, GitHub issue, Notion, spreadsheet, or other channel. | Missing | TBD |
+| What is the notification status? | Disabled, enabled and tested, enabled but untested, noisy, broken, or out of scope. | Missing | TBD |
+| Who can approve V1 Beta? | Owner/stakeholder name. | Missing | TBD |
+| What is the UAT-vs-production auth posture? | Anonymous UAT only, production auth required later, existing auth accepted, or other clear rule. | Missing | TBD |
+| Is deploy/config action needed to expose the proven backend/model path? | Yes, no, or unknown with explanation. | Missing | TBD |
+
+If any Sprint 062 item remains `Missing`, `Ambiguous`, or `Unverified`, Client UAT / V1 Beta remains `HOLD`.
+
 ## Sprint 061 - Client UAT Access Resolution Gate
 
 Sprint 061 closeout status: `HOLD - Client UAT / V1 Beta not approved`.

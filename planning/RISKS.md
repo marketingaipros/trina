@@ -1,5 +1,17 @@
 # Risks
 
+## Sprint 062 Risks - Resolve Client UAT Access Inputs
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| UAT could be accidentally approved from chat-only context instead of project-file evidence. | Medium | High | Require all owner answers to be written into project files before any later gate can approve UAT. | Open |
+| Client may receive the wrong surface/link/path if the exact UAT entry point is not documented. | Medium | High | Keep UAT surface/link/path marked `Missing` until a concrete owner-approved entry point is recorded. | Open |
+| Feedback may be lost if the feedback channel is not chosen before testing begins. | Medium | Medium | Keep feedback channel marked `Missing` until one channel is recorded in project files. | Open |
+| Notifications may create client confusion if enabled, broken, noisy, or unclassified. | Medium | Medium | Require notification status to be classified before a later UAT gate can approve testing. | Open |
+| Anonymous-auth UAT evidence may be mistaken for production auth approval. | Medium | High | Separate UAT auth posture from production auth posture and keep production auth unresolved until explicitly approved. | Open |
+| Backend/model path may be proven locally but not exposed through the client UAT surface. | Medium | High | Require an explicit deploy/config-needed answer before any client handoff. | Open |
+| V1 Beta approval may remain owner-ambiguous. | Medium | High | Record the V1 Beta approver in project files before any later approval gate. | Open |
+
 ## Sprint 061 Risks - Client UAT Access Resolution Gate
 
 | Risk | Likelihood | Impact | Mitigation | Status |
