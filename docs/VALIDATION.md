@@ -1,5 +1,138 @@
 # Validation
 
+## Sprint 070 Validation - Voice Talk-Back Restore
+
+Sprint 070 proved browser talk-back routing for visible Barbie/model answers and preserved the Sprint 069 return-to-use flow.
+
+### Sprint 070 Closeout Result
+
+Date: 2026-06-08
+
+Final status:
+
+```text
+PASS - voice talk-back restored for browser-visible Barbie answers.
+```
+
+Implementation evidence:
+
+- Runtime file changed: `components/VoiceDashboard.tsx`.
+- No backend/model contract change.
+- No change to `src/lib/barbieAI.js`.
+- Talk-back now speaks only the final visible `typedReply` answer.
+- Speech stop control works.
+- Typed Q&A still works.
+- Reminder create/display/dismiss still works.
+- Feedback link remains visible.
+- Headless browser automation proved exact visible-answer-to-speech text match.
+- Actual audible speaker output still depends on real browser/device audio path.
+- Sprint 064 files remain untracked and untouched.
+- No deploy, Firebase, Firestore rules, Firebase config, FlutterFlow, native, mobile packaging, credential, CEO Briefing, stage, commit, or push work was done.
+
+Validation commands:
+
+```text
+git diff --check - passed
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png - passed
+npm run lint - passed
+npm run build - passed with existing baseline Vite warnings about services/authService.ts mixed import and bundle size over 500 kB
+```
+
+Functional proof:
+
+- App opens locally.
+- Typed Q&A returned a visible Barbie/model answer.
+- Exact visible answer text matched the text passed to browser speech synthesis.
+- Talk-back stop control returned the UI to the play state.
+- Live reminder prompt returned a reminder confirmation.
+- In-app reminder appeared.
+- Reminder dismiss cleared the visible reminder.
+- Feedback link remained visible.
+
+Remaining validation caveat:
+
+- Headless automation proves text routing to browser speech synthesis, not physical audible output from the device speaker. Real browser/device audio should remain a follow-up check before claiming device-specific audible proof.
+
+### Required Pre-Implementation Checks
+
+Run:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Confirm Sprint 064 files remain untracked and untouched if present:
+
+```text
+?? architect-packs/sprint-064-existing-app-return-to-use-uat-architect-pack.md
+?? planning/sprints/064-existing-app-return-to-use-uat/
+```
+
+### Required Functional Validation
+
+Validate in a supported browser, preferably the same browser/device used for Sprint 069 UAT first.
+
+1. Open the current app.
+2. Confirm typed Q&A still works.
+3. Enable or trigger talk-back.
+4. Ask a typed question.
+5. Confirm Barbie/model answer appears visually.
+6. Confirm the same final visible answer can be spoken out loud.
+7. Confirm talk-back can be stopped, muted, or disabled.
+8. Confirm no hidden prompt/system/internal text is spoken.
+9. Confirm in-app reminder creation still works.
+10. Confirm reminder appears in app.
+11. Confirm reminder dismiss still works.
+12. Confirm feedback link remains available.
+
+### Required Technical Validation
+
+Run the repo's existing relevant checks if available.
+
+Use whichever commands are already documented in the repo, such as:
+
+```bash
+npm run lint
+npm run build
+npm test
+```
+
+If a command is unavailable or not configured, document that clearly instead of inventing success.
+
+### Required Closeout Evidence
+
+Record:
+
+- Browser tested.
+- Device tested.
+- Whether talk-back worked.
+- Whether typed Q&A still worked.
+- Whether reminders still worked.
+- Whether dismiss still worked.
+- Whether feedback link remained available.
+- Any limitations, such as browser autoplay/user-gesture behavior.
+
+### Completion Standard
+
+Sprint 070 can close as PASS only if:
+
+- Talk-back works for visible Barbie/model answers in at least one approved browser/device.
+- User can disable or stop talk-back.
+- Typed Q&A remains working.
+- Reminder creation remains working.
+- Reminder visibility remains working.
+- Reminder dismiss remains working.
+- No protected files are touched.
+- No deploy occurs unless separately approved after implementation.
+
+Sprint 070 should close as HOLD if:
+
+- Talk-back is blocked by browser/device/API constraints.
+- Required validation cannot be completed.
+- Restoring talk-back would require a paid TTS provider, credentials, backend changes, or native/mobile work outside this sprint.
+
 ## Sprint 069 Client UAT Validation
 
 ### Approved Client URL

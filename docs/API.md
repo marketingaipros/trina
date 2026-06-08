@@ -1,5 +1,38 @@
 # API
 
+## Sprint 070 Voice Talk-Back Scope
+
+Sprint 070 does not introduce a new backend API unless Builder discovery proves that an existing voice endpoint already exists and is required for talk-back restoration.
+
+Preferred implementation path:
+
+- Use browser-native speech synthesis for talk-back, if feasible.
+- Keep existing chat/model API contract unchanged.
+- Keep existing reminder API behavior unchanged.
+- Do not add new credential requirements.
+- Do not add paid TTS provider calls in this sprint.
+- Do not change Firebase Functions contracts unless the existing implementation already requires a small compatibility fix.
+
+## Expected Client-Side Talk-Back Contract
+
+When a Barbie/model answer is visible in the chat UI:
+
+1. The app may pass only that final visible answer text to the talk-back layer.
+2. The app must not speak hidden prompts, system text, raw JSON, stack traces, or internal errors.
+3. The app should expose a user-controllable way to enable or disable talk-back.
+4. The app should fail safely if the browser does not support speech synthesis.
+
+## Out of Scope for Sprint 070
+
+- Speech-to-text input.
+- Wake word behavior.
+- Full duplex conversation.
+- Phone-call voice agent.
+- Closed-app push notifications.
+- Native iOS or Android voice integration.
+- FlutterFlow voice implementation.
+- New paid TTS provider integration.
+
 ## Sprint 058 API Focus - `chatWithBarbie`
 
 `chatWithBarbie` is the critical backend callable path for proving Barbie has a working brain/model connection.

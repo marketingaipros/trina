@@ -4,6 +4,12 @@
 
 | Risk | Likelihood | Impact | Mitigation | Status |
 |---|---:|---:|---|---|
+| Browser speech synthesis may require user interaction before audio can play. | Medium | Medium | Sprint 070 added explicit talk-back play/stop controls and optional enable behavior. | Mitigated |
+| Client expects full voice conversation, but Sprint 070 only restores talk-back after typed/model answers. | Medium | Medium | Keep scope documented as talk-back response only, not full speech-to-text or phone-style voice agent. | Active |
+| Talk-back code could replay stale answers or speak internal/system text. | Low | Medium | Sprint 070 routes only the final visible `typedReply` answer to speech synthesis. | Mitigated |
+| Voice changes could break typed Q&A or reminders. | Low | High | Sprint 070 validation proved typed Q&A and reminder create/display/dismiss still work. | Mitigated |
+| Different browsers/devices may have different available voices or audible output behavior. | Medium | Low | Use browser-native defaults and run real device/browser audible validation as a follow-up check. | Active |
+| Adding paid TTS provider could introduce credentials, latency, and scope creep. | Low | Medium | Sprint 070 used browser speech synthesis and did not add paid TTS or credentials. | Mitigated |
 | Deployed app may drift from current repo output in future sprints. | Medium | Medium | Compare deployed and local bundle hashes during release gates. | Follow-up |
 | Client URL/path may be unclear. | Low | Medium | Use verified Firebase Hosting URLs for Sprint 068 limited return-to-use; record any future custom URL separately. | Follow-up |
 | Anonymous auth posture may be inappropriate beyond limited return-to-use. | Medium | High | Treat anonymous/current access as limited return-to-use only and document production auth as follow-up. | Active |
@@ -17,7 +23,13 @@
 | Client feedback may arrive through email without structured details. | Medium | Medium | Sprint 069 feedback was sufficient for first limited UAT closeout; use structured details for future issue reports. | Follow-up |
 | Sprint 064 untracked files could be accidentally staged in later commits. | Medium | Medium | Builder must explicitly avoid staging Sprint 064 files unless separately approved. | Active |
 
-## Risk Control Rule
+## Sprint 070 Risk Control Rule
+
+Sprint 070 preserved the limited return-to-use boundary while restoring browser talk-back response only.
+
+Do not introduce Flutter, native packaging, dashboard redesign, CRM features, voice input recovery, closed-app push implementation, paid TTS provider integration, credential changes, deploys, or broad app cleanup into this sprint.
+
+## Prior Risk Control Rule
 
 Sprint 069 should preserve the limited return-to-use boundary and avoid expanding client UAT into feature recovery or release hardening.
 

@@ -1,5 +1,16 @@
 # Questions
 
+## Sprint 070 Open Questions
+
+| Question | Owner | Status | Notes |
+|---|---|---|---|
+| Does the current app already contain disabled or hidden talk-back code? | Builder | Resolved for Sprint 070 | Existing speech synthesis was present for Daily Snapshot, not typed Barbie answer talk-back. |
+| Which browser/device will be used for first voice validation? | Builder | Resolved for Sprint 070 | Headless Chromium automation validated exact text routing to speech synthesis; real audible device output remains follow-up. |
+| Should talk-back be automatically triggered after every Barbie answer, or controlled by an explicit on/off toggle? | Builder | Resolved for Sprint 070 | Sprint 070 added explicit play/stop controls and optional Talk On/Talk Off behavior. |
+| Does the client want talk-back only, or full voice input plus talk-back? | Architect / Owner | Resolved for Sprint 070 | Sprint 070 stayed talk-back only. Full voice input remains outside scope. |
+| Should spoken output include reminders or only Barbie chat answers? | Builder | Resolved for Sprint 070 | Sprint 070 speaks only the visible Barbie/model answer, not reminder internals. |
+| If browser-native talk-back is unsupported on the test device, should the sprint close as HOLD with evidence or create a future TTS-provider sprint? | Architect / Owner | Future item if needed | Sprint 070 passed with browser speech synthesis routing. Real device/browser audible failure, if found later, should be handled as a follow-up sprint rather than paid TTS by default. |
+
 ## Sprint 069 - Client UAT Feedback Loop
 
 | Question | Owner | Status | Notes |

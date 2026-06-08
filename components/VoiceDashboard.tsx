@@ -56,6 +56,9 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
   const [isTypingLoading, setIsTypingLoading] = useState(false);
   const [micSupportMessage, setMicSupportMessage] = useState<string | null>(null);
   const [isSpeechListening, setIsSpeechListening] = useState(false);
+  const [isTalkBackEnabled, setIsTalkBackEnabled] = useState(false);
+  const [isReplySpeaking, setIsReplySpeaking] = useState(false);
+  const [talkBackMessage, setTalkBackMessage] = useState<string | null>(null);
   
   const prevIsConnected = useRef(isConnected);
   const prevIsSpeaking = useRef(isSpeaking);
@@ -157,6 +160,10 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
       if (micStreamRef.current) {
         micStreamRef.current.getTracks().forEach(track => track.stop());
       }
+
+      if (synthRef.current) {
+        synthRef.current.cancel();
+      }
     };
   }, []);
 
@@ -230,8 +237,14 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
         timeout,
       ]) as { reply?: string };
 
-      setTypedReply(result?.reply || "Barbie responded, but no reply text came back.");
+      const replyText = result?.reply || "Barbie responded, but no reply text came back.";
+
+      setTypedReply(replyText);
       setTypedMessage('');
+
+      if (isTalkBackEnabled) {
+        speakBarbieReply(replyText);
+      }
     } catch (error: any) {
       console.error("callable error", error);
       setTypedError(error?.message || "Firebase Function call failed. Please try again.");
@@ -381,6 +394,57 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     if (synthRef.current) {
       synthRef.current.cancel();
       setIsBriefingSpeaking(false);
+    }
+  };
+
+  const speakBarbieReply = (text: string) => {
+    const cleanText = text.trim();
+
+    if (!cleanText) return;
+
+    if (!synthRef.current || typeof SpeechSynthesisUtterance === 'undefined') {
+      setTalkBackMessage("Talk-back is unavailable in this browser.");
+      setIsReplySpeaking(false);
+      return;
+    }
+
+    setTalkBackMessage(null);
+    synthRef.current.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    const voices = synthRef.current.getVoices();
+    const barbieVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Female')) || voices[0];
+
+    if (barbieVoice) utterance.voice = barbieVoice;
+    utterance.pitch = 1.1;
+    utterance.rate = 1.0;
+
+    utterance.onstart = () => setIsReplySpeaking(true);
+    utterance.onend = () => setIsReplySpeaking(false);
+    utterance.onerror = () => {
+      setIsReplySpeaking(false);
+      setTalkBackMessage("Talk-back could not play. You can still read Barbie's answer here.");
+    };
+
+    synthRef.current.speak(utterance);
+  };
+
+  const stopBarbieReply = () => {
+    if (synthRef.current) {
+      synthRef.current.cancel();
+    }
+
+    setIsReplySpeaking(false);
+  };
+
+  const toggleTalkBack = () => {
+    const nextEnabled = !isTalkBackEnabled;
+
+    setIsTalkBackEnabled(nextEnabled);
+    setTalkBackMessage(nextEnabled ? "Talk-back is on. Barbie can speak visible answers." : "Talk-back is off.");
+
+    if (!nextEnabled) {
+      stopBarbieReply();
     }
   };
 
@@ -696,7 +760,52 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
 
           {typedReply && (
             <div className="bg-white border border-pink-100 rounded-2xl p-4 shadow-lg text-sm font-medium text-gray-800 leading-relaxed">
-              {typedReply}
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <p className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em]">Barbie Answer</p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={toggleTalkBack}
+                    aria-pressed={isTalkBackEnabled}
+                    aria-label={isTalkBackEnabled ? 'Disable Barbie talk-back' : 'Enable Barbie talk-back'}
+                    title={isTalkBackEnabled ? 'Disable talk-back' : 'Enable talk-back'}
+                    className={`min-h-11 px-3 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-colors ${
+                      isTalkBackEnabled
+                        ? 'bg-pink-500 text-white shadow-sm shadow-pink-100 hover:bg-pink-600'
+                        : 'bg-pink-50 text-pink-500 hover:bg-pink-100'
+                    }`}
+                  >
+                    {isTalkBackEnabled ? 'Talk On' : 'Talk Off'}
+                  </button>
+                  {isReplySpeaking ? (
+                    <button
+                      type="button"
+                      onClick={stopBarbieReply}
+                      aria-label="Stop Barbie answer audio"
+                      title="Stop answer audio"
+                      className="w-11 h-11 flex items-center justify-center text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100"
+                    >
+                      <Square size={14} fill="currentColor" />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => speakBarbieReply(typedReply)}
+                      aria-label="Play Barbie answer audio"
+                      title="Play answer audio"
+                      className="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-pink-500 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors"
+                    >
+                      <Volume2 size={14} />
+                    </button>
+                  )}
+                </div>
+              </div>
+              <p aria-label="Barbie visible answer">{typedReply}</p>
+              {talkBackMessage && (
+                <p className="mt-3 text-[11px] font-bold text-pink-400 leading-relaxed">
+                  {talkBackMessage}
+                </p>
+              )}
             </div>
           )}
         </form>
