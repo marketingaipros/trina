@@ -1,5 +1,17 @@
 # Questions
 
+## Sprint 069 - Client UAT Feedback Loop
+
+| Question | Owner | Status | Notes |
+|---|---|---|---|
+| Who is the first client tester? | Owner | Open | Needed before calling UAT complete. |
+| What device/browser will the client use first? | Owner / Client | Open | Desktop Chrome, mobile Safari, or another browser should be recorded. |
+| Is typed-only usage acceptable during UAT? | Owner / Client | Open | Sprint 068 approved typed fallback internally; client expectation should be confirmed. |
+| Does the client need Barbie to speak answers out loud before wider use? | Owner / Client | Open | If yes, create a dedicated talk-back sprint. |
+| Are in-app reminders enough during UAT, or does the client require closed-app push? | Owner / Client | Open | If push is required, create a notification hardening sprint. |
+| What feedback format should the client use? | Owner | Open | Recommended: issue, expected behavior, device/browser, time, screenshot if available. |
+| Who gives final go/no-go after UAT? | Owner | Open | Required before full release. |
+
 ## Open Questions for Sprint 068
 
 | Question | Needed For | Owner / Source | Status |

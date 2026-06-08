@@ -1,5 +1,59 @@
 # Validation
 
+## Sprint 069 Client UAT Validation
+
+### Approved Client URL
+
+https://barbie-92edc.web.app/
+
+### UAT Position
+
+The app is approved for limited client return-to-use, not full production release.
+
+### Client-Tested Flows
+
+The client should validate:
+
+1. Open the app URL.
+2. Ask a typed question.
+3. Confirm Barbie answers.
+4. Create a reminder.
+5. Wait for the in-app reminder.
+6. Dismiss the reminder.
+7. Use the feedback email link if something goes wrong.
+
+### Known Follow-Ups Not Blocking UAT
+
+- Voice/mic input
+- App spoken responses
+- Browser/native push
+- iPhone/native packaging
+- Flutter/FlutterFlow migration
+
+### Feedback Format
+
+Ask the client to send:
+
+- What she tried to do
+- What happened
+- What she expected
+- Device and browser
+- Approximate time
+- Screenshot or screen recording, if possible
+
+### UAT Closeout Evidence
+
+Sprint 069 can close only when the project records:
+
+- first tester name or role
+- tested URL
+- tested device/browser
+- typed question result
+- reminder result
+- feedback path result
+- known issues found
+- recommendation for next sprint
+
 ## Sprint 068 - Customer Return-to-Use Blocker Fixes
 
 Sprint 068 must validate whether the current app can be safely returned to the client after Sprint 067 blockers are fixed or explicitly limited.
