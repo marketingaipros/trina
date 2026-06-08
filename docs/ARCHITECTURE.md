@@ -1,5 +1,26 @@
 # Architecture
 
+## Sprint 058 Architecture Focus - Auth-Gated Barbie Backend Path
+
+The current release blocker is not static rendering. The release blocker is the auth-gated Barbie backend/model path.
+
+Expected runtime flow:
+
+```text
+Browser UI
+-> typed assistant input
+-> askBarbie()
+-> ensureBarbieAuth()
+-> Firebase callable function
+-> chatWithBarbie
+-> backend/model provider
+-> Barbie response returned to browser
+```
+
+Sprint 058 must prove this path with browser and backend evidence before client UAT or mobile packaging.
+
+The app should not be considered client-ready if the UI renders but `chatWithBarbie` cannot return a real backend/model response.
+
 ## Sprint 057 Runtime Architecture Focus
 
 The currently observed app path is the Vite React web app running locally at `127.0.0.1:3000`.

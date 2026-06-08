@@ -218,4 +218,10 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-06-08 | The current local browser app must be proven through manual smoke before it can be recommended for client UAT. | Sprint 056 proved local launch but did not fully prove live browser UI workflows. | Sprint 057 must validate usable browser workflows before changing the release recommendation. |
 | 2026-06-08 | Visual launch alone is not enough for client release. | The operator visually confirmed the app renders in Chrome, but assistant/backend/model and core workflow behavior still need evidence. | Keep client rollout at `HOLD` unless assistant brain, reminder/core workflow, and voice or typed fallback behavior pass or are clearly non-blocking. |
 | 2026-06-08 | The client must not be handed the app as ready until assistant brain, reminder/core workflow, and voice or typed fallback behavior are validated or clearly documented as blocked. | Client UAT requires a usable workflow path, not only an app shell. | Sprint 057 closeout must record actual pass/blocker status and final recommendation. |
+
+## Sprint 058 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-06-07 | Web app backend/model smoke must pass before client UAT, PWA/home-screen, iOS wrapping, or FlutterFlow/native migration. | Sprint 057 proved visual render but not real Barbie backend/model response because Firebase auth blocked assistant Send. | Sprint 058 must focus on Firebase auth/backend smoke before release-path expansion. |
 | 2026-06-08 | The iPhone delivery path remains undecided until Sprint 057 compares web/PWA/wrapped/native/FlutterFlow options against the actual working app state. | Packaging decisions should follow evidence from the current app path. | Do not decide FlutterFlow/native or wrapped iPhone as final path during pack application. |

@@ -2,13 +2,61 @@
 
 ## Current Sprint
 
-Sprint 057 - Manual Browser Smoke and Release Path Decision
+Sprint 058 - Firebase Auth and Barbie Backend Smoke Unblock
 
 ## Current Status
 
-Sprint 057 is a validation and release-path decision sprint. The project remains `HOLD` for client access until manual browser smoke confirms the app is usable beyond visual launch and records whether the next client delivery path should be web app, PWA/home-screen app, wrapped iPhone app, or FlutterFlow/native.
+Sprint 057 closed as `HOLD`.
 
-No UI redesign, feature expansion, FlutterFlow rebuild or migration, production deploy, credential work, CEO Briefing file work, native builds, or iOS packaging are authorized for Sprint 057.
+The local Vite React app renders in Chrome at `http://127.0.0.1:3000/`, and local server response was proven with `HTTP/1.1 200 OK`.
+
+Client UAT remains blocked because Sprint 057 did not prove a real Barbie backend/model response. Firebase auth blocked the assistant Send path before successful `chatWithBarbie` response evidence.
+
+## Active Sprint
+
+`planning/sprints/058-firebase-auth-and-barbie-backend-smoke-unblock/`
+
+## Next Action
+
+Apply Sprint 058 planning files, then have Codex read the sprint files and summarize the implementation plan before any runtime/source changes.
+
+## Release Status
+
+`HOLD`
+
+Do not give the client the app yet. Do not package iOS. Do not start FlutterFlow/native. Prove the web auth/backend/model path first.
+
+## Sprint 058 Closeout - Firebase Auth and Barbie Backend Smoke Unblock
+
+**Status:** Validation closeout complete.
+**Final recommendation:** `HOLD`.
+
+Sprint 058 did not satisfy acceptance because Firebase Auth blocks the typed Barbie backend smoke before the callable is reached.
+
+Observed typed path:
+
+```text
+VoiceDashboard
+-> askBarbie()
+-> ensureBarbieAuth()
+-> chatWithBarbie
+```
+
+Live browser smoke confirmed the typed UI submit path is present and usable. The required typed prompt `What should I focus on today?` could be entered and submitted.
+
+The smoke failed inside `ensureBarbieAuth()`:
+
+- Firebase Anonymous Auth is disabled.
+- Google popup fallback fails because the app domain is unauthorized.
+- `chatWithBarbie` was not reached.
+- Backend/model secrets remain unproven because callable execution never happened.
+- No runtime/source changes were made.
+
+Next required operator decision:
+
+- Enable Firebase Anonymous Auth for local/UAT smoke, or
+- authorize the local/UAT OAuth domain, or
+- provide another approved tester/auth path.
 
 ## Sprint 057 - Manual Browser Smoke and Release Path Decision
 

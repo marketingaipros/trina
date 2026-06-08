@@ -1,5 +1,23 @@
 # Risks
 
+## Sprint 058 Risks - Firebase Auth and Barbie Backend Smoke Unblock
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Firebase auth blocks real Barbie response path. | High | High | Sprint 058 must identify and validate intended local/UAT auth path before client UAT. | Active |
+| UI render may be mistaken for a working AI app. | Medium | High | Require browser evidence of `askBarbie()` -> `chatWithBarbie` -> real model response. | Active |
+| Local/UAT auth fix could accidentally touch production auth settings or expose credentials. | Medium | High | Keep secrets out of docs/logs and require explicit approval for Firebase Console or credential changes. | Active |
+| Mobile packaging could hide unresolved web/backend failures. | Medium | High | No iOS wrapping, PWA, or FlutterFlow/native work until web backend smoke passes. | Active |
+
+### Sprint 058 Risk Closeout
+
+| Risk | Sprint 058 Outcome | Next Action |
+|---|---|---|
+| Firebase auth blocks real Barbie response path. | Observed. Typed submit is present and wired through `VoiceDashboard` -> `askBarbie()` -> `ensureBarbieAuth()` -> `chatWithBarbie`, but live smoke failed inside `ensureBarbieAuth()`. Anonymous Auth is disabled and Google popup fallback fails because the app domain is unauthorized. | Operator must enable Firebase Anonymous Auth for local/UAT smoke, authorize the local/UAT OAuth domain, or provide another approved tester/auth path. |
+| UI render may be mistaken for a working AI app. | Confirmed risk. The app loads and typed submit can fire, but `chatWithBarbie` was not reached and no real backend/model response was proven. | Keep release at `HOLD` until browser evidence proves callable/model response. |
+| Local/UAT auth fix could accidentally touch production auth settings or expose credentials. | Guarded. No runtime/source changes, Firebase setting edits, credential changes, deploys, or secret exposure occurred. Backend/model secrets remain unproven because callable execution never happened. | Resolve auth through explicit operator-approved settings or tester path only. |
+| Mobile packaging could hide unresolved web/backend failures. | Guarded. No FlutterFlow, native, PWA/home-screen, deploy, or CEO Briefing work occurred. | Keep mobile/release path blocked until web auth/backend smoke passes. |
+
 ## Sprint 057 Risks - Manual Browser Smoke and Release Path Decision
 
 | Risk | Likelihood | Impact | Mitigation | Status |

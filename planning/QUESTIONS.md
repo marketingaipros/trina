@@ -1,5 +1,25 @@
 # Questions
 
+## Sprint 058 Open Questions
+
+- What is the intended local/UAT auth path: anonymous auth, Google auth, emulator auth, or another provider?
+- Should local validation use `127.0.0.1`, `localhost`, or a configured UAT domain?
+- Is Firebase Anonymous sign-in supposed to be enabled for this app?
+- Should `127.0.0.1` and/or `localhost` be authorized for OAuth during local validation?
+- Are backend/model credentials already configured in the target Firebase/functions environment?
+- Does reminder/core workflow require backend persistence before client UAT, or is local task capture acceptable for first test?
+
+### Sprint 058 Validation Answers
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| What is the intended local/UAT auth path: anonymous auth, Google auth, emulator auth, or another provider? | Operator | Before next backend smoke | Open / Blocked | Sprint 058 proved the current path fails inside `ensureBarbieAuth()`. Operator must choose Anonymous Auth, authorized OAuth domain, or another approved tester/auth path. |
+| Should local validation use `127.0.0.1`, `localhost`, or a configured UAT domain? | Operator | Before next backend smoke | Open / Blocked | Google popup fallback failed because the app domain is unauthorized for the current local flow. |
+| Is Firebase Anonymous sign-in supposed to be enabled for this app? | Operator | Before next backend smoke | Open / Blocked | Anonymous Auth is disabled and blocked typed Barbie backend smoke before callable execution. |
+| Should `127.0.0.1` and/or `localhost` be authorized for OAuth during local validation? | Operator | Before next backend smoke | Open / Blocked | OAuth/local domain authorization is required if Google popup remains the local/UAT auth path. |
+| Are backend/model credentials already configured in the target Firebase/functions environment? | Operator | Before UAT candidate | Unproven | `chatWithBarbie` was not reached, so backend/model secrets remain unproven. Do not expose or inspect secret values in repo files. |
+| Does reminder/core workflow require backend persistence before client UAT, or is local task capture acceptable for first test? | Operator / Architect | Before UAT candidate | Open | Sprint 058 only proved typed UI submit exists; backend reminder/core workflow remains unproven because auth blocked callable execution. |
+
 ## Sprint 057 Open Questions
 
 | Question | Owner | Needed By | Status | Answer / Notes |

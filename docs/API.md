@@ -1,5 +1,21 @@
 # API
 
+## Sprint 058 API Focus - `chatWithBarbie`
+
+`chatWithBarbie` is the critical backend callable path for proving Barbie has a working brain/model connection.
+
+Sprint 058 must document:
+
+- frontend caller for `askBarbie()`
+- auth prerequisite in `ensureBarbieAuth()`
+- Firebase callable/function name and region, if applicable
+- required auth provider for local/UAT
+- request shape, if discoverable
+- response shape, if discoverable
+- observed success or failure evidence
+
+No mocked response should be documented as API success.
+
 ## Sprint 057 API Validation Focus
 
 Sprint 057 must manually validate or document blockers for the assistant request path:

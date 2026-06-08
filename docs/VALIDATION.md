@@ -1,5 +1,88 @@
 # Validation Plan
 
+## Sprint 058 Validation - Firebase Auth and Barbie Backend Smoke
+
+Sprint 058 validates whether the local/UAT web app can produce a real Barbie backend/model response.
+
+Required validation commands:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+node --check functions/index.js
+npm run lint
+npm run build
+npm run dev -- --host 127.0.0.1
+curl -I http://127.0.0.1:3000/
+```
+
+Required browser smoke:
+
+1. Load `http://127.0.0.1:3000/` in Chrome.
+2. Open console/network evidence.
+3. Enter `What should I focus on today?`.
+4. Send through the Barbie assistant path.
+5. Verify auth succeeds or document exact blocker.
+6. Verify callable/backend reaches `chatWithBarbie`.
+7. Verify real backend/model response appears in UI.
+8. Validate typed fallback.
+9. Document mic/voice separately.
+
+Passing static build validation is not enough. Sprint 058 only passes release-readiness smoke if the real backend/model response path works.
+
+### Sprint 058 Validation Results
+
+Date: 2026-06-08
+
+Commands run:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+node --check functions/index.js
+npm run lint
+npm run build
+npm run dev -- --host 127.0.0.1
+curl -I http://127.0.0.1:3000/
+```
+
+Command results:
+
+- `git status --branch --short`: run and recorded.
+- `git diff --check`: pass.
+- CEO Briefing absence guard: pass.
+- `node --check functions/index.js`: pass.
+- `npm run lint`: pass.
+- `npm run build`: pass with accepted Vite warnings:
+  - `services/authService.ts` mixed static/dynamic import chunk warning.
+  - Large JavaScript chunk warning.
+- Local dev server: pass; app served at `http://127.0.0.1:3000/`.
+- `curl -I http://127.0.0.1:3000/`: pass; returned `HTTP/1.1 200 OK`.
+
+Browser/backend smoke:
+
+| Area | Result | Evidence |
+|---|---|---|
+| Chrome app load | Pass | Local Vite React app loaded at `http://127.0.0.1:3000/`. |
+| Typed UI submit | Pass | `What should I focus on today?` could be entered and submitted. |
+| Runtime path wiring | Confirmed by inspection | `VoiceDashboard` -> `askBarbie()` -> `ensureBarbieAuth()` -> `chatWithBarbie`. |
+| Auth step | Fail / blocked | Live smoke failed inside `ensureBarbieAuth()`. Anonymous Auth is disabled. |
+| Google popup fallback | Fail / blocked | Firebase Auth reported the app domain is unauthorized. |
+| `chatWithBarbie` callable | Not reached | Auth failed before callable execution. |
+| Backend/model response | Not proven | No real backend/model response appeared because `chatWithBarbie` was not reached. |
+| Backend/model secrets | Unproven | Callable execution never happened, so secret-backed model path was not exercised. |
+| Runtime/source changes | None | No runtime/source files were changed. |
+
+Final recommendation:
+
+```text
+HOLD
+```
+
+Sprint 058 does not satisfy acceptance. Next required operator decision: enable Firebase Anonymous Auth for local/UAT smoke, authorize the local/UAT OAuth domain, or provide another approved tester/auth path.
+
 ## Sprint 057 Manual Browser Smoke Checklist
 
 Run baseline validation:
