@@ -1,6 +1,6 @@
 # Sprint 069 Acceptance - Client UAT Feedback Loop
 
-Sprint 069 is complete only when all required docs/planning files are updated and the project is ready for structured client UAT.
+Sprint 069 is complete because required docs/planning files are updated and first limited client UAT feedback was received.
 
 ## Acceptance Criteria
 
@@ -29,13 +29,21 @@ Sprint 069 must end with one of:
 - `PASS - client UAT started and feedback loop established`
 - `HOLD - client UAT blocked`
 
-Current status after start gate:
+Final status:
 
 ```text
-ACTIVE - UAT feedback loop started; client closeout evidence not yet recorded.
+PASS - client UAT started and feedback loop established.
 ```
 
-Do not mark Sprint 069 as `PASS` until actual client UAT evidence records the first tester, tested URL, tested device/browser, typed question result, reminder result, feedback path result, known issues, and next sprint recommendation.
+Exact UAT evidence received:
+
+```text
+All on the list is working.
+```
+
+No blocking issue was reported from the approved checklist.
+
+Sprint 069 does not validate talk-back voice response, closed-app push notifications, mobile/native packaging, or the FlutterFlow/native app path. Those remain future items if still desired.
 
 ## Required Closeout Report
 

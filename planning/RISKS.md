@@ -10,11 +10,11 @@
 | Reminder proof covers in-app due reminders, not browser/native push. | Medium | High | Use in-app reminders for Sprint 069 UAT; keep browser/native push as follow-up until proven. | Follow-up |
 | Mic/voice is blocked by permission. | High | Medium | Use typed fallback for Sprint 069 UAT; keep voice permission/reliability as follow-up. | Follow-up |
 | Feedback path is minimal email-only guidance. | Medium | Medium | Use `learnandgrowcc@gmail.com` and ask for structured feedback details during Sprint 069 UAT. | Follow-up |
-| Sprint may expand into redesign, Flutter migration, or native packaging. | Medium | High | Keep Sprint 069 limited to client UAT planning and feedback-loop tracking. | Active |
-| Client may expect voice input to work immediately. | High | Medium | UAT instructions must state typed questions are the approved path for now. Voice is follow-up. | Active |
-| Client may expect the app to speak answers out loud. | Medium | Medium | Record talk-back/text-to-speech as a future sprint, separate from UAT. | Active |
-| Client may expect reminders to notify when the app is closed. | Medium | High | UAT instructions must say reminders are validated as in-app reminders for now. Browser/native push remains follow-up. | Active |
-| Client feedback may arrive through email without structured details. | Medium | Medium | Provide a simple feedback format: what happened, what she expected, device/browser, time, screenshot if possible. | Active |
+| Sprint may expand into redesign, Flutter migration, or native packaging. | Medium | High | Sprint 069 closed from limited UAT feedback only; keep future packaging or migration in separate sprints. | Follow-up |
+| Client may expect voice input to work immediately. | High | Medium | UAT checklist passed for typed usage; voice remains follow-up if desired. | Follow-up |
+| Client may expect the app to speak answers out loud. | Medium | Medium | Talk-back/text-to-speech was not validated in Sprint 069; record as a future sprint if still desired. | Follow-up |
+| Client may expect reminders to notify when the app is closed. | Medium | High | Sprint 069 validated in-app reminder behavior only; browser/native push remains follow-up if desired. | Follow-up |
+| Client feedback may arrive through email without structured details. | Medium | Medium | Sprint 069 feedback was sufficient for first limited UAT closeout; use structured details for future issue reports. | Follow-up |
 | Sprint 064 untracked files could be accidentally staged in later commits. | Medium | Medium | Builder must explicitly avoid staging Sprint 064 files unless separately approved. | Active |
 
 ## Risk Control Rule

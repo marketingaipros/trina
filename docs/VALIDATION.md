@@ -34,7 +34,33 @@ Builder start-gate review completed against:
 - `planning/sprints/069-client-uat-feedback-loop/acceptance.md`
 - `planning/sprints/069-client-uat-feedback-loop/handoff-prompt.md`
 
-No client UAT closeout evidence has been recorded yet.
+Client UAT closeout evidence was later recorded from the approved checklist.
+
+### Sprint 069 UAT Closeout Result
+
+Date: 2026-06-08
+
+Final status:
+
+```text
+PASS - client UAT started and feedback loop established.
+```
+
+Exact UAT evidence received:
+
+```text
+All on the list is working.
+```
+
+Interpretation:
+
+- App opened successfully.
+- Typed question returned an answer.
+- In-app reminder could be created.
+- Reminder appeared in the app.
+- Reminder could be dismissed.
+- Feedback loop was usable enough for first limited UAT.
+- No blocking issue was reported from the approved checklist.
 
 ### Client-Tested Flows
 
@@ -84,13 +110,20 @@ Sprint 069 can close only when the project records:
 
 | Evidence Item | Status | Notes |
 |---|---|---|
-| First client tester | Open | Required before Sprint 069 can close as `PASS`. |
-| First device/browser | Open | Required before Sprint 069 can close as `PASS`. |
-| Typed-only acceptance | Open | Client expectation needs confirmation. |
-| Talk-back need | Open | If required, create a future text-to-speech sprint. |
-| In-app reminder vs closed-app push expectation | Open | If closed-app push is required, create a future notification hardening sprint. |
-| Feedback format | Open | Recommended format exists, but owner/client confirmation is still needed. |
-| Final go/no-go approver | Open | Required before broader release. |
+| First client tester | Recorded for Sprint 069 | Client feedback was received for the approved first limited UAT checklist. |
+| First device/browser | Recorded for Sprint 069 | First test was requested from a computer browser; exact browser name was not separately recorded. |
+| Typed-only acceptance | Passed for Sprint 069 | Checklist included typed question/answer; client reported: `All on the list is working.` |
+| Talk-back need | Future item if desired | Talk-back voice response was not validated. |
+| In-app reminder vs closed-app push expectation | Passed for in-app reminders | Closed-app push was not validated and remains a future item if desired. |
+| Feedback format | Passed for Sprint 069 | Feedback loop was usable enough for first limited UAT. |
+| Final go/no-go approver | Recorded for Sprint 069 | Owner directed Sprint 069 closeout as PASS based on client UAT feedback. |
+
+### Future Items Not Validated By Sprint 069
+
+- Talk-back voice response, if still desired.
+- Closed-app push notifications, if still desired.
+- Mobile/native packaging.
+- FlutterFlow/native app path.
 
 ## Sprint 068 - Customer Return-to-Use Blocker Fixes
 

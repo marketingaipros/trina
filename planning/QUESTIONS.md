@@ -4,13 +4,13 @@
 
 | Question | Owner | Status | Notes |
 |---|---|---|---|
-| Who is the first client tester? | Owner | Open | Still required for Sprint 069 closeout; no tester name or role has been recorded yet. |
-| What device/browser will the client use first? | Owner / Client | Open | Still required for Sprint 069 closeout; record desktop Chrome, mobile Safari, or another tested browser. |
-| Is typed-only usage acceptable during UAT? | Owner / Client | Open | Sprint 068 approved typed fallback internally; client expectation still needs confirmation during UAT. |
-| Does the client need Barbie to speak answers out loud before wider use? | Owner / Client | Open | Still unconfirmed; if yes, create a dedicated talk-back sprint. |
-| Are in-app reminders enough during UAT, or does the client require closed-app push? | Owner / Client | Open | Still unconfirmed; if push is required, create a notification hardening sprint. |
-| What feedback format should the client use? | Owner | Open | Recommended start format: issue, expected behavior, device/browser, time, screenshot if available; final owner-approved format still needs confirmation. |
-| Who gives final go/no-go after UAT? | Owner | Open | Still required before full release; Sprint 069 remains active until this is recorded or explicitly deferred. |
+| Who is the first client tester? | Owner | Resolved for Sprint 069 | Client feedback was received for the approved first limited UAT checklist. |
+| What device/browser will the client use first? | Owner / Client | Resolved for Sprint 069 | First test was requested from a computer browser; exact browser name was not separately recorded. |
+| Is typed-only usage acceptable during UAT? | Owner / Client | Resolved for Sprint 069 | Checklist included typing a question and getting an answer; client reported: `All on the list is working.` |
+| Does the client need Barbie to speak answers out loud before wider use? | Owner / Client | Future item if desired | No blocker was reported from the checklist; talk-back voice response was not validated. |
+| Are in-app reminders enough during UAT, or does the client require closed-app push? | Owner / Client | Resolved for Sprint 069 | In-app reminder checklist passed; closed-app push was not validated and remains a future item if desired. |
+| What feedback format should the client use? | Owner | Resolved for Sprint 069 | Feedback loop was usable enough for first limited UAT; exact feedback received: `All on the list is working.` |
+| Who gives final go/no-go after UAT? | Owner | Resolved for Sprint 069 | Owner directed Sprint 069 closeout as PASS based on client UAT feedback. |
 
 ## Sprint 069 Start-Gate Evidence
 
@@ -20,7 +20,7 @@
 | UAT position | Recorded | Limited client return-to-use, not full production release. |
 | Allowed current use | Recorded | Typed questions, Barbie/model answers, in-app reminders, reminder dismiss, and feedback email link. |
 | Not blocking UAT | Recorded | Voice/mic input, app spoken responses, browser/native push, iPhone/native packaging, and Flutter/FlutterFlow migration remain follow-ups. |
-| Client UAT closeout evidence | Missing | First tester, device/browser, typed question result, reminder result, feedback path result, known issues, and next sprint recommendation are not yet recorded. |
+| Client UAT closeout evidence | Recorded | Exact feedback received: `All on the list is working.` No blocker was reported from the approved checklist. |
 
 ## Open Questions for Sprint 068
 

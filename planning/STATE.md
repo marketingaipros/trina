@@ -6,7 +6,7 @@ Sprint 069 - Client UAT Feedback Loop
 
 ## Current Status
 
-`APPROVE - Current web app is approved for limited client return-to-use.`
+`PASS - client UAT started and feedback loop established.`
 
 Sprint 068 deployed the current build to Firebase Hosting and validated the approved customer URL:
 
@@ -16,7 +16,7 @@ The client may use the app for typed questions, Barbie/model answers, in-app rem
 
 ## Active Scope
 
-Sprint 069 prepares and tracks limited client UAT. The purpose is to confirm real client use, collect feedback, and convert remaining issues into future sprints.
+Sprint 069 prepared and tracked limited client UAT. The approved checklist produced a passing client response with no blocker reported.
 
 ## Sprint 069 Start-Gate Evidence
 
@@ -40,7 +40,27 @@ The current approved client UAT URL remains:
 
 https://barbie-92edc.web.app/
 
-Sprint 069 must remain active until real UAT evidence records the first tester, tested device/browser, typed question result, reminder result, feedback path result, known issues, and recommended next sprint.
+Sprint 069 closeout evidence was recorded from client feedback after the start gate.
+
+## Sprint 069 Closeout Evidence
+
+Final status: `PASS - client UAT started and feedback loop established.`
+
+Client feedback received:
+
+```text
+All on the list is working.
+```
+
+Interpretation:
+
+- App opened successfully.
+- Typed question returned an answer.
+- In-app reminder could be created.
+- Reminder appeared in the app.
+- Reminder could be dismissed.
+- Feedback loop was usable enough for first limited UAT.
+- No blocking issue was reported from the approved checklist.
 
 ## Not In Current Scope
 
@@ -53,7 +73,7 @@ Sprint 069 must remain active until real UAT evidence records the first tester, 
 
 ## Next Action
 
-Send the approved URL and UAT instructions to the first tester, collect the required UAT evidence, and update the Sprint 069 validation record before closeout.
+Plan the next sprint from any owner/client priority among talk-back voice response, closed-app push notifications, mobile/native packaging, and FlutterFlow/native app path.
 
 ## Known Follow-Ups
 
