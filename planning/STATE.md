@@ -41,6 +41,39 @@ Sprint 056 is not a rebuild sprint. It should confirm:
 
 Keep client rollout at `HOLD` until Sprint 056 internal validation is executed and recorded. If the current app/backend path passes, promote the recommendation to `CLIENT UAT CANDIDATE` without redesigning or rebuilding the app.
 
+### Sprint 056 Validation Closeout
+
+**Status:** Validation-only closeout completed with static validation and partial internal smoke.
+**Final recommendation:** `HOLD`.
+
+Validation passed:
+
+- `git status --branch --short` showed the repo clean before validation.
+- `git diff --check` passed.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png` passed.
+- `node --check functions/index.js` passed.
+- `npm run lint` passed.
+- `npm run build` passed with only the previously accepted watch-only Vite warnings for `services/authService.ts` mixed import chunking and large JS chunk size.
+- `npm run dev -- --host 127.0.0.1` started the local app at `http://127.0.0.1:3000/`.
+- `curl -I http://127.0.0.1:3000/` returned `HTTP/1.1 200 OK`.
+- `curl http://127.0.0.1:3000/` returned the Vite HTML shell with title `Barbie - Executive Assistant` and root mount.
+
+Smoke results:
+
+- App launch: `Pass by local HTTP smoke`; Vite served the app shell locally.
+- Auth/session: `Documented by code inspection only`; `ensureBarbieAuth()` uses current Firebase Auth user, anonymous sign-in, and Google popup fallback when allowed.
+- Typed assistant/backend: `Documented by code inspection only`; `VoiceDashboard` calls `askBarbie(cleanMessage)`, and `askBarbie()` calls Firebase callable `chatWithBarbie`.
+- Reminder/core workflow: `Documented by code inspection only`; `chatWithBarbie` parses reminder intent and writes reminder documents to `notifications`, with optional event creation.
+- Voice/fallback: `Documented by code inspection only`; browser speech recognition creates transcript text when supported, while the typed path remains the fallback.
+
+Blocking issue for UAT candidate:
+
+- Live browser interaction with the app UI could not be completed in this Codex environment because available browser automation could not reliably focus/navigate the Chrome local-app tab, and Playwright was not available in the Node REPL runtime. No runtime/source defect was confirmed.
+
+Next smallest safe step:
+
+- Run the same Sprint 056 smoke manually or with an approved browser automation environment that can operate the local app tab, then record auth/session, typed assistant, reminder/core workflow, and voice/fallback outcomes before promoting to `CLIENT UAT CANDIDATE`.
+
 ## Previous Sprint Context
 
 Sprint 055 is a docs/planning and repo-inspection sprint only. It preserves the Sprint 054 release source-of-truth gate and keeps the release recommendation at `HOLD` until the active source, backend integration path, and UAT validation path are confirmed by repo evidence or operator approval.

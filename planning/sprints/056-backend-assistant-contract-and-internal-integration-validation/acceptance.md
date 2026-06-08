@@ -112,3 +112,44 @@ Closeout must include:
 8. Validation commands and results.
 9. CEO Briefing absence confirmation.
 10. Final recommendation: `HOLD` or `CLIENT UAT CANDIDATE`.
+
+## Sprint 056 Validation Closeout
+
+Date: 2026-06-08
+
+### Validation Commands
+
+| Command | Result |
+|---|---|
+| `git status --branch --short` | Pass; repo was clean before validation. |
+| `git diff --check` | Pass. |
+| `test ! -f references/flutterflow/sprint-009/ceo-briefing.png` | Pass; CEO Briefing PNG remains absent. |
+| `node --check functions/index.js` | Pass. |
+| `npm run lint` | Pass. |
+| `npm run build` | Pass with only previously accepted watch-only Vite warnings. |
+| `npm run dev -- --host 127.0.0.1` | Pass; Vite served `http://127.0.0.1:3000/`. |
+| `curl -sS -I http://127.0.0.1:3000/` | Pass; returned `HTTP/1.1 200 OK`. |
+
+Accepted build warnings:
+
+- `services/authService.ts` mixed static/dynamic import chunk-placement warning.
+- Large JavaScript chunk warning.
+
+### Internal Smoke Results
+
+| Area | Result | Notes |
+|---|---|---|
+| App launch | Pass by local HTTP smoke | Vite local server responded successfully and returned the app HTML shell. |
+| Auth/session | Documented by code inspection only | `ensureBarbieAuth()` provides existing-session, anonymous, and Google popup paths. |
+| Typed assistant/backend | Documented by code inspection only | `VoiceDashboard` calls `askBarbie()`, which calls Firebase callable `chatWithBarbie`. |
+| Reminder/core workflow | Documented by code inspection only | `chatWithBarbie` parses reminder intent and writes to `notifications`, with optional event creation. |
+| Voice/fallback | Documented by code inspection only | Browser speech recognition creates transcript text when available; typed input remains fallback. |
+| Live UI operation | Blocked by tooling | Chrome automation could not reliably focus/navigate the local app tab, and Playwright was unavailable. |
+
+### Final Recommendation
+
+```text
+HOLD
+```
+
+Sprint 056 did not confirm enough live UI evidence to promote to `CLIENT UAT CANDIDATE`. No runtime/source defect was confirmed. The smallest safe next step is a manual or browser-capable internal smoke pass against the same current app path.

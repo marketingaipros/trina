@@ -99,6 +99,21 @@ Sprint 056 should record each smoke result using this structure:
 
 Do not commit real credentials, tokens, passwords, private keys, service-account files, or client secrets.
 
+### Sprint 056 Contract Validation Outcome
+
+The current contract remains unchanged after validation:
+
+- Frontend caller: `components/VoiceDashboard.tsx`.
+- Assistant service: `src/lib/barbieAI.js`.
+- Backend callable: `chatWithBarbie`.
+- Request shape: `{ "message": "string" }`.
+- General success response: `{ "reply": "string" }`.
+- Reminder success response: `{ "reply": "string", "notificationId": "string", "eventId": "string | null" }`.
+- Auth requirement: Firebase Auth user is required by the backend callable.
+- Voice contract: browser transcript capture plus typed fallback, not native audio upload.
+
+Live UI contract execution was not fully proven in Sprint 056 because browser automation could not complete the local app interaction in this environment. The contract remains the correct path to validate in the next manual or browser-capable smoke pass.
+
 ## Sprint 055 Runtime / Backend Integration Notes
 
 Sprint 055 does not add or change application APIs. It reconciles the existing and missing integration contracts before backend implementation work.

@@ -11,6 +11,7 @@
 | Browser voice capture is mistaken for native/mobile voice readiness. | High | Medium | Validate current browser transcript behavior and typed fallback only; require separate approval for native voice validation. | Open |
 | Validation docs accidentally expose credentials, tokens, or client passwords. | Low | High | Use placeholders only and keep all secrets outside tracked files. | Open |
 | A production deploy or native build is run while trying to validate access. | Low | High | Keep deploy/native commands forbidden unless explicitly approved. | Open |
+| Local launch passes but live UI assistant smoke remains unproven because browser automation cannot operate the app tab. | Medium | High | Keep recommendation `HOLD` and require manual or browser-capable internal smoke before client UAT candidate. | Open - observed in Sprint 056. |
 
 ## Sprint 055 Risks - Runtime Source Reconciliation and Backend Integration Plan
 
