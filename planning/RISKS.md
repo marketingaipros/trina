@@ -1,5 +1,19 @@
 # Risks
 
+## Sprint 067 Risks - Customer Return-to-Use Proof
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Customer return-to-use could be approved from local-only evidence. | Medium | High | Require exact customer URL/path and deployed-version match before any approval. | Active |
+| The deployed app may not match the current repo behavior proven locally. | Medium | High | Sprint 067 found deployed asset fingerprints differ from local `dist`; require deploy/version alignment or owner-accepted version evidence before approval. | Active - observed |
+| Login/access posture could block the client or remain unsafe/ambiguous. | Medium | High | Sprint 067 proved anonymous/cloud access in the test profile only; record owner-approved UAT access separately from unresolved production auth posture. | Active - partial proof |
+| Reminder notification behavior could be assumed from local in-app reminders. | Medium | Medium | Sprint 067 proved in-app due reminder on deployed path, but browser/native notification permission was denied; classify push as blocker, deferral, or watch-only before handoff. | Active - partial proof |
+| Voice input may remain browser/device dependent. | Medium | Medium | Sprint 067 mic click produced permission denial; require a real client-device voice pass or owner-approved typed-fallback decision. | Active - observed |
+| Feedback path could be missing when the customer resumes use. | High | Medium | Sprint 067 did not find a visible deployed feedback path or owner-approved feedback channel; require one before approval. | Active - observed |
+| First tester or owner/go-live approval could remain undocumented. | Medium | High | Sprint 067 found both still missing; record first tester and owner approval before any `APPROVE` recommendation. | Active - observed |
+| Proof sprint could drift into runtime, deploy, Firebase, FlutterFlow, native, credential, `docs/API.md`, or CEO Briefing work. | Low | High | Keep applied pack docs/planning only and require separate explicit approval for implementation/config changes. | Active |
+| Sprint 064 untracked files could be accidentally swept into this sprint. | Low | Medium | Leave Sprint 064 untracked pack/folder untouched and report them separately in `git status`. | Active |
+
 ## Sprint 066 Risks - Return-to-Use Release Gate
 
 | Risk | Likelihood | Impact | Mitigation | Status |

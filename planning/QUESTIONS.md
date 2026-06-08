@@ -1,5 +1,19 @@
 # Questions
 
+## Sprint 067 Open Questions
+
+| Question | Why it matters | Status |
+|---|---|---|
+| What exact customer URL/path should be tested for return-to-use? | Client access cannot resume without a proven customer-accessible surface. | Answered for proof: `https://barbie-92edc.web.app/`; `https://barbie-92edc.firebaseapp.com/` also returns `HTTP/2 200`. Owner-approved handoff URL still needed. |
+| Does the deployed/customer path match the intended current repo behavior? | Local proof is not enough for customer return-to-use. | Blocked: deployed HTML references `index-D7N8pcgM.js` / `index-jzssNT7p.css`; local `dist` references `index-CaS41pG9.js` / `index-DjT4yD5I.css`. |
+| What login/access path should the customer use? | UAT access posture must be clear and separate from production auth approval. | Partially answered: test profile connected to cloud anonymous UID; owner-approved UAT and production auth posture remain open. |
+| Does typed question answering work through the real customer path? | The core customer job requires real backend/model answers. | Answered / Pass: deployed UI submitted `What should I focus on today?` and displayed a Barbie answer. |
+| Can the customer create reminders/events through the real customer path? | Reminder creation is a core return-to-use job. | Answered / Pass for reminders: deployed UI accepted `Remind me in 1 minute to check the door` and confirmed it. Calendar event creation remains untested. |
+| What due reminder notification behavior works for the customer path? | Notification behavior must be proven, blocked, or explicitly accepted as a limitation. | Partial pass: in-app due reminder appeared with dismiss/snooze; browser/native push remains blocked/unproven because notification permission was denied. |
+| Does live voice input work, or is typed fallback the approved path? | Voice is part of the current app promise but may be browser/device dependent. | Blocked: speech recognition exists, but mic click produced permission denial. Owner must approve typed fallback or provide a client-device voice proof path. |
+| What feedback path should the customer use during return-to-use? | Problems need one clear capture channel before handoff. | Blocked: no visible deployed feedback path or owner-approved feedback channel confirmed. |
+| Who is the first tester and who approves customer return-to-use? | Approval cannot be inferred from validation alone. | Blocked: first tester and owner/go-live approval are not recorded. |
+
 ## Sprint 066 Open Questions
 
 | Question | Why it matters | Status |

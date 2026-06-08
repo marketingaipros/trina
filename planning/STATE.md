@@ -2,47 +2,77 @@
 
 ## Current Sprint
 
-Sprint 066 - Return-to-Use Release Gate
+Sprint 067 - Customer Return-to-Use Proof
 
 ## Current Status
 
 `HOLD - Client UAT / V1 Beta not approved`
 
-Sprint 066 is the active return-to-use release gate. It is docs/planning only and does not approve Client UAT, V1 Beta, production release, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, `docs/API.md` edits, or CEO Briefing work.
+Sprint 067 is the active customer return-to-use proof sprint. It exists to prove whether the current app can safely be given back to the client for opening the app, asking questions, receiving useful backend/model answers, creating reminders/events, receiving due reminder notification behavior, using voice input if available, and reporting problems through a clear feedback path.
 
-Sprint 065 completed the local current app intent-routing pass. That evidence remains useful because it shows the current app can answer normal typed questions, keep normal asks out of Task Tracker, separate explicit task capture, and create/show in-app due reminders locally. It is still insufficient for client release because the customer URL/current deployed version is not proven to match the current repo UI, feedback path is not confirmed, customer auth/access posture is unresolved, browser/native push notification delivery is unproven, live voice input is not proven, first tester and owner approver are not confirmed, and deploy/config need is unknown.
+Sprint 067 setup is docs/planning only. It does not approve Client UAT, V1 Beta, production release, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, `docs/API.md` edits, or CEO Briefing work.
+
+Sprint 067 proof found the deployed customer candidate URL is reachable and can perform the strongest core web path: typed question answering through `chatWithBarbie` and in-app due reminder delivery. It still closes as `HOLD - fix only the blockers preventing return-to-use` because the deployed app does not match the current local `dist` fingerprint, browser/native push notification delivery is blocked by denied notification permission in the test profile, live voice input is blocked by microphone permission denial in the test profile, no customer feedback path is confirmed, first tester is not recorded, and owner/go-live approval is not recorded.
 
 Client UAT / V1 Beta remains not approved until all release-control blockers are resolved in project files and owner approval is recorded.
 
 ## Active Sprint
 
-`planning/sprints/066-return-to-use-release-gate/`
+`planning/sprints/067-customer-return-to-use-proof/`
 
 ## Next Action
 
-Collect the missing release-control inputs for customer access, feedback, notification status, auth/access, deployed-version match, and owner approval before any client handoff. If resolution requires runtime/source, deploy, Firebase, FlutterFlow, native, credential, `docs/API.md`, or CEO Briefing changes, open a separate explicitly approved implementation sprint.
+Fix only the blockers preventing return-to-use, or collect owner-approved deferrals for the blocked items, before any client handoff. Required remaining items are deployed-version alignment or owner acceptance, feedback path, browser/native notification posture, live voice or typed-fallback approval, first tester, and owner/go-live approval. If resolution requires runtime/source, deploy, Firebase, FlutterFlow, native, credential, `docs/API.md`, or CEO Briefing changes, open a separate explicitly approved implementation sprint.
 
 ## Blockers
 
-- Customer URL/current deployed version not proven. `https://barbie-92edc.web.app/` returns `HTTP/2 200`, but the deployed version has not been proven to match the current repo UI.
-- Feedback path not confirmed.
-- Browser/native push notification delivery unproven; the local browser validation surface reported Notification API unsupported.
-- Live voice input not proven; Sprint 065 live voice transcript smoke was blocked by browser microphone permission denial.
-- Customer auth/access posture unresolved.
-- UAT surface/link/path is not yet confirmed in project files.
+- Deployed-version match is not proven. `https://barbie-92edc.web.app/` and `https://barbie-92edc.firebaseapp.com/` return `HTTP/2 200`, but deployed HTML references `./assets/index-D7N8pcgM.js` and `./assets/index-jzssNT7p.css`, while local `dist/index.html` references `./assets/index-CaS41pG9.js` and `./assets/index-DjT4yD5I.css`.
+- Feedback path not confirmed. The rendered deployed UI did not expose a visible feedback control, and no owner-approved feedback channel is recorded in project files.
+- Browser/native push notification delivery is blocked/unproven. In-app due reminder passed, but Chrome proof profile reported `Notification.permission` as `denied`.
+- Live voice input is blocked/unproven. The deployed app exposes speech recognition, but the mic click produced visible copy `MICROPHONE PERMISSION WAS DENIED. PLEASE ENABLE IT IN BROWSER SETTINGS.` and console `recognition error NotAllowedError: Permission denied`.
+- Customer auth/access posture is partially proven for anonymous/cloud access in the test profile but not owner-approved for UAT or production.
+- UAT surface/link/path has a tested candidate URL, but it is not owner-approved for client handoff.
 - First tester is not yet confirmed.
 - Feedback channel is not yet confirmed.
-- Notification status is not yet classified.
+- Notification status is not owner-classified as required, deferred, or watch-only.
 - Owner approver / V1 Beta approver is not yet confirmed.
 - Production auth posture remains unresolved beyond anonymous-auth smoke/UAT evidence.
-- Any deploy/config action needed to expose the already-proven backend/model path is still unknown.
+- Deploy/config action may be needed because the deployed asset fingerprint does not match local `dist`.
 - Owner approval for Client UAT / V1 Beta is not recorded.
 
 ## Release Status
 
-`SPRINT 066 HOLD - CLIENT UAT / V1 BETA NOT APPROVED`
+`SPRINT 067 HOLD - CLIENT UAT / V1 BETA NOT APPROVED`
 
 Do not deploy, change Firebase settings, package iOS/native, start FlutterFlow migration, approve Client UAT, approve V1 Beta, modify credentials, modify `docs/API.md`, touch CEO Briefing files, or treat this as final release without explicit approval.
+
+## Sprint 067 Proof Results
+
+**Final recommendation:** `HOLD - fix only the blockers preventing return-to-use`.
+
+Evidence recorded on 2026-06-08:
+
+- Customer URL/path: `https://barbie-92edc.web.app/` tested and returned `HTTP/2 200`; `https://barbie-92edc.firebaseapp.com/` also returned `HTTP/2 200`.
+- Deployed app match: blocked. Deployed asset names differ from local `dist` asset names.
+- Access/login: partial pass for test profile. Deployed app rendered and console logged `Cloud connected, UID: ...`; Google Identity Services still logged as not loaded.
+- Typed question path: pass. `What should I focus on today?` submitted through deployed UI.
+- Backend/model answer path: pass. Network showed `https://us-central1-barbie-92edc.cloudfunctions.net/chatWithBarbie` returned `200`, console logged callable success, and the UI displayed a non-mocked Barbie answer.
+- Reminder/event creation: pass for reminder creation. `Remind me in 1 minute to check the door` returned `Got it. I'll remind you in 1 minute.`
+- Due reminder behavior: pass for in-app due reminder. The UI showed `REMINDER`, `check the door`, `DISMISS`, and `SNOOZE 5 MINUTES`.
+- Voice input: blocked/unproven. Speech recognition exists, but microphone permission was denied in the proof profile.
+- Feedback path: blocked. No visible deployed feedback path or owner-approved feedback channel was confirmed.
+- First tester: blocked. Not recorded.
+- Owner/go-live approval: blocked. Not recorded.
+
+## Previous Sprint
+
+Sprint 066 - Return-to-Use Release Gate
+
+## Previous Status
+
+`HOLD - Client UAT / V1 Beta not approved`
+
+Sprint 066 is the prior return-to-use release gate. It was docs/planning only and did not approve Client UAT, V1 Beta, production release, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, `docs/API.md` edits, or CEO Briefing work.
 
 ## Previous Sprint
 

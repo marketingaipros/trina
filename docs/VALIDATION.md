@@ -1,5 +1,101 @@
 # Validation Plan
 
+## Sprint 067 - Customer Return-to-Use Proof
+
+Sprint 067 is a customer return-to-use proof sprint. The applied pack is docs/planning-only and does not approve Client UAT, V1 Beta, production release, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, `docs/API.md` edits, or CEO Briefing work.
+
+Required setup validation commands:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Required proof evidence before any customer return-to-use approval:
+
+- Exact customer URL/path tested.
+- Whether deployed app matches intended current repo behavior.
+- Login/access result.
+- Typed question result through real backend/model path.
+- Reminder creation result through customer path.
+- Due reminder notification result or exact limitation.
+- Voice input result, or typed fallback/blocker status.
+- Feedback path result.
+- First tester and owner/go-live approval status.
+
+Sprint 067 closeout recommendation must be exactly one:
+
+```text
+APPROVE - give current app back to client
+HOLD - fix only the blockers preventing return-to-use
+```
+
+### Sprint 067 Applied-Pack Validation Result
+
+Date: 2026-06-08
+
+Result classification:
+
+```text
+HOLD - Client UAT / V1 Beta not approved
+```
+
+Scope confirmation:
+
+- Runtime/source files were not modified.
+- Deploy and Firebase settings were not modified.
+- FlutterFlow files were not modified.
+- Native build files were not modified.
+- Credentials were not modified.
+- CEO Briefing files were not modified.
+- `docs/API.md` was not modified.
+- Sprint 064 untracked files were left untouched.
+
+### Sprint 067 Proof Validation Result
+
+Date: 2026-06-08
+
+Final recommendation:
+
+```text
+HOLD - fix only the blockers preventing return-to-use
+```
+
+Proof environment:
+
+- Candidate customer URL: `https://barbie-92edc.web.app/`
+- Alternate Firebase Hosting URL checked: `https://barbie-92edc.firebaseapp.com/`
+- Browser proof path: installed Chrome in headless mode with a temporary profile.
+- No deploy, Firebase setting change, runtime/source change, FlutterFlow change, native build, credential change, CEO Briefing change, `docs/API.md` change, stage, commit, or push was performed.
+
+Proof results:
+
+| Proof Area | Result | Evidence |
+|---|---|---|
+| Customer URL/path | Pass for reachability, not owner-approved for handoff | `https://barbie-92edc.web.app/` returned `HTTP/2 200`; `https://barbie-92edc.firebaseapp.com/` also returned `HTTP/2 200`. |
+| Deployed app matches current repo UI | Blocked | Deployed HTML references `./assets/index-D7N8pcgM.js` and `./assets/index-jzssNT7p.css`; local `dist/index.html` references `./assets/index-CaS41pG9.js` and `./assets/index-DjT4yD5I.css`. |
+| Access/login status | Partial pass | Deployed UI rendered and console logged `Cloud connected, UID: ...`; Google Identity Services still logged `not loaded`; owner-approved UAT/production auth posture remains unresolved. |
+| Typed question path | Pass | Submitted `What should I focus on today?` through deployed UI. |
+| Backend/model answer path | Pass | Network showed `chatWithBarbie` `POST` and `OPTIONS`; callable response returned `200`, console logged callable success, and UI displayed a non-mocked Barbie answer. |
+| Reminder/event creation | Pass for reminders; events untested | Submitted `Remind me in 1 minute to check the door`; UI replied `Got it. I'll remind you in 1 minute.` Calendar event creation was not tested. |
+| Due reminder behavior | Partial pass | In-app due reminder appeared with `REMINDER`, `check the door`, `DISMISS`, and `SNOOZE 5 MINUTES`; browser/native push remains blocked/unproven because `Notification.permission` was `denied`. |
+| Voice input status | Blocked | SpeechRecognition was available, but mic click produced visible copy `MICROPHONE PERMISSION WAS DENIED. PLEASE ENABLE IT IN BROWSER SETTINGS.` and console `recognition error NotAllowedError: Permission denied`. |
+| Feedback path | Blocked | Rendered deployed UI did not expose a visible feedback path, and no owner-approved feedback channel is recorded in project files. |
+| First tester | Blocked | Not recorded in project files. |
+| Owner/go-live approval | Blocked | Not recorded in project files. |
+
+Blockers preventing client return-to-use:
+
+- Deployed asset fingerprint does not match local `dist`, so deployed/current version alignment is not proven.
+- No owner-approved customer handoff URL/path is recorded.
+- Browser/native push notification delivery is blocked/unproven despite in-app due reminder passing.
+- Live voice input is blocked by microphone permission denial in the proof profile.
+- Feedback path is missing.
+- First tester is missing.
+- Owner/go-live approval is missing.
+- UAT auth/access is only partially proven by anonymous/cloud connection and remains unapproved for UAT/production posture.
+
 ## Sprint 066 - Return-to-Use Release Gate
 
 Sprint 066 is docs/planning-only. It does not approve Client UAT, V1 Beta, production release, deploys, Firebase setting changes, FlutterFlow migration, native packaging, credential changes, runtime/source edits, `docs/API.md` edits, or CEO Briefing work.
