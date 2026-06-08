@@ -674,6 +674,14 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
             Send asks Barbie. Capture Task saves an explicit task to Task Tracker.
           </p>
 
+          <p className="px-2 text-[11px] font-bold text-gray-500 leading-relaxed">
+            Need to report a problem? Email feedback to{' '}
+            <a className="text-pink-500 underline underline-offset-2" href="mailto:learnandgrowcc@gmail.com">
+              learnandgrowcc@gmail.com
+            </a>
+            .
+          </p>
+
           {isTypingLoading && (
             <p className="text-center text-xs font-black text-pink-400 uppercase tracking-widest">
               Barbie is thinking...
