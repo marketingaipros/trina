@@ -210,3 +210,12 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 |---|---|---|---|
 | 2026-06-08 | Sprint 056 validates the current Vite React and Firebase Functions assistant path before client UAT instead of rebuilding the app. | The app was already working before the recent sprint sequence, and the client is waiting to regain access. | Builders must validate launch, auth/session, `chatWithBarbie`, and core workflow behavior before recommending `CLIENT UAT CANDIDATE`. |
 | 2026-06-08 | Firebase callable `chatWithBarbie` is the current assistant/backend contract to validate for this sprint. | Repo evidence shows typed assistant requests route through `askBarbie()` to `chatWithBarbie`; Hermes-specific runtime integration is not implemented. | Hermes/API work remains out of scope unless a later approved sprint changes the backend target. |
+
+## Sprint 057 Release-Path Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-06-08 | The current local browser app must be proven through manual smoke before it can be recommended for client UAT. | Sprint 056 proved local launch but did not fully prove live browser UI workflows. | Sprint 057 must validate usable browser workflows before changing the release recommendation. |
+| 2026-06-08 | Visual launch alone is not enough for client release. | The operator visually confirmed the app renders in Chrome, but assistant/backend/model and core workflow behavior still need evidence. | Keep client rollout at `HOLD` unless assistant brain, reminder/core workflow, and voice or typed fallback behavior pass or are clearly non-blocking. |
+| 2026-06-08 | The client must not be handed the app as ready until assistant brain, reminder/core workflow, and voice or typed fallback behavior are validated or clearly documented as blocked. | Client UAT requires a usable workflow path, not only an app shell. | Sprint 057 closeout must record actual pass/blocker status and final recommendation. |
+| 2026-06-08 | The iPhone delivery path remains undecided until Sprint 057 compares web/PWA/wrapped/native/FlutterFlow options against the actual working app state. | Packaging decisions should follow evidence from the current app path. | Do not decide FlutterFlow/native or wrapped iPhone as final path during pack application. |

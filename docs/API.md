@@ -1,5 +1,75 @@
 # API
 
+## Sprint 057 API Validation Focus
+
+Sprint 057 must manually validate or document blockers for the assistant request path:
+
+```text
+User typed input or voice transcript
+-> UI send/capture action
+-> askBarbie()
+-> chatWithBarbie
+-> backend/model provider
+-> Barbie response rendered in UI
+```
+
+Required observations:
+
+- What user input was sent.
+- Whether a response appeared in the UI.
+- Whether browser console errors appeared.
+- Whether backend/function logs show the request.
+- Whether missing auth/config/secrets blocked the response.
+
+Do not change the API contract in this sprint unless a blocking mismatch is found and approved as a separate implementation change.
+
+### Sprint 057 API Validation Outcome
+
+Sprint 057 did not change the API contract.
+
+Observed request path status:
+
+```text
+User typed input
+-> UI send/capture action
+-> askBarbie()
+-> chatWithBarbie
+-> backend/model provider
+-> Barbie response rendered in UI
+```
+
+Validation outcome:
+
+- Typed input using `What should I focus on today?` was partially proven in the UI.
+- Local capture/task behavior was partially proven.
+- Real Barbie backend/model response was not proven.
+- Successful `chatWithBarbie` execution was not proven.
+- Backend assistant Send is blocked by Firebase auth configuration.
+- Firebase Anonymous sign-in is disabled.
+- `127.0.0.1` is not authorized for OAuth operations.
+- Mic starts, but no transcript was proven.
+
+API closeout decision:
+
+```json
+{
+  "environment": "local-vite",
+  "authMode": "blocked",
+  "typedAssistant": "blocked",
+  "voiceTranscript": "blocked",
+  "reminderFlow": "partial-local-capture-only",
+  "coreWorkflow": "partial-local-capture-only",
+  "blockingErrors": [
+    "Firebase Anonymous sign-in is disabled",
+    "127.0.0.1 is not authorized for OAuth operations",
+    "Backend assistant Send is blocked by Firebase auth configuration"
+  ],
+  "recommendation": "HOLD"
+}
+```
+
+The next API validation should prove `askBarbie()` -> `chatWithBarbie` -> backend/model response after Firebase auth configuration is resolved. Do not promote to `CLIENT UAT CANDIDATE` until that path and the required reminder/core workflow pass.
+
 ## Sprint 056 Backend Assistant Contract
 
 Sprint 056 validates the current backend assistant contract before client UAT. It does not add or change APIs unless a later approved implementation sprint is created.

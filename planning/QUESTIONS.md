@@ -1,5 +1,33 @@
 # Questions
 
+## Sprint 057 Open Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Which auth/session path should the client use for UAT? | Operator | Before client UAT | Open | Do not store client credentials in repo files. |
+| Is `chatWithBarbie` connected to a live model provider in the current environment? | Builder / Operator | Sprint 057 smoke | Open | Validate through UI behavior, console evidence, and backend/function logs if available. |
+| Which model/provider is the Barbie assistant using? | Builder / Operator | Sprint 057 closeout | Open | Current backend code path references provider-backed assistant behavior; live provider status must be confirmed without exposing secrets. |
+| Are required backend secrets/config values present in the local or target environment? | Operator | Before UAT candidate | Open | Record missing-secret blockers without writing secret values. |
+| Which reminder/core workflow must pass before client UAT? | Operator / Architect | Sprint 057 smoke | Open | Test the visible workflow available in the UI. |
+| Is voice required for first client UAT, or is typed fallback acceptable? | Operator / Architect | Sprint 057 closeout | Open | Browser speech recognition should not be treated as native mobile readiness. |
+| Should the first client release be web app, PWA/home-screen app, wrapped iPhone app, or FlutterFlow/native? | Operator / Architect | Sprint 057 release decision | Open | Decide from manual smoke evidence; do not assume. |
+| Does the client need installable iPhone access immediately, or can she start with a web/PWA UAT while packaging is handled in a later sprint? | Operator | Sprint 057 release decision | Open | Wrapped iPhone and native paths require separate packaging validation. |
+| Who is the first tester and who approves movement from `HOLD` to `CLIENT UAT CANDIDATE`? | Operator | Before client UAT | Open | Keep placeholders until confirmed. |
+
+### Sprint 057 Validation Answers
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Which auth/session path should the client use for UAT? | Operator | Before client UAT | Open / Blocked | Sprint 057 found Firebase Anonymous sign-in disabled and `127.0.0.1` not authorized for OAuth operations. UAT auth path still needs operator decision and validation. |
+| Is `chatWithBarbie` connected to a live model provider in the current environment? | Builder / Operator | Sprint 057 smoke | Blocked | Not proven. Backend assistant Send is blocked by Firebase auth configuration before successful `chatWithBarbie` / model response evidence. |
+| Which model/provider is the Barbie assistant using? | Builder / Operator | Sprint 057 closeout | Open | Runtime/backend model response was not proven. Do not expose or inspect secrets while resolving this. |
+| Are required backend secrets/config values present in the local or target environment? | Operator | Before UAT candidate | Open | Not validated in Sprint 057. Credential/config inspection remains out of scope. |
+| Which reminder/core workflow must pass before client UAT? | Operator / Architect | Sprint 057 smoke | Partially Answered | Local task capture was partially proven and supports a core workflow, but backend reminder creation was not proven. |
+| Is voice required for first client UAT, or is typed fallback acceptable? | Operator / Architect | Sprint 057 closeout | Open | Mic starts, but no transcript was proven. Typed fallback should remain required for web-first validation. |
+| Should the first client release be web app, PWA/home-screen app, wrapped iPhone app, or FlutterFlow/native? | Operator / Architect | Sprint 057 release decision | Answered for Sprint 057 | Recommended path is web app first after Firebase auth/backend smoke passes. PWA/home-screen, wrapped iPhone, and FlutterFlow/native remain future options. |
+| Does the client need installable iPhone access immediately, or can she start with a web/PWA UAT while packaging is handled in a later sprint? | Operator | Sprint 057 release decision | Open | Sprint 057 does not support packaged iPhone readiness. Wrapped iPhone requires a later packaging sprint after web workflow proof. |
+| Who is the first tester and who approves movement from `HOLD` to `CLIENT UAT CANDIDATE`? | Operator | Before client UAT | Open | Still unresolved. Sprint 057 remains `HOLD`. |
+
 ## Sprint 056 Internal Validation Questions
 
 | Question | Owner | Needed By | Status | Answer / Notes |

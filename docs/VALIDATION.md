@@ -1,5 +1,94 @@
 # Validation Plan
 
+## Sprint 057 Manual Browser Smoke Checklist
+
+Run baseline validation:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+node --check functions/index.js
+npm run lint
+npm run build
+npm run dev -- --host 127.0.0.1
+curl -I http://127.0.0.1:3000/
+```
+
+Manual browser smoke:
+
+1. Open `http://127.0.0.1:3000/` in Chrome.
+2. Confirm the Barbie UI renders.
+3. Test typed assistant input with: `What should I focus on today?`
+4. Confirm whether Barbie responds in the UI.
+5. Open browser console and record any errors.
+6. Confirm whether the backend/function path logs the request.
+7. Test reminder/core workflow from the visible UI.
+8. Test mic/voice capture if available.
+9. If mic/voice is unavailable or blocked, test typed fallback and document it.
+10. Record release-path recommendation:
+    - `HOLD`
+    - `CLIENT UAT CANDIDATE`
+
+Release-path decision checklist:
+
+- Web app is acceptable only if browser workflows pass.
+- PWA/home-screen path is acceptable only if mobile browser basics are usable.
+- Wrapped iPhone app requires a later packaging sprint.
+- FlutterFlow/native path requires a later comparison or migration sprint.
+
+## Sprint 057 Validation Results
+
+Date: 2026-06-08
+
+Commands run:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+node --check functions/index.js
+npm run lint
+npm run build
+npm run dev -- --host 127.0.0.1
+curl -I http://127.0.0.1:3000/
+```
+
+Command results:
+
+- `git status --branch --short`: run and recorded.
+- `git diff --check`: pass.
+- CEO Briefing absence guard: pass.
+- `node --check functions/index.js`: pass.
+- `npm run lint`: pass.
+- `npm run build`: pass with accepted Vite warnings:
+  - `services/authService.ts` mixed static/dynamic import chunk warning.
+  - Large JavaScript chunk warning.
+- Local dev server: pass; app served at `http://127.0.0.1:3000/`.
+- `curl -I http://127.0.0.1:3000/`: pass; returned `HTTP/1.1 200 OK`.
+
+Manual browser smoke:
+
+| Area | Result | Evidence |
+|---|---|---|
+| Chrome app load | Pass | Local Vite React app visibly loaded in Chrome at `http://127.0.0.1:3000/`. |
+| Static render | Pass | App UI rendered locally and server returned `HTTP/1.1 200 OK`. |
+| Console errors | Documented | Auth-related errors block backend Send; Firebase Anonymous sign-in is disabled and `127.0.0.1` is not authorized for OAuth operations. |
+| Typed assistant input | Partial | `What should I focus on today?` could be entered; backend response was not proven. |
+| Barbie backend/model response | Fail / blocked | No real model/backend response was proven. |
+| `chatWithBarbie` path | Fail / blocked | Expected path was not proven because Firebase auth configuration blocks Send. |
+| Reminder/core workflow | Partial | Local task capture was partially proven; backend reminder creation was not proven. |
+| Mic/voice | Partial | Mic starts, but no transcript was proven. |
+| Typed fallback | Partial | Typed local capture works; backend typed assistant Send remains blocked. |
+
+Final recommendation:
+
+```text
+HOLD
+```
+
+Sprint 057 does not support `CLIENT UAT CANDIDATE`. Recommended release path is web app first after Firebase auth/backend smoke passes. PWA/home-screen, wrapped iPhone app, and FlutterFlow/native remain future options. FlutterFlow/native should not start until the web workflow is proven.
+
 ## Sprint 056 - Backend Assistant Contract and Internal Integration Validation Plan
 
 Sprint 056 validates the current working app/backend path before client UAT. It is validation and handoff readiness only.

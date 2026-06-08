@@ -1,5 +1,25 @@
 # Architecture
 
+## Sprint 057 Runtime Architecture Focus
+
+The currently observed app path is the Vite React web app running locally at `127.0.0.1:3000`.
+
+Sprint 057 must validate the live browser path before any packaging decision:
+
+- React UI renders locally.
+- UI input calls the assistant client path.
+- Assistant client path reaches the Firebase Functions/backend contract.
+- Backend/model path returns a usable Barbie response.
+- Reminder/core workflow is usable enough for UAT or documented as blocked.
+- Voice/mic path is tested if available, with typed fallback documented.
+
+Release packaging is a separate architecture decision after browser smoke:
+
+- Web app: fastest UAT path.
+- PWA/home-screen app: web-based install-like path for iPhone.
+- Wrapped iPhone app: requires separate packaging/signing/device validation.
+- FlutterFlow/native: only appropriate if it is the chosen source path or offers a safer mobile release route than wrapping the existing app.
+
 ## Sprint 056 Runtime / Backend Validation Architecture
 
 Sprint 056 treats the current Vite React + Firebase Functions app as the path to validate before client UAT. It does not redesign, rebuild, or replace the app.

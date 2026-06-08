@@ -2,13 +2,67 @@
 
 ## Current Sprint
 
-Sprint 056 - Backend Assistant Contract and Internal Integration Validation Plan
+Sprint 057 - Manual Browser Smoke and Release Path Decision
 
 ## Current Status
 
-Sprint 056 is a docs/planning Architect Pack for validating the current working app/backend path before client UAT. The project remains `HOLD` for client access until internal validation confirms launch, auth/session behavior, assistant/backend calls, and core client workflows without blocking errors.
+Sprint 057 is a validation and release-path decision sprint. The project remains `HOLD` for client access until manual browser smoke confirms the app is usable beyond visual launch and records whether the next client delivery path should be web app, PWA/home-screen app, wrapped iPhone app, or FlutterFlow/native.
 
-No UI redesign, feature expansion, FlutterFlow rebuild, production deploy, credential work, CEO Briefing file work, or native builds are authorized for Sprint 056.
+No UI redesign, feature expansion, FlutterFlow rebuild or migration, production deploy, credential work, CEO Briefing file work, native builds, or iOS packaging are authorized for Sprint 057.
+
+## Sprint 057 - Manual Browser Smoke and Release Path Decision
+
+**Status:** Validation closeout complete.
+**Final recommendation:** `HOLD`.
+
+Sprint 056 validated build/lint/backend syntax/local launch and documented the existing backend assistant path, but live browser UI workflows were not fully proven. The operator manually confirmed the app renders in Chrome at `127.0.0.1:3000`.
+
+Sprint 056 closed with recommendation `HOLD`.
+
+Sprint 056 local launch evidence:
+
+- `npm run dev -- --host 127.0.0.1` started the local app at `http://127.0.0.1:3000/`.
+- `curl -I http://127.0.0.1:3000/` returned `HTTP/1.1 200 OK`.
+- The operator manually observed the app in Chrome at `127.0.0.1:3000`.
+- Browser UI launch is visually confirmed.
+- End-to-end assistant, reminder, and voice workflows are not yet fully proven.
+
+Sprint 057 will manually smoke-test the visible app path, confirm whether the Barbie assistant brain responds through the backend/model path, validate reminder/core workflow behavior, test mic/voice or typed fallback, and decide whether the next client delivery path should be web app, PWA/home-screen app, wrapped iPhone app, or FlutterFlow/native path.
+
+### Sprint 057 Validation Closeout
+
+Sprint 057 proved the local Vite React web app can load in Chrome at `http://127.0.0.1:3000/` and that the local server returns `HTTP/1.1 200 OK`. Static render, syntax validation, lint, build, diff whitespace validation, and the CEO Briefing absence guard passed.
+
+Accepted build warnings remain unchanged:
+
+- `services/authService.ts` mixed static/dynamic import chunk warning.
+- Large JavaScript chunk warning.
+
+Manual smoke evidence:
+
+- App load: Pass. Chrome rendered the local app.
+- Typed input: Partial. The prompt `What should I focus on today?` could be entered and local task capture behavior was partially proven.
+- Reminder/core workflow: Partial. Local task capture supports the core reminder/task workflow, but backend reminder creation was not proven.
+- Mic/voice: Partial. Mic capture starts, but no transcript was proven.
+- Typed fallback: Partial. Typed local capture works, but backend assistant Send is blocked.
+- Backend/model response: Not proven. No real Barbie model/backend response was confirmed.
+- `chatWithBarbie`: Not proven. The expected path is still blocked before successful callable/model evidence.
+
+Observed blockers:
+
+- Firebase Anonymous sign-in is disabled.
+- `127.0.0.1` is not authorized for OAuth operations.
+- Backend assistant Send is blocked by Firebase auth configuration.
+
+Release-path decision:
+
+- Sprint 057 remains `HOLD`.
+- The result does not support `CLIENT UAT CANDIDATE`.
+- Recommended next release path is web app first after Firebase auth/backend smoke passes.
+- PWA/home-screen, wrapped iPhone app, and FlutterFlow/native remain future options.
+- FlutterFlow/native should not start until the web workflow is proven.
+
+## Previous Sprint Context
 
 ## Backend Assistant Contract and Internal Integration Validation - Sprint 056
 

@@ -1,5 +1,28 @@
 # Risks
 
+## Sprint 057 Risks - Manual Browser Smoke and Release Path Decision
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| The app may render visually while assistant/backend/model calls fail. | Medium | High | Manually send the required typed prompt and record UI, console, and backend/function evidence. | Open |
+| The Barbie brain may not be connected, may be using missing credentials, or may fail silently. | Medium | High | Validate or document blockers for `askBarbie()` to `chatWithBarbie` and model response behavior. | Open |
+| Auth/session may appear optional locally but block real client usage. | Medium | High | Record the exact auth/session behavior seen during manual smoke before client UAT. | Open |
+| Voice/mic behavior may be browser/device dependent and should not be treated as native mobile readiness. | High | Medium | Test mic if available and document typed fallback; require separate mobile/native validation for packaging. | Open |
+| Client expectations may drift if a local browser preview is mistaken for a packaged iPhone app. | Medium | High | Keep release-path recommendation explicit: web, PWA/home-screen, future wrapped iPhone, or future FlutterFlow/native. | Open |
+| FlutterFlow/native packaging may become a distraction before the current working app path is proven. | Medium | Medium | Keep Sprint 057 validation-focused and forbid FlutterFlow rebuild or migration. | Open |
+| Any iPhone packaging path will require separate validation for Apple Developer account, signing, TestFlight/App Store path, device permissions, and mobile UI behavior. | High | High | Treat wrapped/native iPhone delivery as a later sprint after browser workflows pass. | Open |
+
+### Sprint 057 Risk Closeout
+
+| Risk | Sprint 057 Outcome | Next Action |
+|---|---|---|
+| App renders while assistant/backend/model calls fail. | Observed. The app loaded in Chrome and returned `HTTP/1.1 200 OK`, but real Barbie backend/model response was not proven. | Keep release at `HOLD` and fix/validate Firebase auth before client UAT. |
+| Barbie brain or `chatWithBarbie` may fail silently or be blocked. | Observed blocker. `chatWithBarbie` success was not proven because backend Send is blocked by Firebase auth configuration. | Prove `askBarbie()` -> `chatWithBarbie` -> model response in Sprint 058. |
+| Auth/session blocks real client usage. | Observed blocker. Firebase Anonymous sign-in is disabled and `127.0.0.1` is not authorized for OAuth operations. | Decide and validate the intended local/UAT auth path without storing credentials. |
+| Voice/mic behavior is browser/device dependent. | Partially observed. Mic starts, but no transcript was proven. | Treat typed fallback as required and validate voice transcript separately. |
+| Local browser preview may be confused with packaged iPhone readiness. | Mitigated by decision. Web app is the recommended first path only after auth/backend smoke passes. | Keep PWA, wrapped iPhone, and FlutterFlow/native as future options. |
+| FlutterFlow/native work distracts from proving the current app path. | Mitigated for Sprint 057. No FlutterFlow/native migration or packaging was performed. | Do not start FlutterFlow/native until the web workflow is proven. |
+
 ## Sprint 056 Risks - Backend Assistant Contract and Internal Integration Validation Plan
 
 | Risk | Likelihood | Impact | Mitigation | Status |
