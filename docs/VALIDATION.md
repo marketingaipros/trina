@@ -1,5 +1,89 @@
 # Validation Plan
 
+## Sprint 056 - Backend Assistant Contract and Internal Integration Validation Plan
+
+Sprint 056 validates the current working app/backend path before client UAT. It is validation and handoff readiness only.
+
+### Required Repo Safety Gates
+
+Run before and after Sprint 056 validation:
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Run safe package validation:
+
+```bash
+npm run lint
+npm run build
+node --check functions/index.js
+```
+
+Expected:
+
+- No runtime/source edits unless a later approved implementation sprint is created.
+- CEO Briefing PNG remains absent.
+- Lint and build pass, with only previously accepted watch-only Vite warnings unless new output is recorded.
+- Functions source parses successfully.
+
+### Internal Smoke Validation
+
+Use the existing app path; do not rebuild or redesign.
+
+1. Launch the local app:
+
+```bash
+npm run dev -- --host 127.0.0.1
+```
+
+2. Open the local URL in a browser.
+3. Confirm the app loads without a blank screen or blocking console/runtime error.
+4. Confirm Firebase Auth/session behavior:
+   - Existing session is reused, or
+   - anonymous sign-in works, or
+   - Google popup fallback works, or
+   - auth is blocked and the exact reason is recorded.
+5. Send a typed assistant message through the existing assistant UI.
+6. Confirm the request reaches `chatWithBarbie` and returns a usable response, or record the exact failure.
+7. Send a reminder-style message with a time.
+8. Confirm reminder response and saved reminder/notification behavior, or record the exact failure.
+9. Test voice transcript capture where the browser supports it.
+10. If microphone or speech recognition is unavailable, confirm typed fallback remains clear and usable.
+11. Complete the core client workflow selected for UAT candidate validation: launch, authenticate, assistant request, reminder/task follow-through, and navigation back to the working app shell.
+
+### UAT Candidate Decision Rule
+
+Recommend `CLIENT UAT CANDIDATE` only if:
+
+- App launch passes.
+- Auth/session behavior is usable for the intended tester.
+- Typed assistant/backend call succeeds.
+- Reminder/task or core client workflow succeeds.
+- Voice either works or has a non-blocking typed fallback.
+- No blocking runtime errors remain.
+- UAT target/link/build, first tester, issue channel, and go-live approver are recorded or explicitly handled by the operator.
+
+Otherwise keep recommendation `HOLD` and record the smallest next validation or fix sprint.
+
+### Forbidden During Sprint 056
+
+Do not run:
+
+```bash
+firebase deploy
+npm run cap:sync
+npm run cap:open:ios
+npm run cap:open:android
+npx cap sync
+npx cap open ios
+npx cap open android
+```
+
+Do not run FlutterFlow export/deploy commands, native Xcode/Gradle builds, app-store release commands, or credential inspection commands without explicit approval.
+
 ## Sprint 055 - Runtime Source Reconciliation and Backend Integration Plan
 
 Sprint 055 validates docs/planning application and source reconciliation only. It does not deploy, run native builds, modify runtime/source files, stage, commit, push, touch CEO Briefing files, inspect secrets, or store credentials.

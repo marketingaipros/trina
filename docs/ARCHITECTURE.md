@@ -1,5 +1,44 @@
 # Architecture
 
+## Sprint 056 Runtime / Backend Validation Architecture
+
+Sprint 056 treats the current Vite React + Firebase Functions app as the path to validate before client UAT. It does not redesign, rebuild, or replace the app.
+
+### Current Assistant Flow
+
+```text
+Vite React app
+  -> components/VoiceDashboard.tsx
+  -> src/lib/barbieAI.js / askBarbie()
+  -> Firebase Auth session
+  -> Firebase callable Function chatWithBarbie
+  -> Firestore messages / notifications / events
+  -> OpenRouter for general assistant replies
+```
+
+Typed messages are the primary assistant validation path. Browser voice capture currently produces transcript text through `SpeechRecognition` / `webkitSpeechRecognition`; Sprint 056 validates that current behavior and fallback, not a new native voice backend.
+
+### Current Auth / Session Flow
+
+The frontend initializes Firebase from `VITE_FIREBASE_*` environment variables. `ensureBarbieAuth()` reuses the current Firebase Auth user, attempts anonymous sign-in when needed, and falls back to Google popup when anonymous sign-in is disabled and popup is allowed. The callable backend requires `request.auth.uid` before assistant work proceeds.
+
+### Validation Boundary
+
+Sprint 056 may validate local launch, Firebase Auth/session, callable Function behavior, reminder/task workflow, and browser smoke behavior. It must not:
+
+- Add new backend routes.
+- Add Hermes integration code.
+- Redesign UI.
+- Rebuild FlutterFlow.
+- Deploy production.
+- Run native builds.
+- Store credentials.
+- Touch CEO Briefing files.
+
+### UAT Candidate Rule
+
+The app may move from `HOLD` to `CLIENT UAT CANDIDATE` only after internal validation confirms the existing app can launch, authenticate, call the assistant/backend successfully, and complete the core client workflow without blocking errors.
+
 ## Runtime Source and Integration Status - Sprint 055
 
 ### Active Runtime Source

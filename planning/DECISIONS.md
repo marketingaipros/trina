@@ -203,3 +203,10 @@ The first mobile theme may be Barbie-inspired Trina, but the product foundation 
 | 2026-06-07 | Treat Sprint 052 `SHIP` as repo-release readiness only, not client rollout approval. | Sprint 052 validated lint/build/repo state but did not deploy, run native builds, or prepare client UAT. | A separate rollout/UAT sprint is required before the client starts using the app. |
 | 2026-06-07 | Sprint 053 must focus on FlutterFlow release path, environment validation, and client UAT preparation. | The app may still depend on FlutterFlow export/deployment or FlutterFlow-managed settings. | Builder must verify source alignment and deployment path before any client handoff. |
 | 2026-06-07 | Client rollout must be controlled, starting with internal validation and one trusted client-side tester before broader use. | This reduces client-facing risk and creates a clear blocker/minor-issue triage path. | Client access should not be distributed broadly until Sprint 053 acceptance criteria pass. |
+
+## Sprint 056 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-06-08 | Sprint 056 validates the current Vite React and Firebase Functions assistant path before client UAT instead of rebuilding the app. | The app was already working before the recent sprint sequence, and the client is waiting to regain access. | Builders must validate launch, auth/session, `chatWithBarbie`, and core workflow behavior before recommending `CLIENT UAT CANDIDATE`. |
+| 2026-06-08 | Firebase callable `chatWithBarbie` is the current assistant/backend contract to validate for this sprint. | Repo evidence shows typed assistant requests route through `askBarbie()` to `chatWithBarbie`; Hermes-specific runtime integration is not implemented. | Hermes/API work remains out of scope unless a later approved sprint changes the backend target. |

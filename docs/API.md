@@ -1,5 +1,104 @@
 # API
 
+## Sprint 056 Backend Assistant Contract
+
+Sprint 056 validates the current backend assistant contract before client UAT. It does not add or change APIs unless a later approved implementation sprint is created.
+
+### Current Primary Assistant Endpoint
+
+Firebase callable Function:
+
+```text
+chatWithBarbie
+```
+
+Frontend caller:
+
+```text
+components/VoiceDashboard.tsx -> src/lib/barbieAI.js askBarbie()
+```
+
+Current request:
+
+```json
+{
+  "message": "string"
+}
+```
+
+Current auth requirement:
+
+- Firebase Auth is required.
+- Frontend calls `ensureBarbieAuth()` before invoking the callable.
+- Backend rejects missing `request.auth.uid` with `unauthenticated`.
+
+Current successful general response:
+
+```json
+{
+  "reply": "string"
+}
+```
+
+Current reminder response may include:
+
+```json
+{
+  "reply": "string",
+  "notificationId": "string",
+  "eventId": "string | null"
+}
+```
+
+Current incomplete reminder response may include:
+
+```json
+{
+  "reply": "string",
+  "missing": ["remindAt"]
+}
+```
+
+### Current Voice Contract
+
+Current voice input is browser transcript capture, not a separate backend audio API.
+
+Validation input:
+
+```json
+{
+  "inputMode": "voice",
+  "transcript": "string"
+}
+```
+
+Runtime behavior to validate:
+
+- Supported browsers request microphone permission.
+- Speech recognition produces transcript text.
+- Transcript text is routed through the existing local task/assistant behavior.
+- If voice is unavailable or denied, typed fallback remains usable.
+
+### Internal Integration Validation Contract
+
+Sprint 056 should record each smoke result using this structure:
+
+```json
+{
+  "environment": "local-vite | firebase-hosting | other",
+  "tester": "placeholder-only",
+  "authMode": "anonymous | google | existing-session | blocked",
+  "typedAssistant": "pass | fail | blocked",
+  "voiceTranscript": "pass | fail | blocked | not-supported-with-typed-fallback",
+  "reminderFlow": "pass | fail | blocked",
+  "coreWorkflow": "pass | fail | blocked",
+  "blockingErrors": [],
+  "recommendation": "HOLD | CLIENT_UAT_CANDIDATE"
+}
+```
+
+Do not commit real credentials, tokens, passwords, private keys, service-account files, or client secrets.
+
 ## Sprint 055 Runtime / Backend Integration Notes
 
 Sprint 055 does not add or change application APIs. It reconciles the existing and missing integration contracts before backend implementation work.

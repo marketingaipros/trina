@@ -1,5 +1,18 @@
 # Questions
 
+## Sprint 056 Internal Validation Questions
+
+| Question | Owner | Needed By | Status | Answer / Notes |
+|---|---|---|---|---|
+| Which environment should Sprint 056 smoke test: local Vite against configured Firebase, Firebase Hosting, or another internal target? | Operator / Builder | Before internal smoke | Open | No production deploy is approved by this Architect Pack. |
+| Which auth/session path should the client use when access is restored: existing session, anonymous Firebase Auth, Google popup, or a provided account? | Operator | Before client UAT | Open | Do not store passwords or client credentials in repo files. |
+| Is Firebase project `barbie-92edc` the target for internal validation and client UAT? | Operator | Before internal smoke against live services | Open | `.firebaserc` points to `barbie-92edc`; live environment ownership still needs confirmation. |
+| What exact typed assistant prompt should be used as the pass/fail smoke input? | Architect / Operator | Sprint 056 validation | Open | Recommended: one general assistant prompt and one reminder prompt with explicit time. |
+| Should browser voice transcript capture be required for UAT candidate status, or is typed fallback acceptable if voice is unavailable on the test browser? | Operator / Architect | Sprint 056 closeout | Open | Current implementation uses browser speech recognition, not native audio upload. |
+| Who is the first internal tester before the client regains access? | Operator | Before UAT candidate recommendation | Open | Placeholder only until confirmed. |
+| What issue channel should be used during client UAT? | Operator | Before client UAT | Open | Placeholder only until confirmed. |
+| Who approves moving from internal validation to client UAT candidate? | Operator | Sprint 056 closeout | Open | Placeholder only until confirmed. |
+
 ## Sprint 055 Runtime / Integration Questions
 
 | Question | Owner | Needed By | Status | Answer / Notes |

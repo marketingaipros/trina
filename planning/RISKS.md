@@ -1,5 +1,17 @@
 # Risks
 
+## Sprint 056 Risks - Backend Assistant Contract and Internal Integration Validation Plan
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|---|---:|---:|---|---|
+| Client access resumes before the existing app/backend path is internally smoke validated. | Medium | High | Keep release recommendation `HOLD` until launch, auth, assistant call, and core workflow validation pass. | Open |
+| The team rebuilds or redesigns instead of validating the already-working app path. | Medium | High | Sprint 056 scope is validation/handoff readiness only; no UI redesign, feature expansion, FlutterFlow rebuild, or runtime implementation is authorized. | Open |
+| Firebase Auth mode differs from the intended client tester path. | Medium | High | Validate existing session, anonymous sign-in, or Google popup fallback and record the exact tester-ready auth path. | Open |
+| `chatWithBarbie` works by code inspection but fails against the target Firebase environment because secrets, Functions deploy state, or Auth settings differ. | Medium | High | Run an internal smoke against the chosen environment before client UAT and record exact blocking errors. | Open |
+| Browser voice capture is mistaken for native/mobile voice readiness. | High | Medium | Validate current browser transcript behavior and typed fallback only; require separate approval for native voice validation. | Open |
+| Validation docs accidentally expose credentials, tokens, or client passwords. | Low | High | Use placeholders only and keep all secrets outside tracked files. | Open |
+| A production deploy or native build is run while trying to validate access. | Low | High | Keep deploy/native commands forbidden unless explicitly approved. | Open |
+
 ## Sprint 055 Risks - Runtime Source Reconciliation and Backend Integration Plan
 
 | Risk | Likelihood | Impact | Mitigation | Status |

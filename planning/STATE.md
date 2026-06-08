@@ -2,9 +2,46 @@
 
 ## Current Sprint
 
-Sprint 055 - Runtime Source Reconciliation and Backend Integration Plan
+Sprint 056 - Backend Assistant Contract and Internal Integration Validation Plan
 
 ## Current Status
+
+Sprint 056 is a docs/planning Architect Pack for validating the current working app/backend path before client UAT. The project remains `HOLD` for client access until internal validation confirms launch, auth/session behavior, assistant/backend calls, and core client workflows without blocking errors.
+
+No UI redesign, feature expansion, FlutterFlow rebuild, production deploy, credential work, CEO Briefing file work, or native builds are authorized for Sprint 056.
+
+## Backend Assistant Contract and Internal Integration Validation - Sprint 056
+
+**Status:** Architect Pack created for validation and handoff.
+**Release recommendation:** `HOLD` until internal smoke validation passes; if the existing app launches, authenticates, calls `chatWithBarbie`, and completes the core client workflow without blocking errors, recommend moving to `CLIENT UAT CANDIDATE`.
+
+### Current Runtime Path To Validate
+
+Repo inspection from Sprint 055 confirmed the active inspected runtime source is the local Vite React app. Sprint 056 validates that current path rather than rebuilding it.
+
+Current observed assistant/backend path:
+
+- `components/VoiceDashboard.tsx` sends typed assistant messages through `askBarbie(cleanMessage)`.
+- `src/lib/barbieAI.js` ensures Firebase Auth and calls Firebase callable Function `chatWithBarbie`.
+- `functions/index.js` implements `chatWithBarbie`, requires authenticated callers, writes user/assistant message records, creates reminder/notification records for reminder intent, keeps Gmail send V2-disabled in chat behavior, and calls OpenRouter for general assistant replies.
+- Browser voice capture uses `SpeechRecognition` / `webkitSpeechRecognition` to produce transcript text; current voice behavior must be validated as transcript capture plus existing assistant/task routing, not as a new native voice backend.
+
+### Sprint 056 Validation Posture
+
+Sprint 056 is not a rebuild sprint. It should confirm:
+
+- Local Vite app launches.
+- Firebase Auth/session path works as expected for the intended tester mode.
+- Typed assistant request reaches `chatWithBarbie` and returns a useful assistant reply or reminder response.
+- Browser voice capture either works and routes transcript text through existing behavior, or falls back clearly to typed input without blocking the client workflow.
+- Reminder/task/client workflow can be completed without blocking runtime errors.
+- Validation environment, tester, UAT issue channel, and go-live approver are recorded before client handoff.
+
+### Current Recommendation
+
+Keep client rollout at `HOLD` until Sprint 056 internal validation is executed and recorded. If the current app/backend path passes, promote the recommendation to `CLIENT UAT CANDIDATE` without redesigning or rebuilding the app.
+
+## Previous Sprint Context
 
 Sprint 055 is a docs/planning and repo-inspection sprint only. It preserves the Sprint 054 release source-of-truth gate and keeps the release recommendation at `HOLD` until the active source, backend integration path, and UAT validation path are confirmed by repo evidence or operator approval.
 
