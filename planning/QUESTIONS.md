@@ -1,5 +1,25 @@
 # Questions
 
+## Sprint 073 Open Questions
+
+| Question | Owner | Status | Notes |
+|---|---|---|---|
+| Which physical browser/device will be used for final audible voice verification? | Builder / Operator | Resolved for Sprint 073 | Operator completed UAT in Chrome and confirmed Barbie was heard speaking. |
+| Is the intended client experience desktop browser first, mobile browser first, or both? | Owner / Builder | Resolved for Sprint 073 | Sprint 073 UAT was proven in Chrome; broader device coverage remains a future release decision if needed. |
+| Should the app require a visible Talk / Speaker button to satisfy browser user-gesture rules? | Owner / Builder | Resolved for Sprint 073 | Sprint 073 uses user-triggered Play for the visible Barbie answer. |
+| Should voice auto-play after every answer, or should it only play when the user taps a button? | Owner / Builder | Resolved for Sprint 073 | Sprint 073 uses tapped Play to avoid autoplay ambiguity. |
+| Which browser voice should be preferred if multiple speech synthesis voices are available? | Owner / Builder | Resolved for Sprint 073 | Default browser voice path was acceptable for the operator PASS. |
+
+## Sprint 072 Questions
+
+| Question | Owner | Status | Notes |
+|---|---|---|---|
+| Does the deployed URL at `https://barbie-92edc.web.app/` reflect the current repo after the Sprint 072 voice control fix? | Builder | Resolved | After Hosting-only deploy and cache-busted load, deployed assets were `assets/index-B1z4yODZ.js` and `assets/index-Dej7iVgQ.css`, matching the current build output. |
+| Which UI component currently renders the final Barbie/model answer on the deployed browser app? | Builder | Resolved | `components/VoiceDashboard.tsx` owns the `Barbie Answer` surface and talk-back controls. |
+| Is browser speech synthesis already implemented but hidden, or missing from the deployed UI path? | Builder | Resolved | Source/local browser had controls; deployed URL was stale before Hosting-only deploy. This was deploy drift. |
+| Can real audible output be physically verified on the Builder's browser/device path? | Builder / Operator | Blocked | Not physically verified in Builder UAT. Operator or real audible browser/device validation is still required before PASS. |
+| Does reminder creation and due reminder behavior still pass after the talk controls fix? | Builder | Resolved | Deployed UAT passed reminder acknowledgement, due reminder appearance after waiting, dismiss, and clear behavior. |
+
 ## Sprint 071 Open Questions
 
 | Question | Owner | Status | Notes |

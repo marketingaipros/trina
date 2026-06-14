@@ -62,7 +62,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
   
   const prevIsConnected = useRef(isConnected);
   const prevIsSpeaking = useRef(isSpeaking);
-  const synthRef = useRef<SpeechSynthesis | null>(window.speechSynthesis);
+  const synthRef = useRef<SpeechSynthesis | null>(typeof window !== 'undefined' ? window.speechSynthesis : null);
+  const latestVisibleReplyRef = useRef<string | null>(null);
   const recognitionRef = useRef<any>(null);
   const micStreamRef = useRef<MediaStream | null>(null);
 
@@ -122,6 +123,10 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     }, 1000);
     return () => clearInterval(clock);
   }, []);
+
+  useEffect(() => {
+    latestVisibleReplyRef.current = typedReply?.trim() || null;
+  }, [typedReply]);
 
   useEffect(() => {
     const supportsSpeechRecognition = Boolean((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition);
@@ -224,6 +229,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     setIsTypingLoading(true);
     setTypedError(null);
     setTypedReply(null);
+    stopBarbieReply(null);
 
     try {
       const timeout = new Promise<never>((_, reject) => {
@@ -241,10 +247,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
 
       setTypedReply(replyText);
       setTypedMessage('');
-
-      if (isTalkBackEnabled) {
-        speakBarbieReply(replyText);
-      }
+      setTalkBackMessage("Barbie's answer is ready. Press Play to hear the visible answer.");
     } catch (error: any) {
       console.error("callable error", error);
       setTypedError(error?.message || "Firebase Function call failed. Please try again.");
@@ -397,10 +400,14 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     }
   };
 
-  const speakBarbieReply = (text: string) => {
-    const cleanText = text.trim();
+  const speakBarbieReply = () => {
+    const cleanText = latestVisibleReplyRef.current?.trim() || '';
 
-    if (!cleanText) return;
+    if (!cleanText || cleanText !== typedReply?.trim()) {
+      setTalkBackMessage("Play is available after Barbie's final visible answer appears.");
+      setIsReplySpeaking(false);
+      return;
+    }
 
     if (!synthRef.current || typeof SpeechSynthesisUtterance === 'undefined') {
       setTalkBackMessage("Talk-back is unavailable in this browser.");
@@ -419,29 +426,38 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     utterance.pitch = 1.1;
     utterance.rate = 1.0;
 
-    utterance.onstart = () => setIsReplySpeaking(true);
-    utterance.onend = () => setIsReplySpeaking(false);
+    utterance.onstart = () => {
+      setIsReplySpeaking(true);
+      setTalkBackMessage("Barbie is speaking the visible answer.");
+    };
+    utterance.onend = () => {
+      setIsReplySpeaking(false);
+      setTalkBackMessage("Barbie finished speaking the visible answer.");
+    };
     utterance.onerror = () => {
       setIsReplySpeaking(false);
       setTalkBackMessage("Talk-back could not play. You can still read Barbie's answer here.");
     };
 
     synthRef.current.speak(utterance);
+    setIsReplySpeaking(true);
+    setTalkBackMessage("Barbie is speaking the visible answer.");
   };
 
-  const stopBarbieReply = () => {
+  const stopBarbieReply = (statusMessage: string | null = "Barbie audio stopped.") => {
     if (synthRef.current) {
       synthRef.current.cancel();
     }
 
     setIsReplySpeaking(false);
+    setTalkBackMessage(statusMessage);
   };
 
   const toggleTalkBack = () => {
     const nextEnabled = !isTalkBackEnabled;
 
     setIsTalkBackEnabled(nextEnabled);
-    setTalkBackMessage(nextEnabled ? "Talk-back is on. Barbie can speak visible answers." : "Talk-back is off.");
+    setTalkBackMessage(nextEnabled ? "Talk-back is on. Press Play to hear Barbie's visible answer." : "Talk-back is off.");
 
     if (!nextEnabled) {
       stopBarbieReply();
@@ -780,7 +796,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
                   {isReplySpeaking ? (
                     <button
                       type="button"
-                      onClick={stopBarbieReply}
+                      onClick={() => stopBarbieReply()}
                       aria-label="Stop Barbie answer audio"
                       title="Stop answer audio"
                       className="w-11 h-11 flex items-center justify-center text-pink-500 bg-pink-50 rounded-lg hover:bg-pink-100"
@@ -790,7 +806,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
                   ) : (
                     <button
                       type="button"
-                      onClick={() => speakBarbieReply(typedReply)}
+                      onClick={speakBarbieReply}
                       aria-label="Play Barbie answer audio"
                       title="Play answer audio"
                       className="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-pink-500 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors"

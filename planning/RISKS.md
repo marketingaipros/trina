@@ -4,6 +4,15 @@
 
 | Risk | Likelihood | Impact | Mitigation | Status |
 |---|---:|---:|---|---|
+| The app may appear to pass automated browser checks while still failing for a real client because audio output is not heard. | Medium | High | Sprint 073 operator UAT in Chrome physically confirmed Barbie was heard speaking. | Mitigated |
+| Browser speech output may fail because of autoplay restrictions, missing user gesture, disabled speech synthesis, missing voice availability, or muted audio output. | Medium | High | Sprint 073 uses user-triggered Play and operator UAT in Chrome confirmed audible output. | Mitigated |
+| Barbie may speak stale text, placeholder text, partial text, or a different response than the visible answer. | Medium | High | Sprint 073 binds playback to the latest final visible answer and operator UAT confirmed spoken text matched the visible answer. | Mitigated |
+| Deployed URL does not include the latest local/browser voice behavior. | Medium | High | Sprint 072 confirmed deploy drift and ran a Hosting-only deploy; fresh deployed assets now expose the local talk controls. | Mitigated |
+| Browser speech synthesis may require a user gesture before playback. | High | Medium | Provide an explicit visible Talk/Play button instead of relying only on automatic speech. | Active |
+| Voice playback may speak stale text, partial text, or internal/system text instead of the final visible Barbie answer. | Medium | High | Bind playback to the final visible assistant answer only and verify spoken text matches. | Active |
+| Stop/disable behavior may not cancel active speech. | Medium | Medium | Sprint 073 local validation showed Stop returned to Play and operator UAT confirmed Stop/cancel worked or audio ended cleanly. | Mitigated |
+| Fix could disturb typed Q&A or reminder behavior. | Medium | High | Sprint 072 deployed UAT passed typed Q&A, reminder acknowledgement, due reminder, dismiss, and feedback visibility. | Mitigated |
+| Sprint 064 untracked files could be accidentally staged. | Medium | Medium | Check `git status --branch --short` before staging and stage only approved Sprint 072 files. | Active |
 | Sprint 071 real audible voice may fail on the selected browser/device even though Sprint 070 proved speech synthesis text routing. | Medium | High | Sprint 071 stopped at HOLD because the deployed client URL did not expose talk-back controls and real audible output could not be verified. | Active |
 | Sprint 071 deployed/current client URL may be stale or unconfirmed. | Medium | High | Sprint 071 tested `https://barbie-92edc.web.app/`; deployed talk-back behavior did not match the required Sprint 071 proof, so return-to-use is held. | Active |
 | Sprint 071 could be mistaken for a Flutter/mobile packaging or deploy sprint. | Medium | High | Keep Sprint 071 UAT-only and create a separate sprint for deploy, Flutter, native/mobile packaging, or audio compatibility fixes. | Active |
@@ -26,6 +35,24 @@
 | Client may expect reminders to notify when the app is closed. | Medium | High | Sprint 069 validated in-app reminder behavior only; browser/native push remains follow-up if desired. | Follow-up |
 | Client feedback may arrive through email without structured details. | Medium | Medium | Sprint 069 feedback was sufficient for first limited UAT closeout; use structured details for future issue reports. | Follow-up |
 | Sprint 064 untracked files could be accidentally staged in later commits. | Medium | Medium | Builder must explicitly avoid staging Sprint 064 files unless separately approved. | Active |
+
+## Sprint 073 Risk Control Rule
+
+Sprint 073 is a narrow real audible voice recovery and physical device verification sprint.
+
+Do not introduce Flutter, FlutterFlow migration, native/mobile packaging, Firebase settings changes without explicit approval, Firestore rule changes, credential changes, CEO Briefing work, UI redesign, backend/model redesign, new voice provider integration, speech-to-text, wake word, closed-app push implementation, or broad app cleanup into this sprint.
+
+Sprint 073 may recommend client return-to-use only after a physical device/browser test proves typed Q&A, real audible talk-back, spoken-text match, Stop/cancel or clean speech end behavior, reminder create/due/dismiss, and feedback-link visibility.
+
+## Sprint 072 Risk Control Rule
+
+Sprint 072 is a narrow deployed talk-controls and audible voice UAT fix.
+
+Do not introduce Flutter, FlutterFlow migration, native/mobile packaging, Firebase settings changes, Firestore rule changes, credential changes, CEO Briefing work, UI redesign, backend/model redesign, speech-to-text, wake word, closed-app push implementation, or broad app cleanup into this sprint.
+
+Sprint 072 may recommend client return-to-use only after deployed UAT proves typed Q&A, real audible talk-back, spoken-text match, Stop/disable behavior, reminder create/due/dismiss, and feedback-link visibility.
+
+Sprint 072 Hosting-only deploy restored deployed Talk/Play controls, but return-to-use remains held until real audible browser/device output and Stop/cancel behavior are physically verified.
 
 ## Sprint 071 Risk Control Rule
 

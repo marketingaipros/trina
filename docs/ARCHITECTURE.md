@@ -1,5 +1,29 @@
 # Architecture
 
+## Sprint 073 Voice Talk-Back Path
+
+Barbie voice talk-back must follow this flow:
+
+1. User submits a typed or voice request.
+2. App receives the final assistant answer.
+3. The final visible answer is rendered in the UI.
+4. The speech playback source is set from the same final answer text.
+5. Browser speech synthesis is triggered only after required browser permission/user gesture conditions are satisfied.
+6. The UI exposes whether Barbie is speaking, stopped, unavailable, or blocked.
+7. Stop/cancel interrupts active speech cleanly.
+
+### Required Guardrails
+
+- Do not speak placeholder text.
+- Do not speak stale prior responses.
+- Do not speak hidden/internal/debug text.
+- Do not mark voice as working from headless automation alone.
+- Do not block typed Q&A or reminders if speech synthesis is unavailable.
+
+### Voice Verification Boundary
+
+Headless Chromium can validate that UI controls and code paths run, but it cannot prove that the user can hear Barbie speak through physical speakers. Release approval requires a physical device/browser test or a controlled audio-output proof.
+
 ## Sprint 058 Architecture Focus - Auth-Gated Barbie Backend Path
 
 The current release blocker is not static rendering. The release blocker is the auth-gated Barbie backend/model path.

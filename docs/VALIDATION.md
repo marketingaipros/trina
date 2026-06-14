@@ -1,5 +1,215 @@
 # Validation
 
+## Sprint 073 Voice Validation
+
+Sprint 073 closed as PASS after operator UAT confirmed real audible Barbie voice in Chrome.
+
+### Sprint 073 Operator UAT Result
+
+Date: 2026-06-14
+
+Final result:
+
+```text
+PASS
+```
+
+Operator UAT evidence:
+
+```text
+Browser/device used: Chrome
+Physical speaker/headphone access: yes
+Did you hear Barbie speak? yes
+Did spoken text match the visible answer? yes
+Did Stop/cancel work or audio end cleanly? yes
+Did reminder appear and dismiss? yes
+Final result: PASS
+Notes: Operator confirmed the physical audible voice gate after the Sprint 073 user-triggered Play/Stop fix.
+```
+
+Builder validation before operator audio confirmation:
+
+```text
+git status --branch --short - recorded Sprint 073 runtime/docs changes plus pre-existing untracked Sprint 064/Sprint 072/Sprint 073 pack files
+git diff --check - passed
+npm run lint - passed
+npm run build - passed with baseline Vite warnings for services/authService.ts mixed import and chunk size over 500 kB
+Local URL tested: http://127.0.0.1:3000/?sprint073=1
+Typed Q&A: PASS - visible Barbie answer returned.
+Play control: PASS - user-triggered Play spoke the latest visible answer path and exposed Stop.
+Stop/cancel: PASS - Stop returned the UI to Play and showed Barbie audio stopped.
+Reminder regression: PASS - reminder created, due reminder appeared, Dismiss cleared it.
+Physical audible output: OPERATOR PASS - Chrome.
+Spoken text match: OPERATOR PASS - spoken text matched the visible answer.
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png - passed
+```
+
+Sprint 073 cannot pass from headless automation alone.
+
+Required validation:
+
+1. Run existing checks:
+   - `git diff --check`
+   - `npm run lint`
+   - `npm run build`
+
+2. Run browser functional check:
+   - Open the app in a non-headless browser.
+   - Submit a typed question.
+   - Confirm Barbie shows a visible answer.
+   - Trigger speech playback through the intended UI path.
+   - Confirm Barbie is heard through physical speakers or headphones.
+   - Confirm the spoken text matches the visible answer.
+   - Press Stop/cancel during speech and confirm speech stops cleanly.
+
+3. Run reminder regression:
+   - Create a reminder.
+   - Confirm the reminder appears.
+   - Dismiss the reminder.
+
+4. Record UAT evidence exactly:
+
+```text
+Browser/device used:
+Physical speaker/headphone access: yes/no
+Did you hear Barbie speak? yes/no
+Did spoken text match the visible answer? yes/no
+Did Stop/cancel work or audio end cleanly? yes/no
+Did reminder appear and dismiss? yes/no
+Final result: PASS/HOLD
+Notes:
+```
+
+Pass requires:
+
+- Physical speaker/headphone access: yes.
+- Did you hear Barbie speak? yes.
+- Did spoken text match the visible answer? yes.
+- Stop/cancel worked or audio ended cleanly: yes.
+- Reminder appeared and dismissed: yes.
+
+## Sprint 072 Validation - Deployed Talk Controls + Audible Voice UAT Fix
+
+Sprint 072 validation must prove the current deployed browser app can be used by the client for limited return-to-use.
+
+### Sprint 072 Hosting-Only Deploy and UAT Result
+
+Date: 2026-06-08
+
+Final recommendation:
+
+```text
+HOLD - deployed talk controls restored, but real audible output was not physically verified.
+```
+
+Pre-deploy checks:
+
+```text
+git status --branch --short - recorded Sprint 072 docs changes plus untracked Sprint 064 files
+git log --oneline -1 - 2f67a70 docs: close sprint 071 client uat voice hold
+git diff --check - passed
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png - passed
+npm run lint - passed
+npm run build - passed with baseline Vite warnings for services/authService.ts mixed import and chunk size over 500 kB
+```
+
+Deploy command:
+
+```bash
+firebase deploy --only hosting
+```
+
+Deploy result:
+
+```text
+PASS - Firebase Hosting deploy completed for project barbie-92edc.
+Hosting URL: https://barbie-92edc.web.app
+```
+
+No Firebase Functions, Firestore rules, Auth settings, Storage rules, Firebase settings, FlutterFlow files, native packaging, credentials, CEO Briefing files, stage, commit, push, or runtime/source edits were done.
+
+Deployed UAT:
+
+```text
+URL tested: https://barbie-92edc.web.app/?sprint072uat=<cache-bust>
+Served assets: assets/index-B1z4yODZ.js, assets/index-Dej7iVgQ.css
+Prompt: What should I focus on today?
+Visible answer: PASS - Barbie/model answer appeared.
+Barbie Answer label: PASS - visible.
+Talk/Play control: PASS - Talk Off and Play Barbie answer audio controls appeared near the answer.
+Real audible output: NOT VERIFIED - physical speaker output was not confirmed in the Builder environment.
+Spoken text match: NOT VERIFIED - audio was not physically verified.
+Stop/cancel: NOT VERIFIED - speech active state was not observed, so deployed Stop control did not appear during headless UAT.
+Reminder prompt: Remind me in 1 minute to check the door.
+Reminder acknowledgement: PASS - Got it. I'll remind you in 1 minute.
+Due reminder: PASS - due in-app reminder appeared after waiting.
+Dismiss/clear: PASS - Dismiss cleared the reminder.
+Feedback link: PASS - learnandgrowcc@gmail.com remained visible.
+Console/backend errors: Google Identity Services not loaded; typed Q&A and reminder flow still passed.
+```
+
+Sprint 072 remains HOLD because real audible browser/device speech and Stop/cancel during active speech were not physically verified on the deployed URL.
+
+### Required Pre-Change Checks
+
+```bash
+git status --branch --short
+git log --oneline -1
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Confirm Sprint 064 remains untracked and will not be staged.
+
+### Local Runtime Validation
+
+Run the app locally if needed and verify:
+
+1. Typed question returns a visible Barbie/model answer.
+2. A visible Talk/Play control exists for the latest final answer.
+3. A visible Stop control exists while speech is active or available.
+4. Talk/Play speaks the latest final visible answer only.
+5. Stop cancels active speech.
+6. No internal/system/error payload is spoken.
+7. Browser console does not show new blocking errors.
+
+### Deployed UAT Validation
+
+Test exact URL:
+
+```text
+https://barbie-92edc.web.app/
+```
+
+Record:
+
+1. Browser/device used.
+2. URL/path tested.
+3. Commit deployed, if known.
+4. Typed Q&A prompt.
+5. Visible answer result.
+6. Whether Talk/Play control was visible.
+7. Whether real audible output was physically heard.
+8. Whether spoken text matched the visible answer.
+9. Whether Stop/disable worked.
+10. Reminder prompt.
+11. Reminder acknowledgement.
+12. Due reminder appearance after waiting.
+13. Dismiss/clear result.
+14. Feedback link visibility.
+15. Console/backend errors.
+16. Final recommendation: `PASS`, `PASS WITH CAVEAT`, or `HOLD`.
+
+### Final Checks
+
+```bash
+git status --branch --short
+git diff --check
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+Do not mark Sprint 072 PASS unless real audible browser/device speech is physically verified on the deployed URL or by the operator on the deployed URL.
+
 ## Sprint 071 Validation - Client Return-to-Use UAT + Real Audible Voice Check
 
 Sprint 071 UAT was started on 2026-06-08 and stopped at the deployed-client talk-back blocker.

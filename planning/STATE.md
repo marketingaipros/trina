@@ -2,9 +2,98 @@
 
 ## Current Sprint
 
-Sprint 071 - Client Return-to-Use UAT + Real Audible Voice Check
+Sprint 073 - Real Audible Voice Recovery + Physical Device Verification
 
 ## Current Status
+
+Sprint 073 is closed as `PASS - real audible Barbie voice verified by operator`.
+
+Operator UAT confirmed real audible Barbie talk-back on 2026-06-14:
+
+- Browser/device used: Chrome.
+- Did you hear Barbie speak? yes.
+- Did spoken text match the visible answer? yes.
+- Did Stop/cancel work or audio end cleanly? yes.
+- Did reminder appear and dismiss? yes.
+- Final result: PASS.
+
+Sprint 073 fixed the browser talk-back path so Play is user-triggered, speaks only the latest final visible Barbie answer, exposes Stop while active, and preserves reminder create/due/dismiss behavior.
+
+Sprint 072 remains `HOLD` as historical carryforward evidence from before the Sprint 073 operator PASS.
+
+Sprint 072 evidence:
+
+- Browser/device used: headless Chromium automation on Mac.
+- No physical speaker access was available.
+- Barbie was not heard speaking.
+- Spoken text did not match the visible answer.
+- Stop/cancel worked or audio ended cleanly.
+- Reminder appeared and dismissed.
+
+## Current Active Sprint
+
+Sprint 073 - Real Audible Voice Recovery + Physical Device Verification.
+
+Active sprint folder:
+
+```text
+planning/sprints/073-real-audible-voice-recovery/
+```
+
+## Release Gate
+
+Sprint 073 satisfied the real audible voice release gate through operator UAT in Chrome. Broader client handoff still depends on any separate owner release-control decision.
+
+## Sprint 072 Carryforward Evidence
+
+Sprint 072 is `HOLD - deployed controls restored; real audible output not physically verified`.
+
+Sprint 071 closed as `HOLD - client return-to-use blocked` because the deployed app answered typed Q&A but did not expose visible Talk/Play/Stop/disable controls needed to physically verify real audible browser/device speech output.
+
+Sprint 072 found the blocker was deploy/version drift, not a source-code defect. Local source and local browser already exposed the Sprint 070 talk-back controls near the latest Barbie answer. A controlled Firebase Hosting-only deploy was run on 2026-06-08 after lint/build passed, and the deployed URL then served the current build assets.
+
+Sprint 072 deployed UAT evidence recorded on 2026-06-08:
+
+- Tested deployed URL: `https://barbie-92edc.web.app/?sprint072uat=<cache-bust>`.
+- Deployed assets after cache-bust: `assets/index-B1z4yODZ.js` and `assets/index-Dej7iVgQ.css`.
+- Typed Q&A prompt `What should I focus on today?` returned a visible Barbie/model answer.
+- `Barbie Answer` label appeared.
+- `Talk Off` and `Play Barbie answer audio` controls appeared near the latest answer.
+- Clicking Play was possible, but real audible browser/device speaker output was not physically verified in the Builder environment.
+- Stop/cancel did not appear in the headless UAT session because speech active state was not observed.
+- Reminder prompt `Remind me in 1 minute to check the door.` returned `Got it. I'll remind you in 1 minute.`
+- Due in-app reminder appeared after waiting.
+- Dismiss cleared the due reminder.
+- Feedback link remained visible as `mailto:learnandgrowcc@gmail.com`.
+- Observed console error: `Google Identity Services not loaded`; typed Q&A and reminders still passed.
+
+Sprint 072 final recommendation:
+
+```text
+HOLD - deployed talk controls restored, but real audible output was not physically verified.
+```
+
+Sprint 072 sprint folder:
+
+```text
+planning/sprints/072-deployed-talk-controls-audible-voice-uat-fix/
+```
+
+## Next Action
+
+Codex should read the Sprint 073 planning files and summarize the implementation plan before changing runtime/source files.
+
+## Current Release Recommendation
+
+```text
+PASS - Sprint 073 real audible voice gate verified by operator
+```
+
+Real audible talk-back has been physically verified by the operator in Chrome for Sprint 073.
+
+## Prior Sprint Snapshot
+
+### Sprint 071 - Client Return-to-Use UAT + Real Audible Voice Check
 
 Sprint 071 UAT is stopped at `HOLD - client return-to-use blocked.`
 
@@ -45,8 +134,6 @@ Active sprint folder:
 ```text
 planning/sprints/071-client-return-to-use-uat-real-audible-voice-check/
 ```
-
-## Prior Sprint Snapshot
 
 ### Sprint 070 - Voice Talk-Back Restore
 

@@ -1,5 +1,18 @@
 # API
 
+## Sprint 073 API Impact
+
+Sprint 073 is expected to be a client-side voice playback fix and verification sprint.
+
+No backend API contract change is expected unless the Builder discovers that the visible assistant answer and the speech playback text come from different response fields.
+
+If any response contract is changed, the Builder must document:
+
+- Existing response field used for visible answer.
+- Existing response field used for spoken answer.
+- New canonical response field, if one is introduced.
+- Backward compatibility impact.
+
 ## Sprint 070 Voice Talk-Back Scope
 
 Sprint 070 does not introduce a new backend API unless Builder discovery proves that an existing voice endpoint already exists and is required for talk-back restoration.
