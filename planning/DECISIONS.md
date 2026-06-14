@@ -2,6 +2,16 @@
 
 ## Existing Decisions
 
+## Sprint 074 Decisions
+
+| Date | Decision | Reason | Impact |
+|---|---|---|---|
+| 2026-06-14 | Use PWA/mobile install support before Flutter/native packaging. | The current web app is already working and passed browser UAT. PWA is faster and lower risk than restarting the mobile path in Flutter. | Sprint 074 will add installability to the existing web app instead of rebuilding it. |
+| 2026-06-14 | The working web app remains the source of truth. | Sprint 073 restored the core app behavior. | PWA work must preserve current typed Q&A, audible talk-back, Stop, and reminder behavior. |
+| 2026-06-14 | Flutter / FlutterFlow remains deferred. | Native/mobile rebuild is not required for the immediate client return-to-use goal. | No FlutterFlow, native packaging, App Store, or Play Store work should occur in Sprint 074. |
+| 2026-06-14 | Sprint 074 should support home-screen install first. | The client needs phone access quickly. | Acceptance should focus on iPhone/Android browser install behavior and mobile UAT. |
+| 2026-06-14 | Keep PWA wrapper as the mobile path and fix reminder/mic behavior inside the existing app. | PWA install works and is faster than Flutter/native packaging for MVP. | Future mobile work should harden the installed web app before revisiting native packaging. |
+
 ## D001 - Preserve Existing App
 The existing Vite React Barbie app is the source of truth. Do not create a replacement frontend.
 

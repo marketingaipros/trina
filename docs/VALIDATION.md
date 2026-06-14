@@ -1,5 +1,295 @@
 # Validation
 
+## Sprint 075 Mobile Installed Reminder + Mic Reliability
+
+Sprint 075 phone UAT requires installed PWA testing from the home-screen icon.
+
+### Sprint 075 Closeout Result
+
+Final status:
+
+```text
+PASS - installed PWA mic reminder UAT passed.
+```
+
+Real-phone installed PWA UAT evidence:
+
+```text
+Typed reminder works.
+Typed reminder sets correctly.
+Mic worked after Hosting redeploy.
+Spoken reminder was captured.
+Reminder was booked.
+Reminder went off.
+Reminder was dismissed successfully.
+Typed reminder flow already worked.
+```
+
+Closeout interpretation:
+
+- Typed reminders work.
+- Mic reminders work after Hosting redeploy.
+- Reminder appear/dismiss works.
+- Play/Stop remains protected by previous validation.
+- Sprint 075 is complete and ready for commit.
+
+### Required Pre-Change Checks
+
+```bash
+git status --branch --short
+git log --oneline -1
+git diff --check
+npm run lint
+npm run build
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png
+```
+
+### Required Local Browser Smoke
+
+- Typed Q&A.
+- Visible answer.
+- Play.
+- Stop.
+- Typed reminder.
+- Due reminder.
+- Dismiss reminder.
+- Mic start/retry where available.
+
+### Required Installed Phone UAT
+
+Record:
+
+```text
+Device:
+Browser:
+Installed launch:
+Typed Q&A:
+Visible answer:
+Play audible:
+Spoken text matched:
+Stop clean:
+Typed reminder created:
+Spoken reminder created:
+Due reminder appeared:
+Dismiss worked:
+Mic retry/fallback:
+Final result:
+```
+
+### Recommended Current-App Repro Phrases
+
+```text
+Remind me in 2 minutes to check the oven.
+Set a reminder in 3 minutes to call Melissa.
+Set a timer for 1 minute.
+In 2 minutes, remind me to drink water.
+```
+
+If typed reminders fail too, the likely defect is intent routing or reminder parsing.
+
+If typed reminders pass but spoken reminders fail, the likely defect is mic capture or speech-to-intent routing.
+
+If reminders create but do not appear/dismiss in installed mode, the likely defect is reminder state, timer lifecycle, or installed PWA visibility behavior.
+
+### Sprint 075 Second Real Phone UAT Evidence
+
+Result:
+
+```text
+HOLD - mic reminder path still produces reminder wording/help text instead of creating the reminder.
+```
+
+Evidence:
+
+```text
+Typed reminder worked.
+Reminder appeared and dismissed correctly.
+Mic reminder produced the same incorrect response.
+Screenshot evidence again shows Barbie saying:
+I can save that reminder for "in two minutes to check the oven". Please include a time like "in 2 minutes", "in 1 hour", "today at 3pm", or "tomorrow at 10am".
+```
+
+Interpretation:
+
+- Reminder engine is working.
+- Typed reminder flow is working.
+- Installed PWA shell is working.
+- The defect is in mic-transcribed reminder handling, likely parser normalization or route mismatch between mic transcript and typed Send flow.
+- Sprint 074 remains `HOLD`.
+- Sprint 075 should focus on mic reminder parsing/reliability.
+
+### Sprint 075 Latest Real Phone UAT Evidence
+
+Result:
+
+```text
+HOLD - installed-phone microphone capture returns audio-capture before a usable transcript can be routed.
+```
+
+Evidence:
+
+```text
+Typed reminder works.
+Typed reminder sets correctly.
+Reminder appears when due.
+Dismiss works.
+Installed PWA shows Recognition error: audio-capture when using mic.
+User said mic phrase: in two minutes check the oven.
+Mic reminder was not created.
+Screenshot evidence shows the active error is microphone capture, not reminder parsing.
+```
+
+Interpretation:
+
+- Typed reminder engine is working.
+- The remaining blocker is installed-phone microphone capture returning `audio-capture`.
+- Speech recognition is failing before usable transcript routing.
+- Sprint 075 remains `HOLD` until installed-phone mic capture or an acceptable fallback path passes UAT.
+
+## Sprint 074 PWA Mobile Install Wrapper
+
+### Sprint 074 Local Validation Result
+
+Date: 2026-06-14
+
+Final result:
+
+```text
+HOLD - PWA wrapper implemented locally, but real iPhone Safari / Android Chrome install UAT and physical installed-mode audio were not completed in this Builder environment.
+```
+
+Implementation summary:
+
+```text
+App shell metadata: PASS - index.html links manifest, SVG icon, Apple touch icon, theme color, and Apple mobile web app metadata.
+Manifest: PASS - /manifest.webmanifest returned HTTP 200 with Content-Type application/manifest+json.
+PNG install icons: PASS - /pwa-icon-192.png and /pwa-icon-512.png exist and are valid PNG files.
+SVG icons: PASS - /pwa-icon.svg and /pwa-maskable-icon.svg returned HTTP 200 with Content-Type image/svg+xml.
+Service worker: NOT ADDED - avoided to prevent stale answer/reminder caching.
+```
+
+Static validation:
+
+```text
+git status --branch --short - recorded Sprint 074 implementation/docs changes plus pre-existing untracked Sprint 064/Sprint 072/Sprint 074 architect pack files.
+git log --oneline -1 - 4f947cf fix: close sprint 073 audible voice recovery pass.
+git diff --check - passed.
+npm run lint - passed.
+npm run build - passed with baseline Vite warnings for services/authService.ts mixed import and chunk size over 500 kB.
+test ! -f references/flutterflow/sprint-009/ceo-briefing.png - passed.
+```
+
+Local browser/PWA smoke:
+
+```text
+Local URL tested: http://127.0.0.1:3001/?sprint074=1
+Viewport tested: 390x844.
+App loads: PASS.
+Manifest link in DOM: PASS - /manifest.webmanifest.
+Theme color in DOM: PASS - #ec4899.
+Apple mobile web app metadata: PASS.
+Typed Q&A prompt: What should I focus on today?
+Visible answer: PASS - Barbie Answer appeared with a model response.
+Play control: PASS - Play control appeared for the visible answer.
+Play/Stop UI routing: PASS - Play changed status to Barbie speaking the visible answer; Stop changed status to Barbie audio stopped.
+Physical audible output: NOT VERIFIED - browser automation environment did not expose real device speaker verification.
+Speech synthesis API in automation page: NOT AVAILABLE in this environment.
+Spoken text match: NOT VERIFIED audibly; visible-answer playback route stayed tied to the displayed answer.
+Reminder prompt: Remind me in 1 minute to check the door.
+Reminder acknowledgement: PASS - Got it. I'll remind you in 1 minute.
+Due reminder: PASS - Reminder appeared after waiting.
+Dismiss/clear: PASS - Dismiss cleared the due reminder.
+```
+
+Real device/mobile install status:
+
+```text
+iPhone Safari add-to-home-screen: NOT TESTED in this Builder environment.
+Android Chrome install/add-to-home-screen: NOT TESTED in this Builder environment.
+Home-screen launch from real phone icon: NOT TESTED.
+Installed-mode audible Play: NOT TESTED.
+```
+
+Sprint 074 remains HOLD until a real target phone/browser install path and installed-mode audible/reminder UAT are completed.
+
+### Required Pre-Implementation Checks
+
+- `git status --branch --short`
+- Confirm latest commit is Sprint 073:
+  - `4f947cf fix: close sprint 073 audible voice recovery pass`
+- Confirm Sprint 064 and Sprint 072 untracked files remain untouched.
+
+### Required Build Checks
+
+- `git diff --check`
+- `npm run lint`
+- `npm run build`
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png`
+
+### Required Browser Regression
+
+On the working web app URL:
+
+1. Typed Q&A returns visible Barbie answer.
+2. Play speaks the visible answer.
+3. Spoken text matches visible answer.
+4. Stop/cancel works or speech ends cleanly.
+5. Reminder can be created.
+6. Due reminder appears.
+7. Dismiss clears reminder.
+
+### Required PWA Checks
+
+Desktop/browser inspection:
+
+- Manifest is reachable.
+- Manifest has valid app name.
+- Manifest has start URL.
+- Manifest has display mode appropriate for app-like launch.
+- Required icons are present and reachable.
+- Browser install prompt/indicator appears where supported.
+
+Mobile checks:
+
+- iPhone Safari can add to home screen, or limitation is documented.
+- Android Chrome can install/add to home screen, or limitation is documented.
+- App launches from home-screen icon.
+- App opens to the expected Barbie experience.
+- No major layout break blocks typing, Play, Stop, or reminders.
+
+### Required Installed-PWA UAT
+
+After launching from the phone home-screen icon:
+
+- Typed Barbie Q&A works.
+- Visible answer appears.
+- Audible Play works.
+- Spoken text matches visible answer.
+- Stop/cancel works or speech ends cleanly.
+- Reminder create/appear/dismiss works.
+
+### PASS Standard
+
+Sprint 074 may be marked PASS only when:
+
+- PWA install support is implemented.
+- The app can be installed or added to home screen on the target phone/browser path.
+- Installed/home-screen launch opens the working Barbie app.
+- Sprint 073 core behavior still passes.
+- Reminder regression passes.
+- Build/lint validation passes.
+
+### HOLD Conditions
+
+Mark HOLD if:
+
+- App cannot be installed or added to home screen on the target phone path.
+- Installed launch opens a blank, stale, broken, or wrong app.
+- Audio talk-back fails after installed launch.
+- Spoken text does not match visible answer.
+- Reminder flow regresses.
+- The work requires Flutter, native packaging, Firebase settings, or backend changes not approved for this sprint.
+
 ## Sprint 073 Voice Validation
 
 Sprint 073 closed as PASS after operator UAT confirmed real audible Barbie voice in Chrome.

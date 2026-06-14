@@ -1,5 +1,84 @@
 # API
 
+## API Notes - Sprint 074 PWA Mobile Install Wrapper
+
+### API Impact
+
+Sprint 074 is expected to have no backend API contract changes.
+
+The sprint should not change:
+
+- Barbie chat request/response contracts.
+- Reminder creation behavior.
+- Reminder due display/dismiss behavior.
+- Firebase Functions endpoints.
+- Firestore rules.
+- Authentication behavior.
+- Environment variables.
+
+### Public Asset / App Shell Impact
+
+Sprint 074 may add or update public app shell assets such as:
+
+- `manifest.webmanifest` or equivalent.
+- PWA icons.
+- Apple touch icon.
+- Metadata references in the HTML/app shell.
+- Optional service worker registration only if safe and scoped.
+
+### API Acceptance Rule
+
+If any API, Firebase, Cloud Functions, or reminder contract change appears necessary, stop and report it before implementation.
+
+PWA install support should not require backend changes.
+
+### Sprint 074 Implementation Outcome
+
+No backend API, Firebase Functions, Firestore rules, authentication behavior, reminder contract, environment variable, or credential changes were made.
+
+Public app-shell assets added:
+
+- `public/manifest.webmanifest`
+- `public/pwa-icon-192.png`
+- `public/pwa-icon-512.png`
+- `public/pwa-icon.svg`
+- `public/pwa-maskable-icon.svg`
+
+App-shell metadata added in `index.html`:
+
+- Manifest link.
+- Theme color.
+- SVG favicon link.
+- Apple mobile web app metadata.
+- Apple touch icon link.
+
+## API Notes - Sprint 075 Mobile Installed Reminder + Mic Reliability
+
+Sprint 075 should not change backend API contracts unless runtime inspection proves the current reminder path already depends on an existing deployed function contract.
+
+Expected internal command/intent contract:
+
+```text
+Reminder commands:
+- Remind me in 5 minutes to check the oven.
+- Set a reminder in 10 minutes to call Melissa.
+- Set a timer for 3 minutes.
+- Remind me tomorrow at 9 AM to send the invoice.
+```
+
+Required fields:
+
+- Time/date or duration.
+- Reminder text/task, unless timer-only.
+
+Fallback behavior:
+
+- If time is missing, ask one focused question about when to remind the user.
+- If task is missing, ask one focused question about what to remind the user about.
+- If enough information exists, create the reminder instead of explaining how to phrase the request.
+
+No fake reminders should be created when required fields are missing.
+
 ## Sprint 073 API Impact
 
 Sprint 073 is expected to be a client-side voice playback fix and verification sprint.

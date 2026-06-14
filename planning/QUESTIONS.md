@@ -1,5 +1,28 @@
 # Questions
 
+## Sprint 075 Questions
+
+| Question | Owner | Status | Notes |
+|---|---|---|---|
+| Which device and browser failed reminder dismiss? | Operator | Open | Needed to reproduce installed-mode reminder behavior. |
+| Was the failed reminder request typed or spoken? | Operator | Open | Distinguishes parser/routing bugs from mic transcript issues. |
+| What exact phrase was used when Barbie explained how to word the request? | Operator | Open | Required to add targeted reminder intent coverage. |
+| Did the due reminder fail to appear, fail to dismiss, or fail to create? | Operator / Builder | Open | Sprint 075 should isolate creation, due display, and dismiss state separately. |
+| Did mic fail before permission prompt, after permission, during listening, or after speech capture? | Operator / Builder | Open | Needed to choose between permission, recognition lifecycle, timeout, and transcript-routing fixes. |
+| Does the second phone UAT isolate the defect to mic-transcribed reminder handling? | Operator / Builder | Resolved | Yes. Typed reminder worked, due reminder appeared and dismissed, installed PWA shell worked, and mic reminder produced wording/help text for `in two minutes to check the oven`. |
+| Does the latest phone UAT show parser failure or mic capture failure? | Operator / Builder | Resolved | Mic capture failure. Installed PWA showed `Recognition error: audio-capture`; no usable transcript was routed, while typed reminders set, appeared, and dismissed correctly. |
+| Did Sprint 075 installed-phone mic reminder UAT pass after Hosting redeploy? | Operator / Builder | Resolved | Yes. Mic worked, spoken reminder was captured, reminder was booked, went off, and dismissed successfully; typed reminder flow already worked. |
+
+## Sprint 074 Questions
+
+| Question | Owner | Status | Notes |
+|---|---|---|---|
+| What exact live URL should the client install from? | Operator | Open | Required for final client instructions and UAT. |
+| Is the client primarily using iPhone or Android? | Operator | Open | Sprint should support both if practical, but final UAT should happen on the client's actual phone. |
+| What app name should appear on the phone home screen? | Operator | Proposed | Proposed: `Barbie`. |
+| What icon should be used for the PWA? | Operator / Builder | Open | MVP can use an existing safe app icon or simple generated placeholder if no final brand asset exists. |
+| Should the PWA support offline loading? | Architect | Proposed | Proposed: no offline-first behavior in MVP. Avoid risky caching. |
+
 ## Sprint 073 Open Questions
 
 | Question | Owner | Status | Notes |

@@ -4,6 +4,17 @@
 
 | Risk | Likelihood | Impact | Mitigation | Status |
 |---|---:|---:|---|---|
+| iOS PWA behavior differs from Android PWA behavior. | High | Medium | Provide separate iPhone Safari and Android Chrome install instructions and test separately where possible. | Open |
+| Mobile browser speech recognition may be inconsistent in installed PWA mode. | Medium | Medium | Provide typed fallback, clear error states, and phone-specific UAT. | Active |
+| Installed-phone PWA microphone capture may fail with `audio-capture` before any transcript is available. | High | High | Sprint 075 added fallback guidance; later real-phone installed PWA UAT passed after Hosting redeploy. | Mitigated |
+| Mic-transcribed reminder text may miss the reminder parser and return wording/help text instead of creating a reminder. | High | High | Sprint 075 normalized spoken reminder transcripts and routed them through the same reminder path as typed Send. Real-phone installed PWA UAT passed after Hosting redeploy. | Mitigated |
+| Reminder parsing may fall through to generic assistant response. | Medium | High | Route reminder intents before generic Q&A fallback. | Active |
+| Reminder behavior may differ between browser tab and home-screen installed mode. | Medium | High | Validate from installed home-screen icon on real phone. | Active |
+| Web Speech API behavior may differ inside installed PWA mode. | Medium | High | Require post-install UAT for visible answer, audible talk-back, spoken-text match, and Stop behavior. | Open |
+| Reminder behavior may differ when the app is launched from home screen. | Medium | High | Require reminder create/appear/dismiss regression after PWA install. | Open |
+| Service worker caching could serve stale app code. | Medium | Medium | Keep caching conservative in MVP or document refresh/update behavior clearly. | Open |
+| Adding PWA files could accidentally change core app behavior. | Medium | High | Keep implementation scoped to manifest/icons/install metadata and minimal app shell changes. Run Sprint 073 regression checks. | Open |
+| Existing untracked Sprint 064 and Sprint 072 files could be staged accidentally. | Medium | Medium | Explicitly stage only Sprint 074 files when committing. Verify with `git diff --cached --name-only`. | Open |
 | The app may appear to pass automated browser checks while still failing for a real client because audio output is not heard. | Medium | High | Sprint 073 operator UAT in Chrome physically confirmed Barbie was heard speaking. | Mitigated |
 | Browser speech output may fail because of autoplay restrictions, missing user gesture, disabled speech synthesis, missing voice availability, or muted audio output. | Medium | High | Sprint 073 uses user-triggered Play and operator UAT in Chrome confirmed audible output. | Mitigated |
 | Barbie may speak stale text, placeholder text, partial text, or a different response than the visible answer. | Medium | High | Sprint 073 binds playback to the latest final visible answer and operator UAT confirmed spoken text matched the visible answer. | Mitigated |

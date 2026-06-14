@@ -2,7 +2,111 @@
 
 ## Current Sprint
 
-Sprint 073 - Real Audible Voice Recovery + Physical Device Verification
+Sprint 075 - Mobile Installed Reminder + Mic Reliability Fix
+
+## Current Status
+
+Sprint 075 is complete.
+
+Sprint 075 result: PASS.
+
+Real-phone installed PWA UAT confirmed:
+
+- Typed reminders work.
+- Mic reminders work after Hosting redeploy.
+- Spoken reminder was captured.
+- Reminder was booked.
+- Reminder went off.
+- Reminder was dismissed successfully.
+- Play/Stop remains protected by previous validation.
+
+Sprint 075 is complete and ready for commit.
+
+Sprint 073 is complete and pushed to `origin/main`.
+
+Sprint 073 result: PASS.
+
+Confirmed working:
+
+- Typed Barbie Q&A in Chrome.
+- Visible Barbie answer.
+- Audible Barbie talk-back.
+- Spoken text matches visible answer.
+- Stop/cancel works or speech ends cleanly.
+- Reminder create/appear/dismiss works.
+
+Sprint 074 is now planned as a PWA/mobile install wrapper sprint.
+
+Sprint 074 implementation evidence has been recorded locally. The PWA wrapper is present, local manifest/icons are reachable, the app loads at a phone viewport, typed Q&A passes, Play/Stop UI routing remains intact, and local reminder create/appear/dismiss passes.
+
+Sprint 074 deployed to Firebase Hosting with Hosting-only deploy.
+
+Sprint 074 real phone UAT:
+
+- Opened from home-screen icon: yes.
+- Typed question: pass.
+- Visible answer appeared: pass.
+- Play made Barbie speak: pass.
+- Spoken text matched answer: pass.
+- Stop worked: pass.
+- Reminder appeared and dismissed: fail.
+- Mic reliability: intermittent.
+- User experience issue: reminder requests can cause Barbie to explain how to word the reminder instead of creating it.
+
+Sprint 074 remains `HOLD - installed phone reminder/mic UAT failed`.
+
+Second real phone UAT evidence for Sprint 075 planning:
+
+- Typed reminder worked.
+- Reminder appeared and dismissed correctly.
+- Mic reminder produced the same incorrect response.
+- Screenshot evidence again shows Barbie saying: `I can save that reminder for "in two minutes to check the oven". Please include a time like "in 2 minutes", "in 1 hour", "today at 3pm", or "tomorrow at 10am".`
+- Conclusion: the reminder engine is working, typed reminder flow is working, and the installed PWA shell is working.
+- Current defect: mic-transcribed reminder handling, likely parser normalization or route mismatch between mic transcript and typed Send flow.
+- Sprint 074 remains `HOLD`.
+- Sprint 075 should focus on mic reminder parsing/reliability.
+
+Earlier real phone UAT evidence after Sprint 075 Hosting deploy:
+
+- Typed reminder works.
+- Typed reminder sets correctly.
+- Reminder appears when due.
+- Dismiss works.
+- Installed PWA shows `Recognition error: audio-capture` when using mic.
+- User said mic phrase: `in two minutes check the oven`.
+- Mic reminder was not created.
+- Screenshot evidence shows the active error is microphone capture, not reminder parsing.
+- Conclusion: typed reminder engine is working. The remaining blocker is installed-phone microphone capture returning `audio-capture`, which means speech recognition is failing before usable transcript routing.
+
+## Current Goal
+
+Close Sprint 075 as PASS after installed-phone reminder and mic UAT passed.
+
+Sprint 075 made reminder requests create real reminders when enough information exists, improved mic fallback handling, and preserved Sprint 073 audible voice behavior plus Sprint 074 installed launch behavior.
+
+## Next Action
+
+Prepare controlled Sprint 075 commit when approved.
+
+## Known Constraints
+
+- Do not rebuild the app in Flutter during Sprint 075.
+- Do not start native app packaging.
+- Do not touch FlutterFlow.
+- Do not change Firebase settings unless a later approved deploy sprint requires it.
+- Do not touch Sprint 064 or Sprint 072 untracked files.
+- Do not create or modify CEO Briefing artifacts.
+- Do not add service worker/offline caching unless strictly necessary and explicitly approved.
+
+## Prior Sprint State
+
+### Sprint 074 - PWA Mobile Install Wrapper
+
+Sprint 074 remains `HOLD - installed phone reminder/mic UAT failed`.
+
+Sprint 074 made the existing Barbie Vite web app installable as a PWA wrapper and deployed the wrapper to Firebase Hosting. Real phone UAT confirmed installed launch, typed Q&A, visible answer, audible Play, spoken-text match, and Stop. Reminder appear/dismiss failed, mic reliability was intermittent, and reminder phrasing sometimes routed to generic guidance instead of creating a reminder.
+
+### Sprint 073 - Real Audible Voice Recovery + Physical Device Verification
 
 ## Current Status
 

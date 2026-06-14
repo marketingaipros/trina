@@ -30,6 +30,61 @@ const shouldUseSprint42StateFixture = (fixture: string) =>
     .map((value) => value.trim())
     .includes(fixture);
 
+const SPOKEN_NUMBER_WORDS: Record<string, string> = {
+  one: '1',
+  two: '2',
+  three: '3',
+  four: '4',
+  five: '5',
+  six: '6',
+  seven: '7',
+  eight: '8',
+  nine: '9',
+  ten: '10',
+  eleven: '11',
+  twelve: '12',
+  fifteen: '15',
+  twenty: '20',
+  thirty: '30',
+};
+
+const REMINDER_TIME_PATTERN = '(\\d{1,4})\\s*(min|mins|minute|minutes|hr|hrs|hour|hours)';
+
+const looksLikeReminderRequest = (message: string) =>
+  /\b(remind me|set\s+(a\s+)?reminder|set\s+(a\s+)?timer|timer\s+(for\s+)?\d+|timer\s+(for\s+)?[a-z]+|notify me|in\s+\w+\s+(minutes?|hours?),?\s+remind me|in\s+\w+\s+(minutes?|hours?)\s+to\s+|in\s+\w+\s+(minutes?|hours?)\s+\w+|\w+\s+(minutes?|hours?)\s+to\s+|\w+\s+(minutes?|hours?)\s+\w+)\b/i.test(message);
+
+const normalizeReminderRequest = (message: string) => {
+  const cleanMessage = message.trim();
+  if (!looksLikeReminderRequest(cleanMessage)) return cleanMessage;
+
+  let normalized = cleanMessage
+    .replace(/\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty|thirty)\b/gi, (match) => {
+      return SPOKEN_NUMBER_WORDS[match.toLowerCase()] || match;
+    })
+    .replace(/\bin\s+(\d{1,4})\s+(minutes?|mins?|hours?|hrs?),?\s+remind me\s+to\s+/i, 'Remind me in $1 $2 to ')
+    .replace(/\bin\s+(\d{1,4})\s+(minutes?|mins?|hours?|hrs?),?\s+remind me\s+/i, 'Remind me in $1 $2 to ');
+
+  const bareInTimeWithTask = normalized.match(new RegExp(`^\\s*in\\s+${REMINDER_TIME_PATTERN}\\s+(?:to\\s+)?(.+?)\\s*[.!?]?\\s*$`, 'i'));
+  if (bareInTimeWithTask) {
+    const [, amount, unit, task] = bareInTimeWithTask;
+    normalized = `Remind me in ${amount} ${unit} to ${task.trim()}`;
+  }
+
+  const bareTimeWithTask = normalized.match(new RegExp(`^\\s*${REMINDER_TIME_PATTERN}\\s+(?:to\\s+)?(.+?)\\s*[.!?]?\\s*$`, 'i'));
+  if (bareTimeWithTask) {
+    const [, amount, unit, task] = bareTimeWithTask;
+    normalized = `Remind me in ${amount} ${unit} to ${task.trim()}`;
+  }
+
+  const timerMatch = normalized.match(/^\s*set\s+(?:a\s+)?timer\s+(?:for\s+)?(\d{1,4})\s*(min|mins|minute|minutes|hr|hrs|hour|hours)\s*$/i);
+  if (timerMatch) {
+    const [, amount, unit] = timerMatch;
+    normalized = `Set a reminder in ${amount} ${unit} to timer done`;
+  }
+
+  return normalized;
+};
+
 const VoiceDashboard: React.FC<VoiceDashboardProps> = ({ 
   isConnected, 
   isSpeaking, 
@@ -66,6 +121,28 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
   const latestVisibleReplyRef = useRef<string | null>(null);
   const recognitionRef = useRef<any>(null);
   const micStreamRef = useRef<MediaStream | null>(null);
+  const recognitionTimeoutRef = useRef<number | null>(null);
+  const recognitionReceivedSpeechRef = useRef(false);
+
+  const cleanupSpeechRecognition = () => {
+    if (recognitionTimeoutRef.current) {
+      window.clearTimeout(recognitionTimeoutRef.current);
+      recognitionTimeoutRef.current = null;
+    }
+
+    if (recognitionRef.current) {
+      recognitionRef.current.onresult = null;
+      recognitionRef.current.onerror = null;
+      recognitionRef.current.onend = null;
+      try { recognitionRef.current.stop(); } catch (e) {}
+      recognitionRef.current = null;
+    }
+
+    if (micStreamRef.current) {
+      micStreamRef.current.getTracks().forEach(track => track.stop());
+      micStreamRef.current = null;
+    }
+  };
 
   // Audio Synthesis Helper for UI sounds
   const playSound = (type: 'click' | 'connect' | 'disconnect' | 'success') => {
@@ -142,11 +219,11 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
         .query({ name: 'microphone' as PermissionName })
         .then((status) => {
           if (status.state === 'denied') {
-            setMicSupportMessage("Microphone permission was denied. Please enable it in browser settings.");
+            setMicSupportMessage("Microphone permission was denied. Please enable it in browser settings or type your reminder below.");
           }
 
           status.onchange = () => {
-            setMicSupportMessage(status.state === 'denied' ? "Microphone permission was denied. Please enable it in browser settings." : null);
+            setMicSupportMessage(status.state === 'denied' ? "Microphone permission was denied. Please enable it in browser settings or type your reminder below." : null);
           };
         })
         .catch(() => {
@@ -155,16 +232,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     }
 
     return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.onresult = null;
-        recognitionRef.current.onerror = null;
-        recognitionRef.current.onend = null;
-        try { recognitionRef.current.stop(); } catch (e) {}
-      }
-
-      if (micStreamRef.current) {
-        micStreamRef.current.getTracks().forEach(track => track.stop());
-      }
+      cleanupSpeechRecognition();
 
       if (synthRef.current) {
         synthRef.current.cancel();
@@ -223,12 +291,14 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
   const sendMessageToBarbie = async (message: string) => {
     const cleanMessage = message.trim();
     if (!cleanMessage || isTypingLoading) return;
+    const barbieMessage = normalizeReminderRequest(cleanMessage);
 
     console.log("text submitted", cleanMessage);
-    console.log("message sent", cleanMessage);
+    console.log("message sent", barbieMessage);
     setIsTypingLoading(true);
     setTypedError(null);
     setTypedReply(null);
+    setMicSupportMessage(null);
     stopBarbieReply(null);
 
     try {
@@ -239,7 +309,7 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
       });
 
       const result = await Promise.race([
-        askBarbie(cleanMessage),
+        askBarbie(barbieMessage),
         timeout,
       ]) as { reply?: string };
 
@@ -264,24 +334,29 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
     if (isSpeechListening && recognitionRef.current) {
       recognitionRef.current.stop();
       setIsSpeechListening(false);
+      setMicSupportMessage("Voice input stopped. You can tap the mic to try again or type below.");
       return;
     }
 
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-      setMicSupportMessage("Microphone is unavailable. Please type your message below.");
+      setMicSupportMessage("Voice input is not supported in this browser. Please type your reminder below.");
       return;
     }
 
     if (!navigator.mediaDevices?.getUserMedia) {
-      setMicSupportMessage("Microphone is unavailable. Please type your message below.");
+      setMicSupportMessage("Microphone access is unavailable here. Please type your reminder below.");
       return;
     }
 
     try {
+      cleanupSpeechRecognition();
+      setMicSupportMessage("Requesting microphone permission...");
+      setTypedError(null);
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       micStreamRef.current = stream;
+      recognitionReceivedSpeechRef.current = false;
 
       const recognition = new SpeechRecognition();
       recognition.lang = 'en-US';
@@ -291,9 +366,15 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
 
       recognition.onstart = () => {
         console.log("recognition started");
-        setMicSupportMessage(null);
+        setMicSupportMessage("Listening now. Say your reminder, then pause.");
         setTypedError(null);
         setIsSpeechListening(true);
+        recognitionTimeoutRef.current = window.setTimeout(() => {
+          if (!recognitionReceivedSpeechRef.current && recognitionRef.current) {
+            setMicSupportMessage("No speech detected yet. Please try the mic again or type your reminder below.");
+            try { recognitionRef.current.stop(); } catch (e) {}
+          }
+        }, 10000);
       };
 
       recognition.onresult = (event: any) => {
@@ -303,30 +384,60 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
           .trim();
 
         console.log("transcript received", transcript);
+        const normalizedTranscript = normalizeReminderRequest(transcript);
+        console.log("mic transcript normalized", { raw: transcript, normalized: normalizedTranscript });
+        recognitionReceivedSpeechRef.current = Boolean(transcript);
+        if (recognitionTimeoutRef.current) {
+          window.clearTimeout(recognitionTimeoutRef.current);
+          recognitionTimeoutRef.current = null;
+        }
         setIsSpeechListening(false);
 
         if (transcript) {
-          setTypedMessage(transcript);
-          void sendMessageToBarbie(transcript);
+          setTypedMessage(normalizedTranscript);
+          setMicSupportMessage("Voice captured. Sending it to Barbie now.");
+          void sendMessageToBarbie(normalizedTranscript);
+        } else {
+          setMicSupportMessage("I did not catch any words. Please try the mic again or type your reminder below.");
         }
       };
 
       recognition.onerror = (event: any) => {
         console.log("recognition error", event);
+        if (recognitionTimeoutRef.current) {
+          window.clearTimeout(recognitionTimeoutRef.current);
+          recognitionTimeoutRef.current = null;
+        }
         setIsSpeechListening(false);
 
         if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
-          setMicSupportMessage("Microphone permission was denied. Please enable it in browser settings.");
+          setMicSupportMessage("Microphone permission was denied. Please enable it in browser settings or type your reminder below.");
+        } else if (event.error === 'no-speech') {
+          setMicSupportMessage("I did not hear anything. Please try again or type your reminder below.");
+        } else if (event.error === 'audio-capture') {
+          setMicSupportMessage("Microphone capture failed in the installed app. Open Barbie in your phone browser and try the mic there, or type the reminder. Typed reminders are working.");
+        } else if (event.error === 'network') {
+          setMicSupportMessage("Voice recognition had a network problem. Please try again or type your reminder below.");
+        } else if (event.error === 'aborted') {
+          setMicSupportMessage("Voice input stopped. You can tap the mic to try again or type below.");
         } else {
-          setTypedError(`Recognition error: ${event.error || 'Microphone failed.'}`);
+          setMicSupportMessage(`Voice input failed (${event.error || 'unknown error'}). Please try again or type your reminder below.`);
         }
       };
 
       recognition.onend = () => {
+        if (recognitionTimeoutRef.current) {
+          window.clearTimeout(recognitionTimeoutRef.current);
+          recognitionTimeoutRef.current = null;
+        }
         setIsSpeechListening(false);
         if (micStreamRef.current) {
           micStreamRef.current.getTracks().forEach(track => track.stop());
           micStreamRef.current = null;
+        }
+
+        if (!recognitionReceivedSpeechRef.current) {
+          setMicSupportMessage((currentMessage) => currentMessage || "Voice input ended without speech. Please try again or type your reminder below.");
         }
       };
 
@@ -337,9 +448,13 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
       setIsSpeechListening(false);
 
       if (error?.name === 'NotAllowedError' || error?.name === 'PermissionDeniedError') {
-        setMicSupportMessage("Microphone permission was denied. Please enable it in browser settings.");
+        setMicSupportMessage("Microphone permission was denied. Please enable it in browser settings or type your reminder below.");
+      } else if (error?.name === 'NotFoundError') {
+        setMicSupportMessage("No microphone was found. Please type your reminder below.");
+      } else if (error?.name === 'NotReadableError') {
+        setMicSupportMessage("The microphone is busy or unavailable. Please close other audio apps, retry, or type below.");
       } else {
-        setMicSupportMessage("Microphone is unavailable. Please type your message below.");
+        setMicSupportMessage("Microphone is unavailable. Please try again or type your reminder below.");
       }
     }
   };

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Barbie maskable app icon</title>
+  <desc id="desc">Maskable pink Barbie assistant icon with a white B.</desc>
+  <rect width="512" height="512" fill="#ec4899"/>
+  <circle cx="256" cy="256" r="176" fill="#f9a8d4"/>
+  <path fill="#ffffff" d="M184 145h91c58 0 95 29 95 75 0 28-14 51-39 63 34 11 53 39 53 76 0 54-42 88-108 88h-92V145Zm82 118c31 0 50-15 50-39 0-25-19-38-50-38h-28v77h28Zm8 143c35 0 56-18 56-48 0-29-21-46-57-46h-35v94h36Z"/>
+</svg>

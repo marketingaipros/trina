@@ -1,5 +1,68 @@
 # Architecture
 
+## Architecture Notes - Sprint 074 PWA Mobile Install Wrapper
+
+### Current Architecture Position
+
+The current Barbie app is a working web app.
+
+Sprint 073 restored core browser functionality:
+
+- Typed Q&A.
+- Visible Barbie responses.
+- Audible talk-back.
+- Stop/cancel.
+- Reminder create/appear/dismiss.
+
+Sprint 074 adds a Progressive Web App install layer around the existing web app.
+
+Sprint 074 implementation added only app-shell/public asset support:
+
+- `index.html` manifest and mobile metadata.
+- `public/manifest.webmanifest`.
+- `public/pwa-icon-192.png`.
+- `public/pwa-icon-512.png`.
+- `public/pwa-icon.svg`.
+- `public/pwa-maskable-icon.svg`.
+
+No service worker was added.
+
+### PWA Layer
+
+The PWA layer should be treated as an app-shell enhancement, not a rewrite.
+
+Expected implementation areas may include:
+
+- Web app manifest.
+- App icon assets.
+- Theme/background color metadata.
+- Mobile viewport metadata, if missing or incorrect.
+- Apple mobile web app metadata, if needed.
+- Service worker only if the app already has a safe pattern or if implementation can keep caching conservative.
+
+Sprint 074 uses no service worker and no app response caching.
+
+### Out of Scope
+
+Sprint 074 does not include:
+
+- Flutter implementation.
+- FlutterFlow export/import.
+- Native iOS packaging.
+- Native Android packaging.
+- App Store submission.
+- Play Store submission.
+- Background push notification rebuild.
+- Firebase settings changes.
+- Backend behavior changes unless strictly required for PWA loading.
+- Redesign of the Barbie dashboard.
+
+### Architecture Rule
+
+The PWA must launch the same working Barbie web app and preserve Sprint 073 behavior.
+
+Installed mode must not become a separate code path with different answer, speech, Stop, or reminder behavior.
+
 ## Sprint 073 Voice Talk-Back Path
 
 Barbie voice talk-back must follow this flow:
