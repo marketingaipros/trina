@@ -1,5 +1,103 @@
 # PWA Install Notes - Sprint 074
 
+## Sprint 079 Louder Continuous Reminder Alarm
+
+Sprint 079 keeps the installed iPhone PWA reminder strategy focused on active in-app reminders while the app is open.
+
+Implemented local behavior:
+
+- A due reminder starts a stronger repeating alarm when the reminder popup appears.
+- The alarm continues while the reminder popup remains active.
+- The alarm does not auto-stop after 30 seconds while the popup is still active.
+- Dismiss stops the alarm.
+- Snooze stops the alarm.
+- Starting a new reminder alarm stops any previous alarm first.
+- `Test Alert Sound` remains a single test alert on the existing sound-check path.
+
+Implementation evidence:
+
+- Runtime implementation changed `App.tsx` only.
+- Added `playReminderAlarmBurst()` for due reminders.
+- Reminder alarm starts with the popup and repeats every `1250ms`.
+- Removed the active reminder `30000ms` auto-stop timer.
+- Cleanup/unmount still stops the reminder alarm.
+
+Current result:
+
+```text
+HOLD - local implementation and validation passed, but real iPhone installed-PWA UAT is still required before Sprint 079 can be marked PASS.
+```
+
+Honest PWA limitation:
+
+```text
+Barbie can make the in-app reminder alarm louder and more persistent while the app is open, but iPhone volume, Silent Mode, phone-call audio routing, locked/background state, and iOS browser/PWA audio rules can still limit or block sound. Final approval requires real installed iPhone PWA testing.
+```
+
+## Reminder Alarm Behavior
+
+The installed iPhone PWA uses an in-app audible alert attempt for reminders while the app is open and active.
+
+The alarm is best-effort and browser-dependent. It is not guaranteed during active phone calls, silent mode, locked/background state, low volume, routed audio, or iOS/PWA restrictions.
+
+For active reminders, the app should attempt a repeating audible alarm while the reminder popup is visible. The alarm must stop when the user taps Dismiss or Snooze.
+
+The visual reminder popup remains the reliable MVP proof of reminder delivery.
+
+## Sprint 077 Reminder Sound Limitations on iPhone PWA
+
+Barbie reminders are designed for active in-app use.
+
+Reminder sound works best when:
+
+- The app is opened from the home-screen icon.
+- The app remains open.
+- Phone volume is on.
+- Silent mode is off.
+- The user is not on an active phone call.
+
+Known limitations:
+
+- iPhone may mute, lower, route, or block browser/PWA audio during active calls.
+- Sound is not guaranteed while the phone is locked or the app is backgrounded.
+- Silent mode, low volume, or selected audio route can make the alert hard to hear.
+- Visual reminder popup is the reliable MVP confirmation.
+- Use `Test Alert Sound` before relying on audible reminders.
+
+Recommended client guidance:
+
+```text
+Barbie reminders work best when the app is open, phone volume is on, and silent mode is off. Sound may not play during phone calls, when the phone is locked, or when iPhone browser/PWA audio is restricted. Use Test Alert Sound before relying on audible reminders.
+```
+
+## Sprint 076 iPhone Mic + Audible Reminder Alert Notes
+
+Sprint 076 keeps typed reminders as the reliable test path while checking two phone-specific issues:
+
+- Mic does not always pick up requests in the installed phone app.
+- Reminder alert needs sound when it goes off.
+
+For Sprint 076 reminder tests, keep the app open while waiting for the reminder.
+
+Record:
+
+```text
+Device:
+Installed PWA or browser:
+Target URL:
+App kept open while waiting: yes/no
+Typed reminder phrase:
+Typed reminder created: yes/no
+Due reminder appeared: yes/no
+Reminder sound heard: yes/no
+Dismiss cleared reminder: yes/no
+Mic test phrase:
+Mic captured speech: yes/no/intermittent
+Exact mic message/error:
+```
+
+Current source inspection shows the app already attempts a short Web Audio notification sound when an in-app reminder becomes due. Real iPhone installed-PWA UAT is required because iPhone may block sound until the user has interacted with the app.
+
 ## Current Install Surface
 
 The current Barbie web app includes PWA install metadata:

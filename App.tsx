@@ -94,30 +94,164 @@ const App: React.FC = () => {
   const lastNotifiedRef = useRef<Set<string>>(new Set());
   const browserNotifiedRef = useRef<Set<string>>(new Set());
   const suppressedReminderUntilRef = useRef<Map<string, number>>(new Map());
+  const alertAudioContextRef = useRef<AudioContext | null>(null);
+  const alarmIntervalRef = useRef<number | null>(null);
 
   const playNotificationSound = useCallback(() => {
     try {
       const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-      const ctx = new AudioContextClass();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(880, ctx.currentTime); // A5
-      osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.5); // A4
-      
-      gain.gain.setValueAtTime(0.1, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
-      osc.start();
-      osc.stop(ctx.currentTime + 0.5);
+      if (!alertAudioContextRef.current || alertAudioContextRef.current.state === "closed") {
+        alertAudioContextRef.current = new AudioContextClass();
+      }
+
+      const ctx = alertAudioContextRef.current;
+      if (ctx.state === "suspended") {
+        ctx.resume().catch(() => {});
+      }
+
+      const now = ctx.currentTime;
+      const masterGain = ctx.createGain();
+      const compressor = ctx.createDynamicsCompressor();
+      const tones = [
+        { start: 0, frequency: 1046.5, endFrequency: 784 },
+        { start: 0.46, frequency: 1318.5, endFrequency: 880 },
+        { start: 0.92, frequency: 1568, endFrequency: 988 },
+        { start: 1.48, frequency: 1174.7, endFrequency: 784 },
+        { start: 1.94, frequency: 1568, endFrequency: 1046.5 },
+      ];
+
+      masterGain.gain.setValueAtTime(0.85, now);
+      masterGain.gain.setValueAtTime(0.85, now + 2.35);
+      masterGain.gain.exponentialRampToValueAtTime(0.001, now + 2.6);
+      compressor.threshold.setValueAtTime(-18, now);
+      compressor.knee.setValueAtTime(20, now);
+      compressor.ratio.setValueAtTime(8, now);
+      compressor.attack.setValueAtTime(0.003, now);
+      compressor.release.setValueAtTime(0.18, now);
+      masterGain.connect(compressor);
+      compressor.connect(ctx.destination);
+
+      tones.forEach(({ start, frequency, endFrequency }) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const toneStart = now + start;
+        const toneEnd = toneStart + 0.4;
+
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(frequency, toneStart);
+        osc.frequency.exponentialRampToValueAtTime(endFrequency, toneEnd);
+
+        gain.gain.setValueAtTime(0.0001, toneStart);
+        gain.gain.exponentialRampToValueAtTime(0.55, toneStart + 0.025);
+        gain.gain.setValueAtTime(0.55, toneEnd - 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0001, toneEnd);
+
+        osc.connect(gain);
+        gain.connect(masterGain);
+
+        osc.start(toneStart);
+        osc.stop(toneEnd);
+      });
+
+      if ("vibrate" in navigator && typeof navigator.vibrate === "function") {
+        navigator.vibrate([250, 120, 250, 120, 350]);
+      }
     } catch (e) {
       console.warn("Could not play notification sound:", e);
     }
   }, []);
+
+  const playReminderAlarmBurst = useCallback(() => {
+    try {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (!alertAudioContextRef.current || alertAudioContextRef.current.state === "closed") {
+        alertAudioContextRef.current = new AudioContextClass();
+      }
+
+      const ctx = alertAudioContextRef.current;
+      if (ctx.state === "suspended") {
+        ctx.resume().catch(() => {});
+      }
+
+      const now = ctx.currentTime;
+      const masterGain = ctx.createGain();
+      const compressor = ctx.createDynamicsCompressor();
+      const tones = [
+        { start: 0, frequency: 1760, endFrequency: 1174.7 },
+        { start: 0.24, frequency: 1975.5, endFrequency: 1318.5 },
+        { start: 0.48, frequency: 1760, endFrequency: 1046.5 },
+      ];
+
+      masterGain.gain.setValueAtTime(0.95, now);
+      masterGain.gain.setValueAtTime(0.95, now + 0.7);
+      masterGain.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+      compressor.threshold.setValueAtTime(-16, now);
+      compressor.knee.setValueAtTime(16, now);
+      compressor.ratio.setValueAtTime(10, now);
+      compressor.attack.setValueAtTime(0.002, now);
+      compressor.release.setValueAtTime(0.12, now);
+      masterGain.connect(compressor);
+      compressor.connect(ctx.destination);
+
+      tones.forEach(({ start, frequency, endFrequency }) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const toneStart = now + start;
+        const toneEnd = toneStart + 0.18;
+
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(frequency, toneStart);
+        osc.frequency.exponentialRampToValueAtTime(endFrequency, toneEnd);
+
+        gain.gain.setValueAtTime(0.0001, toneStart);
+        gain.gain.exponentialRampToValueAtTime(0.7, toneStart + 0.015);
+        gain.gain.setValueAtTime(0.7, toneEnd - 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, toneEnd);
+
+        osc.connect(gain);
+        gain.connect(masterGain);
+
+        osc.start(toneStart);
+        osc.stop(toneEnd);
+      });
+
+      if ("vibrate" in navigator && typeof navigator.vibrate === "function") {
+        navigator.vibrate([220, 90, 220, 90, 320]);
+      }
+    } catch (e) {
+      console.warn("Could not play reminder alarm:", e);
+    }
+  }, []);
+
+  const handleTestAlertSound = useCallback(() => {
+    playNotificationSound();
+    setActiveToast({
+      id: `test-alert-${Date.now()}`,
+      title: "Alert Sound Test",
+      message: "If you do not hear it, check volume, silent mode, active calls, and iPhone PWA audio limits.",
+      type: "info",
+    });
+  }, [playNotificationSound]);
+
+  const stopReminderAlarm = useCallback(() => {
+    if (alarmIntervalRef.current) {
+      window.clearInterval(alarmIntervalRef.current);
+      alarmIntervalRef.current = null;
+    }
+  }, []);
+
+  const startReminderAlarm = useCallback(() => {
+    stopReminderAlarm();
+    playReminderAlarmBurst();
+
+    alarmIntervalRef.current = window.setInterval(() => {
+      playReminderAlarmBurst();
+    }, 1250);
+  }, [playReminderAlarmBurst, stopReminderAlarm]);
+
+  useEffect(() => {
+    return () => stopReminderAlarm();
+  }, [stopReminderAlarm]);
 
   useEffect(() => {
     if (!("Notification" in window) || typeof Notification.requestPermission !== "function") return;
@@ -184,7 +318,7 @@ const App: React.FC = () => {
       if (!dueReminder) return;
 
       setActiveReminder(dueReminder);
-      playNotificationSound();
+      startReminderAlarm();
 
       if ("Notification" in window && Notification.permission === "granted" && !browserNotifiedRef.current.has(dueReminder.id)) {
         try {
@@ -201,7 +335,7 @@ const App: React.FC = () => {
     checkDueReminders();
     const interval = setInterval(checkDueReminders, 5000);
     return () => clearInterval(interval);
-  }, [activeReminder, pendingReminders, playNotificationSound]);
+  }, [activeReminder, pendingReminders, startReminderAlarm]);
 
   // ── Initialize storage, Gmail, and Cloud Auth ─────────────────
   useEffect(() => {
@@ -403,6 +537,7 @@ const App: React.FC = () => {
   const handleDismissReminder = async () => {
     if (!activeReminder) return;
     const reminderId = activeReminder.id;
+    stopReminderAlarm();
     suppressedReminderUntilRef.current.set(reminderId, Number.MAX_SAFE_INTEGER);
     setPendingReminders(prev => prev.filter(reminder => reminder.id !== reminderId));
     setActiveReminder(null);
@@ -424,6 +559,7 @@ const App: React.FC = () => {
     if (!activeReminder) return;
     const reminderId = activeReminder.id;
     const snoozedUntil = Date.now() + 5 * 60 * 1000;
+    stopReminderAlarm();
     suppressedReminderUntilRef.current.set(reminderId, snoozedUntil);
     setPendingReminders(prev => prev.filter(reminder => reminder.id !== reminderId));
     setActiveReminder(null);
@@ -884,6 +1020,7 @@ const App: React.FC = () => {
             tasks={tasks}
             events={events}
             onAssistantCapture={handleAssistantCapture}
+            onTestAlertSound={handleTestAlertSound}
           />
         );
     }

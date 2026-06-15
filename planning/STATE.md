@@ -2,9 +2,201 @@
 
 ## Current Sprint
 
-Sprint 075 - Mobile Installed Reminder + Mic Reliability Fix
+Sprint 079 - Louder Continuous Reminder Alarm
 
 ## Current Status
+
+Sprint 079 is implemented locally and remains `HOLD - real iPhone installed-PWA UAT required`.
+
+Sprint 078 proved the reminder alarm path can fire, but UAT feedback showed the alarm is still not loud or persistent enough. Sprint 079 should make the active in-app reminder alarm more noticeable and continuous until Dismiss or Snooze, without changing mic behavior or widening into native/push/Firebase work.
+
+## Active Sprint
+
+`planning/sprints/079-louder-continuous-reminder-alarm/`
+
+## Recently Completed
+
+- Sprint 077 audible alert workaround implemented.
+- Real iPhone installed-PWA UAT confirmed the alert can sound, but it is too brief.
+- Sprint 078 implemented a bounded repeating in-app reminder alarm with a 30000ms auto-stop.
+- Sprint 079 implemented a reminder-specific continuous alarm loop in `App.tsx`.
+
+## Next Actions
+
+- Run real iPhone installed-PWA UAT.
+- Confirm the due-reminder alarm is noticeable enough on the actual installed iPhone PWA.
+- Confirm the alarm continues beyond 30 seconds while the reminder popup remains active.
+- Confirm Dismiss stops the alarm.
+- Confirm Snooze stops the current alarm if tested.
+
+## Blockers
+
+- Final PASS requires real iPhone installed-PWA UAT confirming the alarm is noticeable enough and stops on Dismiss/Snooze.
+
+## Sprint 079 Implementation Evidence
+
+- Architect Pack applied to planning/docs only.
+- Runtime implementation changed `App.tsx` only.
+- Added `playReminderAlarmBurst()` for due reminders.
+- Kept `Test Alert Sound` on existing `playNotificationSound()` as a single sound check.
+- Reminder alarm starts with the popup and repeats every `1250ms`.
+- Removed the active reminder `30000ms` auto-stop timer.
+- `startReminderAlarm()` stops any existing alarm before starting a new one.
+- `handleDismissReminder()` calls `stopReminderAlarm()`.
+- `handleSnoozeReminder()` calls `stopReminderAlarm()`.
+- Cleanup/unmount still calls `stopReminderAlarm()`.
+- Alarm should continue beyond 30 seconds while popup remains active.
+- Dismiss should stop it.
+- Snooze should stop it.
+- Overlapping loops should be prevented.
+- Mic behavior, FlutterFlow, native packaging, Firebase rules, credentials, CEO Briefing files, and unrelated sprint files remain out of scope.
+- Sprint 079 must not be marked PASS without real iPhone installed-PWA UAT.
+
+Sprint 079 validation:
+
+- `git diff --check` passed.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png` passed.
+- `node ./node_modules/typescript/bin/tsc --noEmit` passed.
+- `node ./node_modules/vite/bin/vite.js build` passed.
+- Known baseline build warnings remained: mixed static/dynamic import for `services/authService.ts` and bundle chunk size over 500 kB.
+
+## Sprint 078 Implementation Evidence
+
+- `App.tsx` was the only runtime file modified for Sprint 078.
+- Due reminders now start a bounded repeating in-app alarm when the reminder popup becomes active.
+- The alarm plays immediately, repeats every 3000ms, and auto-stops after 30000ms.
+- The alarm stops on Dismiss.
+- The alarm stops on Snooze.
+- The alarm stops on component cleanup/unmount.
+- Stacked alarm loops are prevented by stopping any existing loop before starting a new one.
+- `Test Alert Sound` remains a single alert pattern, not the full repeating loop.
+- No mic behavior, FlutterFlow, native packaging, Firebase rules, credentials, CEO Briefing files, or unrelated sprint files were changed for Sprint 078 implementation.
+
+Sprint 078 validation:
+
+- `git diff --check` passed.
+- `test ! -f references/flutterflow/sprint-009/ceo-briefing.png` passed.
+- `node ./node_modules/typescript/bin/tsc --noEmit` passed.
+- `node ./node_modules/vite/bin/vite.js build` passed.
+- Known baseline build warnings remained: mixed static/dynamic import for `services/authService.ts` and bundle chunk size over 500 kB.
+
+## Sprint 077 Preserved Work And Evidence
+
+Sprint 077 is implemented locally and remains `HOLD - real iPhone installed-PWA UAT required`.
+
+Sprint 077 applies the iPhone installed-PWA audible alert workaround Architect Pack.
+
+Sprint 076 field evidence established:
+
+- Typed reminder setup is working.
+- Visual reminder popup appears.
+- Reminder sound was not proven because the client test happened while the phone was on an active call.
+- iPhone PWA/browser audio may be muted, interrupted, routed elsewhere, lowered, or blocked during calls, silent mode, locked/background state, or browser audio restrictions.
+
+Sprint 077 should stay narrow:
+
+- Preserve typed reminder setup.
+- Preserve visual reminder popup and Dismiss behavior.
+- Add or expose `Test Alert Sound`.
+- Strengthen the in-app reminder alert attempt if implementation is later approved.
+- Add vibration fallback when supported.
+- Add user-facing limitation guidance.
+- Keep the visual popup as the reliable MVP reminder proof.
+
+Sprint 077 must not add native iOS packaging, push notifications, background alarm guarantees, cloud messaging, database changes, auth changes, large reminder rewrites, unrelated mic changes, deploys, or production-code edits until implementation is explicitly approved.
+
+Sprint 077 implementation evidence:
+
+- `Test Alert Sound` is now placed on the first visible home dashboard area above the main mic button near reminder limitation guidance.
+- `Test Alert Sound`, due reminders, timer alerts, and event alerts use the same strengthened in-app alert helper.
+- The alert helper plays a short bounded three-tone Web Audio pattern instead of the previous single short tone.
+- The alert helper reuses a stored Web Audio context so a direct `Test Alert Sound` tap can initialize/resume audio for later due reminder attempts.
+- The alert helper attempts vibration with `navigator.vibrate([200, 100, 200])` only when supported.
+- Typed reminder creation, visible reminder popup, Dismiss, and Snooze code paths were preserved.
+- No FlutterFlow, native packaging, Firebase rules, credentials, CEO Briefing, mic behavior, or unrelated features were changed.
+
+Sprint 077 first real iPhone installed-PWA UAT result:
+
+```text
+HOLD
+```
+
+Recorded evidence:
+
+- Opened from home-screen icon: yes.
+- App stayed open: yes.
+- Active call: no.
+- Volume on: yes.
+- Silent mode off: yes.
+- `Test Alert Sound`: not visible to user.
+- Tapping alert icon did not make sound.
+- Typed reminder was set: yes.
+- Reminder popup appeared: yes.
+- Reminder sound heard: no.
+- Vibration felt: no.
+- Dismiss cleared popup: yes.
+
+Follow-up fix:
+
+- Moved `Test Alert Sound` out of the lower typed-form area and into the primary home dashboard area above the main mic button so it is easier to find on iPhone PWA.
+- Kept the label exactly `Test Alert Sound`.
+- Kept the due reminder and `Test Alert Sound` path shared through `playNotificationSound()`.
+- Reused the alert audio context instead of closing it after each tone pattern.
+
+Sprint 077 repeat real iPhone installed-PWA UAT result:
+
+```text
+HOLD
+```
+
+Recorded evidence:
+
+- Opened from home-screen icon: yes.
+- App stayed open: yes.
+- Active call: no.
+- Volume: max.
+- `Test Alert Sound`: audio played back, but it was very low.
+- Reminder was set: yes.
+- Reminder popup appeared: yes.
+- Reminder sound heard: no.
+- Vibration felt: no.
+- Dismiss cleared popup: yes.
+
+Second follow-up fix:
+
+- Confirmed `Test Alert Sound` and due reminders share the same `playNotificationSound()` path.
+- Increased alert loudness and duration.
+- Replaced the soft three-tone sine chirp with a bounded five-pulse square-wave alert pattern.
+- Added a master gain and dynamics compressor to make the alert more noticeable without an unbounded loop.
+- Increased the vibration attempt pattern while keeping unsupported vibration non-fatal.
+
+## Sprint 077 Current Goal
+
+Complete real iPhone installed-PWA UAT for Sprint 077.
+
+## Sprint 077 Next Action
+
+Repeat real iPhone installed-PWA UAT and record whether the louder `Test Alert Sound` and due reminders produce clearly audible sound, vibration, both, or visual popup only.
+
+## Prior Sprint State
+
+### Sprint 076 - Client iPhone PWA Mic + Audible Reminder Alerts
+
+Sprint 076 is planned.
+
+Client field-testing direction:
+
+- Typed reminders are working, so keep using typed reminders for now.
+- Check two phone-specific items next:
+  - Mic not always picking up requests.
+  - Reminder alert needing sound when it goes off.
+- Keep the app open when testing reminders for now.
+
+Initial repo inspection:
+
+- `App.tsx` already attempts a short Web Audio notification sound when an in-app reminder becomes due.
+- `components/VoiceDashboard.tsx` already has installed-app mic fallback messaging for `audio-capture`.
+- Phone UAT is still required because iPhone installed-PWA audio and mic behavior may differ from local/browser inspection.
 
 Sprint 075 is complete.
 
@@ -78,15 +270,13 @@ Earlier real phone UAT evidence after Sprint 075 Hosting deploy:
 - Screenshot evidence shows the active error is microphone capture, not reminder parsing.
 - Conclusion: typed reminder engine is working. The remaining blocker is installed-phone microphone capture returning `audio-capture`, which means speech recognition is failing before usable transcript routing.
 
-## Current Goal
+### Sprint 076 Goal
 
-Close Sprint 075 as PASS after installed-phone reminder and mic UAT passed.
+Prepare Sprint 076 phone-specific validation and runtime summary for iPhone installed-PWA mic reliability and audible reminder alerts.
 
-Sprint 075 made reminder requests create real reminders when enough information exists, improved mic fallback handling, and preserved Sprint 073 audible voice behavior plus Sprint 074 installed launch behavior.
+### Sprint 076 Next Action
 
-## Next Action
-
-Prepare controlled Sprint 075 commit when approved.
+Summarize Sprint 076 scope and await approval before production-code edits.
 
 ## Known Constraints
 
@@ -97,6 +287,8 @@ Prepare controlled Sprint 075 commit when approved.
 - Do not touch Sprint 064 or Sprint 072 untracked files.
 - Do not create or modify CEO Briefing artifacts.
 - Do not add service worker/offline caching unless strictly necessary and explicitly approved.
+- Keep typed reminders as the reliable path for Sprint 076 testing.
+- Keep the app open while testing reminders for Sprint 076.
 
 ## Prior Sprint State
 

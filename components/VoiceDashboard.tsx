@@ -19,6 +19,7 @@ interface VoiceDashboardProps {
   tasks: Task[];
   events: CalendarEvent[];
   onAssistantCapture: (message: string, source: 'typed' | 'voice') => Task | null;
+  onTestAlertSound: () => void;
 }
 
 const shouldUseSprint42StateFixture = (fixture: string) =>
@@ -98,7 +99,8 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
   onConnectGmail,
   tasks,
   events,
-  onAssistantCapture
+  onAssistantCapture,
+  onTestAlertSound
 }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [briefing, setBriefing] = useState<string | null>(null);
@@ -808,6 +810,24 @@ const VoiceDashboard: React.FC<VoiceDashboardProps> = ({
                 <p className="text-2xl font-black text-gray-900 tracking-tight transition-fast">Listening...</p>
              </div>
            )}
+        </div>
+
+        <div className="home-alert-test w-full px-6 mb-4 z-30">
+          <div className="rounded-2xl border border-pink-100 bg-white/90 p-3 shadow-sm">
+            <button
+              type="button"
+              onClick={onTestAlertSound}
+              aria-label="Test Alert Sound"
+              title="Test Alert Sound"
+              className="min-h-11 w-full flex items-center justify-center gap-2 rounded-xl bg-pink-500 px-4 py-3 text-xs font-black uppercase tracking-widest text-white shadow-md shadow-pink-100 hover:bg-pink-600 active:scale-95 transition-all"
+            >
+              <Volume2 size={16} />
+              <span>Test Alert Sound</span>
+            </button>
+            <p className="mt-2 text-center text-[11px] font-bold text-gray-500 leading-relaxed">
+              Works best with Barbie open, volume on, and silent mode off. iPhone may block sound during calls or locked/background use.
+            </p>
+          </div>
         </div>
 
         {/* Large Mic Button */}

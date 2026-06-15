@@ -18,6 +18,7 @@ interface DashboardProps {
   tasks: any[];
   events: any[];
   onAssistantCapture: (message: string, source: 'typed' | 'voice') => any;
+  onTestAlertSound: () => void;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ 
@@ -34,7 +35,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   onConnectGmail,
   tasks,
   events,
-  onAssistantCapture
+  onAssistantCapture,
+  onTestAlertSound
 }) => {
   const NavButton = ({ icon: Icon, mode, label }: { icon: any, mode: AppMode, label: string }) => (
     <button 
@@ -81,6 +83,7 @@ const Dashboard: React.FC<DashboardProps> = ({
            tasks={tasks}
            events={events}
            onAssistantCapture={onAssistantCapture}
+           onTestAlertSound={onTestAlertSound}
          />
       </div>
     </div>
